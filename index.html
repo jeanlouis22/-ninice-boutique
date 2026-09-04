@@ -1,0 +1,2593 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NINICE BOUTIQUE | Mode féminine</title>
+
+    <meta
+
+        name="description"
+
+        content="NINICE BOUTIQUE - Découvrez notre sélection de vêtements féminins, nouveautés et promotions."
+
+    >
+
+    <style>
+
+        :root {
+
+            --purple: #6d28d9;
+
+            --purple-dark: #4c1d95;
+
+            --purple-light: #f3e8ff;
+
+            --purple-soft: #faf7ff;
+
+            --white: #ffffff;
+
+            --black: #18131f;
+
+            --gray: #716a78;
+
+            --border: #ece7f2;
+
+            --shadow: 0 15px 45px rgba(76, 29, 149, 0.10);
+
+            --radius: 18px;
+
+        }
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            color: var(--black);
+
+            background: var(--white);
+
+            line-height: 1.6;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        button,
+
+        input {
+
+            font: inherit;
+
+        }
+
+        img {
+
+            max-width: 100%;
+
+            display: block;
+
+        }
+
+        /* =========================
+
+           HEADER
+
+        ========================= */
+
+        .header {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(14px);
+
+        }
+
+        .nav {
+
+            width: min(1180px, calc(100% - 40px));
+
+            min-height: 82px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+        }
+
+        /* LOGO NINICE BOUTIQUE */
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            min-width: max-content;
+
+        }
+
+        .brand-symbol {
+
+            width: 40px;
+
+            height: 40px;
+
+            border: 2px solid var(--purple);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: var(--purple);
+
+            font-family: Georgia, serif;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+        }
+
+        .brand-name {
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            color: var(--purple-dark);
+
+        }
+
+        .brand-subtitle {
+
+            display: block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 8px;
+
+            letter-spacing: 3px;
+
+            font-weight: 500;
+
+            color: var(--gray);
+
+            margin-top: -2px;
+
+        }
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 30px;
+
+        }
+
+        .nav-links a {
+
+            position: relative;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #39313f;
+
+            transition: color 0.25s ease;
+
+        }
+
+        .nav-links a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: -7px;
+
+            width: 0;
+
+            height: 2px;
+
+            background: var(--purple);
+
+            transition: width 0.25s ease;
+
+        }
+
+        .nav-links a:hover {
+
+            color: var(--purple);
+
+        }
+
+        .nav-links a:hover::after {
+
+            width: 100%;
+
+        }
+
+        .nav-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+        .icon-btn {
+
+            width: 42px;
+
+            height: 42px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 50%;
+
+            background: var(--white);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            color: var(--black);
+
+            transition: 0.25s ease;
+
+        }
+
+        .icon-btn:hover {
+
+            color: var(--purple);
+
+            border-color: var(--purple);
+
+            transform: translateY(-2px);
+
+        }
+
+        .cart-btn {
+
+            position: relative;
+
+        }
+
+        .cart-count {
+
+            position: absolute;
+
+            top: -4px;
+
+            right: -3px;
+
+            min-width: 18px;
+
+            height: 18px;
+
+            padding: 0 4px;
+
+            border-radius: 20px;
+
+            background: var(--purple);
+
+            color: white;
+
+            font-size: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+
+        }
+
+        .menu-btn {
+
+            display: none;
+
+        }
+
+        /* =========================
+
+           HERO
+
+        ========================= */
+
+        .hero {
+
+            min-height: 640px;
+
+            background:
+
+                radial-gradient(circle at 85% 30%, rgba(109, 40, 217, 0.16), transparent 30%),
+
+                linear-gradient(135deg, #ffffff 0%, #fbf8ff 50%, #f3e8ff 100%);
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+        .hero-inner {
+
+            width: min(1180px, calc(100% - 40px));
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 0.85fr;
+
+            gap: 70px;
+
+            align-items: center;
+
+        }
+
+        .hero-content {
+
+            max-width: 610px;
+
+        }
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: var(--purple);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 2.5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+
+        }
+
+        .eyebrow::before {
+
+            content: "";
+
+            width: 28px;
+
+            height: 1px;
+
+            background: var(--purple);
+
+        }
+
+        .hero h1 {
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: clamp(46px, 6vw, 78px);
+
+            line-height: 1;
+
+            letter-spacing: -2px;
+
+            color: #251c2d;
+
+            margin-bottom: 25px;
+
+        }
+
+        .hero h1 span {
+
+            color: var(--purple);
+
+            font-style: italic;
+
+        }
+
+        .hero-text {
+
+            color: var(--gray);
+
+            max-width: 510px;
+
+            font-size: 16px;
+
+            margin-bottom: 34px;
+
+        }
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .btn {
+
+            min-height: 50px;
+
+            padding: 0 25px;
+
+            border-radius: 10px;
+
+            border: 1px solid transparent;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.25s ease;
+
+        }
+
+        .btn-primary {
+
+            background: var(--purple);
+
+            color: white;
+
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.22);
+
+        }
+
+        .btn-primary:hover {
+
+            background: var(--purple-dark);
+
+            transform: translateY(-2px);
+
+        }
+
+        .btn-secondary {
+
+            background: white;
+
+            color: var(--purple-dark);
+
+            border-color: #ded2eb;
+
+        }
+
+        .btn-secondary:hover {
+
+            border-color: var(--purple);
+
+            transform: translateY(-2px);
+
+        }
+
+        .hero-visual {
+
+            position: relative;
+
+            min-height: 500px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .visual-card {
+
+            position: relative;
+
+            width: min(390px, 100%);
+
+            height: 470px;
+
+            border-radius: 190px 190px 25px 25px;
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    rgba(109, 40, 217, 0.13),
+
+                    rgba(255, 255, 255, 0.9)
+
+                );
+
+            border: 1px solid rgba(109, 40, 217, 0.12);
+
+            box-shadow: var(--shadow);
+
+            overflow: hidden;
+
+        }
+
+        .visual-card::before {
+
+            content: "N";
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: Georgia, serif;
+
+            font-size: 260px;
+
+            color: rgba(109, 40, 217, 0.07);
+
+            font-weight: bold;
+
+        }
+
+        .visual-label {
+
+            position: absolute;
+
+            bottom: 30px;
+
+            left: 30px;
+
+            right: 30px;
+
+            background: rgba(255, 255, 255, 0.9);
+
+            padding: 17px 20px;
+
+            border-radius: 13px;
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+
+        }
+
+        .visual-label strong {
+
+            display: block;
+
+            font-family: Georgia, serif;
+
+            color: var(--purple-dark);
+
+            font-size: 19px;
+
+        }
+
+        .visual-label small {
+
+            color: var(--gray);
+
+            font-size: 12px;
+
+        }
+
+        /* =========================
+
+           SEARCH
+
+        ========================= */
+
+        .search-section {
+
+            padding: 30px 0;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+        .search-container {
+
+            width: min(850px, calc(100% - 40px));
+
+            margin: auto;
+
+            position: relative;
+
+        }
+
+        .search-box {
+
+            width: 100%;
+
+            height: 56px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            padding: 0 55px 0 20px;
+
+            outline: none;
+
+            background: #fff;
+
+            color: var(--black);
+
+            transition: 0.25s ease;
+
+        }
+
+        .search-box:focus {
+
+            border-color: var(--purple);
+
+            box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.08);
+
+        }
+
+        .search-icon {
+
+            position: absolute;
+
+            right: 18px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--purple);
+
+        }
+
+        /* =========================
+
+           SECTIONS
+
+        ========================= */
+
+        .section {
+
+            padding: 90px 0;
+
+        }
+
+        .section-soft {
+
+            background: var(--purple-soft);
+
+        }
+
+        .container {
+
+            width: min(1180px, calc(100% - 40px));
+
+            margin: auto;
+
+        }
+
+        .section-heading {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            gap: 30px;
+
+            margin-bottom: 38px;
+
+        }
+
+        .section-heading small {
+
+            color: var(--purple);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+        }
+
+        .section-heading h2 {
+
+            font-family: Georgia, serif;
+
+            font-size: clamp(30px, 4vw, 44px);
+
+            line-height: 1.1;
+
+            margin-top: 8px;
+
+            color: #251c2d;
+
+        }
+
+        .section-heading p {
+
+            max-width: 430px;
+
+            color: var(--gray);
+
+            font-size: 14px;
+
+        }
+
+        .view-all {
+
+            color: var(--purple);
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+        }
+
+        /* =========================
+
+           CATEGORY
+
+        ========================= */
+
+        .category-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 16px;
+
+        }
+
+        .category-card {
+
+            min-height: 190px;
+
+            padding: 25px;
+
+            border: 1px solid var(--border);
+
+            background: white;
+
+            border-radius: var(--radius);
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: end;
+
+            transition: 0.3s ease;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        .category-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+
+            height: 130px;
+
+            border-radius: 50%;
+
+            background: var(--purple-light);
+
+            right: -45px;
+
+            top: -45px;
+
+        }
+
+        .category-card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: #d8c7eb;
+
+            box-shadow: var(--shadow);
+
+        }
+
+        .category-number {
+
+            position: relative;
+
+            z-index: 1;
+
+            font-size: 12px;
+
+            color: var(--purple);
+
+            font-weight: bold;
+
+            margin-bottom: auto;
+
+        }
+
+        .category-card h3 {
+
+            position: relative;
+
+            z-index: 1;
+
+            font-family: Georgia, serif;
+
+            font-size: 23px;
+
+        }
+
+        .category-card p {
+
+            position: relative;
+
+            z-index: 1;
+
+            color: var(--gray);
+
+            font-size: 12px;
+
+        }
+
+        /* =========================
+
+           PRODUCTS
+
+        ========================= */
+
+        .product-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .product-card {
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            overflow: hidden;
+
+            transition: 0.3s ease;
+
+        }
+
+        .product-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: var(--shadow);
+
+        }
+
+        .product-image {
+
+            height: 300px;
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    #f3e8ff,
+
+                    #ffffff
+
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: rgba(76, 29, 149, 0.25);
+
+            font-family: Georgia, serif;
+
+            font-size: 55px;
+
+            position: relative;
+
+        }
+
+        .sale-badge {
+
+            position: absolute;
+
+            left: 12px;
+
+            top: 12px;
+
+            background: var(--purple);
+
+            color: white;
+
+            border-radius: 6px;
+
+            padding: 5px 9px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+
+        }
+
+        .product-info {
+
+            padding: 18px;
+
+        }
+
+        .product-category {
+
+            font-size: 10px;
+
+            color: var(--purple);
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            font-weight: 800;
+
+        }
+
+        .product-name {
+
+            margin: 6px 0 9px;
+
+            font-family: Georgia, serif;
+
+            font-size: 18px;
+
+        }
+
+        .price {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+        .current-price {
+
+            color: var(--purple-dark);
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+        }
+
+        .old-price {
+
+            color: #999;
+
+            font-size: 12px;
+
+            text-decoration: line-through;
+
+        }
+
+        .product-action {
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            height: 43px;
+
+            border: 1px solid #dfd3e9;
+
+            background: white;
+
+            color: var(--purple-dark);
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            transition: 0.25s ease;
+
+        }
+
+        .product-action:hover {
+
+            background: var(--purple);
+
+            color: white;
+
+            border-color: var(--purple);
+
+        }
+
+        /* =========================
+
+           PROMOTION
+
+        ========================= */
+
+        .promotion {
+
+            background: var(--purple-dark);
+
+            color: white;
+
+            border-radius: 25px;
+
+            padding: 55px;
+
+            display: grid;
+
+            grid-template-columns: 1fr auto;
+
+            align-items: center;
+
+            gap: 30px;
+
+            overflow: hidden;
+
+            position: relative;
+
+        }
+
+        .promotion::after {
+
+            content: "N";
+
+            position: absolute;
+
+            right: 40px;
+
+            top: -80px;
+
+            font-family: Georgia, serif;
+
+            font-size: 330px;
+
+            color: rgba(255, 255, 255, 0.04);
+
+        }
+
+        .promotion small {
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+        .promotion h2 {
+
+            font-family: Georgia, serif;
+
+            font-size: clamp(30px, 4vw, 48px);
+
+            margin: 10px 0;
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+        .promotion p {
+
+            color: rgba(255,255,255,0.75);
+
+            max-width: 550px;
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+        .promotion .btn {
+
+            position: relative;
+
+            z-index: 2;
+
+            background: white;
+
+            color: var(--purple-dark);
+
+        }
+
+        /* =========================
+
+           CONTACT
+
+        ========================= */
+
+        .contact-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+
+        }
+
+        .contact-card {
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            padding: 30px;
+
+            background: white;
+
+        }
+
+        .contact-card h3 {
+
+            font-family: Georgia, serif;
+
+            font-size: 24px;
+
+            margin-bottom: 10px;
+
+        }
+
+        .contact-card p {
+
+            color: var(--gray);
+
+            font-size: 14px;
+
+        }
+
+        /* =========================
+
+           FOOTER
+
+        ========================= */
+
+        .footer {
+
+            background: #17121d;
+
+            color: white;
+
+            padding: 70px 0 25px;
+
+        }
+
+        .footer-grid {
+
+            display: grid;
+
+            grid-template-columns: 1.4fr repeat(3, 1fr);
+
+            gap: 50px;
+
+            padding-bottom: 50px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+
+        }
+
+        .footer-brand .brand-name {
+
+            color: white;
+
+        }
+
+        .footer-brand .brand-subtitle {
+
+            color: rgba(255,255,255,0.5);
+
+        }
+
+        .footer-description {
+
+            max-width: 320px;
+
+            margin-top: 18px;
+
+            color: rgba(255,255,255,0.55);
+
+            font-size: 13px;
+
+        }
+
+        .footer h4 {
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 18px;
+
+        }
+
+        .footer ul {
+
+            list-style: none;
+
+        }
+
+        .footer li {
+
+            margin-bottom: 9px;
+
+        }
+
+        .footer li a {
+
+            color: rgba(255,255,255,0.55);
+
+            font-size: 13px;
+
+            transition: 0.2s;
+
+        }
+
+        .footer li a:hover {
+
+            color: white;
+
+        }
+
+        .copyright {
+
+            padding-top: 22px;
+
+            text-align: center;
+
+            color: rgba(255,255,255,0.4);
+
+            font-size: 11px;
+
+        }
+
+        /* =========================
+
+           MOBILE MENU
+
+        ========================= */
+
+        .mobile-menu {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 82px 0 0 0;
+
+            background: white;
+
+            z-index: 999;
+
+            padding: 30px 20px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+        .mobile-menu.active {
+
+            display: block;
+
+        }
+
+        .mobile-menu a {
+
+            display: block;
+
+            padding: 17px 0;
+
+            border-bottom: 1px solid var(--border);
+
+            font-weight: 700;
+
+        }
+
+        /* =========================
+
+           RESPONSIVE
+
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+            .menu-btn {
+
+                display: flex;
+
+            }
+
+            .hero-inner {
+
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+            }
+
+            .hero {
+
+                padding: 80px 0;
+
+            }
+
+            .hero-content {
+
+                margin: auto;
+
+            }
+
+            .hero-text {
+
+                margin-left: auto;
+
+                margin-right: auto;
+
+            }
+
+            .hero-buttons {
+
+                justify-content: center;
+
+            }
+
+            .hero-visual {
+
+                min-height: 400px;
+
+            }
+
+            .visual-card {
+
+                height: 400px;
+
+            }
+
+            .category-grid,
+
+            .product-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .footer-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+
+                width: calc(100% - 28px);
+
+                min-height: 72px;
+
+            }
+
+            .brand-symbol {
+
+                width: 34px;
+
+                height: 34px;
+
+                font-size: 16px;
+
+            }
+
+            .brand-name {
+
+                font-size: 16px;
+
+                letter-spacing: 1px;
+
+            }
+
+            .brand-subtitle {
+
+                font-size: 6px;
+
+                letter-spacing: 2px;
+
+            }
+
+            .nav-actions {
+
+                gap: 5px;
+
+            }
+
+            .icon-btn {
+
+                width: 36px;
+
+                height: 36px;
+
+            }
+
+            .hero {
+
+                min-height: auto;
+
+                padding: 70px 0;
+
+            }
+
+            .hero-inner,
+
+            .container,
+
+            .search-container {
+
+                width: calc(100% - 28px);
+
+            }
+
+            .hero h1 {
+
+                font-size: 48px;
+
+            }
+
+            .hero-text {
+
+                font-size: 14px;
+
+            }
+
+            .hero-visual {
+
+                min-height: 330px;
+
+            }
+
+            .visual-card {
+
+                width: 260px;
+
+                height: 330px;
+
+            }
+
+            .visual-card::before {
+
+                font-size: 190px;
+
+            }
+
+            .section {
+
+                padding: 65px 0;
+
+            }
+
+            .section-heading {
+
+                align-items: start;
+
+                flex-direction: column;
+
+                gap: 12px;
+
+            }
+
+            .category-grid,
+
+            .product-grid {
+
+                grid-template-columns: 1fr 1fr;
+
+                gap: 10px;
+
+            }
+
+            .category-card {
+
+                min-height: 150px;
+
+                padding: 18px;
+
+            }
+
+            .category-card h3 {
+
+                font-size: 18px;
+
+            }
+
+            .product-image {
+
+                height: 220px;
+
+            }
+
+            .product-info {
+
+                padding: 13px;
+
+            }
+
+            .product-name {
+
+                font-size: 15px;
+
+            }
+
+            .promotion {
+
+                padding: 35px 25px;
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .contact-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .footer-grid {
+
+                grid-template-columns: 1fr 1fr;
+
+                gap: 35px 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================
+
+         NAVIGATION
+
+    ========================== -->
+
+    <header class="header">
+
+        <nav class="nav">
+
+            <a href="index.html" class="brand">
+
+                <div class="brand-symbol">N</div>
+
+                <div>
+
+                    <div class="brand-name">NINICE</div>
+
+                    <span class="brand-subtitle">BOUTIQUE</span>
+
+                </div>
+
+            </a>
+
+            <div class="nav-links">
+
+                <a href="#accueil">Accueil</a>
+
+                <a href="#categories">Catégories</a>
+
+                <a href="#nouveautes">Nouveautés</a>
+
+                <a href="#promotions">Promotions</a>
+
+                <a href="#contact">Nous contacter</a>
+
+            </div>
+
+            <div class="nav-actions">
+
+                <button class="icon-btn" title="Recherche" onclick="focusSearch()">
+
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+
+                        stroke="currentColor" stroke-width="2">
+
+                        <circle cx="11" cy="11" r="7"></circle>
+
+                        <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
+
+                    </svg>
+
+                </button>
+
+                <button class="icon-btn cart-btn" title="Panier" onclick="openCart()">
+
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+
+                        stroke="currentColor" stroke-width="2">
+
+                        <path d="M6 8h12l1 13H5L6 8Z"></path>
+
+                        <path d="M9 8a3 3 0 0 1 6 0"></path>
+
+                    </svg>
+
+                    <span class="cart-count" id="cartCount">0</span>
+
+                </button>
+
+                <button class="icon-btn menu-btn" title="Menu" onclick="toggleMenu()">
+
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none"
+
+                        stroke="currentColor" stroke-width="2">
+
+                        <line x1="4" y1="7" x2="20" y2="7"></line>
+
+                        <line x1="4" y1="12" x2="20" y2="12"></line>
+
+                        <line x1="4" y1="17" x2="20" y2="17"></line>
+
+                    </svg>
+
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="#accueil" onclick="toggleMenu()">Accueil</a>
+
+        <a href="#categories" onclick="toggleMenu()">Catégories</a>
+
+        <a href="#nouveautes" onclick="toggleMenu()">Nouveautés</a>
+
+        <a href="#promotions" onclick="toggleMenu()">Promotions</a>
+
+        <a href="#contact" onclick="toggleMenu()">Nous contacter</a>
+
+        <a href="#" onclick="openCart(); toggleMenu(); return false;">Panier</a>
+
+    </div>
+
+    <!-- =========================
+
+         HERO
+
+    ========================== -->
+
+    <main>
+
+        <section class="hero" id="accueil">
+
+            <div class="hero-inner">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+
+                        Collection féminine
+
+                    </div>
+
+                    <h1>
+
+                        Votre style,<br>
+
+                        votre <span>élégance.</span>
+
+                    </h1>
+
+                    <p class="hero-text">
+
+                        Découvrez NINICE BOUTIQUE, votre espace dédié à la mode
+
+                        féminine. Des pièces soigneusement sélectionnées pour
+
+                        révéler votre style au quotidien.
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#nouveautes" class="btn btn-primary">
+
+                            Découvrir la collection
+
+                        </a>
+
+                        <a href="#promotions" class="btn btn-secondary">
+
+                            Voir les promotions
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="hero-visual">
+
+                    <div class="visual-card">
+
+                        <div class="visual-label">
+
+                            <strong>NINICE BOUTIQUE</strong>
+
+                            <small>Mode féminine · Élégance · Style</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+
+             SEARCH
+
+        ========================== -->
+
+        <section class="search-section">
+
+            <div class="search-container">
+
+                <input
+
+                    type="search"
+
+                    id="searchInput"
+
+                    class="search-box"
+
+                    placeholder="Rechercher un vêtement, une collection..."
+
+                    oninput="searchProducts()"
+
+                >
+
+                <div class="search-icon">
+
+                    <svg width="19" height="19" viewBox="0 0 24 24"
+
+                        fill="none" stroke="currentColor" stroke-width="2">
+
+                        <circle cx="11" cy="11" r="7"></circle>
+
+                        <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
+
+                    </svg>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+
+             CATEGORIES
+
+        ========================== -->
+
+        <section class="section" id="categories">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <small>Explorer</small>
+
+                        <h2>Nos catégories</h2>
+
+                    </div>
+
+                    <p>
+
+                        Une sélection pensée pour accompagner tous vos styles
+
+                        et toutes vos envies.
+
+                    </p>
+
+                </div>
+
+                <div class="category-grid">
+
+                    <a href="#nouveautes" class="category-card">
+
+                        <span class="category-number">01</span>
+
+                        <h3>Robes</h3>
+
+                        <p>Élégantes et tendance</p>
+
+                    </a>
+
+                    <a href="#nouveautes" class="category-card">
+
+                        <span class="category-number">02</span>
+
+                        <h3>Ensembles</h3>
+
+                        <p>Des looks complets</p>
+
+                    </a>
+
+                    <a href="#nouveautes" class="category-card">
+
+                        <span class="category-number">03</span>
+
+                        <h3>Hauts</h3>
+
+                        <p>Pièces du quotidien</p>
+
+                    </a>
+
+                    <a href="#nouveautes" class="category-card">
+
+                        <span class="category-number">04</span>
+
+                        <h3>Nouveautés</h3>
+
+                        <p>Les dernières arrivées</p>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+
+             PRODUCTS
+
+        ========================== -->
+
+        <section class="section section-soft" id="nouveautes">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <small>La sélection</small>
+
+                        <h2>Nouveautés</h2>
+
+                    </div>
+
+                    <a href="boutique.html" class="view-all">
+
+                        Voir toute la collection →
+
+                    </a>
+
+                </div>
+
+                <div class="product-grid" id="productGrid">
+
+                    <article class="product-card" data-name="Robe élégante">
+
+                        <div class="product-image">
+
+                            <span>01</span>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-category">
+
+                                Femme · Robes
+
+                            </div>
+
+                            <h3 class="product-name">
+
+                                Robe Élégante
+
+                            </h3>
+
+                            <div class="price">
+
+                                <span class="current-price">
+
+                                    15 000 FCFA
+
+                                </span>
+
+                            </div>
+
+                            <button
+
+                                class="product-action"
+
+                                onclick="addToCart('Robe Élégante', 15000)"
+
+                            >
+
+                                Ajouter au panier
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article class="product-card" data-name="Ensemble chic">
+
+                        <div class="product-image">
+
+                            <span>02</span>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-category">
+
+                                Femme · Ensembles
+
+                            </div>
+
+                            <h3 class="product-name">
+
+                                Ensemble Chic
+
+                            </h3>
+
+                            <div class="price">
+
+                                <span class="current-price">
+
+                                    18 000 FCFA
+
+                                </span>
+
+                            </div>
+
+                            <button
+
+                                class="product-action"
+
+                                onclick="addToCart('Ensemble Chic', 18000)"
+
+                            >
+
+                                Ajouter au panier
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article class="product-card" data-name="Top tendance">
+
+                        <div class="product-image">
+
+                            <span>03</span>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-category">
+
+                                Femme · Hauts
+
+                            </div>
+
+                            <h3 class="product-name">
+
+                                Top Tendance
+
+                            </h3>
+
+                            <div class="price">
+
+                                <span class="current-price">
+
+                                    9 500 FCFA
+
+                                </span>
+
+                            </div>
+
+                            <button
+
+                                class="product-action"
+
+                                onclick="addToCart('Top Tendance', 9500)"
+
+                            >
+
+                                Ajouter au panier
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                    <article class="product-card" data-name="Robe soirée">
+
+                        <div class="product-image">
+
+                            <span>04</span>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <div class="product-category">
+
+                                Femme · Soirée
+
+                            </div>
+
+                            <h3 class="product-name">
+
+                                Robe de Soirée
+
+                            </h3>
+
+                            <div class="price">
+
+                                <span class="current-price">
+
+                                    22 000 FCFA
+
+                                </span>
+
+                                <span class="old-price">
+
+                                    28 000 FCFA
+
+                                </span>
+
+                            </div>
+
+                            <button
+
+                                class="product-action"
+
+                                onclick="addToCart('Robe de Soirée', 22000)"
+
+                            >
+
+                                Ajouter au panier
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+
+             PROMOTION
+
+        ========================== -->
+
+        <section class="section" id="promotions">
+
+            <div class="container">
+
+                <div class="promotion">
+
+                    <div>
+
+                        <small>
+
+                            Offre du moment
+
+                        </small>
+
+                        <h2>
+
+                            Les promotions NINICE
+
+                        </h2>
+
+                        <p>
+
+                            Retrouvez certaines de nos pièces à prix réduit.
+
+                            Les anciennes collections pourront également être
+
+                            mises en promotion directement depuis l'administration.
+
+                        </p>
+
+                    </div>
+
+                    <a href="boutique.html?promotion=true"
+
+                       class="btn">
+
+                        Découvrir les offres
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+
+             CONTACT
+
+        ========================== -->
+
+        <section class="section section-soft" id="contact">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <small>Une question ?</small>
+
+                        <h2>Nous contacter</h2>
+
+                    </div>
+
+                    <p>
+
+                        Notre équipe pourra vous accompagner pour vos commandes
+
+                        et vos demandes d'informations.
+
+                    </p>
+
+                </div>
+
+                <div class="contact-grid">
+
+                    <div class="contact-card">
+
+                        <h3>Service client</h3>
+
+                        <p>
+
+                            Pour toute question concernant un produit,
+
+                            une commande ou une livraison, contactez-nous.
+
+                        </p>
+
+                    </div>
+
+                    <div class="contact-card">
+
+                        <h3>Commandes</h3>
+
+                        <p>
+
+                            Vous pourrez commander directement vos articles
+
+                            sans créer de compte.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- =========================
+
+         FOOTER
+
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <a href="#accueil" class="brand">
+
+                        <div class="brand-symbol">N</div>
+
+                        <div>
+
+                            <div class="brand-name">
+
+                                NINICE
+
+                            </div>
+
+                            <span class="brand-subtitle">
+
+                                BOUTIQUE
+
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <p class="footer-description">
+
+                        NINICE BOUTIQUE vous accompagne avec une sélection
+
+                        féminine pensée autour de l'élégance, du style et
+
+                        de la simplicité.
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h4>Boutique</h4>
+
+                    <ul>
+
+                        <li><a href="#nouveautes">Nouveautés</a></li>
+
+                        <li><a href="#categories">Catégories</a></li>
+
+                        <li><a href="#promotions">Promotions</a></li>
+
+                        <li><a href="panier.html">Panier</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+
+                    <h4>Informations</h4>
+
+                    <ul>
+
+                        <li><a href="#">Livraison</a></li>
+
+                        <li><a href="#">Conditions de vente</a></li>
+
+                        <li><a href="#">Confidentialité</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+
+                    <h4>Contact</h4>
+
+                    <ul>
+
+                        <li><a href="#contact">Nous contacter</a></li>
+
+                        <li><a href="#">WhatsApp</a></li>
+
+                        <li><a href="#">Réseaux sociaux</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="copyright">
+
+                © 2026 NINICE BOUTIQUE. Tous droits réservés.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- =========================
+
+         JAVASCRIPT
+
+    ========================== -->
+
+    <script>
+
+        let cart = JSON.parse(localStorage.getItem("niniceCart")) || [];
+
+        function updateCartCount() {
+
+            const count = cart.reduce(
+
+                (total, item) => total + item.quantity,
+
+                0
+
+            );
+
+            document.getElementById("cartCount").textContent = count;
+
+        }
+
+        function addToCart(name, price) {
+
+            const existing = cart.find(
+
+                item => item.name === name
+
+            );
+
+            if (existing) {
+
+                existing.quantity += 1;
+
+            } else {
+
+                cart.push({
+
+                    name: name,
+
+                    price: price,
+
+                    quantity: 1
+
+                });
+
+            }
+
+            localStorage.setItem(
+
+                "niniceCart",
+
+                JSON.stringify(cart)
+
+            );
+
+            updateCartCount();
+
+            alert(
+
+                name +
+
+                " a été ajouté au panier."
+
+            );
+
+        }
+
+        function openCart() {
+
+            window.location.href = "panier.html";
+
+        }
+
+        function focusSearch() {
+
+            const search = document.getElementById("searchInput");
+
+            search.focus();
+
+            window.scrollTo({
+
+                top: search.offsetTop - 120,
+
+                behavior: "smooth"
+
+            });
+
+        }
+
+        function searchProducts() {
+
+            const query =
+
+                document
+
+                .getElementById("searchInput")
+
+                .value
+
+                .toLowerCase()
+
+                .trim();
+
+            const products =
+
+                document.querySelectorAll(".product-card");
+
+            products.forEach(product => {
+
+                const name =
+
+                    product
+
+                    .getAttribute("data-name")
+
+                    .toLowerCase();
+
+                product.style.display =
+
+                    name.includes(query)
+
+                    ? ""
+
+                    : "none";
+
+            });
+
+        }
+
+        function toggleMenu() {
+
+            const menu =
+
+                document.getElementById("mobileMenu");
+
+            menu.classList.toggle("active");
+
+        }
+
+        updateCartCount();
+
+    </script>
+
+</body>
+
+</html>
