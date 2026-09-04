@@ -4246,653 +4246,511 @@
 
     ===================================================== -->
 
-    <script>
+ <script>
 
-        /* =================================================
+/* =========================================================
 
-           DONNÉES PRODUITS
+   NINICE BOUTIQUE — CONNEXION SUPABASE
 
-           Ces données seront remplacées par Supabase.
+   ========================================================= */
 
-        ================================================= */
+const SUPABASE_URL = "https://jiuekwokbwqwlexanstc.supabase.co";
 
-        const products = {
+const SUPABASE_KEY = "sb_publishable_Bj2rjzWV_0uj_dLeAGM4w_gjE2hTeU";
 
-            1: {
+const supabaseClient = window.supabase.createClient(
 
-                id: 1,
+    SUPABASE_URL,
 
-                name: "Robe élégante",
+    SUPABASE_KEY
 
-                category: "Robes",
+);
 
-                price: 15000,
+/* =========================================================
 
-                oldPrice: null,
+   DONNÉES LOCALES DE SECOURS
 
-                image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=85",
+   Elles permettent au site de continuer à fonctionner
 
-                description: "Une robe élégante et moderne pensée pour une silhouette féminine et raffinée."
+   même avant l'ajout des vrais produits dans Supabase.
 
-            },
+   ========================================================= */
 
-            2: {
+let products = {
 
-                id: 2,
+    1: {
 
-                name: "Ensemble féminin",
+        id: 1,
 
-                category: "Ensembles",
+        name: "Robe élégante",
 
-                price: 18000,
+        category: "Robes",
 
-                oldPrice: null,
+        price: 15000,
 
-                image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=85",
+        oldPrice: null,
 
-                description: "Un ensemble tendance et polyvalent pour compléter votre garde-robe."
+        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=85",
 
-            },
+        description: "Une robe élégante et moderne pensée pour une silhouette féminine et raffinée.",
 
-            3: {
+        stock: 10
 
-                id: 3,
+    },
 
-                name: "Haut tendance",
+    2: {
 
-                category: "Hauts",
+        id: 2,
 
-                price: 9500,
+        name: "Ensemble féminin",
 
-                oldPrice: null,
+        category: "Ensembles",
 
-                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85",
+        price: 18000,
 
-                description: "Un haut moderne facile à associer avec différentes pièces de votre collection."
+        oldPrice: null,
 
-            },
+        image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=85",
 
-            4: {
+        description: "Un ensemble tendance et polyvalent pour compléter votre garde-robe.",
 
-                id: 4,
+        stock: 10
 
-                name: "Veste élégante",
+    },
 
-                category: "Vestes",
+    3: {
 
-                price: 20000,
+        id: 3,
 
-                oldPrice: null,
+        name: "Haut tendance",
 
-                image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=85",
+        category: "Hauts",
 
-                description: "Une veste élégante qui apporte une finition chic et moderne à votre tenue."
+        price: 9500,
 
-            },
+        oldPrice: null,
 
-            5: {
+        image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85",
 
-                id: 5,
+        description: "Un haut moderne facile à associer avec différentes pièces de votre collection.",
 
-                name: "Robe satin",
+        stock: 10
 
-                category: "Robes",
+    },
 
-                price: 10000,
+    4: {
 
-                oldPrice: 15000,
+        id: 4,
 
-                image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=85",
+        name: "Veste élégante",
 
-                description: "Une robe satinée proposée exceptionnellement à prix réduit dans notre collection promotionnelle."
+        category: "Vestes",
 
-            }
+        price: 20000,
 
-        };
+        oldPrice: null,
 
-        /* =================================================
+        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=85",
 
-           ÉTAT DU SITE
+        description: "Une veste élégante qui apporte une finition chic et moderne à votre tenue.",
 
-        ================================================= */
+        stock: 10
 
-        let cart = [];
+    },
 
-        let favorites = [];
+    5: {
 
-        let currentProduct = null;
+        id: 5,
 
-        /* =================================================
+        name: "Robe satin",
 
-           FORMAT PRIX
+        category: "Robes",
 
-        ================================================= */
+        price: 10000,
 
-        function formatPrice(price) {
+        oldPrice: 15000,
 
-            return Number(price).toLocaleString("fr-FR") + " FCFA";
+        image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=85",
 
-        }
+        description: "Une robe satinée proposée exceptionnellement à prix réduit.",
 
-        /* =================================================
+        stock: 10
 
-           PANIER
+    }
 
-        ================================================= */
+};
 
-        function isInCart(id) {
+/* =========================================================
 
-            return cart.some(item => item.id === id);
+   ÉTAT DU SITE
 
-        }
+   ========================================================= */
 
-        function toggleCart(id) {
+let cart = JSON.parse(
 
-            const product = products[id];
+    localStorage.getItem("ninice_cart_v1") || "[]"
 
-            if (!product) {
+);
 
-                return;
+let favorites = JSON.parse(
 
-            }
+    localStorage.getItem("ninice_favorites_v1") || "[]"
 
-            const existing = cart.find(
+);
 
-                item => item.id === id
+let currentProduct = null;
 
-            );
+/* =========================================================
 
-            if (existing) {
+   SAUVEGARDE LOCALE
 
-                cart = cart.filter(
+   ========================================================= */
 
-                    item => item.id !== id
+function saveCart() {
 
-                );
+    localStorage.setItem(
 
-            } else {
+        "ninice_cart_v1",
 
-                cart.push({
+        JSON.stringify(cart)
 
-                    id: product.id,
+    );
 
-                    name: product.name,
+}
 
-                    price: product.price,
+function saveFavorites() {
 
-                    image: product.image,
+    localStorage.setItem(
 
-                    quantity: 1
+        "ninice_favorites_v1",
 
-                });
+        JSON.stringify(favorites)
 
-            }
+    );
 
-            updateCartUI();
+}
 
-        }
+/* =========================================================
 
-        function updateCartButtons() {
+   FORMAT PRIX
 
-            Object.keys(products).forEach(id => {
+   ========================================================= */
 
-                const button =
+function formatPrice(price) {
 
-                    document.getElementById("cartButton-" + id);
+    return Number(price).toLocaleString("fr-FR") + " FCFA";
 
-                if (!button) {
+}
 
-                    return;
+/* =========================================================
 
-                }
+   SUPABASE — CHARGER LES PRODUITS
 
-                if (isInCart(Number(id))) {
+   ========================================================= */
 
-                    button.textContent =
+async function loadProductsFromSupabase() {
 
-                        "Retirer du panier";
+    try {
 
-                    button.classList.add("remove");
+        const { data, error } = await supabaseClient
 
-                } else {
+            .from("products")
 
-                    button.textContent =
+            .select(`
 
-                        "Ajouter au panier";
+                id,
 
-                    button.classList.remove("remove");
+                name,
 
-                }
+                slug,
+
+                reference,
+
+                description,
+
+                price,
+
+                stock,
+
+                category_id,
+
+                categories (
+
+                    id,
+
+                    name
+
+                ),
+
+                product_images (
+
+                    id,
+
+                    image_url,
+
+                    is_primary,
+
+                    sort_order
+
+                ),
+
+                promotions (
+
+                    id,
+
+                    promotional_price,
+
+                    start_date,
+
+                    end_date,
+
+                    is_active
+
+                )
+
+            `)
+
+            .eq("is_active", true)
+
+            .order("created_at", {
+
+                ascending: false
 
             });
 
-        }
+        if (error) {
 
-        function updateCartUI() {
+            console.error(
 
-            const count =
+                "Erreur Supabase produits :",
 
-                cart.reduce(
+                error
 
-                    (total, item) =>
+            );
 
-                        total + item.quantity,
-
-                    0
-
-                );
-
-            document.getElementById(
-
-                "cartCount"
-
-            ).textContent = count;
-
-            const container =
-
-                document.getElementById("cartItems");
-
-            if (cart.length === 0) {
-
-                container.innerHTML = `
-
-                    <div class="cart-empty">
-
-                        Votre panier est actuellement vide.
-
-                    </div>
-
-                `;
-
-            } else {
-
-                container.innerHTML =
-
-                    cart.map(item => `
-
-                        <div class="cart-item">
-
-                            <div class="cart-item-image">
-
-                                <img
-
-                                    src="${item.image}"
-
-                                    alt="${item.name}"
-
-                                >
-
-                            </div>
-
-                            <div>
-
-                                <h4>
-
-                                    ${item.name}
-
-                                </h4>
-
-                                <div class="cart-item-price">
-
-                                    ${formatPrice(item.price)}
-
-                                </div>
-
-                                <div class="quantity-control">
-
-                                    <button
-
-                                        onclick="changeQuantity(${item.id}, -1)"
-
-                                    >
-
-                                        −
-
-                                    </button>
-
-                                    <span>
-
-                                        ${item.quantity}
-
-                                    </span>
-
-                                    <button
-
-                                        onclick="changeQuantity(${item.id}, 1)"
-
-                                    >
-
-                                        +
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                            <button
-
-                                class="remove-item"
-
-                                onclick="toggleCart(${item.id})"
-
-                            >
-
-                                Retirer
-
-                            </button>
-
-                        </div>
-
-                    `).join("");
-
-            }
-
-            const total =
-
-                cart.reduce(
-
-                    (sum, item) =>
-
-                        sum + item.price * item.quantity,
-
-                    0
-
-                );
-
-            document.getElementById(
-
-                "cartTotal"
-
-            ).textContent = formatPrice(total);
-
-            updateCartButtons();
+            return;
 
         }
 
-        function changeQuantity(id, amount) {
+        if (!data || data.length === 0) {
 
-            const item =
+            console.log(
 
-                cart.find(
+                "Supabase est connecté, mais aucun produit réel n'a encore été ajouté."
 
-                    product => product.id === id
+            );
 
-                );
-
-            if (!item) {
-
-                return;
-
-            }
-
-            item.quantity += amount;
-
-            if (item.quantity <= 0) {
-
-                cart =
-
-                    cart.filter(
-
-                        product => product.id !== id
-
-                    );
-
-            }
-
-            updateCartUI();
+            return;
 
         }
 
-        function openCart() {
+        const newProducts = {};
 
-            closeFavorites();
+        data.forEach(product => {
 
-            document
+            const images = product.product_images || [];
 
-                .getElementById("cartDrawer")
+            images.sort(
 
-                .classList.add("open");
+                (a, b) =>
 
-            document
+                    (a.sort_order || 0) -
 
-                .getElementById("overlay")
+                    (b.sort_order || 0)
 
-                .classList.add("open");
+            );
 
-            document.body.classList.add("no-scroll");
+            const primaryImage =
 
-        }
+                images.find(
 
-        function closeCart() {
+                    image => image.is_primary
 
-            document
+                ) || images[0];
 
-                .getElementById("cartDrawer")
+            const activePromotion =
 
-                .classList.remove("open");
+                (product.promotions || []).find(
 
-            document
+                    promotion => {
 
-                .getElementById("overlay")
+                        if (!promotion.is_active) {
 
-                .classList.remove("open");
+                            return false;
 
-            document.body.classList.remove("no-scroll");
+                        }
 
-        }
+                        const now = new Date();
 
-        /* =================================================
+                        if (
 
-           FAVORIS
+                            promotion.start_date &&
 
-        ================================================= */
+                            now < new Date(
 
-        function isFavorite(id) {
+                                promotion.start_date
 
-            return favorites.includes(id);
+                            )
 
-        }
+                        ) {
 
-        function toggleFavorite(id) {
+                            return false;
 
-            if (isFavorite(id)) {
+                        }
 
-                favorites =
+                        if (
 
-                    favorites.filter(
+                            promotion.end_date &&
 
-                        favoriteId => favoriteId !== id
+                            now > new Date(
 
-                    );
+                                promotion.end_date
 
-            } else {
+                            )
 
-                favorites.push(id);
+                        ) {
 
-            }
+                            return false;
 
-            updateFavoritesUI();
+                        }
 
-        }
-
-        function updateFavoriteButtons() {
-
-            document
-
-                .querySelectorAll(".product")
-
-                .forEach(card => {
-
-                    const id =
-
-                        Number(card.dataset.id);
-
-                    const button =
-
-                        card.querySelector(
-
-                            ".favorite-button"
-
-                        );
-
-                    if (!button) {
-
-                        return;
+                        return true;
 
                     }
 
-                    button.classList.toggle(
-
-                        "active",
-
-                        isFavorite(id)
-
-                    );
-
-                });
-
-        }
-
-        function updateFavoritesUI() {
-
-            document.getElementById(
-
-                "favoriteCount"
-
-            ).textContent = favorites.length;
-
-            const container =
-
-                document.getElementById(
-
-                    "favoritesContent"
-
                 );
 
-            if (favorites.length === 0) {
+            newProducts[product.id] = {
 
-                container.innerHTML = `
+                id: product.id,
 
-                    <div class="cart-empty">
+                name: product.name,
 
-                        Vous n'avez encore aucun favori.
+                category:
 
-                    </div>
+                    product.categories?.name ||
 
-                `;
+                    "Sans catégorie",
 
-            } else {
+                price:
 
-                container.innerHTML =
+                    activePromotion
 
-                    favorites.map(id => {
+                        ? Number(
 
-                        const product =
+                            activePromotion.promotional_price
 
-                            products[id];
+                        )
 
-                        return `
+                        : Number(product.price),
 
-                            <div class="favorite-row">
+                oldPrice:
 
-                                <div class="favorite-row-image">
+                    activePromotion
 
-                                    <img
+                        ? Number(product.price)
 
-                                        src="${product.image}"
+                        : null,
 
-                                        alt="${product.name}"
+                image:
 
-                                    >
+                    primaryImage?.image_url ||
 
-                                </div>
+                    "",
 
-                                <div>
+                images: images.map(
 
-                                    <h4>
+                    image => image.image_url
 
-                                        ${product.name}
+                ),
 
-                                    </h4>
+                description:
 
-                                    <p>
+                    product.description || "",
 
-                                        ${formatPrice(product.price)}
+                reference:
 
-                                    </p>
+                    product.reference || "",
 
-                                </div>
+                stock:
 
-                                <button
+                    Number(product.stock || 0)
 
-                                    class="favorite-remove"
+            };
 
-                                    onclick="toggleFavorite(${product.id})"
+        });
 
-                                >
+        products = newProducts;
 
-                                    Retirer
+        /*
 
-                                </button>
+         * On conserve uniquement les produits
 
-                            </div>
+         * existant réellement dans Supabase.
 
-                        `;
+         */
 
-                    }).join("");
+        favorites = favorites.filter(
 
-            }
+            id => products[id]
 
-            updateFavoriteButtons();
+        );
 
-        }
+        cart = cart.filter(
 
-        function openFavorites() {
+            item => products[item.id]
 
-            closeCart();
+        );
 
-            document
+        saveCart();
 
-                .getElementById("favoritesPanel")
+        saveFavorites();
 
-                .classList.add("open");
+        refreshExistingProductCards();
 
-            document
+        updateCartUI();
 
-                .getElementById("overlay")
+        updateFavoritesUI();
 
-                .classList.add("open");
+        console.log(
 
-            document.body.classList.add("no-scroll");
+            "Produits Supabase chargés :",
 
-        }
+            data.length
 
-        function closeFavorites() {
+        );
 
-            document
+    } catch (error) {
 
-                .getElementById("favoritesPanel")
+        console.error(
 
-                .classList.remove("open");
+            "Erreur de connexion Supabase :",
 
-            document
+            error
 
-                .getElementById("overlay")
+        );
 
-                .classList.remove("open");
+    }
 
-            document.body.classList.remove("no-scroll");
+}
 
-        }
+/* =========================================================
 
-        /* =================================================
+   ACTUALISER LES CARTES EXISTANTES
 
-           PRODUIT
+   ========================================================= */
 
-        ================================================= */
+function refreshExistingProductCards() {
 
-        function openProduct(id) {
+    document
+
+        .querySelectorAll(".product")
+
+        .forEach(card => {
+
+            const id =
+
+                card.dataset.id;
 
             const product =
 
@@ -4904,289 +4762,1111 @@
 
             }
 
-            currentProduct = id;
+            const name =
 
-            document.getElementById(
+                card.querySelector(
 
-                "modalCategory"
-
-            ).textContent =
-
-                product.category;
-
-            document.getElementById(
-
-                "modalName"
-
-            ).textContent =
-
-                product.name;
-
-            document.getElementById(
-
-                "modalDescription"
-
-            ).textContent =
-
-                product.description;
-
-            const priceElement =
-
-                document.getElementById(
-
-                    "modalPrice"
+                    ".product-name"
 
                 );
 
-            if (product.oldPrice) {
+            if (name) {
 
-                priceElement.innerHTML = `
+                name.textContent =
 
-                    <span class="old-price">
-
-                        ${formatPrice(product.oldPrice)}
-
-                    </span>
-
-                    ${formatPrice(product.price)}
-
-                `;
-
-            } else {
-
-                priceElement.textContent =
-
-                    formatPrice(product.price);
+                    product.name;
 
             }
 
-            document.getElementById(
+            const price =
 
-                "modalImage"
+                card.querySelector(
 
-            ).innerHTML = `
-
-                <img
-
-                    src="${product.image}"
-
-                    alt="${product.name}"
-
-                >
-
-            `;
-
-            const modalCartButton =
-
-                document.getElementById(
-
-                    "modalCartButton"
+                    ".product-price"
 
                 );
 
-            modalCartButton.textContent =
+            if (price) {
 
-                isInCart(id)
+                if (product.oldPrice) {
 
-                    ? "RETIRER DU PANIER"
+                    price.innerHTML = `
 
-                    : "AJOUTER AU PANIER";
+                        <span class="old-price">
 
-            modalCartButton.onclick =
+                            ${formatPrice(product.oldPrice)}
 
-                function () {
+                        </span>
 
-                    toggleCart(id);
+                        ${formatPrice(product.price)}
 
-                    this.textContent =
+                    `;
 
-                        isInCart(id)
+                } else {
 
-                            ? "RETIRER DU PANIER"
+                    price.textContent =
 
-                            : "AJOUTER AU PANIER";
-
-                };
-
-            document
-
-                .getElementById("productModal")
-
-                .classList.add("open");
-
-            document
-
-                .getElementById("overlay")
-
-                .classList.add("open");
-
-            document.body.classList.add("no-scroll");
-
-        }
-
-        function closeProduct() {
-
-            document
-
-                .getElementById("productModal")
-
-                .classList.remove("open");
-
-            document
-
-                .getElementById("overlay")
-
-                .classList.remove("open");
-
-            document.body.classList.remove("no-scroll");
-
-        }
-
-        function selectSize(button) {
-
-            document
-
-                .querySelectorAll(".size-option")
-
-                .forEach(
-
-                    option =>
-
-                        option.classList.remove("active")
-
-                );
-
-            button.classList.add("active");
-
-        }
-
-        /* =================================================
-
-           RECHERCHE
-
-        ================================================= */
-
-        function focusSearch() {
-
-            const search =
-
-                document.getElementById(
-
-                    "searchInput"
-
-                );
-
-            search.focus();
-
-            window.scrollTo({
-
-                top: 0,
-
-                behavior: "smooth"
-
-            });
-
-        }
-
-        document
-
-            .getElementById("searchInput")
-
-            .addEventListener(
-
-                "input",
-
-                function () {
-
-                    const query =
-
-                        this.value
-
-                            .toLowerCase()
-
-                            .trim();
-
-                    let visibleProducts = 0;
-
-                    document
-
-                        .querySelectorAll(".product")
-
-                        .forEach(card => {
-
-                            const name =
-
-                                card.dataset.name
-
-                                    .toLowerCase();
-
-                            const category =
-
-                                card.dataset.category
-
-                                    .toLowerCase();
-
-                            const matches =
-
-                                name.includes(query) ||
-
-                                category.includes(query);
-
-                            card.style.display =
-
-                                matches
-
-                                    ? ""
-
-                                    : "none";
-
-                            if (matches) {
-
-                                visibleProducts++;
-
-                            }
-
-                        });
-
-                    document
-
-                        .getElementById("noResults")
-
-                        .style.display =
-
-                            visibleProducts === 0
-
-                                ? "block"
-
-                                : "none";
+                        formatPrice(product.price);
 
                 }
 
+            }
+
+            const image =
+
+                card.querySelector("img");
+
+            if (
+
+                image &&
+
+                product.image
+
+            ) {
+
+                image.src =
+
+                    product.image;
+
+                image.alt =
+
+                    product.name;
+
+            }
+
+            card.dataset.name =
+
+                product.name;
+
+            card.dataset.category =
+
+                product.category;
+
+        });
+
+    updateCartButtons();
+
+    updateFavoriteButtons();
+
+}
+
+/* =========================================================
+
+   PANIER
+
+   ========================================================= */
+
+function isInCart(id) {
+
+    return cart.some(
+
+        item => String(item.id) === String(id)
+
+    );
+
+}
+
+function toggleCart(id) {
+
+    const product = products[id];
+
+    if (!product) {
+
+        return;
+
+    }
+
+    const existing =
+
+        cart.find(
+
+            item =>
+
+                String(item.id) === String(id)
+
+        );
+
+    if (existing) {
+
+        cart = cart.filter(
+
+            item =>
+
+                String(item.id) !== String(id)
+
+        );
+
+    } else {
+
+        cart.push({
+
+            id: product.id,
+
+            name: product.name,
+
+            price: product.price,
+
+            image: product.image,
+
+            quantity: 1
+
+        });
+
+    }
+
+    saveCart();
+
+    updateCartUI();
+
+}
+
+function updateCartButtons() {
+
+    Object.keys(products).forEach(id => {
+
+        const button =
+
+            document.getElementById(
+
+                "cartButton-" + id
+
             );
 
-        /* =================================================
+        if (!button) {
 
-           FILTRE CATEGORIES
+            return;
 
-        ================================================= */
+        }
 
-        function filterProducts(category, button) {
+        if (isInCart(id)) {
 
-            document
+            button.textContent =
 
-                .querySelectorAll(".filter-button")
+                "Retirer du panier";
 
-                .forEach(
+            button.classList.add(
 
-                    item =>
+                "remove"
 
-                        item.classList.remove("active")
+            );
+
+        } else {
+
+            button.textContent =
+
+                "Ajouter au panier";
+
+            button.classList.remove(
+
+                "remove"
+
+            );
+
+        }
+
+    });
+
+}
+
+function updateCartUI() {
+
+    const count =
+
+        cart.reduce(
+
+            (total, item) =>
+
+                total + item.quantity,
+
+            0
+
+        );
+
+    const cartCount =
+
+        document.getElementById(
+
+            "cartCount"
+
+        );
+
+    if (cartCount) {
+
+        cartCount.textContent =
+
+            count;
+
+    }
+
+    const container =
+
+        document.getElementById(
+
+            "cartItems"
+
+        );
+
+    if (container) {
+
+        if (cart.length === 0) {
+
+            container.innerHTML = `
+
+                <div class="cart-empty">
+
+                    Votre panier est actuellement vide.
+
+                </div>
+
+            `;
+
+        } else {
+
+            container.innerHTML =
+
+                cart.map(item => `
+
+                    <div class="cart-item">
+
+                        <div class="cart-item-image">
+
+                            <img
+
+                                src="${item.image}"
+
+                                alt="${item.name}"
+
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <h4>
+
+                                ${item.name}
+
+                            </h4>
+
+                            <div class="cart-item-price">
+
+                                ${formatPrice(item.price)}
+
+                            </div>
+
+                            <div class="quantity-control">
+
+                                <button
+
+                                    onclick="changeQuantity('${item.id}', -1)"
+
+                                >
+
+                                    −
+
+                                </button>
+
+                                <span>
+
+                                    ${item.quantity}
+
+                                </span>
+
+                                <button
+
+                                    onclick="changeQuantity('${item.id}', 1)"
+
+                                >
+
+                                    +
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <button
+
+                            class="remove-item"
+
+                            onclick="toggleCart('${item.id}')"
+
+                        >
+
+                            Retirer
+
+                        </button>
+
+                    </div>
+
+                `).join("");
+
+        }
+
+    }
+
+    const total =
+
+        cart.reduce(
+
+            (sum, item) =>
+
+                sum +
+
+                Number(item.price) *
+
+                item.quantity,
+
+            0
+
+        );
+
+    const cartTotal =
+
+        document.getElementById(
+
+            "cartTotal"
+
+        );
+
+    if (cartTotal) {
+
+        cartTotal.textContent =
+
+            formatPrice(total);
+
+    }
+
+    updateCartButtons();
+
+}
+
+function changeQuantity(id, amount) {
+
+    const item =
+
+        cart.find(
+
+            product =>
+
+                String(product.id) === String(id)
+
+        );
+
+    if (!item) {
+
+        return;
+
+    }
+
+    item.quantity += amount;
+
+    if (item.quantity <= 0) {
+
+        cart =
+
+            cart.filter(
+
+                product =>
+
+                    String(product.id) !==
+
+                    String(id)
+
+            );
+
+    }
+
+    saveCart();
+
+    updateCartUI();
+
+}
+
+function openCart() {
+
+    closeFavorites();
+
+    const drawer =
+
+        document.getElementById(
+
+            "cartDrawer"
+
+        );
+
+    const overlay =
+
+        document.getElementById(
+
+            "overlay"
+
+        );
+
+    if (drawer) {
+
+        drawer.classList.add("open");
+
+    }
+
+    if (overlay) {
+
+        overlay.classList.add("open");
+
+    }
+
+    document.body.classList.add(
+
+        "no-scroll"
+
+    );
+
+}
+
+function closeCart() {
+
+    const drawer =
+
+        document.getElementById(
+
+            "cartDrawer"
+
+        );
+
+    const overlay =
+
+        document.getElementById(
+
+            "overlay"
+
+        );
+
+    if (drawer) {
+
+        drawer.classList.remove("open");
+
+    }
+
+    if (overlay) {
+
+        overlay.classList.remove("open");
+
+    }
+
+    document.body.classList.remove(
+
+        "no-scroll"
+
+    );
+
+}
+
+/* =========================================================
+
+   FAVORIS
+
+   ========================================================= */
+
+function isFavorite(id) {
+
+    return favorites.some(
+
+        favoriteId =>
+
+            String(favoriteId) === String(id)
+
+    );
+
+}
+
+function toggleFavorite(id) {
+
+    if (isFavorite(id)) {
+
+        favorites =
+
+            favorites.filter(
+
+                favoriteId =>
+
+                    String(favoriteId) !==
+
+                    String(id)
+
+            );
+
+    } else {
+
+        favorites.push(id);
+
+    }
+
+    saveFavorites();
+
+    updateFavoritesUI();
+
+}
+
+function updateFavoriteButtons() {
+
+    document
+
+        .querySelectorAll(".product")
+
+        .forEach(card => {
+
+            const id =
+
+                card.dataset.id;
+
+            const button =
+
+                card.querySelector(
+
+                    ".favorite-button"
 
                 );
 
-            button.classList.add("active");
+            if (!button) {
 
-            let visible = 0;
+                return;
+
+            }
+
+            button.classList.toggle(
+
+                "active",
+
+                isFavorite(id)
+
+            );
+
+        });
+
+}
+
+function updateFavoritesUI() {
+
+    const count =
+
+        document.getElementById(
+
+            "favoriteCount"
+
+        );
+
+    if (count) {
+
+        count.textContent =
+
+            favorites.length;
+
+    }
+
+    const container =
+
+        document.getElementById(
+
+            "favoritesContent"
+
+        );
+
+    if (!container) {
+
+        return;
+
+    }
+
+    if (favorites.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="cart-empty">
+
+                Vous n'avez encore aucun favori.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    container.innerHTML =
+
+        favorites
+
+            .map(id => {
+
+                const product =
+
+                    products[id];
+
+                if (!product) {
+
+                    return "";
+
+                }
+
+                return `
+
+                    <div class="favorite-row">
+
+                        <div class="favorite-row-image">
+
+                            <img
+
+                                src="${product.image}"
+
+                                alt="${product.name}"
+
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <h4>
+
+                                ${product.name}
+
+                            </h4>
+
+                            <p>
+
+                                ${formatPrice(product.price)}
+
+                            </p>
+
+                        </div>
+
+                        <button
+
+                            class="favorite-remove"
+
+                            onclick="toggleFavorite('${product.id}')"
+
+                        >
+
+                            Retirer
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            })
+
+            .join("");
+
+    updateFavoriteButtons();
+
+}
+
+function openFavorites() {
+
+    closeCart();
+
+    const panel =
+
+        document.getElementById(
+
+            "favoritesPanel"
+
+        );
+
+    const overlay =
+
+        document.getElementById(
+
+            "overlay"
+
+        );
+
+    if (panel) {
+
+        panel.classList.add("open");
+
+    }
+
+    if (overlay) {
+
+        overlay.classList.add("open");
+
+    }
+
+    document.body.classList.add(
+
+        "no-scroll"
+
+    );
+
+}
+
+function closeFavorites() {
+
+    const panel =
+
+        document.getElementById(
+
+            "favoritesPanel"
+
+        );
+
+    const overlay =
+
+        document.getElementById(
+
+            "overlay"
+
+        );
+
+    if (panel) {
+
+        panel.classList.remove("open");
+
+    }
+
+    if (overlay) {
+
+        overlay.classList.remove("open");
+
+    }
+
+    document.body.classList.remove(
+
+        "no-scroll"
+
+    );
+
+}
+
+/* =========================================================
+
+   FICHE PRODUIT
+
+   ========================================================= */
+
+function openProduct(id) {
+
+    const product =
+
+        products[id];
+
+    if (!product) {
+
+        return;
+
+    }
+
+    currentProduct =
+
+        id;
+
+    const category =
+
+        document.getElementById(
+
+            "modalCategory"
+
+        );
+
+    const name =
+
+        document.getElementById(
+
+            "modalName"
+
+        );
+
+    const description =
+
+        document.getElementById(
+
+            "modalDescription"
+
+        );
+
+    const price =
+
+        document.getElementById(
+
+            "modalPrice"
+
+        );
+
+    const image =
+
+        document.getElementById(
+
+            "modalImage"
+
+        );
+
+    if (category) {
+
+        category.textContent =
+
+            product.category;
+
+    }
+
+    if (name) {
+
+        name.textContent =
+
+            product.name;
+
+    }
+
+    if (description) {
+
+        description.textContent =
+
+            product.description;
+
+    }
+
+    if (price) {
+
+        if (product.oldPrice) {
+
+            price.innerHTML = `
+
+                <span class="old-price">
+
+                    ${formatPrice(product.oldPrice)}
+
+                </span>
+
+                ${formatPrice(product.price)}
+
+            `;
+
+        } else {
+
+            price.textContent =
+
+                formatPrice(product.price);
+
+        }
+
+    }
+
+    if (image) {
+
+        image.innerHTML = `
+
+            <img
+
+                src="${product.image}"
+
+                alt="${product.name}"
+
+            >
+
+        `;
+
+    }
+
+    const modalCartButton =
+
+        document.getElementById(
+
+            "modalCartButton"
+
+        );
+
+    if (modalCartButton) {
+
+        modalCartButton.textContent =
+
+            isInCart(id)
+
+                ? "RETIRER DU PANIER"
+
+                : "AJOUTER AU PANIER";
+
+        modalCartButton.onclick =
+
+            function () {
+
+                toggleCart(id);
+
+                this.textContent =
+
+                    isInCart(id)
+
+                        ? "RETIRER DU PANIER"
+
+                        : "AJOUTER AU PANIER";
+
+            };
+
+    }
+
+    const modal =
+
+        document.getElementById(
+
+            "productModal"
+
+        );
+
+    const overlay =
+
+        document.getElementById(
+
+            "overlay"
+
+        );
+
+    if (modal) {
+
+        modal.classList.add("open");
+
+    }
+
+    if (overlay) {
+
+        overlay.classList.add("open");
+
+    }
+
+    document.body.classList.add(
+
+        "no-scroll"
+
+    );
+
+}
+
+function closeProduct() {
+
+    const modal =
+
+        document.getElementById(
+
+            "productModal"
+
+        );
+
+    const overlay =
+
+        document.getElementById(
+
+            "overlay"
+
+        );
+
+    if (modal) {
+
+        modal.classList.remove("open");
+
+    }
+
+    if (overlay) {
+
+        overlay.classList.remove("open");
+
+    }
+
+    document.body.classList.remove(
+
+        "no-scroll"
+
+    );
+
+}
+
+function selectSize(button) {
+
+    document
+
+        .querySelectorAll(".size-option")
+
+        .forEach(
+
+            option =>
+
+                option.classList.remove(
+
+                    "active"
+
+                )
+
+        );
+
+    button.classList.add(
+
+        "active"
+
+    );
+
+}
+
+/* =========================================================
+
+   RECHERCHE
+
+   ========================================================= */
+
+function focusSearch() {
+
+    const search =
+
+        document.getElementById(
+
+            "searchInput"
+
+        );
+
+    if (!search) {
+
+        return;
+
+    }
+
+    search.focus();
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+const searchInput =
+
+    document.getElementById(
+
+        "searchInput"
+
+    );
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+
+        "input",
+
+        function () {
+
+            const query =
+
+                this.value
+
+                    .toLowerCase()
+
+                    .trim();
+
+            let visibleProducts = 0;
 
             document
 
@@ -5194,179 +5874,327 @@
 
                 .forEach(card => {
 
-                    const match =
+                    const name =
 
-                        category === "all" ||
+                        (
 
-                        card.dataset.category === category;
+                            card.dataset.name ||
+
+                            ""
+
+                        ).toLowerCase();
+
+                    const category =
+
+                        (
+
+                            card.dataset.category ||
+
+                            ""
+
+                        ).toLowerCase();
+
+                    const description =
+
+                        (
+
+                            card.dataset.description ||
+
+                            ""
+
+                        ).toLowerCase();
+
+                    const matches =
+
+                        name.includes(query) ||
+
+                        category.includes(query) ||
+
+                        description.includes(query);
 
                     card.style.display =
 
-                        match
+                        matches ? "" : "none";
 
-                            ? ""
+                    if (matches) {
 
-                            : "none";
-
-                    if (match) {
-
-                        visible++;
+                        visibleProducts++;
 
                     }
 
                 });
 
-            document
+            const noResults =
 
-                .getElementById("noResults")
+                document.getElementById(
 
-                .style.display =
+                    "noResults"
 
-                    visible === 0
+                );
+
+            if (noResults) {
+
+                noResults.style.display =
+
+                    visibleProducts === 0
 
                         ? "block"
 
                         : "none";
 
-        }
-
-        /* =================================================
-
-           MENU MOBILE
-
-        ================================================= */
-
-        function toggleMobileMenu() {
-
-            document
-
-                .getElementById("mobileMenu")
-
-                .classList.toggle("open");
-
-        }
-
-        function closeMobileMenu() {
-
-            document
-
-                .getElementById("mobileMenu")
-
-                .classList.remove("open");
-
-        }
-
-        /* =================================================
-
-           NAV MOBILE
-
-        ================================================= */
-
-        function goToSection(id) {
-
-            closeMobileMenu();
-
-            const section =
-
-                document.getElementById(id);
-
-            if (section) {
-
-                section.scrollIntoView({
-
-                    behavior: "smooth"
-
-                });
-
             }
 
         }
 
-        /* =================================================
+    );
 
-           FERMER LES PANNEAUX
+}
 
-        ================================================= */
+/* =========================================================
 
-        function closeAllPanels() {
+   FILTRE CATÉGORIES
 
-            closeCart();
+   ========================================================= */
 
-            closeFavorites();
+function filterProducts(
 
-            closeProduct();
+    category,
 
-            closeMobileMenu();
+    button
 
-        }
+) {
 
-        /* =================================================
+    document
 
-           COMMANDE
+        .querySelectorAll(".filter-button")
 
-           La vraie commande sera reliée à Supabase.
+        .forEach(
 
-        ================================================= */
+            item =>
 
-        function startCheckout() {
+                item.classList.remove(
 
-            if (cart.length === 0) {
+                    "active"
 
-                alert(
+                )
 
-                    "Votre panier est vide."
+        );
 
-                );
+    if (button) {
 
-                return;
+        button.classList.add(
+
+            "active"
+
+        );
+
+    }
+
+    let visible = 0;
+
+    document
+
+        .querySelectorAll(".product")
+
+        .forEach(card => {
+
+            const match =
+
+                category === "all" ||
+
+                card.dataset.category ===
+
+                    category;
+
+            card.style.display =
+
+                match ? "" : "none";
+
+            if (match) {
+
+                visible++;
 
             }
 
-            alert(
+        });
 
-                "La page de commande sera connectée à Supabase dans la prochaine étape."
+    const noResults =
 
-            );
+        document.getElementById(
 
-        }
+            "noResults"
 
-        /* =================================================
+        );
 
-           INITIALISATION
+    if (noResults) {
 
-        ================================================= */
+        noResults.style.display =
 
-        updateCartUI();
+            visible === 0
 
-        updateFavoritesUI();
+                ? "block"
 
-        /* =================================================
+                : "none";
 
-           SUPABASE
+    }
 
-           La prochaine étape permettra de remplacer
+}
 
-           les données locales par les données Supabase.
+/* =========================================================
 
-           Structure prévue :
+   MENU MOBILE
 
-           produits
+   ========================================================= */
 
-           categories
+function toggleMobileMenu() {
 
-           promotions
+    const menu =
 
-           commandes
+        document.getElementById(
 
-           commande_articles
+            "mobileMenu"
 
-           frais_livraison
+        );
 
-           parametres_boutique
+    if (menu) {
 
-        ================================================= */
+        menu.classList.toggle(
 
-    </script>
+            "open"
+
+        );
+
+    }
+
+}
+
+function closeMobileMenu() {
+
+    const menu =
+
+        document.getElementById(
+
+            "mobileMenu"
+
+        );
+
+    if (menu) {
+
+        menu.classList.remove(
+
+            "open"
+
+        );
+
+    }
+
+}
+
+/* =========================================================
+
+   NAVIGATION MOBILE
+
+   ========================================================= */
+
+function goToSection(id) {
+
+    closeMobileMenu();
+
+    const section =
+
+        document.getElementById(
+
+            id
+
+        );
+
+    if (section) {
+
+        section.scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+}
+
+/* =========================================================
+
+   FERMER LES PANNEAUX
+
+   ========================================================= */
+
+function closeAllPanels() {
+
+    closeCart();
+
+    closeFavorites();
+
+    closeProduct();
+
+    closeMobileMenu();
+
+}
+
+/* =========================================================
+
+   COMMANDE
+
+   ========================================================= */
+
+function startCheckout() {
+
+    if (cart.length === 0) {
+
+        alert(
+
+            "Votre panier est vide."
+
+        );
+
+        return;
+
+    }
+
+    /*
+
+     * La prochaine étape connectera cette fonction
+
+     * à la table orders de Supabase.
+
+     */
+
+    alert(
+
+        "Votre panier est prêt. Le formulaire de commande sera connecté à Supabase dans la prochaine étape."
+
+    );
+
+}
+
+/* =========================================================
+
+   INITIALISATION
+
+   ========================================================= */
+
+updateCartUI();
+
+updateFavoritesUI();
+
+/*
+
+ * Connexion à Supabase et récupération
+
+ * des vrais produits.
+
+ */
+
+loadProductsFromSupabase();
+
+</script>
 
 </body>
 
