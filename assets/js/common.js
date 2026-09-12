@@ -4,6 +4,8 @@
 
    FONCTIONS COMMUNES
 
+   Version définitive — GitHub Pages + Supabase
+
    ========================================================= */
 
 (function () {
@@ -82,15 +84,33 @@
 
                 .normalize("NFD")
 
-                .replace(/[\u0300-\u036f]/g, "")
+                .replace(
+
+                    /[\u0300-\u036f]/g,
+
+                    ""
+
+                )
 
                 .toLowerCase()
 
                 .trim()
 
-                .replace(/[^a-z0-9]+/g, "-")
+                .replace(
 
-                .replace(/^-+|-+$/g, "");
+                    /[^a-z0-9]+/g,
+
+                    "-"
+
+                )
+
+                .replace(
+
+                    /^-+|-+$/g,
+
+                    ""
+
+                );
 
         },
 
@@ -120,7 +140,11 @@
 
                 notification =
 
-                    document.createElement("div");
+                    document.createElement(
+
+                        "div"
+
+                    );
 
                 notification.className =
 
@@ -188,7 +212,11 @@
 
                 const value =
 
-                    localStorage.getItem(key);
+                    localStorage.getItem(
+
+                        key
+
+                    );
 
                 if (value === null) {
 
@@ -196,7 +224,11 @@
 
                 }
 
-                return JSON.parse(value);
+                return JSON.parse(
+
+                    value
+
+                );
 
             } catch (error) {
 
@@ -254,7 +286,11 @@
 
             try {
 
-                localStorage.removeItem(key);
+                localStorage.removeItem(
+
+                    key
+
+                );
 
                 return true;
 
@@ -282,11 +318,35 @@
 
         getCart() {
 
-            return this.getStorage(
+            const cart =
+
+                this.getStorage(
+
+                    "ninice_cart",
+
+                    []
+
+                );
+
+            return Array.isArray(cart)
+
+                ? cart
+
+                : [];
+
+        },
+
+        setCart(cart) {
+
+            return this.setStorage(
 
                 "ninice_cart",
 
-                []
+                Array.isArray(cart)
+
+                    ? cart
+
+                    : []
 
             );
 
@@ -300,11 +360,27 @@
 
             return cart.reduce(
 
-                (total, item) =>
+                (
 
-                    total +
+                    total,
 
-                    Number(item.quantity || 0),
+                    item
+
+                ) => {
+
+                    return (
+
+                        total +
+
+                        Number(
+
+                            item.quantity || 0
+
+                        )
+
+                    );
+
+                },
 
                 0
 
@@ -320,7 +396,11 @@
 
             document
 
-                .querySelectorAll(".cart-count")
+                .querySelectorAll(
+
+                    ".cart-count"
+
+                )
 
                 .forEach(element => {
 
@@ -338,19 +418,271 @@
 
         /* -------------------------------------------------
 
+           AJOUT AU PANIER
+
+           ------------------------------------------------- */
+
+        addToCart(
+
+            product,
+
+            quantity = 1,
+
+            size = "",
+
+            color = ""
+
+        ) {
+
+            if (!product || !product.id) {
+
+                return false;
+
+            }
+
+            const cart =
+
+                this.getCart();
+
+            const price =
+
+                this.getProductPrice(
+
+                    product
+
+                );
+
+            const image =
+
+                product.main_image_url ||
+
+                product.image ||
+
+                (
+
+                    Array.isArray(
+
+                        product.images
+
+                    )
+
+                        ? product.images[0]
+
+                        : ""
+
+                );
+
+            const numericQuantity =
+
+                Math.max(
+
+                    1,
+
+                    Number(quantity || 1)
+
+                );
+
+            const existingIndex =
+
+                cart.findIndex(item =>
+
+                    String(item.id) ===
+
+                        String(product.id) &&
+
+                    String(item.size || "") ===
+
+                        String(size || "") &&
+
+                    String(item.color || "") ===
+
+                        String(color || "")
+
+                );
+
+            if (
+
+                existingIndex !== -1
+
+            ) {
+
+                cart[existingIndex].quantity =
+
+                    Number(
+
+                        cart[existingIndex]
+
+                            .quantity || 0
+
+                    ) +
+
+                    numericQuantity;
+
+                cart[existingIndex].price =
+
+                    price;
+
+                cart[existingIndex].image =
+
+                    image;
+
+                cart[existingIndex]
+
+                    .main_image_url =
+
+                    image;
+
+            } else {
+
+                cart.push({
+
+                    id: product.id,
+
+                    name:
+
+                        product.name || "",
+
+                    price: price,
+
+                    image: image,
+
+                    main_image_url:
+
+                        image,
+
+                    quantity:
+
+                        numericQuantity,
+
+                    size:
+
+                        size || "",
+
+                    color:
+
+                        color || ""
+
+                });
+
+            }
+
+            const saved =
+
+                this.setCart(cart);
+
+            if (saved) {
+
+                this.updateCartCounters();
+
+                document.dispatchEvent(
+
+                    new CustomEvent(
+
+                        "ninice:cart-updated"
+
+                    )
+
+                );
+
+            }
+
+            return saved;
+
+        },
+
+        /* -------------------------------------------------
+
+           SUPPRESSION DU PANIER
+
+           ------------------------------------------------- */
+
+        removeFromCart(
+
+            productId,
+
+            size = "",
+
+            color = ""
+
+        ) {
+
+            const cart =
+
+                this.getCart();
+
+            const filtered =
+
+                cart.filter(item => {
+
+                    return !(
+
+                        String(item.id) ===
+
+                            String(productId) &&
+
+                        String(item.size || "") ===
+
+                            String(size || "") &&
+
+                        String(item.color || "") ===
+
+                            String(color || "")
+
+                    );
+
+                });
+
+            const saved =
+
+                this.setCart(filtered);
+
+            if (saved) {
+
+                this.updateCartCounters();
+
+                document.dispatchEvent(
+
+                    new CustomEvent(
+
+                        "ninice:cart-updated"
+
+                    )
+
+                );
+
+            }
+
+            return saved;
+
+        },
+
+        /* -------------------------------------------------
+
            FAVORIS
 
            ------------------------------------------------- */
 
         getFavorites() {
 
-            return this.getStorage(
+            const favorites =
 
-                "ninice_favorites",
+                this.getStorage(
 
-                []
+                    "ninice_favorites",
 
-            );
+                    []
+
+                );
+
+            return Array.isArray(
+
+                favorites
+
+            )
+
+                ? favorites
+
+                : [];
 
         },
 
@@ -360,7 +692,113 @@
 
                 .getFavorites()
 
-                .includes(productId);
+                .some(
+
+                    id =>
+
+                        String(id) ===
+
+                        String(productId)
+
+                );
+
+        },
+
+        toggleFavorite(productId) {
+
+            if (
+
+                productId === null ||
+
+                productId === undefined
+
+            ) {
+
+                return false;
+
+            }
+
+            let favorites =
+
+                this.getFavorites();
+
+            const id =
+
+                String(productId);
+
+            const index =
+
+                favorites.findIndex(
+
+                    favoriteId =>
+
+                        String(favoriteId) ===
+
+                        id
+
+                );
+
+            let isNowFavorite = false;
+
+            if (index !== -1) {
+
+                favorites.splice(
+
+                    index,
+
+                    1
+
+                );
+
+                isNowFavorite = false;
+
+            } else {
+
+                favorites.push(
+
+                    productId
+
+                );
+
+                isNowFavorite = true;
+
+            }
+
+            this.setStorage(
+
+                "ninice_favorites",
+
+                favorites
+
+            );
+
+            document.dispatchEvent(
+
+                new CustomEvent(
+
+                    "ninice:favorites-updated",
+
+                    {
+
+                        detail: {
+
+                            productId:
+
+                                productId,
+
+                            isFavorite:
+
+                                isNowFavorite
+
+                        }
+
+                    }
+
+                )
+
+            );
+
+            return isNowFavorite;
 
         },
 
@@ -376,22 +814,6 @@
 
                 window.location.pathname;
 
-            /*
-
-             * GitHub Pages :
-
-             *
-
-             * /
-
-             * /-ninice-boutique/
-
-             * /-ninice-boutique/pages/
-
-             * /-ninice-boutique/admin/
-
-             */
-
             const marker =
 
                 "/pages/";
@@ -402,9 +824,17 @@
 
             const markerIndex =
 
-                path.indexOf(marker);
+                path.indexOf(
 
-            if (markerIndex !== -1) {
+                    marker
+
+                );
+
+            if (
+
+                markerIndex !== -1
+
+            ) {
 
                 return path.substring(
 
@@ -418,9 +848,17 @@
 
             const adminIndex =
 
-                path.indexOf(adminMarker);
+                path.indexOf(
 
-            if (adminIndex !== -1) {
+                    adminMarker
+
+                );
+
+            if (
+
+                adminIndex !== -1
+
+            ) {
 
                 return path.substring(
 
@@ -432,37 +870,9 @@
 
             }
 
-            /*
-
-             * Si on est à la racine du projet,
-
-             * on récupère le chemin avant le fichier.
-
-             */
-
             const cleanPath =
 
                 path.split("?")[0];
-
-            const lastSlash =
-
-                cleanPath.lastIndexOf("/");
-
-            if (lastSlash <= 0) {
-
-                return "";
-
-            }
-
-            /*
-
-             * Pour index.html à la racine GitHub Pages,
-
-             * le chemin du projet est déjà contenu
-
-             * dans pathname.
-
-             */
 
             if (
 
@@ -485,6 +895,36 @@
                     )
 
                 );
+
+            }
+
+            /*
+
+             * Pour la racine GitHub Pages,
+
+             * on garde le chemin du projet
+
+             * lorsque celui-ci est présent.
+
+             */
+
+            const segments =
+
+                cleanPath
+
+                    .split("/")
+
+                    .filter(Boolean);
+
+            if (
+
+                segments.length === 1 &&
+
+                !cleanPath.endsWith(".html")
+
+            ) {
+
+                return "/" + segments[0];
 
             }
 
@@ -552,7 +992,11 @@
 
                         .niniceSupabase
 
-                        .from("shop_settings")
+                        .from(
+
+                            "store_settings"
+
+                        )
 
                         .select("*")
 
@@ -564,7 +1008,7 @@
 
                     console.error(
 
-                        "Impossible de récupérer shop_settings :",
+                        "Impossible de récupérer store_settings :",
 
                         error
 
@@ -580,7 +1024,7 @@
 
                 console.error(
 
-                    "Erreur shop_settings :",
+                    "Erreur store_settings :",
 
                     error
 
@@ -594,7 +1038,7 @@
 
         /* -------------------------------------------------
 
-           PRODUIT
+           PRIX EFFECTIF DU PRODUIT
 
            ------------------------------------------------- */
 
@@ -608,11 +1052,19 @@
 
             if (
 
-                product.promotional_price !== null &&
+                product.promotional_price !==
 
-                product.promotional_price !== undefined &&
+                    null &&
 
-                Number(product.promotional_price) > 0
+                product.promotional_price !==
+
+                    undefined &&
+
+                Number(
+
+                    product.promotional_price
+
+                ) > 0
 
             ) {
 
@@ -627,6 +1079,324 @@
             return Number(
 
                 product.price || 0
+
+            );
+
+        },
+
+        /* -------------------------------------------------
+
+           VÉRIFICATION PROMOTION
+
+           ------------------------------------------------- */
+
+        isProductOnPromotion(product) {
+
+            if (!product) {
+
+                return false;
+
+            }
+
+            const now =
+
+                new Date();
+
+            const start =
+
+                product.promotion_start_date
+
+                    ? new Date(
+
+                        product.promotion_start_date
+
+                    )
+
+                    : null;
+
+            const end =
+
+                product.promotion_end_date
+
+                    ? new Date(
+
+                        product.promotion_end_date
+
+                    )
+
+                    : null;
+
+            if (
+
+                start &&
+
+                now < start
+
+            ) {
+
+                return false;
+
+            }
+
+            if (
+
+                end &&
+
+                now > end
+
+            ) {
+
+                return false;
+
+            }
+
+            return (
+
+                product.is_promotion === true ||
+
+                (
+
+                    product.promotional_price !==
+
+                        null &&
+
+                    product.promotional_price !==
+
+                        undefined &&
+
+                    Number(
+
+                        product.promotional_price
+
+                    ) > 0
+
+                )
+
+            );
+
+        },
+
+        /* -------------------------------------------------
+
+           POURCENTAGE PROMOTION
+
+           ------------------------------------------------- */
+
+        getPromotionPercent(product) {
+
+            if (!product) {
+
+                return 0;
+
+            }
+
+            if (
+
+                product.promotion_percent !==
+
+                    null &&
+
+                product.promotion_percent !==
+
+                    undefined
+
+            ) {
+
+                return Number(
+
+                    product.promotion_percent
+
+                );
+
+            }
+
+            const oldPrice =
+
+                Number(
+
+                    product.old_price || 0
+
+                );
+
+            const promotionalPrice =
+
+                Number(
+
+                    product.promotional_price || 0
+
+                );
+
+            if (
+
+                oldPrice > 0 &&
+
+                promotionalPrice > 0 &&
+
+                promotionalPrice < oldPrice
+
+            ) {
+
+                return Math.round(
+
+                    (
+
+                        (
+
+                            oldPrice -
+
+                            promotionalPrice
+
+                        ) /
+
+                        oldPrice
+
+                    ) *
+
+                    100
+
+                );
+
+            }
+
+            return 0;
+
+        },
+
+        /* -------------------------------------------------
+
+           IMAGE PRINCIPALE
+
+           ------------------------------------------------- */
+
+        getProductImage(product) {
+
+            if (!product) {
+
+                return "";
+
+            }
+
+            if (
+
+                product.main_image_url
+
+            ) {
+
+                return product.main_image_url;
+
+            }
+
+            if (
+
+                product.image
+
+            ) {
+
+                return product.image;
+
+            }
+
+            if (
+
+                Array.isArray(
+
+                    product.images
+
+                ) &&
+
+                product.images.length > 0
+
+            ) {
+
+                return product.images[0];
+
+            }
+
+            return "";
+
+        },
+
+        /* -------------------------------------------------
+
+           URL PRODUIT
+
+           ------------------------------------------------- */
+
+        getProductUrl(product) {
+
+            if (
+
+                !product ||
+
+                !product.id
+
+            ) {
+
+                return "#";
+
+            }
+
+            const prefix =
+
+                this.getPathPrefix();
+
+            return (
+
+                prefix +
+
+                "pages/produit.html?id=" +
+
+                encodeURIComponent(
+
+                    product.id
+
+                )
+
+            );
+
+        },
+
+        /* -------------------------------------------------
+
+           URL CATÉGORIE
+
+           ------------------------------------------------- */
+
+        getCategoryUrl(category) {
+
+            if (
+
+                !category
+
+            ) {
+
+                return "#";
+
+            }
+
+            const prefix =
+
+                this.getPathPrefix();
+
+            const value =
+
+                category.slug ||
+
+                category.id ||
+
+                "";
+
+            return (
+
+                prefix +
+
+                "pages/categories.html?category=" +
+
+                encodeURIComponent(
+
+                    value
+
+                )
 
             );
 
@@ -656,21 +1426,25 @@
 
     };
 
-    /*
+    /* -------------------------------------------------
 
-     * Exposition globale
+       EXPOSITION GLOBALE
 
-     */
+       ------------------------------------------------- */
 
     window.NINICE =
 
-        Object.freeze(NINICE);
+        Object.freeze(
 
-    /*
+            NINICE
 
-     * Initialisation après chargement
+        );
 
-     */
+    /* -------------------------------------------------
+
+       INITIALISATION APRÈS CHARGEMENT
+
+       ------------------------------------------------- */
 
     if (
 
