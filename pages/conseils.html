@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Conseil | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Découvrez les conseils NINICE BOUTIQUE."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        :root {
+
+            --violet: #6d28d9;
+
+            --violet-dark: #4c1d95;
+
+            --violet-light: #f5f3ff;
+
+            --text: #18181b;
+
+            --muted: #71717a;
+
+            --border: #e4e4e7;
+
+            --white: #ffffff;
+
+            --danger: #dc2626;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            background: #fafafa;
+
+            color: var(--text);
+
+            font-family: "DM Sans", sans-serif;
+
+        }
+
+        .article-page {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            padding: 35px 20px 100px;
+
+        }
+
+        .back-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 25px;
+
+            color: var(--violet);
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        .back-link:hover {
+
+            color: var(--violet-dark);
+
+        }
+
+        .article-card {
+
+            overflow: hidden;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            box-shadow: 0 10px 35px rgba(24, 24, 27, 0.06);
+
+        }
+
+        .article-image-wrapper {
+
+            width: 100%;
+
+            max-height: 500px;
+
+            background: var(--violet-light);
+
+            overflow: hidden;
+
+        }
+
+        .article-image {
+
+            display: block;
+
+            width: 100%;
+
+            max-height: 500px;
+
+            object-fit: cover;
+
+        }
+
+        .article-content {
+
+            padding: 40px;
+
+        }
+
+        .article-date {
+
+            margin-bottom: 12px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+        }
+
+        .article-title {
+
+            margin: 0 0 25px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(32px, 5vw, 48px);
+
+            line-height: 1.2;
+
+        }
+
+        .article-excerpt {
+
+            margin: 0 0 30px;
+
+            padding: 18px 20px;
+
+            border-left: 4px solid var(--violet);
+
+            background: var(--violet-light);
+
+            color: #52525b;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            border-radius: 0 10px 10px 0;
+
+        }
+
+        .article-body {
+
+            color: #3f3f46;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+            white-space: pre-wrap;
+
+            overflow-wrap: anywhere;
+
+        }
+
+        .article-body p {
+
+            margin: 0 0 20px;
+
+        }
+
+        .article-status {
+
+            padding: 30px 20px;
+
+            border-radius: 16px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            text-align: center;
+
+            color: var(--muted);
+
+        }
+
+        .article-status.error {
+
+            color: var(--danger);
+
+            background: #fef2f2;
+
+            border-color: #fecaca;
+
+        }
+
+        @media (max-width: 600px) {
+
+            .article-page {
+
+                padding: 25px 14px 100px;
+
+            }
+
+            .article-card {
+
+                border-radius: 15px;
+
+            }
+
+            .article-content {
+
+                padding: 24px 18px;
+
+            }
+
+            .article-title {
+
+                font-size: 32px;
+
+            }
+
+            .article-excerpt {
+
+                font-size: 14px;
+
+                padding: 15px;
+
+            }
+
+            .article-body {
+
+                font-size: 15px;
+
+                line-height: 1.8;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header id="site-header"></header>
+
+    <main class="article-page">
+
+        <a
+
+            href="conseils.html"
+
+            class="back-link"
+
+        >
+
+            Retour aux conseils
+
+        </a>
+
+        <div id="article-container">
+
+            <div class="article-status">
+
+                Chargement du conseil...
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../assets/js/config.js"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async () => {
+
+            const container =
+
+                document.getElementById("article-container");
+
+            function escapeHTML(value) {
+
+                return String(value ?? "")
+
+                    .replace(/&/g, "&amp;")
+
+                    .replace(/</g, "&lt;")
+
+                    .replace(/>/g, "&gt;")
+
+                    .replace(/"/g, "&quot;")
+
+                    .replace(/'/g, "&#039;");
+
+            }
+
+            function formatDate(dateString) {
+
+                if (!dateString) {
+
+                    return "";
+
+                }
+
+                const date = new Date(dateString);
+
+                if (Number.isNaN(date.getTime())) {
+
+                    return "";
+
+                }
+
+                return new Intl.DateTimeFormat("fr-FR", {
+
+                    day: "2-digit",
+
+                    month: "long",
+
+                    year: "numeric"
+
+                }).format(date);
+
+            }
+
+            function showError(message) {
+
+                container.innerHTML = `
+
+                    <div class="article-status error">
+
+                        ${escapeHTML(message)}
+
+                    </div>
+
+                `;
+
+            }
+
+            async function loadArticle() {
+
+                if (!window.niniceSupabase) {
+
+                    showError(
+
+                        "La connexion à la boutique n'est pas disponible."
+
+                    );
+
+                    return;
+
+                }
+
+                const params =
+
+                    new URLSearchParams(window.location.search);
+
+                const id = params.get("id");
+
+                const slug = params.get("slug");
+
+                if (!id && !slug) {
+
+                    showError(
+
+                        "Le conseil demandé est introuvable."
+
+                    );
+
+                    return;
+
+                }
+
+                try {
+
+                    let query =
+
+                        window.niniceSupabase
+
+                            .from("advice")
+
+                            .select(`
+
+                                id,
+
+                                title,
+
+                                slug,
+
+                                excerpt,
+
+                                content,
+
+                                image_url,
+
+                                is_published,
+
+                                is_featured,
+
+                                created_at,
+
+                                updated_at
+
+                            `)
+
+                            .eq("is_published", true);
+
+                    if (id) {
+
+                        query = query.eq("id", id);
+
+                    } else {
+
+                        query = query.eq("slug", slug);
+
+                    }
+
+                    const {
+
+                        data,
+
+                        error
+
+                    } = await query.maybeSingle();
+
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+                    if (!data) {
+
+                        showError(
+
+                            "Ce conseil n'existe pas ou n'est plus disponible."
+
+                        );
+
+                        return;
+
+                    }
+
+                    document.title =
+
+                        `${data.title} | NINICE BOUTIQUE`;
+
+                    const imageHTML = data.image_url
+
+                        ? `
+
+                            <div class="article-image-wrapper">
+
+                                <img
+
+                                    class="article-image"
+
+                                    src="${escapeHTML(data.image_url)}"
+
+                                    alt="${escapeHTML(data.title)}"
+
+                                    onerror="this.parentElement.style.display='none';"
+
+                                >
+
+                            </div>
+
+                        `
+
+                        : "";
+
+                    const excerptHTML = data.excerpt
+
+                        ? `
+
+                            <div class="article-excerpt">
+
+                                ${escapeHTML(data.excerpt)}
+
+                            </div>
+
+                        `
+
+                        : "";
+
+                    container.innerHTML = `
+
+                        <article class="article-card">
+
+                            ${imageHTML}
+
+                            <div class="article-content">
+
+                                <div class="article-date">
+
+                                    Publié le
+
+                                    ${escapeHTML(
+
+                                        formatDate(data.created_at)
+
+                                    )}
+
+                                </div>
+
+                                <h1 class="article-title">
+
+                                    ${escapeHTML(data.title)}
+
+                                </h1>
+
+                                ${excerptHTML}
+
+                                <div class="article-body">
+
+                                    ${escapeHTML(data.content)}
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    `;
+
+                } catch (error) {
+
+                    console.error(
+
+                        "Erreur lors du chargement du conseil :",
+
+                        error
+
+                    );
+
+                    showError(
+
+                        "Impossible de charger ce conseil pour le moment."
+
+                    );
+
+                }
+
+            }
+
+            await loadArticle();
+
+        });
+
+    </script>
+
+</body>
+
+</html>
