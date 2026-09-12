@@ -1,0 +1,5127 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+
+        name="viewport"
+
+        content="width=device-width, initial-scale=1.0"
+
+    >
+
+    <title>Catégories | Administration — NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Gestion des catégories de NINICE BOUTIQUE."
+
+    >
+
+    <meta
+
+        name="theme-color"
+
+        content="#6d28d9"
+
+    >
+
+    <style>
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+        :root {
+
+            --violet: #6d28d9;
+
+            --violet-dark: #4c1d95;
+
+            --violet-light: #f3e8ff;
+
+            --violet-soft: #faf5ff;
+
+            --dark: #18181b;
+
+            --gray-900: #27272a;
+
+            --gray-700: #3f3f46;
+
+            --gray-600: #52525b;
+
+            --gray-500: #71717a;
+
+            --gray-400: #a1a1aa;
+
+            --gray-300: #d4d4d8;
+
+            --gray-200: #e4e4e7;
+
+            --gray-100: #f4f4f5;
+
+            --white: #ffffff;
+
+            --green: #16a34a;
+
+            --green-light: #dcfce7;
+
+            --red: #dc2626;
+
+            --red-light: #fee2e2;
+
+            --orange: #ea580c;
+
+            --orange-light: #ffedd5;
+
+            --shadow-sm:
+
+                0 1px 3px rgba(0, 0, 0, 0.06);
+
+            --shadow-md:
+
+                0 10px 30px rgba(0, 0, 0, 0.08);
+
+            --radius-sm: 8px;
+
+            --radius-md: 12px;
+
+            --radius-lg: 18px;
+
+        }
+
+        body {
+
+            font-family:
+
+                -apple-system,
+
+                BlinkMacSystemFont,
+
+                "Segoe UI",
+
+                Roboto,
+
+                Helvetica,
+
+                Arial,
+
+                sans-serif;
+
+            background: #f7f7f8;
+
+            color: var(--dark);
+
+            min-height: 100vh;
+
+        }
+
+        button,
+
+        input,
+
+        textarea,
+
+        select {
+
+            font: inherit;
+
+        }
+
+        button {
+
+            cursor: pointer;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        /* =====================================================
+
+           LAYOUT
+
+        ===================================================== */
+
+        .admin-layout {
+
+            min-height: 100vh;
+
+            display: flex;
+
+        }
+
+        /* =====================================================
+
+           SIDEBAR
+
+        ===================================================== */
+
+        .sidebar {
+
+            width: 260px;
+
+            background: var(--white);
+
+            border-right: 1px solid var(--gray-200);
+
+            position: fixed;
+
+            left: 0;
+
+            top: 0;
+
+            bottom: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+        .brand {
+
+            height: 76px;
+
+            padding: 16px 20px;
+
+            border-bottom: 1px solid var(--gray-200);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+        .brand-logo {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: var(--violet-light);
+
+            border: 1px solid #ddd6fe;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+
+        }
+
+        .brand-logo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .brand-logo-text {
+
+            color: var(--violet-dark);
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+        }
+
+        .brand-name {
+
+            min-width: 0;
+
+        }
+
+        .brand-name strong {
+
+            display: block;
+
+            color: var(--violet-dark);
+
+            font-size: 15px;
+
+            letter-spacing: 0.3px;
+
+        }
+
+        .brand-name span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--gray-500);
+
+            font-size: 11px;
+
+        }
+
+        .sidebar-nav {
+
+            padding: 18px 12px;
+
+            overflow-y: auto;
+
+            flex: 1;
+
+        }
+
+        .nav-label {
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            color: var(--gray-400);
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            padding: 0 10px 8px;
+
+        }
+
+        .nav-item {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            border: 0;
+
+            background: transparent;
+
+            color: var(--gray-600);
+
+            padding: 11px 12px;
+
+            border-radius: 9px;
+
+            margin-bottom: 3px;
+
+            text-align: left;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.2s ease;
+
+        }
+
+        .nav-item:hover {
+
+            background: var(--gray-100);
+
+            color: var(--dark);
+
+        }
+
+        .nav-item.active {
+
+            background: var(--violet-light);
+
+            color: var(--violet-dark);
+
+        }
+
+        .nav-icon {
+
+            width: 22px;
+
+            text-align: center;
+
+            font-weight: 800;
+
+            font-size: 11px;
+
+        }
+
+        .sidebar-footer {
+
+            border-top: 1px solid var(--gray-200);
+
+            padding: 14px;
+
+        }
+
+        .security-status {
+
+            background: var(--gray-100);
+
+            border-radius: 10px;
+
+            padding: 10px;
+
+            font-size: 11px;
+
+            color: var(--gray-600);
+
+        }
+
+        .security-status strong {
+
+            display: block;
+
+            margin-bottom: 3px;
+
+            color: var(--dark);
+
+        }
+
+        /* =====================================================
+
+           MAIN
+
+        ===================================================== */
+
+        .main {
+
+            margin-left: 260px;
+
+            width: calc(100% - 260px);
+
+            min-height: 100vh;
+
+        }
+
+        .topbar {
+
+            min-height: 76px;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border-bottom: 1px solid var(--gray-200);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 14px 28px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 50;
+
+            backdrop-filter: blur(10px);
+
+        }
+
+        .topbar-title h1 {
+
+            font-size: 21px;
+
+            line-height: 1.2;
+
+            color: var(--dark);
+
+        }
+
+        .topbar-title p {
+
+            margin-top: 4px;
+
+            font-size: 12px;
+
+            color: var(--gray-500);
+
+        }
+
+        .topbar-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+        }
+
+        .btn {
+
+            border: 1px solid var(--gray-200);
+
+            background: var(--white);
+
+            color: var(--gray-700);
+
+            min-height: 40px;
+
+            padding: 0 14px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            transition: 0.2s ease;
+
+        }
+
+        .btn:hover {
+
+            border-color: var(--gray-300);
+
+            background: var(--gray-100);
+
+        }
+
+        .btn-primary {
+
+            background: var(--violet);
+
+            border-color: var(--violet);
+
+            color: white;
+
+        }
+
+        .btn-primary:hover {
+
+            background: var(--violet-dark);
+
+            border-color: var(--violet-dark);
+
+        }
+
+        .btn-danger {
+
+            background: var(--red);
+
+            border-color: var(--red);
+
+            color: white;
+
+        }
+
+        .btn-danger:hover {
+
+            background: #b91c1c;
+
+            border-color: #b91c1c;
+
+        }
+
+        .btn-small {
+
+            min-height: 34px;
+
+            padding: 0 10px;
+
+            font-size: 11px;
+
+        }
+
+        .content {
+
+            padding: 28px;
+
+            max-width: 1500px;
+
+            margin: 0 auto;
+
+        }
+
+        /* =====================================================
+
+           SECURITY / LOADING
+
+        ===================================================== */
+
+        .page-state {
+
+            background: white;
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: var(--radius-lg);
+
+            padding: 40px;
+
+            text-align: center;
+
+            box-shadow: var(--shadow-sm);
+
+        }
+
+        .page-state h2 {
+
+            font-size: 18px;
+
+            margin-bottom: 8px;
+
+        }
+
+        .page-state p {
+
+            color: var(--gray-500);
+
+            font-size: 13px;
+
+        }
+
+        .hidden {
+
+            display: none !important;
+
+        }
+
+        /* =====================================================
+
+           STATS
+
+        ===================================================== */
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(4, minmax(0, 1fr));
+
+            gap: 14px;
+
+            margin-bottom: 22px;
+
+        }
+
+        .stat-card {
+
+            background: white;
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: var(--radius-md);
+
+            padding: 18px;
+
+            box-shadow: var(--shadow-sm);
+
+        }
+
+        .stat-label {
+
+            color: var(--gray-500);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+
+        }
+
+        .stat-value {
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            color: var(--dark);
+
+        }
+
+        .stat-sub {
+
+            margin-top: 4px;
+
+            font-size: 10px;
+
+            color: var(--gray-400);
+
+        }
+
+        /* =====================================================
+
+           TOOLBAR
+
+        ===================================================== */
+
+        .toolbar {
+
+            background: white;
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: var(--radius-md);
+
+            padding: 14px;
+
+            margin-bottom: 18px;
+
+            display: grid;
+
+            grid-template-columns:
+
+                minmax(220px, 1fr)
+
+                170px
+
+                170px
+
+                auto;
+
+            gap: 10px;
+
+            box-shadow: var(--shadow-sm);
+
+        }
+
+        .field {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+        .field label {
+
+            color: var(--gray-600);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+        .input,
+
+        .select,
+
+        .textarea {
+
+            width: 100%;
+
+            border: 1px solid var(--gray-300);
+
+            background: white;
+
+            color: var(--dark);
+
+            border-radius: 9px;
+
+            padding: 10px 12px;
+
+            outline: none;
+
+            font-size: 12px;
+
+            transition: 0.2s ease;
+
+        }
+
+        .input:focus,
+
+        .select:focus,
+
+        .textarea:focus {
+
+            border-color: var(--violet);
+
+            box-shadow:
+
+                0 0 0 3px rgba(109, 40, 217, 0.08);
+
+        }
+
+        .textarea {
+
+            resize: vertical;
+
+            min-height: 100px;
+
+        }
+
+        /* =====================================================
+
+           CATEGORY GRID
+
+        ===================================================== */
+
+        .section-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            margin-bottom: 12px;
+
+        }
+
+        .section-header h2 {
+
+            font-size: 16px;
+
+        }
+
+        .section-header span {
+
+            color: var(--gray-500);
+
+            font-size: 11px;
+
+        }
+
+        .categories-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(3, minmax(0, 1fr));
+
+            gap: 16px;
+
+        }
+
+        .category-card {
+
+            background: white;
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: var(--radius-lg);
+
+            overflow: hidden;
+
+            box-shadow: var(--shadow-sm);
+
+            transition: 0.2s ease;
+
+        }
+
+        .category-card:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: var(--shadow-md);
+
+        }
+
+        .category-image {
+
+            height: 180px;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #faf5ff,
+
+                    #f4f4f5
+
+                );
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        .category-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+        .category-image-placeholder {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: var(--gray-400);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .status-badge {
+
+            position: absolute;
+
+            top: 10px;
+
+            right: 10px;
+
+            padding: 5px 8px;
+
+            border-radius: 999px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
+        }
+
+        .status-active {
+
+            color: #166534;
+
+            background: var(--green-light);
+
+        }
+
+        .status-inactive {
+
+            color: #991b1b;
+
+            background: var(--red-light);
+
+        }
+
+        .category-body {
+
+            padding: 15px;
+
+        }
+
+        .category-title-row {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+        }
+
+        .category-name {
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            color: var(--dark);
+
+        }
+
+        .category-order {
+
+            color: var(--gray-400);
+
+            font-size: 10px;
+
+            white-space: nowrap;
+
+        }
+
+        .category-description {
+
+            color: var(--gray-500);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            margin-top: 7px;
+
+            min-height: 34px;
+
+        }
+
+        .category-meta {
+
+            display: flex;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+
+            margin-top: 12px;
+
+        }
+
+        .meta-chip {
+
+            background: var(--gray-100);
+
+            color: var(--gray-600);
+
+            padding: 5px 8px;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+        }
+
+        .category-actions {
+
+            border-top: 1px solid var(--gray-200);
+
+            padding-top: 12px;
+
+            margin-top: 13px;
+
+            display: flex;
+
+            gap: 7px;
+
+        }
+
+        .category-actions .btn {
+
+            flex: 1;
+
+        }
+
+        /* =====================================================
+
+           EMPTY
+
+        ===================================================== */
+
+        .empty {
+
+            grid-column: 1 / -1;
+
+            background: white;
+
+            border: 1px dashed var(--gray-300);
+
+            border-radius: var(--radius-lg);
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+        }
+
+        .empty h3 {
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+
+        }
+
+        .empty p {
+
+            color: var(--gray-500);
+
+            font-size: 12px;
+
+        }
+
+        /* =====================================================
+
+           MODAL
+
+        ===================================================== */
+
+        .modal-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(24, 24, 27, 0.58);
+
+            z-index: 1000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 0.2s ease;
+
+        }
+
+        .modal-overlay.open {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+        .modal {
+
+            width: min(680px, 100%);
+
+            max-height: calc(100vh - 40px);
+
+            overflow-y: auto;
+
+            background: white;
+
+            border-radius: var(--radius-lg);
+
+            box-shadow:
+
+                0 25px 70px rgba(0, 0, 0, 0.22);
+
+            transform: translateY(15px);
+
+            transition: 0.2s ease;
+
+        }
+
+        .modal-overlay.open .modal {
+
+            transform: translateY(0);
+
+        }
+
+        .modal-header {
+
+            padding: 18px 20px;
+
+            border-bottom: 1px solid var(--gray-200);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+        .modal-header h3 {
+
+            font-size: 17px;
+
+        }
+
+        .modal-close {
+
+            border: 0;
+
+            background: var(--gray-100);
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 8px;
+
+            font-size: 18px;
+
+            color: var(--gray-600);
+
+        }
+
+        .modal-body {
+
+            padding: 20px;
+
+        }
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                1fr 150px;
+
+            gap: 14px;
+
+        }
+
+        .form-full {
+
+            grid-column: 1 / -1;
+
+        }
+
+        .checkbox-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-top: 4px;
+
+        }
+
+        .checkbox-row input {
+
+            width: 17px;
+
+            height: 17px;
+
+            accent-color: var(--violet);
+
+        }
+
+        .checkbox-row label {
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: var(--gray-700);
+
+        }
+
+        /* =====================================================
+
+           IMAGE UPLOAD
+
+        ===================================================== */
+
+        .upload-box {
+
+            border: 1.5px dashed #c4b5fd;
+
+            background: var(--violet-soft);
+
+            border-radius: 12px;
+
+            padding: 16px;
+
+        }
+
+        .upload-box-title {
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            color: var(--violet-dark);
+
+            margin-bottom: 4px;
+
+        }
+
+        .upload-box-text {
+
+            font-size: 10px;
+
+            color: var(--gray-500);
+
+            line-height: 1.5;
+
+            margin-bottom: 11px;
+
+        }
+
+        .file-input {
+
+            width: 100%;
+
+            font-size: 11px;
+
+            color: var(--gray-600);
+
+        }
+
+        .image-preview {
+
+            margin-top: 12px;
+
+            width: 100%;
+
+            height: 150px;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            background: var(--gray-100);
+
+            display: none;
+
+        }
+
+        .image-preview.visible {
+
+            display: block;
+
+        }
+
+        .image-preview img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .current-image-label {
+
+            display: inline-block;
+
+            margin-top: 8px;
+
+            color: var(--gray-500);
+
+            font-size: 10px;
+
+        }
+
+        .modal-footer {
+
+            padding: 15px 20px;
+
+            border-top: 1px solid var(--gray-200);
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 8px;
+
+        }
+
+        /* =====================================================
+
+           TOAST
+
+        ===================================================== */
+
+        .toast-container {
+
+            position: fixed;
+
+            right: 18px;
+
+            bottom: 18px;
+
+            z-index: 2000;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            width: min(360px, calc(100vw - 36px));
+
+        }
+
+        .toast {
+
+            background: var(--dark);
+
+            color: white;
+
+            padding: 13px 14px;
+
+            border-radius: 10px;
+
+            box-shadow: var(--shadow-md);
+
+            font-size: 11px;
+
+            line-height: 1.45;
+
+            animation: toastIn 0.25s ease;
+
+        }
+
+        .toast.success {
+
+            background: #166534;
+
+        }
+
+        .toast.error {
+
+            background: #991b1b;
+
+        }
+
+        .toast.warning {
+
+            background: #9a3412;
+
+        }
+
+        @keyframes toastIn {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(8px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+        /* =====================================================
+
+           RESPONSIVE
+
+        ===================================================== */
+
+        @media (max-width: 1150px) {
+
+            .categories-grid {
+
+                grid-template-columns:
+
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+            .stats-grid {
+
+                grid-template-columns:
+
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+            .toolbar {
+
+                grid-template-columns:
+
+                    1fr 1fr;
+
+            }
+
+        }
+
+        @media (max-width: 820px) {
+
+            .sidebar {
+
+                width: 72px;
+
+            }
+
+            .brand {
+
+                justify-content: center;
+
+                padding: 12px;
+
+            }
+
+            .brand-name,
+
+            .nav-label,
+
+            .nav-item span:not(.nav-icon),
+
+            .security-status {
+
+                display: none;
+
+            }
+
+            .nav-item {
+
+                justify-content: center;
+
+                padding: 12px 8px;
+
+            }
+
+            .main {
+
+                margin-left: 72px;
+
+                width: calc(100% - 72px);
+
+            }
+
+            .topbar {
+
+                padding: 13px 18px;
+
+            }
+
+            .content {
+
+                padding: 20px;
+
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .topbar {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+            .topbar-actions {
+
+                width: 100%;
+
+            }
+
+            .topbar-actions .btn {
+
+                flex: 1;
+
+            }
+
+            .content {
+
+                padding: 15px;
+
+            }
+
+            .stats-grid {
+
+                grid-template-columns:
+
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 9px;
+
+            }
+
+            .stat-card {
+
+                padding: 13px;
+
+            }
+
+            .stat-value {
+
+                font-size: 20px;
+
+            }
+
+            .toolbar {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .categories-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .form-full {
+
+                grid-column: auto;
+
+            }
+
+            .category-image {
+
+                height: 190px;
+
+            }
+
+            .modal-overlay {
+
+                padding: 10px;
+
+            }
+
+            .modal {
+
+                max-height: calc(100vh - 20px);
+
+            }
+
+        }
+
+        @media (max-width: 460px) {
+
+            .sidebar {
+
+                width: 58px;
+
+            }
+
+            .main {
+
+                margin-left: 58px;
+
+                width: calc(100% - 58px);
+
+            }
+
+            .sidebar-nav {
+
+                padding: 12px 7px;
+
+            }
+
+            .nav-item {
+
+                padding: 11px 5px;
+
+            }
+
+            .brand-logo {
+
+                width: 36px;
+
+                height: 36px;
+
+            }
+
+            .content {
+
+                padding: 12px;
+
+            }
+
+            .category-actions {
+
+                flex-direction: column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- =====================================================
+
+         SIDEBAR
+
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div
+
+                class="brand-logo"
+
+                id="brandLogo"
+
+            >
+
+                <span class="brand-logo-text">
+
+                    N
+
+                </span>
+
+            </div>
+
+            <div class="brand-name">
+
+                <strong>
+
+                    NINICE BOUTIQUE
+
+                </strong>
+
+                <span>
+
+                    Administration
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-label">
+
+                Gestion
+
+            </div>
+
+            <a
+
+                href="./index.html"
+
+                class="nav-item"
+
+            >
+
+                <span class="nav-icon">D</span>
+
+                <span>Tableau de bord</span>
+
+            </a>
+
+            <a
+
+                href="./produits.html"
+
+                class="nav-item"
+
+            >
+
+                <span class="nav-icon">P</span>
+
+                <span>Produits</span>
+
+            </a>
+
+            <a
+
+                href="./categories.html"
+
+                class="nav-item active"
+
+            >
+
+                <span class="nav-icon">C</span>
+
+                <span>Catégories</span>
+
+            </a>
+
+            <a
+
+                href="./promotions.html"
+
+                class="nav-item"
+
+            >
+
+                <span class="nav-icon">PR</span>
+
+                <span>Promotions</span>
+
+            </a>
+
+            <a
+
+                href="./commandes.html"
+
+                class="nav-item"
+
+            >
+
+                <span class="nav-icon">CO</span>
+
+                <span>Commandes</span>
+
+            </a>
+
+            <div
+
+                class="nav-label"
+
+                style="margin-top:18px;"
+
+            >
+
+                Boutique
+
+            </div>
+
+            <a
+
+                href="./boutique.html"
+
+                class="nav-item"
+
+            >
+
+                <span class="nav-icon">B</span>
+
+                <span>Boutique</span>
+
+            </a>
+
+            <a
+
+                href="./avis.html"
+
+                class="nav-item"
+
+            >
+
+                <span class="nav-icon">A</span>
+
+                <span>Avis</span>
+
+            </a>
+
+            <a
+
+                href="./conseils.html"
+
+                class="nav-item"
+
+            >
+
+                <span class="nav-icon">K</span>
+
+                <span>Conseils</span>
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <div class="security-status">
+
+                <strong>
+
+                    Sécurité
+
+                </strong>
+
+                <span id="securityText">
+
+                    Vérification...
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- =====================================================
+
+         MAIN
+
+    ====================================================== -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div class="topbar-title">
+
+                <h1>
+
+                    Catégories
+
+                </h1>
+
+                <p>
+
+                    Organisez les catégories affichées sur NINICE BOUTIQUE.
+
+                </p>
+
+            </div>
+
+            <div class="topbar-actions">
+
+                <a
+
+                    href="../pages/categories.html"
+
+                    target="_blank"
+
+                    class="btn"
+
+                >
+
+                    Voir la boutique
+
+                </a>
+
+                <button
+
+                    type="button"
+
+                    class="btn btn-primary"
+
+                    id="addCategoryButton"
+
+                >
+
+                    Ajouter une catégorie
+
+                </button>
+
+            </div>
+
+        </header>
+
+        <div class="content">
+
+            <!-- =================================================
+
+                 LOADING
+
+            ================================================== -->
+
+            <div
+
+                id="loadingState"
+
+                class="page-state"
+
+            >
+
+                <h2>
+
+                    Chargement...
+
+                </h2>
+
+                <p>
+
+                    Vérification de votre session administrateur.
+
+                </p>
+
+            </div>
+
+            <!-- =================================================
+
+                 ACCESS DENIED
+
+            ================================================== -->
+
+            <div
+
+                id="accessDenied"
+
+                class="page-state hidden"
+
+            >
+
+                <h2>
+
+                    Accès administrateur refusé
+
+                </h2>
+
+                <p>
+
+                    Vous devez être connecté avec un compte administrateur.
+
+                </p>
+
+                <br>
+
+                <a
+
+                    href="./login.html"
+
+                    class="btn btn-primary"
+
+                >
+
+                    Aller à la connexion
+
+                </a>
+
+            </div>
+
+            <!-- =================================================
+
+                 APPLICATION
+
+            ================================================== -->
+
+            <div
+
+                id="app"
+
+                class="hidden"
+
+            >
+
+                <!-- STATS -->
+
+                <section class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-label">
+
+                            Total
+
+                        </div>
+
+                        <div
+
+                            class="stat-value"
+
+                            id="totalCount"
+
+                        >
+
+                            0
+
+                        </div>
+
+                        <div class="stat-sub">
+
+                            catégories enregistrées
+
+                        </div>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <div class="stat-label">
+
+                            Actives
+
+                        </div>
+
+                        <div
+
+                            class="stat-value"
+
+                            id="activeCount"
+
+                        >
+
+                            0
+
+                        </div>
+
+                        <div class="stat-sub">
+
+                            visibles sur la boutique
+
+                        </div>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <div class="stat-label">
+
+                            Inactives
+
+                        </div>
+
+                        <div
+
+                            class="stat-value"
+
+                            id="inactiveCount"
+
+                        >
+
+                            0
+
+                        </div>
+
+                        <div class="stat-sub">
+
+                            masquées du public
+
+                        </div>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <div class="stat-label">
+
+                            Images
+
+                        </div>
+
+                        <div
+
+                            class="stat-value"
+
+                            id="imageCount"
+
+                        >
+
+                            0
+
+                        </div>
+
+                        <div class="stat-sub">
+
+                            catégories illustrées
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- TOOLBAR -->
+
+                <section class="toolbar">
+
+                    <div class="field">
+
+                        <label for="searchInput">
+
+                            Rechercher
+
+                        </label>
+
+                        <input
+
+                            type="search"
+
+                            id="searchInput"
+
+                            class="input"
+
+                            placeholder="Nom de catégorie..."
+
+                        >
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="statusFilter">
+
+                            Statut
+
+                        </label>
+
+                        <select
+
+                            id="statusFilter"
+
+                            class="select"
+
+                        >
+
+                            <option value="all">
+
+                                Toutes
+
+                            </option>
+
+                            <option value="active">
+
+                                Actives
+
+                            </option>
+
+                            <option value="inactive">
+
+                                Inactives
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="sortFilter">
+
+                            Trier
+
+                        </label>
+
+                        <select
+
+                            id="sortFilter"
+
+                            class="select"
+
+                        >
+
+                            <option value="order">
+
+                                Ordre d'affichage
+
+                            </option>
+
+                            <option value="name">
+
+                                Nom A-Z
+
+                            </option>
+
+                            <option value="name-desc">
+
+                                Nom Z-A
+
+                            </option>
+
+                            <option value="newest">
+
+                                Plus récentes
+
+                            </option>
+
+                            <option value="oldest">
+
+                                Plus anciennes
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div
+
+                        style="
+
+                            display:flex;
+
+                            align-items:end;
+
+                        "
+
+                    >
+
+                        <button
+
+                            type="button"
+
+                            class="btn"
+
+                            id="refreshButton"
+
+                            style="width:100%;"
+
+                        >
+
+                            Actualiser
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+                <!-- CATEGORY LIST -->
+
+                <section>
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+
+                                Vos catégories
+
+                            </h2>
+
+                            <span id="resultText">
+
+                                0 résultat
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div
+
+                        class="categories-grid"
+
+                        id="categoriesGrid"
+
+                    >
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- =========================================================
+
+     MODAL CATEGORY
+
+========================================================== -->
+
+<div
+
+    class="modal-overlay"
+
+    id="categoryModal"
+
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h3 id="modalTitle">
+
+                Ajouter une catégorie
+
+            </h3>
+
+            <button
+
+                type="button"
+
+                class="modal-close"
+
+                id="closeModalButton"
+
+                aria-label="Fermer"
+
+            >
+
+                ×
+
+            </button>
+
+        </div>
+
+        <form id="categoryForm">
+
+            <div class="modal-body">
+
+                <div class="form-grid">
+
+                    <!-- NAME -->
+
+                    <div class="field">
+
+                        <label for="categoryName">
+
+                            Nom de la catégorie *
+
+                        </label>
+
+                        <input
+
+                            type="text"
+
+                            id="categoryName"
+
+                            class="input"
+
+                            placeholder="Exemple : Robes"
+
+                            required
+
+                            maxlength="120"
+
+                        >
+
+                    </div>
+
+                    <!-- ORDER -->
+
+                    <div class="field">
+
+                        <label for="categoryOrder">
+
+                            Ordre
+
+                        </label>
+
+                        <input
+
+                            type="number"
+
+                            id="categoryOrder"
+
+                            class="input"
+
+                            min="0"
+
+                            step="1"
+
+                            value="0"
+
+                        >
+
+                    </div>
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="field form-full">
+
+                        <label for="categoryDescription">
+
+                            Description
+
+                        </label>
+
+                        <textarea
+
+                            id="categoryDescription"
+
+                            class="textarea"
+
+                            placeholder="Courte description de la catégorie..."
+
+                            maxlength="500"
+
+                        ></textarea>
+
+                    </div>
+
+                    <!-- IMAGE UPLOAD -->
+
+                    <div class="field form-full">
+
+                        <label>
+
+                            Image de la catégorie
+
+                        </label>
+
+                        <div class="upload-box">
+
+                            <div class="upload-box-title">
+
+                                Choisir une image depuis votre téléphone
+
+                            </div>
+
+                            <div class="upload-box-text">
+
+                                Sur iPhone, appuyez sur le bouton ci-dessous
+
+                                pour choisir une photo dans Photos ou Fichiers.
+
+                                Formats recommandés : JPG, PNG ou WEBP.
+
+                            </div>
+
+                            <input
+
+                                type="file"
+
+                                id="categoryImage"
+
+                                class="file-input"
+
+                                accept="image/jpeg,image/png,image/webp,image/gif"
+
+                            >
+
+                            <div
+
+                                class="image-preview"
+
+                                id="imagePreview"
+
+                            >
+
+                                <img
+
+                                    id="imagePreviewImage"
+
+                                    src=""
+
+                                    alt="Aperçu"
+
+                                >
+
+                            </div>
+
+                            <span
+
+                                class="current-image-label"
+
+                                id="currentImageLabel"
+
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ACTIVE -->
+
+                    <div class="field form-full">
+
+                        <div class="checkbox-row">
+
+                            <input
+
+                                type="checkbox"
+
+                                id="categoryActive"
+
+                                checked
+
+                            >
+
+                            <label for="categoryActive">
+
+                                Catégorie active et visible sur la boutique
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+
+                    type="button"
+
+                    class="btn"
+
+                    id="cancelButton"
+
+                >
+
+                    Annuler
+
+                </button>
+
+                <button
+
+                    type="submit"
+
+                    class="btn btn-primary"
+
+                    id="saveButton"
+
+                >
+
+                    Enregistrer
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+
+     TOAST
+
+========================================================== -->
+
+<div
+
+    class="toast-container"
+
+    id="toastContainer"
+
+></div>
+
+<!-- =========================================================
+
+     SCRIPTS
+
+========================================================== -->
+
+<script src="../assets/js/config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../assets/js/supabase.js"></script>
+
+<script>
+
+(function () {
+
+    "use strict";
+
+    /* =======================================================
+
+       VARIABLES
+
+    ======================================================== */
+
+    let supabaseClient = null;
+
+    let allCategories = [];
+
+    let editingCategory = null;
+
+    let selectedImageFile = null;
+
+    let currentImageUrl = null;
+
+    /* =======================================================
+
+       ELEMENTS
+
+    ======================================================== */
+
+    const loadingState =
+
+        document.getElementById("loadingState");
+
+    const accessDenied =
+
+        document.getElementById("accessDenied");
+
+    const app =
+
+        document.getElementById("app");
+
+    const securityText =
+
+        document.getElementById("securityText");
+
+    const categoriesGrid =
+
+        document.getElementById("categoriesGrid");
+
+    const totalCount =
+
+        document.getElementById("totalCount");
+
+    const activeCount =
+
+        document.getElementById("activeCount");
+
+    const inactiveCount =
+
+        document.getElementById("inactiveCount");
+
+    const imageCount =
+
+        document.getElementById("imageCount");
+
+    const resultText =
+
+        document.getElementById("resultText");
+
+    const searchInput =
+
+        document.getElementById("searchInput");
+
+    const statusFilter =
+
+        document.getElementById("statusFilter");
+
+    const sortFilter =
+
+        document.getElementById("sortFilter");
+
+    const refreshButton =
+
+        document.getElementById("refreshButton");
+
+    const addCategoryButton =
+
+        document.getElementById("addCategoryButton");
+
+    const categoryModal =
+
+        document.getElementById("categoryModal");
+
+    const closeModalButton =
+
+        document.getElementById("closeModalButton");
+
+    const cancelButton =
+
+        document.getElementById("cancelButton");
+
+    const categoryForm =
+
+        document.getElementById("categoryForm");
+
+    const modalTitle =
+
+        document.getElementById("modalTitle");
+
+    const categoryName =
+
+        document.getElementById("categoryName");
+
+    const categoryOrder =
+
+        document.getElementById("categoryOrder");
+
+    const categoryDescription =
+
+        document.getElementById("categoryDescription");
+
+    const categoryImage =
+
+        document.getElementById("categoryImage");
+
+    const categoryActive =
+
+        document.getElementById("categoryActive");
+
+    const saveButton =
+
+        document.getElementById("saveButton");
+
+    const imagePreview =
+
+        document.getElementById("imagePreview");
+
+    const imagePreviewImage =
+
+        document.getElementById("imagePreviewImage");
+
+    const currentImageLabel =
+
+        document.getElementById("currentImageLabel");
+
+    const toastContainer =
+
+        document.getElementById("toastContainer");
+
+    const brandLogo =
+
+        document.getElementById("brandLogo");
+
+    /* =======================================================
+
+       TOAST
+
+    ======================================================== */
+
+    function showToast(
+
+        message,
+
+        type = "default"
+
+    ) {
+
+        const toast =
+
+            document.createElement("div");
+
+        toast.className =
+
+            "toast " + type;
+
+        toast.textContent =
+
+            message;
+
+        toastContainer.appendChild(toast);
+
+        setTimeout(function () {
+
+            toast.style.opacity = "0";
+
+            toast.style.transform = "translateY(8px)";
+
+            setTimeout(function () {
+
+                toast.remove();
+
+            }, 250);
+
+        }, 3500);
+
+    }
+
+    /* =======================================================
+
+       SUPABASE
+
+    ======================================================== */
+
+    function getSupabaseClient() {
+
+        if (
+
+            window.niniceSupabase
+
+        ) {
+
+            return window.niniceSupabase;
+
+        }
+
+        if (
+
+            window.supabase &&
+
+            window.NINICE_CONFIG
+
+        ) {
+
+            return window.supabase.createClient(
+
+                window.NINICE_CONFIG.SUPABASE_URL,
+
+                window.NINICE_CONFIG.SUPABASE_ANON_KEY,
+
+                {
+
+                    auth: {
+
+                        persistSession: true,
+
+                        autoRefreshToken: true,
+
+                        detectSessionInUrl: true
+
+                    }
+
+                }
+
+            );
+
+        }
+
+        return null;
+
+    }
+
+    /* =======================================================
+
+       SLUG
+
+    ======================================================== */
+
+    function slugify(value) {
+
+        return String(value || "")
+
+            .normalize("NFD")
+
+            .replace(/[\u0300-\u036f]/g, "")
+
+            .toLowerCase()
+
+            .trim()
+
+            .replace(/[^a-z0-9]+/g, "-")
+
+            .replace(/^-+|-+$/g, "");
+
+    }
+
+    /* =======================================================
+
+       ESCAPE HTML
+
+    ======================================================== */
+
+    function escapeHtml(value) {
+
+        return String(value ?? "")
+
+            .replace(/&/g, "&amp;")
+
+            .replace(/</g, "&lt;")
+
+            .replace(/>/g, "&gt;")
+
+            .replace(/"/g, "&quot;")
+
+            .replace(/'/g, "&#039;");
+
+    }
+
+    /* =======================================================
+
+       DATE
+
+    ======================================================== */
+
+    function formatDate(value) {
+
+        if (!value) {
+
+            return "—";
+
+        }
+
+        const date =
+
+            new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+
+            return "—";
+
+        }
+
+        return new Intl.DateTimeFormat(
+
+            "fr-FR",
+
+            {
+
+                day: "2-digit",
+
+                month: "2-digit",
+
+                year: "numeric"
+
+            }
+
+        ).format(date);
+
+    }
+
+    /* =======================================================
+
+       AUTH ADMIN
+
+    ======================================================== */
+
+    async function checkAdminAccess() {
+
+        try {
+
+            supabaseClient =
+
+                getSupabaseClient();
+
+            if (!supabaseClient) {
+
+                throw new Error(
+
+                    "Connexion Supabase introuvable."
+
+                );
+
+            }
+
+            const {
+
+                data: sessionData,
+
+                error: sessionError
+
+            } =
+
+                await supabaseClient.auth.getSession();
+
+            if (sessionError) {
+
+                throw sessionError;
+
+            }
+
+            const session =
+
+                sessionData?.session;
+
+            if (!session) {
+
+                showAccessDenied(
+
+                    "Aucune session administrateur."
+
+                );
+
+                return false;
+
+            }
+
+            const {
+
+                data: isAdmin,
+
+                error: adminError
+
+            } =
+
+                await supabaseClient.rpc(
+
+                    "is_admin"
+
+                );
+
+            if (adminError) {
+
+                throw adminError;
+
+            }
+
+            if (!isAdmin) {
+
+                showAccessDenied(
+
+                    "Ce compte ne possède pas les droits administrateur."
+
+                );
+
+                return false;
+
+            }
+
+            securityText.textContent =
+
+                "Compte administrateur autorisé";
+
+            return true;
+
+        } catch (error) {
+
+            console.error(
+
+                "Erreur vérification admin :",
+
+                error
+
+            );
+
+            showAccessDenied(
+
+                error.message ||
+
+                "Impossible de vérifier les droits administrateur."
+
+            );
+
+            return false;
+
+        }
+
+    }
+
+    function showAccessDenied(message) {
+
+        loadingState.classList.add(
+
+            "hidden"
+
+        );
+
+        app.classList.add(
+
+            "hidden"
+
+        );
+
+        accessDenied.classList.remove(
+
+            "hidden"
+
+        );
+
+        securityText.textContent =
+
+            "Accès refusé";
+
+        const paragraph =
+
+            accessDenied.querySelector("p");
+
+        if (paragraph) {
+
+            paragraph.textContent =
+
+                message;
+
+        }
+
+    }
+
+    /* =======================================================
+
+       LOAD STORE LOGO
+
+    ======================================================== */
+
+    async function loadStoreLogo() {
+
+        try {
+
+            const {
+
+                data,
+
+                error
+
+            } =
+
+                await supabaseClient
+
+                    .from("store_settings")
+
+                    .select("logo_url")
+
+                    .limit(1)
+
+                    .maybeSingle();
+
+            if (error) {
+
+                console.warn(
+
+                    "Logo boutique non chargé :",
+
+                    error
+
+                );
+
+                return;
+
+            }
+
+            if (
+
+                data &&
+
+                data.logo_url
+
+            ) {
+
+                brandLogo.innerHTML =
+
+                    '<img src="' +
+
+                    escapeHtml(data.logo_url) +
+
+                    '" alt="Logo NINICE BOUTIQUE">';
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+
+                "Impossible de charger le logo :",
+
+                error
+
+            );
+
+        }
+
+    }
+
+    /* =======================================================
+
+       LOAD CATEGORIES
+
+    ======================================================== */
+
+    async function loadCategories() {
+
+        try {
+
+            categoriesGrid.innerHTML = "";
+
+            categoriesGrid.innerHTML =
+
+                '<div class="empty">' +
+
+                '<h3>Chargement des catégories...</h3>' +
+
+                '<p>Veuillez patienter.</p>' +
+
+                '</div>';
+
+            const {
+
+                data,
+
+                error
+
+            } =
+
+                await supabaseClient
+
+                    .from("categories")
+
+                    .select(
+
+                        "id,name,slug,description,image_url,is_active,sort_order,created_at"
+
+                    )
+
+                    .order(
+
+                        "sort_order",
+
+                        {
+
+                            ascending: true
+
+                        }
+
+                    )
+
+                    .order(
+
+                        "created_at",
+
+                        {
+
+                            ascending: false
+
+                        }
+
+                    );
+
+            if (error) {
+
+                throw error;
+
+            }
+
+            allCategories =
+
+                data || [];
+
+            updateStats();
+
+            renderCategories();
+
+        } catch (error) {
+
+            console.error(
+
+                "Erreur chargement catégories :",
+
+                error
+
+            );
+
+            categoriesGrid.innerHTML =
+
+                '<div class="empty">' +
+
+                '<h3>Impossible de charger les catégories</h3>' +
+
+                '<p>' +
+
+                escapeHtml(
+
+                    error.message ||
+
+                    "Une erreur est survenue."
+
+                ) +
+
+                '</p>' +
+
+                '</div>';
+
+            showToast(
+
+                error.message ||
+
+                "Erreur de chargement.",
+
+                "error"
+
+            );
+
+        }
+
+    }
+
+    /* =======================================================
+
+       STATS
+
+    ======================================================== */
+
+    function updateStats() {
+
+        const total =
+
+            allCategories.length;
+
+        const active =
+
+            allCategories.filter(
+
+                category =>
+
+                    category.is_active === true
+
+            ).length;
+
+        const inactive =
+
+            total - active;
+
+        const withImages =
+
+            allCategories.filter(
+
+                category =>
+
+                    Boolean(category.image_url)
+
+            ).length;
+
+        totalCount.textContent =
+
+            String(total);
+
+        activeCount.textContent =
+
+            String(active);
+
+        inactiveCount.textContent =
+
+            String(inactive);
+
+        imageCount.textContent =
+
+            String(withImages);
+
+    }
+
+    /* =======================================================
+
+       FILTER + SORT
+
+    ======================================================== */
+
+    function getFilteredCategories() {
+
+        const search =
+
+            searchInput.value
+
+                .trim()
+
+                .toLowerCase();
+
+        const status =
+
+            statusFilter.value;
+
+        const sort =
+
+            sortFilter.value;
+
+        let result =
+
+            allCategories.filter(
+
+                category => {
+
+                    const matchesSearch =
+
+                        !search ||
+
+                        String(category.name || "")
+
+                            .toLowerCase()
+
+                            .includes(search) ||
+
+                        String(category.slug || "")
+
+                            .toLowerCase()
+
+                            .includes(search) ||
+
+                        String(category.description || "")
+
+                            .toLowerCase()
+
+                            .includes(search);
+
+                    const matchesStatus =
+
+                        status === "all" ||
+
+                        (
+
+                            status === "active" &&
+
+                            category.is_active === true
+
+                        ) ||
+
+                        (
+
+                            status === "inactive" &&
+
+                            category.is_active !== true
+
+                        );
+
+                    return (
+
+                        matchesSearch &&
+
+                        matchesStatus
+
+                    );
+
+                }
+
+            );
+
+        result.sort(
+
+            function (a, b) {
+
+                if (sort === "name") {
+
+                    return String(a.name || "")
+
+                        .localeCompare(
+
+                            String(b.name || ""),
+
+                            "fr"
+
+                        );
+
+                }
+
+                if (sort === "name-desc") {
+
+                    return String(b.name || "")
+
+                        .localeCompare(
+
+                            String(a.name || ""),
+
+                            "fr"
+
+                        );
+
+                }
+
+                if (sort === "newest") {
+
+                    return new Date(
+
+                        b.created_at || 0
+
+                    ) -
+
+                    new Date(
+
+                        a.created_at || 0
+
+                    );
+
+                }
+
+                if (sort === "oldest") {
+
+                    return new Date(
+
+                        a.created_at || 0
+
+                    ) -
+
+                    new Date(
+
+                        b.created_at || 0
+
+                    );
+
+                }
+
+                return (
+
+                    Number(a.sort_order || 0) -
+
+                    Number(b.sort_order || 0)
+
+                );
+
+            }
+
+        );
+
+        return result;
+
+    }
+
+    /* =======================================================
+
+       RENDER
+
+    ======================================================== */
+
+    function renderCategories() {
+
+        const categories =
+
+            getFilteredCategories();
+
+        resultText.textContent =
+
+            categories.length +
+
+            (
+
+                categories.length > 1
+
+                    ? " résultats"
+
+                    : " résultat"
+
+            );
+
+        if (!categories.length) {
+
+            categoriesGrid.innerHTML =
+
+                '<div class="empty">' +
+
+                '<h3>Aucune catégorie trouvée</h3>' +
+
+                '<p>Modifiez votre recherche ou ajoutez une nouvelle catégorie.</p>' +
+
+                '</div>';
+
+            return;
+
+        }
+
+        categoriesGrid.innerHTML =
+
+            categories
+
+                .map(
+
+                    renderCategoryCard
+
+                )
+
+                .join("");
+
+    }
+
+    function renderCategoryCard(category) {
+
+        const image =
+
+            category.image_url
+
+                ? (
+
+                    '<img src="' +
+
+                    escapeHtml(category.image_url) +
+
+                    '" alt="' +
+
+                    escapeHtml(category.name) +
+
+                    '" loading="lazy">'
+
+                )
+
+                : (
+
+                    '<div class="category-image-placeholder">' +
+
+                    'Aucune image' +
+
+                    '</div>'
+
+                );
+
+        const status =
+
+            category.is_active === true
+
+                ? (
+
+                    '<span class="status-badge status-active">' +
+
+                    'Active' +
+
+                    '</span>'
+
+                )
+
+                : (
+
+                    '<span class="status-badge status-inactive">' +
+
+                    'Inactive' +
+
+                    '</span>'
+
+                );
+
+        const description =
+
+            category.description
+
+                ? escapeHtml(
+
+                    category.description
+
+                )
+
+                : "Aucune description";
+
+        return `
+
+            <article class="category-card">
+
+                <div class="category-image">
+
+                    ${image}
+
+                    ${status}
+
+                </div>
+
+                <div class="category-body">
+
+                    <div class="category-title-row">
+
+                        <div class="category-name">
+
+                            ${escapeHtml(category.name)}
+
+                        </div>
+
+                        <div class="category-order">
+
+                            Ordre ${Number(category.sort_order || 0)}
+
+                        </div>
+
+                    </div>
+
+                    <div class="category-description">
+
+                        ${description}
+
+                    </div>
+
+                    <div class="category-meta">
+
+                        <span class="meta-chip">
+
+                            /${escapeHtml(category.slug || "")}
+
+                        </span>
+
+                        <span class="meta-chip">
+
+                            ${category.image_url ? "Image" : "Sans image"}
+
+                        </span>
+
+                        <span class="meta-chip">
+
+                            ${formatDate(category.created_at)}
+
+                        </span>
+
+                    </div>
+
+                    <div class="category-actions">
+
+                        <button
+
+                            type="button"
+
+                            class="btn btn-small"
+
+                            data-action="edit"
+
+                            data-id="${category.id}"
+
+                        >
+
+                            Modifier
+
+                        </button>
+
+                        <button
+
+                            type="button"
+
+                            class="btn btn-small"
+
+                            data-action="toggle"
+
+                            data-id="${category.id}"
+
+                        >
+
+                            ${category.is_active ? "Désactiver" : "Activer"}
+
+                        </button>
+
+                        <button
+
+                            type="button"
+
+                            class="btn btn-small"
+
+                            data-action="delete"
+
+                            data-id="${category.id}"
+
+                        >
+
+                            Supprimer
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }
+
+    /* =======================================================
+
+       OPEN MODAL
+
+    ======================================================== */
+
+    function openAddModal() {
+
+        editingCategory = null;
+
+        selectedImageFile = null;
+
+        currentImageUrl = null;
+
+        modalTitle.textContent =
+
+            "Ajouter une catégorie";
+
+        categoryForm.reset();
+
+        categoryOrder.value = "0";
+
+        categoryActive.checked =
+
+            true;
+
+        categoryImage.value = "";
+
+        imagePreview.classList.remove(
+
+            "visible"
+
+        );
+
+        imagePreviewImage.src = "";
+
+        currentImageLabel.textContent =
+
+            "Aucune image actuelle.";
+
+        categoryModal.classList.add(
+
+            "open"
+
+        );
+
+        setTimeout(
+
+            function () {
+
+                categoryName.focus();
+
+            },
+
+            100
+
+        );
+
+    }
+
+    function openEditModal(category) {
+
+        editingCategory =
+
+            category;
+
+        selectedImageFile = null;
+
+        currentImageUrl =
+
+            category.image_url || null;
+
+        modalTitle.textContent =
+
+            "Modifier la catégorie";
+
+        categoryName.value =
+
+            category.name || "";
+
+        categoryOrder.value =
+
+            Number(
+
+                category.sort_order || 0
+
+            );
+
+        categoryDescription.value =
+
+            category.description || "";
+
+        categoryActive.checked =
+
+            category.is_active === true;
+
+        categoryImage.value = "";
+
+        if (currentImageUrl) {
+
+            imagePreviewImage.src =
+
+                currentImageUrl;
+
+            imagePreview.classList.add(
+
+                "visible"
+
+            );
+
+            currentImageLabel.textContent =
+
+                "Image actuelle conservée si aucune nouvelle image n'est choisie.";
+
+        } else {
+
+            imagePreview.classList.remove(
+
+                "visible"
+
+            );
+
+            imagePreviewImage.src = "";
+
+            currentImageLabel.textContent =
+
+                "Cette catégorie n'a pas encore d'image.";
+
+        }
+
+        categoryModal.classList.add(
+
+            "open"
+
+        );
+
+    }
+
+    function closeModal() {
+
+        categoryModal.classList.remove(
+
+            "open"
+
+        );
+
+        editingCategory = null;
+
+        selectedImageFile = null;
+
+    }
+
+    /* =======================================================
+
+       IMAGE PREVIEW
+
+    ======================================================== */
+
+    categoryImage.addEventListener(
+
+        "change",
+
+        function () {
+
+            const file =
+
+                categoryImage.files &&
+
+                categoryImage.files[0];
+
+            selectedImageFile =
+
+                file || null;
+
+            if (!file) {
+
+                if (currentImageUrl) {
+
+                    imagePreviewImage.src =
+
+                        currentImageUrl;
+
+                    imagePreview.classList.add(
+
+                        "visible"
+
+                    );
+
+                }
+
+                return;
+
+            }
+
+            const allowedTypes = [
+
+                "image/jpeg",
+
+                "image/png",
+
+                "image/webp",
+
+                "image/gif"
+
+            ];
+
+            if (
+
+                !allowedTypes.includes(
+
+                    file.type
+
+                )
+
+            ) {
+
+                showToast(
+
+                    "Format d'image non accepté. Utilisez JPG, PNG, WEBP ou GIF.",
+
+                    "error"
+
+                );
+
+                categoryImage.value = "";
+
+                selectedImageFile = null;
+
+                return;
+
+            }
+
+            const maxSize =
+
+                5 * 1024 * 1024;
+
+            if (file.size > maxSize) {
+
+                showToast(
+
+                    "L'image est trop lourde. Maximum : 5 Mo.",
+
+                    "error"
+
+                );
+
+                categoryImage.value = "";
+
+                selectedImageFile = null;
+
+                return;
+
+            }
+
+            const objectUrl =
+
+                URL.createObjectURL(file);
+
+            imagePreviewImage.src =
+
+                objectUrl;
+
+            imagePreview.classList.add(
+
+                "visible"
+
+            );
+
+            currentImageLabel.textContent =
+
+                file.name +
+
+                " — " +
+
+                formatFileSize(file.size);
+
+        }
+
+    );
+
+    function formatFileSize(bytes) {
+
+        if (bytes < 1024) {
+
+            return bytes + " octets";
+
+        }
+
+        if (bytes < 1024 * 1024) {
+
+            return (
+
+                (bytes / 1024)
+
+                    .toFixed(1)
+
+                + " Ko"
+
+            );
+
+        }
+
+        return (
+
+            (bytes / (1024 * 1024))
+
+                .toFixed(1)
+
+            + " Mo"
+
+        );
+
+    }
+
+    /* =======================================================
+
+       UPLOAD IMAGE
+
+    ======================================================== */
+
+    async function uploadCategoryImage(
+
+        file,
+
+        categoryId
+
+    ) {
+
+        if (!file) {
+
+            return currentImageUrl;
+
+        }
+
+        const extension =
+
+            getFileExtension(
+
+                file.name,
+
+                file.type
+
+            );
+
+        const safeName =
+
+            slugify(
+
+                categoryName.value
+
+            ) ||
+
+            "categorie";
+
+        const fileName =
+
+            safeName +
+
+            "-" +
+
+            Date.now() +
+
+            "-" +
+
+            Math.random()
+
+                .toString(36)
+
+                .substring(2, 8) +
+
+            "." +
+
+            extension;
+
+        const filePath =
+
+            "categories/" +
+
+            fileName;
+
+        const {
+
+            error: uploadError
+
+        } =
+
+            await supabaseClient
+
+                .storage
+
+                .from("categories")
+
+                .upload(
+
+                    filePath,
+
+                    file,
+
+                    {
+
+                        cacheControl: "3600",
+
+                        upsert: false,
+
+                        contentType: file.type
+
+                    }
+
+                );
+
+        if (uploadError) {
+
+            throw uploadError;
+
+        }
+
+        const {
+
+            data: publicData
+
+        } =
+
+            supabaseClient
+
+                .storage
+
+                .from("categories")
+
+                .getPublicUrl(
+
+                    filePath
+
+                );
+
+        if (
+
+            !publicData ||
+
+            !publicData.publicUrl
+
+        ) {
+
+            throw new Error(
+
+                "Impossible de récupérer l'URL publique de l'image."
+
+            );
+
+        }
+
+        return publicData.publicUrl;
+
+    }
+
+    function getFileExtension(
+
+        fileName,
+
+        mimeType
+
+    ) {
+
+        const fromName =
+
+            String(fileName || "")
+
+                .split(".")
+
+                .pop()
+
+                .toLowerCase();
+
+        const validExtensions = [
+
+            "jpg",
+
+            "jpeg",
+
+            "png",
+
+            "webp",
+
+            "gif"
+
+        ];
+
+        if (
+
+            validExtensions.includes(
+
+                fromName
+
+            )
+
+        ) {
+
+            return fromName;
+
+        }
+
+        const map = {
+
+            "image/jpeg": "jpg",
+
+            "image/png": "png",
+
+            "image/webp": "webp",
+
+            "image/gif": "gif"
+
+        };
+
+        return map[mimeType] || "jpg";
+
+    }
+
+    /* =======================================================
+
+       SAVE CATEGORY
+
+    ======================================================== */
+
+    categoryForm.addEventListener(
+
+        "submit",
+
+        async function (event) {
+
+            event.preventDefault();
+
+            const name =
+
+                categoryName.value.trim();
+
+            if (!name) {
+
+                showToast(
+
+                    "Le nom de la catégorie est obligatoire.",
+
+                    "error"
+
+                );
+
+                categoryName.focus();
+
+                return;
+
+            }
+
+            const orderValue =
+
+                Number(
+
+                    categoryOrder.value
+
+                );
+
+            if (
+
+                !Number.isFinite(
+
+                    orderValue
+
+                ) ||
+
+                orderValue < 0
+
+            ) {
+
+                showToast(
+
+                    "L'ordre doit être un nombre positif ou égal à 0.",
+
+                    "error"
+
+                );
+
+                return;
+
+            }
+
+            try {
+
+                saveButton.disabled =
+
+                    true;
+
+                saveButton.textContent =
+
+                    "Enregistrement...";
+
+                let imageUrl =
+
+                    currentImageUrl || null;
+
+                /*
+
+                 * L'image est uploadée uniquement
+
+                 * si l'utilisateur en choisit une nouvelle.
+
+                 */
+
+                if (selectedImageFile) {
+
+                    saveButton.textContent =
+
+                        "Envoi de l'image...";
+
+                    imageUrl =
+
+                        await uploadCategoryImage(
+
+                            selectedImageFile,
+
+                            editingCategory
+
+                                ? editingCategory.id
+
+                                : crypto.randomUUID()
+
+                        );
+
+                }
+
+                const categoryData = {
+
+                    name: name,
+
+                    slug: slugify(name),
+
+                    description:
+
+                        categoryDescription.value
+
+                            .trim() ||
+
+                        null,
+
+                    image_url:
+
+                        imageUrl,
+
+                    is_active:
+
+                        categoryActive.checked,
+
+                    sort_order:
+
+                        Math.floor(
+
+                            orderValue
+
+                        )
+
+                };
+
+                saveButton.textContent =
+
+                    "Enregistrement...";
+
+                if (editingCategory) {
+
+                    const {
+
+                        error
+
+                    } =
+
+                        await supabaseClient
+
+                            .from("categories")
+
+                            .update(
+
+                                categoryData
+
+                            )
+
+                            .eq(
+
+                                "id",
+
+                                editingCategory.id
+
+                            );
+
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+                    showToast(
+
+                        "Catégorie modifiée avec succès.",
+
+                        "success"
+
+                    );
+
+                } else {
+
+                    const {
+
+                        error
+
+                    } =
+
+                        await supabaseClient
+
+                            .from("categories")
+
+                            .insert(
+
+                                categoryData
+
+                            );
+
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+                    showToast(
+
+                        "Catégorie ajoutée avec succès.",
+
+                        "success"
+
+                    );
+
+                }
+
+                closeModal();
+
+                await loadCategories();
+
+            } catch (error) {
+
+                console.error(
+
+                    "Erreur sauvegarde catégorie :",
+
+                    error
+
+                );
+
+                showToast(
+
+                    error.message ||
+
+                    "Impossible d'enregistrer la catégorie.",
+
+                    "error"
+
+                );
+
+            } finally {
+
+                saveButton.disabled =
+
+                    false;
+
+                saveButton.textContent =
+
+                    "Enregistrer";
+
+            }
+
+        }
+
+    );
+
+    /* =======================================================
+
+       TOGGLE CATEGORY
+
+    ======================================================== */
+
+    async function toggleCategory(
+
+        category
+
+    ) {
+
+        const newStatus =
+
+            !Boolean(
+
+                category.is_active
+
+            );
+
+        try {
+
+            const {
+
+                error
+
+            } =
+
+                await supabaseClient
+
+                    .from("categories")
+
+                    .update({
+
+                        is_active: newStatus
+
+                    })
+
+                    .eq(
+
+                        "id",
+
+                        category.id
+
+                    );
+
+            if (error) {
+
+                throw error;
+
+            }
+
+            showToast(
+
+                newStatus
+
+                    ? "Catégorie activée."
+
+                    : "Catégorie désactivée.",
+
+                "success"
+
+            );
+
+            await loadCategories();
+
+        } catch (error) {
+
+            console.error(
+
+                error
+
+            );
+
+            showToast(
+
+                error.message ||
+
+                "Impossible de modifier le statut.",
+
+                "error"
+
+            );
+
+        }
+
+    }
+
+    /* =======================================================
+
+       CHECK PRODUCTS BEFORE DELETE
+
+    ======================================================== */
+
+    async function countProductsForCategory(
+
+        categoryId
+
+    ) {
+
+        const {
+
+            count,
+
+            error
+
+        } =
+
+            await supabaseClient
+
+                .from("products")
+
+                .select(
+
+                    "id",
+
+                    {
+
+                        count: "exact",
+
+                        head: true
+
+                    }
+
+                )
+
+                .eq(
+
+                    "category_id",
+
+                    categoryId
+
+                );
+
+        if (error) {
+
+            throw error;
+
+        }
+
+        return count || 0;
+
+    }
+
+    /* =======================================================
+
+       DELETE CATEGORY
+
+    ======================================================== */
+
+    async function deleteCategory(
+
+        category
+
+    ) {
+
+        const productCount =
+
+            await countProductsForCategory(
+
+                category.id
+
+            );
+
+        if (productCount > 0) {
+
+            showToast(
+
+                "Cette catégorie est utilisée par " +
+
+                productCount +
+
+                " produit(s). Retirez d'abord la catégorie de ces produits.",
+
+                "warning"
+
+            );
+
+            return;
+
+        }
+
+        const confirmed =
+
+            window.confirm(
+
+                "Voulez-vous vraiment supprimer la catégorie « " +
+
+                category.name +
+
+                " » ?\n\nCette action est définitive."
+
+            );
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+        try {
+
+            const {
+
+                error
+
+            } =
+
+                await supabaseClient
+
+                    .from("categories")
+
+                    .delete()
+
+                    .eq(
+
+                        "id",
+
+                        category.id
+
+                    );
+
+            if (error) {
+
+                throw error;
+
+            }
+
+            showToast(
+
+                "Catégorie supprimée avec succès.",
+
+                "success"
+
+            );
+
+            await loadCategories();
+
+        } catch (error) {
+
+            console.error(
+
+                "Erreur suppression catégorie :",
+
+                error
+
+            );
+
+            showToast(
+
+                error.message ||
+
+                "Impossible de supprimer la catégorie.",
+
+                "error"
+
+            );
+
+        }
+
+    }
+
+    /* =======================================================
+
+       CARD ACTIONS
+
+    ======================================================== */
+
+    categoriesGrid.addEventListener(
+
+        "click",
+
+        async function (event) {
+
+            const button =
+
+                event.target.closest(
+
+                    "button[data-action]"
+
+                );
+
+            if (!button) {
+
+                return;
+
+            }
+
+            const id =
+
+                button.dataset.id;
+
+            const action =
+
+                button.dataset.action;
+
+            const category =
+
+                allCategories.find(
+
+                    item =>
+
+                        String(item.id) ===
+
+                        String(id)
+
+                );
+
+            if (!category) {
+
+                showToast(
+
+                    "Catégorie introuvable.",
+
+                    "error"
+
+                );
+
+                return;
+
+            }
+
+            if (action === "edit") {
+
+                openEditModal(
+
+                    category
+
+                );
+
+                return;
+
+            }
+
+            if (action === "toggle") {
+
+                await toggleCategory(
+
+                    category
+
+                );
+
+                return;
+
+            }
+
+            if (action === "delete") {
+
+                await deleteCategory(
+
+                    category
+
+                );
+
+            }
+
+        }
+
+    );
+
+    /* =======================================================
+
+       EVENTS
+
+    ======================================================== */
+
+    addCategoryButton.addEventListener(
+
+        "click",
+
+        openAddModal
+
+    );
+
+    closeModalButton.addEventListener(
+
+        "click",
+
+        closeModal
+
+    );
+
+    cancelButton.addEventListener(
+
+        "click",
+
+        closeModal
+
+    );
+
+    categoryModal.addEventListener(
+
+        "click",
+
+        function (event) {
+
+            if (
+
+                event.target ===
+
+                categoryModal
+
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+
+    );
+
+    document.addEventListener(
+
+        "keydown",
+
+        function (event) {
+
+            if (
+
+                event.key === "Escape"
+
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+
+    );
+
+    searchInput.addEventListener(
+
+        "input",
+
+        renderCategories
+
+    );
+
+    statusFilter.addEventListener(
+
+        "change",
+
+        renderCategories
+
+    );
+
+    sortFilter.addEventListener(
+
+        "change",
+
+        renderCategories
+
+    );
+
+    refreshButton.addEventListener(
+
+        "click",
+
+        async function () {
+
+            refreshButton.disabled =
+
+                true;
+
+            refreshButton.textContent =
+
+                "Actualisation...";
+
+            try {
+
+                await loadCategories();
+
+                showToast(
+
+                    "Liste actualisée.",
+
+                    "success"
+
+                );
+
+            } finally {
+
+                refreshButton.disabled =
+
+                    false;
+
+                refreshButton.textContent =
+
+                    "Actualiser";
+
+            }
+
+        }
+
+    );
+
+    /* =======================================================
+
+       INIT
+
+    ======================================================== */
+
+    async function init() {
+
+        loadingState.classList.remove(
+
+            "hidden"
+
+        );
+
+        accessDenied.classList.add(
+
+            "hidden"
+
+        );
+
+        app.classList.add(
+
+            "hidden"
+
+        );
+
+        const authorized =
+
+            await checkAdminAccess();
+
+        if (!authorized) {
+
+            return;
+
+        }
+
+        await loadStoreLogo();
+
+        await loadCategories();
+
+        loadingState.classList.add(
+
+            "hidden"
+
+        );
+
+        app.classList.remove(
+
+            "hidden"
+
+        );
+
+    }
+
+    init();
+
+})();
+
+</script>
+
+</body>
+
+</html>
