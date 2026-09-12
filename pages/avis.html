@@ -4,65 +4,2425 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
 
-<title>Avis clients | NINICE BOUTIQUE</title>
+        name="viewport"
 
-<link rel="stylesheet" href="../assets/css/style.css">
+        content="width=device-width, initial-scale=1.0"
 
-<link rel="stylesheet" href="../assets/css/responsive.css">
+    >
+
+    <title>Avis clientes | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Découvrez les avis des clientes de NINICE BOUTIQUE et partagez votre expérience."
+
+    >
+
+    <meta
+
+        name="theme-color"
+
+        content="#6d28d9"
+
+    >
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.googleapis.com"
+
+    >
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin
+
+    >
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link
+
+        rel="stylesheet"
+
+        href="../assets/css/style.css"
+
+    >
+
+    <link
+
+        rel="stylesheet"
+
+        href="../assets/css/responsive.css"
+
+    >
+
+    <style>
+
+        :root {
+
+            --ninice-violet: #6d28d9;
+
+            --ninice-dark: #4c1d95;
+
+            --ninice-light: #f5f3ff;
+
+            --text: #171717;
+
+            --muted: #737373;
+
+            --border: #e5e7eb;
+
+            --white: #ffffff;
+
+            --success: #15803d;
+
+            --success-bg: #f0fdf4;
+
+            --danger: #b91c1c;
+
+            --danger-bg: #fef2f2;
+
+            --background: #fafafa;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            background: var(--background);
+
+            color: var(--text);
+
+            font-family:
+
+                "DM Sans",
+
+                sans-serif;
+
+        }
+
+        .avis-page {
+
+            width:
+
+                min(
+
+                    1100px,
+
+                    calc(100% - 30px)
+
+                );
+
+            margin: 0 auto;
+
+            padding:
+
+                45px 0 100px;
+
+        }
+
+        /* =========================
+
+           HERO
+
+        ========================= */
+
+        .avis-hero {
+
+            margin-bottom: 30px;
+
+            padding:
+
+                45px 25px;
+
+            border:
+
+                1px solid
+
+                #ddd6fe;
+
+            border-radius: 22px;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #faf5ff,
+
+                    #ffffff
+
+                );
+
+            text-align: center;
+
+        }
+
+        .avis-hero h1 {
+
+            margin:
+
+                0 0 12px;
+
+            color:
+
+                var(--ninice-dark);
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size:
+
+                clamp(
+
+                    30px,
+
+                    5vw,
+
+                    46px
+
+                );
+
+            line-height: 1.15;
+
+        }
+
+        .avis-hero p {
+
+            max-width: 650px;
+
+            margin:
+
+                0 auto;
+
+            color:
+
+                var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+        /* =========================
+
+           LAYOUT
+
+        ========================= */
+
+        .avis-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                minmax(0, 1fr)
+
+                370px;
+
+            gap: 25px;
+
+            align-items: start;
+
+        }
+
+        .avis-card {
+
+            padding: 25px;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius: 18px;
+
+            background:
+
+                var(--white);
+
+            box-shadow:
+
+                0 8px 30px
+
+                rgba(
+
+                    0,
+
+                    0,
+
+                    0,
+
+                    .04
+
+                );
+
+        }
+
+        .avis-card h2 {
+
+            margin:
+
+                0 0 20px;
+
+            color:
+
+                var(--ninice-dark);
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size: 25px;
+
+        }
+
+        /* =========================
+
+           FORMULAIRE
+
+        ========================= */
+
+        .form-group {
+
+            margin-bottom: 17px;
+
+        }
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: var(--text);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+        .form-group input,
+
+        .form-group textarea {
+
+            width: 100%;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: #fff;
+
+            color: var(--text);
+
+            font-family:
+
+                "DM Sans",
+
+                sans-serif;
+
+            font-size: 14px;
+
+            transition:
+
+                border-color .2s ease,
+
+                box-shadow .2s ease;
+
+        }
+
+        .form-group input {
+
+            min-height: 48px;
+
+            padding:
+
+                0 13px;
+
+        }
+
+        .form-group textarea {
+
+            min-height: 130px;
+
+            padding: 13px;
+
+            resize: vertical;
+
+        }
+
+        .form-group input:focus,
+
+        .form-group textarea:focus {
+
+            border-color:
+
+                var(--ninice-violet);
+
+            box-shadow:
+
+                0 0 0 3px
+
+                rgba(
+
+                    109,
+
+                    40,
+
+                    217,
+
+                    .10
+
+                );
+
+        }
+
+        /* =========================
+
+           NOTES
+
+        ========================= */
+
+        .rating-label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: var(--text);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+        .rating {
+
+            display: flex;
+
+            flex-direction:
+
+                row-reverse;
+
+            justify-content:
+
+                flex-end;
+
+            gap: 5px;
+
+            margin-bottom: 5px;
+
+        }
+
+        .rating input {
+
+            position: absolute;
+
+            width: 1px;
+
+            height: 1px;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+        .rating label {
+
+            cursor: pointer;
+
+            color: #d4d4d4;
+
+            font-size: 31px;
+
+            line-height: 1;
+
+            transition:
+
+                color .15s ease,
+
+                transform .15s ease;
+
+        }
+
+        .rating label:hover,
+
+        .rating label:hover ~ label,
+
+        .rating input:checked ~ label {
+
+            color:
+
+                var(--ninice-violet);
+
+        }
+
+        .rating label:hover {
+
+            transform:
+
+                scale(1.08);
+
+        }
+
+        .rating-help {
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+        /* =========================
+
+           BUTTON
+
+        ========================= */
+
+        .submit-button {
+
+            width: 100%;
+
+            min-height: 50px;
+
+            border: 0;
+
+            border-radius: 11px;
+
+            background:
+
+                var(--ninice-violet);
+
+            color: #fff;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+
+                background .2s ease,
+
+                transform .2s ease;
+
+        }
+
+        .submit-button:hover {
+
+            background:
+
+                var(--ninice-dark);
+
+            transform:
+
+                translateY(-1px);
+
+        }
+
+        .submit-button:disabled {
+
+            opacity: .6;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+        /* =========================
+
+           MESSAGES
+
+        ========================= */
+
+        .form-message {
+
+            display: none;
+
+            margin-bottom: 17px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+        }
+
+        .form-message.show {
+
+            display: block;
+
+        }
+
+        .form-message.success {
+
+            background:
+
+                var(--success-bg);
+
+            color:
+
+                var(--success);
+
+        }
+
+        .form-message.error {
+
+            background:
+
+                var(--danger-bg);
+
+            color:
+
+                var(--danger);
+
+        }
+
+        /* =========================
+
+           STATISTIQUES
+
+        ========================= */
+
+        .rating-summary {
+
+            margin-bottom: 25px;
+
+            padding:
+
+                20px;
+
+            border-radius: 15px;
+
+            background:
+
+                var(--ninice-light);
+
+            text-align: center;
+
+        }
+
+        .average-rating {
+
+            margin-bottom: 5px;
+
+            color:
+
+                var(--ninice-dark);
+
+            font-size: 38px;
+
+            font-weight: 700;
+
+            line-height: 1;
+
+        }
+
+        .average-stars {
+
+            margin-bottom: 7px;
+
+            color:
+
+                var(--ninice-violet);
+
+            font-size: 20px;
+
+            letter-spacing: 2px;
+
+        }
+
+        .rating-count {
+
+            color:
+
+                var(--muted);
+
+            font-size: 12px;
+
+        }
+
+        /* =========================
+
+           AVIS
+
+        ========================= */
+
+        .reviews-list {
+
+            display: grid;
+
+            gap: 15px;
+
+        }
+
+        .review {
+
+            padding:
+
+                17px;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius:
+
+                13px;
+
+            background: #fff;
+
+        }
+
+        .review-header {
+
+            display: flex;
+
+            align-items:
+
+                flex-start;
+
+            justify-content:
+
+                space-between;
+
+            gap: 15px;
+
+            margin-bottom: 8px;
+
+        }
+
+        .review-name {
+
+            margin: 0;
+
+            color:
+
+                var(--text);
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        .review-stars {
+
+            color:
+
+                var(--ninice-violet);
+
+            font-size: 14px;
+
+            letter-spacing: 1px;
+
+            white-space:
+
+                nowrap;
+
+        }
+
+        .review-date {
+
+            margin: 0 0 9px;
+
+            color:
+
+                var(--muted);
+
+            font-size: 10px;
+
+        }
+
+        .review-comment {
+
+            margin: 0;
+
+            color:
+
+                #404040;
+
+            font-size: 13px;
+
+            line-height: 1.65;
+
+            white-space: pre-wrap;
+
+            word-break: break-word;
+
+        }
+
+        .featured-review {
+
+            border-color:
+
+                #c4b5fd;
+
+            background:
+
+                #faf5ff;
+
+        }
+
+        .featured-badge {
+
+            display: inline-flex;
+
+            margin-top: 11px;
+
+            padding:
+
+                4px 8px;
+
+            border-radius: 20px;
+
+            background:
+
+                #ede9fe;
+
+            color:
+
+                var(--ninice-dark);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            text-transform:
+
+                uppercase;
+
+            letter-spacing: .4px;
+
+        }
+
+        .reviews-empty {
+
+            padding:
+
+                25px;
+
+            border:
+
+                1px dashed
+
+                var(--border);
+
+            border-radius:
+
+                13px;
+
+            color:
+
+                var(--muted);
+
+            font-size: 13px;
+
+            text-align:
+
+                center;
+
+        }
+
+        .loading {
+
+            color:
+
+                var(--muted);
+
+            font-size: 13px;
+
+            text-align:
+
+                center;
+
+        }
+
+        /* =========================
+
+           INFO
+
+        ========================= */
+
+        .review-info {
+
+            margin-top: 20px;
+
+            padding:
+
+                15px;
+
+            border-radius:
+
+                12px;
+
+            background:
+
+                #fafafa;
+
+            color:
+
+                var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+        }
+
+        /* =========================
+
+           RESPONSIVE
+
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .avis-grid {
+
+                grid-template-columns:
+
+                    1fr;
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .avis-page {
+
+                width:
+
+                    calc(100% - 22px);
+
+                padding-top:
+
+                    28px;
+
+            }
+
+            .avis-hero {
+
+                padding:
+
+                    32px 17px;
+
+                border-radius:
+
+                    17px;
+
+            }
+
+            .avis-card {
+
+                padding:
+
+                    19px 16px;
+
+                border-radius:
+
+                    16px;
+
+            }
+
+            .review-header {
+
+                flex-direction:
+
+                    column;
+
+                gap: 5px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div id="site-header"></div>
+    <div id="site-header"></div>
 
-<main>
+    <main class="avis-page">
 
-<section class="page-section">
+        <section class="avis-hero">
 
-<div class="container">
+            <h1>
 
-<span class="eyebrow">NINICE BOUTIQUE</span>
+                Les avis de nos clientes
 
-<h1>Avis clients</h1>
+            </h1>
 
-<div class="page-card">
+            <p>
 
-<h2>Votre avis compte</h2>
+                Découvrez les expériences
 
-<p>
+                partagées par les clientes
 
-Découvrez les avis de nos clients et partagez votre expérience
+                de NINICE BOUTIQUE et
 
-avec NINICE BOUTIQUE.
+                laissez à votre tour votre avis
 
-</p>
+                après votre expérience.
 
-<div id="reviews-list"></div>
+            </p>
 
-</div>
+        </section>
 
-</div>
+        <div class="avis-grid">
 
-</section>
+            <!-- =========================
 
-</main>
+                 AVIS CLIENTS
 
-<div id="site-footer"></div>
+            ========================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            <section class="avis-card">
 
-<script src="../assets/js/config.js"></script>
+                <h2>
 
-<script src="../assets/js/supabase.js"></script>
+                    Avis clientes
 
-<script src="../assets/js/common.js"></script>
+                </h2>
 
-<script src="../assets/js/navigation.js"></script>
+                <div
+
+                    id="rating-summary"
+
+                    class="rating-summary"
+
+                >
+
+                    <div
+
+                        id="average-rating"
+
+                        class="average-rating"
+
+                    >
+
+                        0,0
+
+                    </div>
+
+                    <div
+
+                        id="average-stars"
+
+                        class="average-stars"
+
+                    >
+
+                        ☆☆☆☆☆
+
+                    </div>
+
+                    <div
+
+                        id="rating-count"
+
+                        class="rating-count"
+
+                    >
+
+                        Aucun avis pour le moment
+
+                    </div>
+
+                </div>
+
+                <div
+
+                    id="reviews-list"
+
+                    class="reviews-list"
+
+                >
+
+                    <div class="loading">
+
+                        Chargement des avis...
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =========================
+
+                 FORMULAIRE
+
+            ========================== -->
+
+            <aside class="avis-card">
+
+                <h2>
+
+                    Laisser un avis
+
+                </h2>
+
+                <div
+
+                    id="form-message"
+
+                    class="form-message"
+
+                ></div>
+
+                <form
+
+                    id="review-form"
+
+                    novalidate
+
+                >
+
+                    <div class="form-group">
+
+                        <label
+
+                            for="review-name"
+
+                        >
+
+                            Votre nom
+
+                        </label>
+
+                        <input
+
+                            type="text"
+
+                            id="review-name"
+
+                            name="name"
+
+                            placeholder="Votre nom"
+
+                            maxlength="100"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <span class="rating-label">
+
+                            Votre note
+
+                        </span>
+
+                        <div
+
+                            class="rating"
+
+                            aria-label="Choisir une note sur 5"
+
+                        >
+
+                            <input
+
+                                type="radio"
+
+                                id="star5"
+
+                                name="rating"
+
+                                value="5"
+
+                            >
+
+                            <label
+
+                                for="star5"
+
+                                title="5 étoiles"
+
+                            >
+
+                                ★
+
+                            </label>
+
+                            <input
+
+                                type="radio"
+
+                                id="star4"
+
+                                name="rating"
+
+                                value="4"
+
+                            >
+
+                            <label
+
+                                for="star4"
+
+                                title="4 étoiles"
+
+                            >
+
+                                ★
+
+                            </label>
+
+                            <input
+
+                                type="radio"
+
+                                id="star3"
+
+                                name="rating"
+
+                                value="3"
+
+                            >
+
+                            <label
+
+                                for="star3"
+
+                                title="3 étoiles"
+
+                            >
+
+                                ★
+
+                            </label>
+
+                            <input
+
+                                type="radio"
+
+                                id="star2"
+
+                                name="rating"
+
+                                value="2"
+
+                            >
+
+                            <label
+
+                                for="star2"
+
+                                title="2 étoiles"
+
+                            >
+
+                                ★
+
+                            </label>
+
+                            <input
+
+                                type="radio"
+
+                                id="star1"
+
+                                name="rating"
+
+                                value="1"
+
+                            >
+
+                            <label
+
+                                for="star1"
+
+                                title="1 étoile"
+
+                            >
+
+                                ★
+
+                            </label>
+
+                        </div>
+
+                        <p class="rating-help">
+
+                            Sélectionnez une note de 1 à 5.
+
+                        </p>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label
+
+                            for="review-comment"
+
+                        >
+
+                            Votre commentaire
+
+                        </label>
+
+                        <textarea
+
+                            id="review-comment"
+
+                            name="comment"
+
+                            placeholder="Partagez votre expérience..."
+
+                            maxlength="1000"
+
+                            required
+
+                        ></textarea>
+
+                    </div>
+
+                    <button
+
+                        type="submit"
+
+                        id="submit-review"
+
+                        class="submit-button"
+
+                    >
+
+                        Publier mon avis
+
+                    </button>
+
+                </form>
+
+                <div class="review-info">
+
+                    Votre avis sera vérifié avant
+
+                    d'être affiché publiquement.
+
+                    Aucun compte client n'est
+
+                    nécessaire.
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="../assets/js/config.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        (() => {
+
+            "use strict";
+
+            const reviewsList =
+
+                document.getElementById(
+
+                    "reviews-list"
+
+                );
+
+            const form =
+
+                document.getElementById(
+
+                    "review-form"
+
+                );
+
+            const formMessage =
+
+                document.getElementById(
+
+                    "form-message"
+
+                );
+
+            const submitButton =
+
+                document.getElementById(
+
+                    "submit-review"
+
+                );
+
+            const averageRating =
+
+                document.getElementById(
+
+                    "average-rating"
+
+                );
+
+            const averageStars =
+
+                document.getElementById(
+
+                    "average-stars"
+
+                );
+
+            const ratingCount =
+
+                document.getElementById(
+
+                    "rating-count"
+
+                );
+
+            function escapeHtml(value) {
+
+                return String(
+
+                    value ?? ""
+
+                )
+
+                    .replace(
+
+                        /&/g,
+
+                        "&amp;"
+
+                    )
+
+                    .replace(
+
+                        /</g,
+
+                        "&lt;"
+
+                    )
+
+                    .replace(
+
+                        />/g,
+
+                        "&gt;"
+
+                    )
+
+                    .replace(
+
+                        /"/g,
+
+                        "&quot;"
+
+                    )
+
+                    .replace(
+
+                        /'/g,
+
+                        "&#039;"
+
+                    );
+
+            }
+
+            function showMessage(
+
+                message,
+
+                type
+
+            ) {
+
+                formMessage.textContent =
+
+                    message;
+
+                formMessage.className =
+
+                    "form-message show " +
+
+                    type;
+
+            }
+
+            function clearMessage() {
+
+                formMessage.textContent =
+
+                    "";
+
+                formMessage.className =
+
+                    "form-message";
+
+            }
+
+            function formatDate(
+
+                date
+
+            ) {
+
+                if (!date) {
+
+                    return "";
+
+                }
+
+                const parsed =
+
+                    new Date(date);
+
+                if (
+
+                    Number.isNaN(
+
+                        parsed.getTime()
+
+                    )
+
+                ) {
+
+                    return "";
+
+                }
+
+                return new Intl.DateTimeFormat(
+
+                    "fr-FR",
+
+                    {
+
+                        day: "2-digit",
+
+                        month: "long",
+
+                        year: "numeric"
+
+                    }
+
+                ).format(parsed);
+
+            }
+
+            function renderStars(
+
+                rating
+
+            ) {
+
+                const value =
+
+                    Math.max(
+
+                        0,
+
+                        Math.min(
+
+                            5,
+
+                            Number(rating) || 0
+
+                        )
+
+                    );
+
+                let result = "";
+
+                for (
+
+                    let i = 1;
+
+                    i <= 5;
+
+                    i++
+
+                ) {
+
+                    result +=
+
+                        i <= value
+
+                            ? "★"
+
+                            : "☆";
+
+                }
+
+                return result;
+
+            }
+
+            function getReviewRating(
+
+                review
+
+            ) {
+
+                return Number(
+
+                    review.rating ??
+
+                    review.note ??
+
+                    0
+
+                );
+
+            }
+
+            function getReviewName(
+
+                review
+
+            ) {
+
+                return (
+
+                    review.name ||
+
+                    review.customer_name ||
+
+                    review.author_name ||
+
+                    "Cliente"
+
+                );
+
+            }
+
+            function getReviewComment(
+
+                review
+
+            ) {
+
+                return (
+
+                    review.comment ||
+
+                    review.content ||
+
+                    review.message ||
+
+                    ""
+
+                );
+
+            }
+
+            function isFeatured(
+
+                review
+
+            ) {
+
+                return Boolean(
+
+                    review.is_featured ??
+
+                    review.featured ??
+
+                    false
+
+                );
+
+            }
+
+            function getReviewDate(
+
+                review
+
+            ) {
+
+                return (
+
+                    review.created_at ||
+
+                    review.date ||
+
+                    null
+
+                );
+
+            }
+
+            function renderReviews(
+
+                reviews
+
+            ) {
+
+                if (
+
+                    !reviews ||
+
+                    !reviews.length
+
+                ) {
+
+                    reviewsList.innerHTML = `
+
+                        <div class="reviews-empty">
+
+                            Aucun avis publié pour le moment.
+
+                            Soyez la première cliente
+
+                            à partager votre expérience.
+
+                        </div>
+
+                    `;
+
+                    averageRating.textContent =
+
+                        "0,0";
+
+                    averageStars.textContent =
+
+                        "☆☆☆☆☆";
+
+                    ratingCount.textContent =
+
+                        "Aucun avis pour le moment";
+
+                    return;
+
+                }
+
+                const ratings =
+
+                    reviews
+
+                        .map(
+
+                            getReviewRating
+
+                        )
+
+                        .filter(
+
+                            rating =>
+
+                                rating >= 1 &&
+
+                                rating <= 5
+
+                        );
+
+                const average =
+
+                    ratings.length
+
+                        ? ratings.reduce(
+
+                            (
+
+                                total,
+
+                                rating
+
+                            ) =>
+
+                                total + rating,
+
+                            0
+
+                        ) /
+
+                        ratings.length
+
+                        : 0;
+
+                averageRating.textContent =
+
+                    average
+
+                        .toFixed(1)
+
+                        .replace(
+
+                            ".",
+
+                            ","
+
+                        );
+
+                averageStars.textContent =
+
+                    renderStars(
+
+                        Math.round(
+
+                            average
+
+                        )
+
+                    );
+
+                ratingCount.textContent =
+
+                    reviews.length +
+
+                    (
+
+                        reviews.length > 1
+
+                            ? " avis"
+
+                            : " avis"
+
+                    );
+
+                reviewsList.innerHTML =
+
+                    reviews
+
+                        .map(
+
+                            review => {
+
+                                const rating =
+
+                                    getReviewRating(
+
+                                        review
+
+                                    );
+
+                                const name =
+
+                                    getReviewName(
+
+                                        review
+
+                                    );
+
+                                const comment =
+
+                                    getReviewComment(
+
+                                        review
+
+                                    );
+
+                                const date =
+
+                                    formatDate(
+
+                                        getReviewDate(
+
+                                            review
+
+                                        )
+
+                                    );
+
+                                const featured =
+
+                                    isFeatured(
+
+                                        review
+
+                                    );
+
+                                return `
+
+                                    <article
+
+                                        class="
+
+                                            review
+
+                                            ${
+
+                                                featured
+
+                                                    ? "featured-review"
+
+                                                    : ""
+
+                                            }
+
+                                        "
+
+                                    >
+
+                                        <div
+
+                                            class="review-header"
+
+                                        >
+
+                                            <p
+
+                                                class="review-name"
+
+                                            >
+
+                                                ${escapeHtml(
+
+                                                    name
+
+                                                )}
+
+                                            </p>
+
+                                            <span
+
+                                                class="review-stars"
+
+                                                aria-label="${rating} sur 5"
+
+                                            >
+
+                                                ${renderStars(
+
+                                                    rating
+
+                                                )}
+
+                                            </span>
+
+                                        </div>
+
+                                        ${
+
+                                            date
+
+                                                ? `
+
+                                                    <p
+
+                                                        class="review-date"
+
+                                                    >
+
+                                                        ${escapeHtml(
+
+                                                            date
+
+                                                        )}
+
+                                                    </p>
+
+                                                `
+
+                                                : ""
+
+                                        }
+
+                                        <p
+
+                                            class="review-comment"
+
+                                        >
+
+                                            ${escapeHtml(
+
+                                                comment
+
+                                            )}
+
+                                        </p>
+
+                                        ${
+
+                                            featured
+
+                                                ? `
+
+                                                    <span
+
+                                                        class="featured-badge"
+
+                                                    >
+
+                                                        Avis mis en avant
+
+                                                    </span>
+
+                                                `
+
+                                                : ""
+
+                                        }
+
+                                    </article>
+
+                                `;
+
+                            }
+
+                        )
+
+                        .join("");
+
+            }
+
+            async function loadReviews() {
+
+                reviewsList.innerHTML = `
+
+                    <div class="loading">
+
+                        Chargement des avis...
+
+                    </div>
+
+                `;
+
+                if (
+
+                    !window.niniceSupabase
+
+                ) {
+
+                    reviewsList.innerHTML = `
+
+                        <div class="reviews-empty">
+
+                            Connexion à la base de données
+
+                            indisponible.
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+                try {
+
+                    const {
+
+                        data,
+
+                        error
+
+                    } =
+
+                        await window
+
+                            .niniceSupabase
+
+                            .from("reviews")
+
+                            .select("*")
+
+                            .eq(
+
+                                "is_approved",
+
+                                true
+
+                            )
+
+                            .order(
+
+                                "created_at",
+
+                                {
+
+                                    ascending:
+
+                                        false
+
+                                }
+
+                            );
+
+                    if (error) {
+
+                        console.error(
+
+                            "Erreur chargement avis :",
+
+                            error
+
+                        );
+
+                        reviewsList.innerHTML = `
+
+                            <div class="reviews-empty">
+
+                                Impossible de charger
+
+                                les avis pour le moment.
+
+                            </div>
+
+                        `;
+
+                        return;
+
+                    }
+
+                    renderReviews(
+
+                        data || []
+
+                    );
+
+                } catch (error) {
+
+                    console.error(
+
+                        error
+
+                    );
+
+                    reviewsList.innerHTML = `
+
+                        <div class="reviews-empty">
+
+                            Une erreur est survenue
+
+                            pendant le chargement des avis.
+
+                        </div>
+
+                    `;
+
+                }
+
+            }
+
+            async function submitReview(
+
+                event
+
+            ) {
+
+                event.preventDefault();
+
+                clearMessage();
+
+                const name =
+
+                    document
+
+                        .getElementById(
+
+                            "review-name"
+
+                        )
+
+                        .value
+
+                        .trim();
+
+                const comment =
+
+                    document
+
+                        .getElementById(
+
+                            "review-comment"
+
+                        )
+
+                        .value
+
+                        .trim();
+
+                const ratingInput =
+
+                    document.querySelector(
+
+                        'input[name="rating"]:checked'
+
+                    );
+
+                const rating =
+
+                    ratingInput
+
+                        ? Number(
+
+                            ratingInput.value
+
+                        )
+
+                        : 0;
+
+                if (!name) {
+
+                    showMessage(
+
+                        "Veuillez renseigner votre nom.",
+
+                        "error"
+
+                    );
+
+                    return;
+
+                }
+
+                if (
+
+                    rating < 1 ||
+
+                    rating > 5
+
+                ) {
+
+                    showMessage(
+
+                        "Veuillez sélectionner une note de 1 à 5.",
+
+                        "error"
+
+                    );
+
+                    return;
+
+                }
+
+                if (!comment) {
+
+                    showMessage(
+
+                        "Veuillez écrire votre commentaire.",
+
+                        "error"
+
+                    );
+
+                    return;
+
+                }
+
+                if (
+
+                    !window.niniceSupabase
+
+                ) {
+
+                    showMessage(
+
+                        "La connexion à la base de données est indisponible.",
+
+                        "error"
+
+                    );
+
+                    return;
+
+                }
+
+                submitButton.disabled =
+
+                    true;
+
+                submitButton.textContent =
+
+                    "Envoi en cours...";
+
+                try {
+
+                    /*
+
+                     * La politique RLS actuelle autorise
+
+                     * les visiteurs à INSERT dans reviews.
+
+                     *
+
+                     * On utilise les colonnes classiques :
+
+                     * name, rating, comment.
+
+                     *
+
+                     * Si ta table possède également
+
+                     * is_approved, on initialise l'avis
+
+                     * comme non approuvé.
+
+                     */
+
+                    const payload = {
+
+                        name,
+
+                        rating,
+
+                        comment
+
+                    };
+
+                    const {
+
+                        error
+
+                    } =
+
+                        await window
+
+                            .niniceSupabase
+
+                            .from("reviews")
+
+                            .insert(
+
+                                payload
+
+                            );
+
+                    if (error) {
+
+                        console.error(
+
+                            "Erreur insertion avis :",
+
+                            error
+
+                        );
+
+                        showMessage(
+
+                            "Impossible d'enregistrer votre avis. Vérifiez la structure de la table reviews.",
+
+                            "error"
+
+                        );
+
+                        return;
+
+                    }
+
+                    form.reset();
+
+                    showMessage(
+
+                        "Merci. Votre avis a bien été envoyé et sera vérifié avant publication.",
+
+                        "success"
+
+                    );
+
+                    await loadReviews();
+
+                } catch (error) {
+
+                    console.error(
+
+                        error
+
+                    );
+
+                    showMessage(
+
+                        "Une erreur est survenue. Veuillez réessayer.",
+
+                        "error"
+
+                    );
+
+                } finally {
+
+                    submitButton.disabled =
+
+                        false;
+
+                    submitButton.textContent =
+
+                        "Publier mon avis";
+
+                }
+
+            }
+
+            form.addEventListener(
+
+                "submit",
+
+                submitReview
+
+            );
+
+            loadReviews();
+
+        })();
+
+    </script>
 
 </body>
 
