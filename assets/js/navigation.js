@@ -4,6 +4,8 @@
 
    NAVIGATION + FOOTER
 
+   Version corrigée pour GitHub Pages
+
    ========================================================= */
 
 (function () {
@@ -12,23 +14,7 @@
 
     function getPrefix() {
 
-        if (
-
-            window.NINICE &&
-
-            typeof window.NINICE.getPathPrefix ===
-
-                "function"
-
-        ) {
-
-            return window.NINICE.getPathPrefix();
-
-        }
-
-        const path =
-
-            window.location.pathname;
+        const path = window.location.pathname;
 
         if (
 
@@ -48,71 +34,31 @@
 
     function getCurrentPage() {
 
-        const path =
+        const path = window.location.pathname
 
-            window.location.pathname
+            .split("/")
 
-                .split("/")
+            .pop()
 
-                .pop()
+            .toLowerCase();
 
-                .toLowerCase();
-
-        if (
-
-            path === "" ||
-
-            path === "index.html"
-
-        ) {
-
-            return "index.html";
-
-        }
-
-        return path;
+        return path === "" ? "index.html" : path;
 
     }
 
     function isActive(page) {
 
-        const current =
-
-            getCurrentPage();
-
-        return current === page
-
-            ? "active"
-
-            : "";
+        return getCurrentPage() === page ? "active" : "";
 
     }
 
-    /* -----------------------------------------------------
-
-       NAVIGATION
-
-       ----------------------------------------------------- */
-
     function renderHeader() {
 
-        const target =
+        const target = document.getElementById("site-header");
 
-            document.getElementById(
+        if (!target) return;
 
-                "site-header"
-
-            );
-
-        if (!target) {
-
-            return;
-
-        }
-
-        const prefix =
-
-            getPrefix();
+        const prefix = getPrefix();
 
         target.innerHTML = `
 
@@ -122,23 +68,13 @@
 
                     <div class="header-main">
 
-                        <a
+                        <a href="${prefix}index.html"
 
-                            href="${prefix}index.html"
+                           class="brand"
 
-                            class="brand"
+                           aria-label="NINICE BOUTIQUE - Accueil">
 
-                            aria-label="NINICE BOUTIQUE - Accueil"
-
-                        >
-
-                            <span
-
-                                class="brand-logo"
-
-                                id="global-brand-logo"
-
-                            >
+                            <span class="brand-logo" id="global-brand-logo">
 
                                 NB
 
@@ -152,57 +88,37 @@
 
                         </a>
 
-                        <nav
+                        <nav class="desktop-navigation"
 
-                            class="desktop-navigation"
+                             aria-label="Navigation principale">
 
-                            aria-label="Navigation principale"
+                            <a href="${prefix}index.html"
 
-                        >
-
-                            <a
-
-                                href="${prefix}index.html"
-
-                                class="nav-link ${isActive("index.html")}"
-
-                            >
+                               class="nav-link ${isActive("index.html")}">
 
                                 Accueil
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/categories.html"
 
-                                href="${prefix}pages/categories.html"
-
-                                class="nav-link ${isActive("categories.html")}"
-
-                            >
+                               class="nav-link ${isActive("categories.html")}">
 
                                 Catégories
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/promotions.html"
 
-                                href="${prefix}pages/promotions.html"
-
-                                class="nav-link ${isActive("promotions.html")}"
-
-                            >
+                               class="nav-link ${isActive("promotions.html")}">
 
                                 Promotions
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/contact.html"
 
-                                href="${prefix}pages/contact.html"
-
-                                class="nav-link ${isActive("contact.html")}"
-
-                            >
+                               class="nav-link ${isActive("contact.html")}">
 
                                 Nous contacter
 
@@ -212,67 +128,41 @@
 
                         <div class="nav-actions">
 
-                            <a
+                            <a href="${prefix}pages/recherche.html"
 
-                                href="${prefix}pages/favoris.html"
+                               class="header-icon-button"
 
-                                class="header-icon-button"
+                               aria-label="Recherche"
 
-                                aria-label="Favoris"
+                               title="Recherche">
 
-                                title="Favoris"
-
-                            >
-
-                                <span
-
-                                    class="icon-symbol"
-
-                                    aria-hidden="true"
-
-                                >
-
-                                    ♡
-
-                                </span>
+                                <span class="icon-symbol">⌕</span>
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/favoris.html"
 
-                                href="${prefix}pages/panier.html"
+                               class="header-icon-button"
 
-                                class="header-icon-button"
+                               aria-label="Favoris"
 
-                                aria-label="Panier"
+                               title="Favoris">
 
-                                title="Panier"
+                                <span class="icon-symbol">♡</span>
 
-                            >
+                            </a>
 
-                                <span
+                            <a href="${prefix}pages/panier.html"
 
-                                    class="icon-symbol"
+                               class="header-icon-button"
 
-                                    aria-hidden="true"
+                               aria-label="Panier"
 
-                                >
+                               title="Panier">
 
-                                    🛍
+                                <span class="icon-symbol">▱</span>
 
-                                </span>
-
-                                <span
-
-                                    class="cart-count"
-
-                                    hidden
-
-                                >
-
-                                    0
-
-                                </span>
+                                <span class="cart-count" hidden>0</span>
 
                             </a>
 
@@ -286,21 +176,9 @@
 
                                 aria-label="Ouvrir le menu"
 
-                                aria-expanded="false"
+                                aria-expanded="false">
 
-                            >
-
-                                <span
-
-                                    class="icon-symbol"
-
-                                    aria-hidden="true"
-
-                                >
-
-                                    ☰
-
-                                </span>
+                                <span class="icon-symbol">☰</span>
 
                             </button>
 
@@ -314,21 +192,9 @@
 
                             class="search-wrapper"
 
-                            id="global-search-form"
+                            id="global-search-form">
 
-                        >
-
-                            <span
-
-                                class="search-icon"
-
-                                aria-hidden="true"
-
-                            >
-
-                                ⌕
-
-                            </span>
+                            <span class="search-icon">⌕</span>
 
                             <input
 
@@ -342,157 +208,109 @@
 
                                 autocomplete="off"
 
-                                aria-label="Rechercher un article"
-
-                            >
+                                aria-label="Rechercher un article">
 
                         </form>
 
                     </div>
 
-                    <div
+                    <div class="mobile-menu" id="mobile-menu">
 
-                        class="mobile-menu"
+                        <nav class="mobile-menu-list"
 
-                        id="mobile-menu"
+                             aria-label="Menu mobile">
 
-                    >
+                            <a href="${prefix}index.html"
 
-                        <nav
-
-                            class="mobile-menu-list"
-
-                            aria-label="Menu mobile"
-
-                        >
-
-                            <a
-
-                                href="${prefix}index.html"
-
-                                class="mobile-menu-link ${isActive("index.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("index.html")}">
 
                                 Accueil
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/categories.html"
 
-                                href="${prefix}pages/categories.html"
-
-                                class="mobile-menu-link ${isActive("categories.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("categories.html")}">
 
                                 Catégories
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/promotions.html"
 
-                                href="${prefix}pages/promotions.html"
-
-                                class="mobile-menu-link ${isActive("promotions.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("promotions.html")}">
 
                                 Promotions
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/recherche.html"
 
-                                href="${prefix}pages/favoris.html"
+                               class="mobile-menu-link ${isActive("recherche.html")}">
 
-                                class="mobile-menu-link ${isActive("favoris.html")}"
+                                Recherche
 
-                            >
+                            </a>
+
+                            <a href="${prefix}pages/favoris.html"
+
+                               class="mobile-menu-link ${isActive("favoris.html")}">
 
                                 Favoris
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/contact.html"
 
-                                href="${prefix}pages/contact.html"
-
-                                class="mobile-menu-link ${isActive("contact.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("contact.html")}">
 
                                 Nous contacter
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/livraison.html"
 
-                                href="${prefix}pages/livraison.html"
-
-                                class="mobile-menu-link ${isActive("livraison.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("livraison.html")}">
 
                                 Livraison
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/expedition.html"
 
-                                href="${prefix}pages/expedition.html"
+                               class="mobile-menu-link ${isActive("expedition.html")}">
 
-                                class="mobile-menu-link ${isActive("expedition.html")}"
-
-                            >
-
-                                Expédition
+                                Expéditions
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/conseils.html"
 
-                                href="${prefix}pages/conseils.html"
-
-                                class="mobile-menu-link ${isActive("conseils.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("conseils.html")}">
 
                                 Conseils
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/avis.html"
 
-                                href="${prefix}pages/avis.html"
-
-                                class="mobile-menu-link ${isActive("avis.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("avis.html")}">
 
                                 Avis
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/a-propos.html"
 
-                                href="${prefix}pages/a-propos.html"
-
-                                class="mobile-menu-link ${isActive("a-propos.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("a-propos.html")}">
 
                                 À propos
 
                             </a>
 
-                            <a
+                            <a href="${prefix}pages/localisation.html"
 
-                                href="${prefix}pages/localisation.html"
-
-                                class="mobile-menu-link ${isActive("localisation.html")}"
-
-                            >
+                               class="mobile-menu-link ${isActive("localisation.html")}">
 
                                 Où nous trouver
 
@@ -506,95 +324,37 @@
 
             </header>
 
-            <nav
+            <nav class="mobile-bottom-navigation"
 
-                class="mobile-bottom-navigation"
+                 aria-label="Navigation mobile">
 
-                aria-label="Navigation mobile"
+                <a href="${prefix}index.html"
 
-            >
+                   class="mobile-bottom-link ${isActive("index.html")}">
 
-                <a
+                    <span class="mobile-bottom-icon">⌂</span>
 
-                    href="${prefix}index.html"
-
-                    class="mobile-bottom-link ${isActive("index.html")}"
-
-                >
-
-                    <span
-
-                        class="mobile-bottom-icon"
-
-                        aria-hidden="true"
-
-                    >
-
-                        ⌂
-
-                    </span>
-
-                    <span>
-
-                        Accueil
-
-                    </span>
+                    <span>Accueil</span>
 
                 </a>
 
-                <a
+                <a href="${prefix}pages/categories.html"
 
-                    href="${prefix}pages/categories.html"
+                   class="mobile-bottom-link ${isActive("categories.html")}">
 
-                    class="mobile-bottom-link ${isActive("categories.html")}"
+                    <span class="mobile-bottom-icon">▦</span>
 
-                >
-
-                    <span
-
-                        class="mobile-bottom-icon"
-
-                        aria-hidden="true"
-
-                    >
-
-                        ▦
-
-                    </span>
-
-                    <span>
-
-                        Catégories
-
-                    </span>
+                    <span>Catégories</span>
 
                 </a>
 
-                <a
+                <a href="${prefix}pages/panier.html"
 
-                    href="${prefix}pages/panier.html"
+                   class="mobile-bottom-link ${isActive("panier.html")}">
 
-                    class="mobile-bottom-link ${isActive("panier.html")}"
+                    <span class="mobile-bottom-icon">▱</span>
 
-                >
-
-                    <span
-
-                        class="mobile-bottom-icon"
-
-                        aria-hidden="true"
-
-                    >
-
-                        🛍
-
-                    </span>
-
-                    <span>
-
-                        Panier
-
-                    </span>
+                    <span>Panier</span>
 
                 </a>
 
@@ -608,165 +368,85 @@
 
     }
 
-    /* -----------------------------------------------------
-
-       INTERACTIONS
-
-       ----------------------------------------------------- */
-
     function initializeNavigation() {
 
         const toggle =
 
-            document.getElementById(
-
-                "mobile-menu-toggle"
-
-            );
+            document.getElementById("mobile-menu-toggle");
 
         const menu =
 
-            document.getElementById(
+            document.getElementById("mobile-menu");
 
-                "mobile-menu"
+        if (toggle && menu) {
 
-            );
+            toggle.addEventListener("click", () => {
 
-        if (
+                const isOpen =
 
-            toggle &&
+                    menu.classList.toggle("is-open");
 
-            menu
+                toggle.setAttribute(
 
-        ) {
+                    "aria-expanded",
 
-            toggle.addEventListener(
+                    String(isOpen)
 
-                "click",
+                );
 
-                () => {
+            });
 
-                    const isOpen =
+            menu.querySelectorAll("a").forEach(link => {
 
-                        menu.classList.toggle(
+                link.addEventListener("click", () => {
 
-                            "is-open"
-
-                        );
+                    menu.classList.remove("is-open");
 
                     toggle.setAttribute(
 
                         "aria-expanded",
 
-                        String(isOpen)
-
-                    );
-
-                }
-
-            );
-
-            menu
-
-                .querySelectorAll("a")
-
-                .forEach(link => {
-
-                    link.addEventListener(
-
-                        "click",
-
-                        () => {
-
-                            menu.classList.remove(
-
-                                "is-open"
-
-                            );
-
-                            toggle.setAttribute(
-
-                                "aria-expanded",
-
-                                "false"
-
-                            );
-
-                        }
+                        "false"
 
                     );
 
                 });
 
+            });
+
         }
 
         const searchForm =
 
-            document.getElementById(
-
-                "global-search-form"
-
-            );
+            document.getElementById("global-search-form");
 
         const searchInput =
 
-            document.getElementById(
+            document.getElementById("global-search-input");
 
-                "global-search-input"
+        if (searchForm && searchInput) {
 
-            );
+            searchForm.addEventListener("submit", event => {
 
-        if (
+                event.preventDefault();
 
-            searchForm &&
+                const query =
 
-            searchInput
+                    searchInput.value.trim();
 
-        ) {
+                if (!query) return;
 
-            searchForm.addEventListener(
+                const prefix = getPrefix();
 
-                "submit",
+                window.location.href =
 
-                event => {
+                    prefix +
 
-                    event.preventDefault();
+                    "pages/recherche.html?search=" +
 
-                    const query =
+                    encodeURIComponent(query);
 
-                        searchInput.value.trim();
-
-                    if (!query) {
-
-                        return;
-
-                    }
-
-                    const prefix =
-
-                        getPrefix();
-
-                    /*
-
-                     * La page catégories/recherche
-
-                     * sera développée plus tard.
-
-                     */
-
-                    window.location.href =
-
-                        prefix +
-
-                        "pages/categories.html" +
-
-                        "?search=" +
-
-                        encodeURIComponent(query);
-
-                }
-
-            );
+            });
 
         }
 
@@ -785,12 +465,6 @@
         }
 
     }
-
-    /* -----------------------------------------------------
-
-       PARAMÈTRES BOUTIQUE
-
-       ----------------------------------------------------- */
 
     async function loadGlobalShopSettings() {
 
@@ -812,27 +486,9 @@
 
             const settings =
 
-                await window.NINICE
+                await window.NINICE.getShopSettings();
 
-                    .getShopSettings();
-
-            if (!settings) {
-
-                return;
-
-            }
-
-            /*
-
-             * Le logo et les autres paramètres
-
-             * seront entièrement exploités
-
-             * lorsque la page d'administration
-
-             * sera construite.
-
-             */
+            if (!settings) return;
 
             const logoUrl =
 
@@ -850,13 +506,7 @@
 
                 );
 
-            if (
-
-                logo &&
-
-                logoUrl
-
-            ) {
+            if (logo && logoUrl) {
 
                 logo.innerHTML = `
 
@@ -864,51 +514,27 @@
 
                         src="${escapeAttribute(logoUrl)}"
 
-                        alt="Logo NINICE BOUTIQUE"
-
-                    >
+                        alt="Logo NINICE BOUTIQUE">
 
                 `;
 
             }
 
-            /*
-
-             * Si le nom de la boutique existe
-
-             * dans Supabase, il pourra remplacer
-
-             * la valeur par défaut.
-
-             */
-
-            if (
+            const name =
 
                 settings.name ||
 
-                settings.store_name
+                settings.store_name;
 
-            ) {
-
-                const name =
-
-                    settings.name ||
-
-                    settings.store_name;
+            if (name) {
 
                 document
 
-                    .querySelectorAll(
-
-                        ".brand-name"
-
-                    )
+                    .querySelectorAll(".brand-name")
 
                     .forEach(element => {
 
-                        element.textContent =
-
-                            name;
+                        element.textContent = name;
 
                     });
 
@@ -928,12 +554,6 @@
 
     }
 
-    /* -----------------------------------------------------
-
-       SÉCURITÉ HTML ATTRIBUT
-
-       ----------------------------------------------------- */
-
     function escapeAttribute(value) {
 
         return String(value || "")
@@ -948,61 +568,17 @@
 
     }
 
-    /* -----------------------------------------------------
-
-       INITIALISATION
-
-       ----------------------------------------------------- */
-
-    function init() {
-
-        renderHeader();
-
-        const footer =
-
-            document.getElementById(
-
-                "site-footer"
-
-            );
-
-        if (footer) {
-
-            renderFooter();
-
-        }
-
-    }
-
-    /* -----------------------------------------------------
-
-       FOOTER
-
-       ----------------------------------------------------- */
-
     function renderFooter() {
 
         const target =
 
-            document.getElementById(
+            document.getElementById("site-footer");
 
-                "site-footer"
+        if (!target) return;
 
-            );
+        const prefix = getPrefix();
 
-        if (!target) {
-
-            return;
-
-        }
-
-        const prefix =
-
-            getPrefix();
-
-        const year =
-
-            new Date().getFullYear();
+        const year = new Date().getFullYear();
 
         target.innerHTML = `
 
@@ -1014,29 +590,17 @@
 
                         <div class="footer-brand">
 
-                            <a
+                            <a href="${prefix}index.html"
 
-                                href="${prefix}index.html"
+                               class="brand">
 
-                                class="brand"
-
-                            >
-
-                                <span
-
-                                    class="brand-logo"
-
-                                >
+                                <span class="brand-logo">
 
                                     NB
 
                                 </span>
 
-                                <span
-
-                                    class="brand-name"
-
-                                >
+                                <span class="brand-name">
 
                                     NINICE BOUTIQUE
 
@@ -1046,11 +610,9 @@
 
                             <p class="footer-description">
 
-                                Une boutique pensée pour
+                                Une boutique pensée pour vous proposer
 
-                                vous proposer une sélection
-
-                                élégante, moderne et accessible.
+                                une sélection élégante, moderne et accessible.
 
                             </p>
 
@@ -1058,69 +620,53 @@
 
                         <div class="footer-column">
 
-                            <h3>
-
-                                Navigation
-
-                            </h3>
+                            <h3>Navigation</h3>
 
                             <div class="footer-links">
 
-                                <a
+                                <a href="${prefix}index.html"
 
-                                    href="${prefix}index.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Accueil
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/categories.html"
 
-                                    href="${prefix}pages/categories.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Catégories
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/promotions.html"
 
-                                    href="${prefix}pages/promotions.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Promotions
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/recherche.html"
 
-                                    href="${prefix}pages/favoris.html"
+                                   class="footer-link">
 
-                                    class="footer-link"
+                                    Recherche
 
-                                >
+                                </a>
+
+                                <a href="${prefix}pages/favoris.html"
+
+                                   class="footer-link">
 
                                     Favoris
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/panier.html"
 
-                                    href="${prefix}pages/panier.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Panier
 
@@ -1132,69 +678,45 @@
 
                         <div class="footer-column">
 
-                            <h3>
-
-                                Informations
-
-                            </h3>
+                            <h3>Informations</h3>
 
                             <div class="footer-links">
 
-                                <a
+                                <a href="${prefix}pages/livraison.html"
 
-                                    href="${prefix}pages/livraison.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Livraison
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/expedition.html"
 
-                                    href="${prefix}pages/expedition.html"
+                                   class="footer-link">
 
-                                    class="footer-link"
-
-                                >
-
-                                    Expédition
+                                    Expéditions
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/avis.html"
 
-                                    href="${prefix}pages/avis.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Avis clients
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/conseils.html"
 
-                                    href="${prefix}pages/conseils.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Conseils
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/a-propos.html"
 
-                                    href="${prefix}pages/a-propos.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     À propos
 
@@ -1206,33 +728,21 @@
 
                         <div class="footer-column">
 
-                            <h3>
-
-                                Boutique
-
-                            </h3>
+                            <h3>Boutique</h3>
 
                             <div class="footer-links">
 
-                                <a
+                                <a href="${prefix}pages/contact.html"
 
-                                    href="${prefix}pages/contact.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Nous contacter
 
                                 </a>
 
-                                <a
+                                <a href="${prefix}pages/localisation.html"
 
-                                    href="${prefix}pages/localisation.html"
-
-                                    class="footer-link"
-
-                                >
+                                   class="footer-link">
 
                                     Où nous trouver
 
@@ -1280,31 +790,29 @@
 
     }
 
-    /* -----------------------------------------------------
+    function init() {
 
-       LANCEMENT
+        renderHeader();
 
-       ----------------------------------------------------- */
+        const footer =
 
-    if (
+            document.getElementById("site-footer");
 
-        document.readyState ===
+        if (footer) {
 
-        "loading"
+            renderFooter();
 
-    ) {
+        }
+
+    }
+
+    if (document.readyState === "loading") {
 
         document.addEventListener(
 
             "DOMContentLoaded",
 
-            init,
-
-            {
-
-                once: true
-
-            }
+            init
 
         );
 
