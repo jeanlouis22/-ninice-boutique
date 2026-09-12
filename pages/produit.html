@@ -1,0 +1,2897 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Produit | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Découvrez ce produit sur NINICE BOUTIQUE."
+
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        .product-page {
+
+            padding-top: 25px;
+
+            padding-bottom: 70px;
+
+        }
+
+        .product-breadcrumb {
+
+            margin-bottom: 28px;
+
+            color: var(--text-light);
+
+            font-size: 13px;
+
+        }
+
+        .product-breadcrumb a {
+
+            color: var(--primary);
+
+            font-weight: 600;
+
+        }
+
+        .product-layout {
+
+            display: grid;
+
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+
+            gap: 55px;
+
+            align-items: start;
+
+        }
+
+        .product-gallery {
+
+            min-width: 0;
+
+        }
+
+        .product-main-image {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 600px;
+
+            overflow: hidden;
+
+            border-radius: var(--radius-lg);
+
+            background: var(--primary-soft);
+
+            border: 1px solid var(--border);
+
+        }
+
+        .product-main-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .product-image-placeholder {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: linear-gradient(
+
+                135deg,
+
+                var(--primary-soft),
+
+                #ffffff
+
+            );
+
+            color: var(--primary);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 80px;
+
+            font-weight: 700;
+
+        }
+
+        .product-thumbnails {
+
+            display: flex;
+
+            gap: 10px;
+
+            overflow-x: auto;
+
+            padding-top: 12px;
+
+        }
+
+        .product-thumbnail {
+
+            flex: 0 0 78px;
+
+            width: 78px;
+
+            height: 90px;
+
+            padding: 0;
+
+            overflow: hidden;
+
+            border: 2px solid transparent;
+
+            border-radius: 10px;
+
+            background: var(--primary-soft);
+
+            cursor: pointer;
+
+        }
+
+        .product-thumbnail.active {
+
+            border-color: var(--primary);
+
+        }
+
+        .product-thumbnail img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .product-details {
+
+            min-width: 0;
+
+        }
+
+        .product-category-label {
+
+            margin-bottom: 10px;
+
+            color: var(--primary);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: .09em;
+
+            text-transform: uppercase;
+
+        }
+
+        .product-details h1 {
+
+            margin: 0 0 15px;
+
+            color: var(--black);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(30px, 4vw, 46px);
+
+            line-height: 1.12;
+
+        }
+
+        .product-reference {
+
+            margin-bottom: 20px;
+
+            color: var(--text-light);
+
+            font-size: 13px;
+
+        }
+
+        .product-price-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+
+        }
+
+        .current-price {
+
+            color: var(--primary-dark);
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+        }
+
+        .old-price {
+
+            color: #9ca3af;
+
+            font-size: 17px;
+
+            text-decoration: line-through;
+
+        }
+
+        .discount {
+
+            padding: 5px 9px;
+
+            border-radius: 999px;
+
+            background: var(--primary-soft);
+
+            color: var(--primary-dark);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .product-description {
+
+            margin-bottom: 28px;
+
+            color: var(--text-light);
+
+            font-size: 15px;
+
+            line-height: 1.75;
+
+        }
+
+        .product-section {
+
+            padding: 20px 0;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+        .product-section h3 {
+
+            margin: 0 0 13px;
+
+            color: var(--black);
+
+            font-size: 15px;
+
+        }
+
+        .product-stock {
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        .stock-ok {
+
+            color: var(--success);
+
+        }
+
+        .stock-out {
+
+            color: var(--danger);
+
+        }
+
+        .option-group {
+
+            margin-bottom: 20px;
+
+        }
+
+        .option-label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: var(--black);
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        .option-list {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+        }
+
+        .option-button {
+
+            min-width: 45px;
+
+            min-height: 40px;
+
+            padding: 8px 14px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            background: var(--white);
+
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            transition: all 180ms ease;
+
+        }
+
+        .option-button:hover,
+
+        .option-button.selected {
+
+            border-color: var(--primary);
+
+            background: var(--primary-soft);
+
+            color: var(--primary-dark);
+
+        }
+
+        .quantity-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+        .quantity-control {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+        }
+
+        .quantity-control button {
+
+            width: 42px;
+
+            height: 42px;
+
+            border: 0;
+
+            background: var(--white);
+
+            color: var(--black);
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+        }
+
+        .quantity-control span {
+
+            width: 44px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        .product-actions {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+        }
+
+        .product-actions .btn {
+
+            min-height: 50px;
+
+        }
+
+        .favorite-button {
+
+            grid-column: 1 / -1;
+
+        }
+
+        .favorite-button.active {
+
+            border-color: var(--primary);
+
+            background: var(--primary-soft);
+
+            color: var(--primary-dark);
+
+        }
+
+        .attributes-table {
+
+            display: grid;
+
+            gap: 0;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+        }
+
+        .attribute-row {
+
+            display: grid;
+
+            grid-template-columns: 150px 1fr;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+        .attribute-row:last-child {
+
+            border-bottom: 0;
+
+        }
+
+        .attribute-name,
+
+        .attribute-value {
+
+            padding: 11px 13px;
+
+            font-size: 13px;
+
+        }
+
+        .attribute-name {
+
+            background: var(--primary-soft);
+
+            color: var(--primary-dark);
+
+            font-weight: 700;
+
+        }
+
+        .attribute-value {
+
+            color: var(--text-light);
+
+        }
+
+        .product-loading,
+
+        .product-error {
+
+            max-width: 700px;
+
+            margin: 70px auto;
+
+            padding: 45px 25px;
+
+            border-radius: var(--radius-lg);
+
+            border: 1px solid var(--border);
+
+            background: var(--white);
+
+            text-align: center;
+
+            color: var(--text-light);
+
+        }
+
+        .product-error {
+
+            color: var(--danger);
+
+            border-color: #fecaca;
+
+            background: #fef2f2;
+
+        }
+
+        @media (max-width: 850px) {
+
+            .product-layout {
+
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+
+            }
+
+            .product-main-image {
+
+                height: 520px;
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .product-main-image {
+
+                height: 430px;
+
+            }
+
+            .product-actions {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .favorite-button {
+
+                grid-column: auto;
+
+            }
+
+            .attribute-row {
+
+                grid-template-columns: 115px 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="site-header"></div>
+
+<main class="product-page">
+
+    <div class="container">
+
+        <div class="product-breadcrumb">
+
+            <a href="../index.html">
+
+                Accueil
+
+            </a>
+
+            <span> / </span>
+
+            <a href="./recherche.html">
+
+                Produits
+
+            </a>
+
+            <span> / </span>
+
+            <span id="breadcrumb-product">
+
+                Produit
+
+            </span>
+
+        </div>
+
+        <div id="product-loading"
+
+             class="product-loading">
+
+            Chargement du produit...
+
+        </div>
+
+        <div id="product-error"
+
+             class="product-error"
+
+             hidden>
+
+            Impossible de charger ce produit.
+
+        </div>
+
+        <div id="product-content"
+
+             class="product-layout"
+
+             hidden>
+
+            <section class="product-gallery">
+
+                <div
+
+                    id="main-image"
+
+                    class="product-main-image"
+
+                ></div>
+
+                <div
+
+                    id="product-thumbnails"
+
+                    class="product-thumbnails"
+
+                ></div>
+
+            </section>
+
+            <section class="product-details">
+
+                <div
+
+                    id="product-category"
+
+                    class="product-category-label"
+
+                ></div>
+
+                <h1 id="product-name">
+
+                    Produit
+
+                </h1>
+
+                <div
+
+                    id="product-reference"
+
+                    class="product-reference"
+
+                ></div>
+
+                <div
+
+                    id="product-price"
+
+                    class="product-price-box"
+
+                ></div>
+
+                <div
+
+                    id="product-description"
+
+                    class="product-description"
+
+                ></div>
+
+                <div class="product-section">
+
+                    <div
+
+                        id="product-stock"
+
+                        class="product-stock"
+
+                    ></div>
+
+                </div>
+
+                <div
+
+                    id="options-container"
+
+                    class="product-section"
+
+                    hidden
+
+                ></div>
+
+                <div class="product-section">
+
+                    <h3>
+
+                        Quantité
+
+                    </h3>
+
+                    <div class="quantity-row">
+
+                        <div class="quantity-control">
+
+                            <button
+
+                                type="button"
+
+                                id="quantity-minus"
+
+                            >
+
+                                −
+
+                            </button>
+
+                            <span id="quantity">
+
+                                1
+
+                            </span>
+
+                            <button
+
+                                type="button"
+
+                                id="quantity-plus"
+
+                            >
+
+                                +
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+
+                    id="attributes-section"
+
+                    class="product-section"
+
+                    hidden
+
+                >
+
+                    <h3>
+
+                        Caractéristiques
+
+                    </h3>
+
+                    <div
+
+                        id="attributes-list"
+
+                        class="attributes-table"
+
+                    ></div>
+
+                </div>
+
+                <div
+
+                    id="additional-section"
+
+                    class="product-section"
+
+                    hidden
+
+                >
+
+                    <h3>
+
+                        Informations complémentaires
+
+                    </h3>
+
+                    <div
+
+                        id="additional-information"
+
+                        class="product-description"
+
+                    ></div>
+
+                </div>
+
+                <div class="product-actions">
+
+                    <button
+
+                        type="button"
+
+                        id="add-cart"
+
+                        class="btn btn-primary"
+
+                    >
+
+                        Ajouter au panier
+
+                    </button>
+
+                    <button
+
+                        type="button"
+
+                        id="order-now"
+
+                        class="btn btn-secondary"
+
+                    >
+
+                        Commander maintenant
+
+                    </button>
+
+                    <button
+
+                        type="button"
+
+                        id="favorite-button"
+
+                        class="btn btn-secondary favorite-button"
+
+                    >
+
+                        Ajouter aux favoris
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../assets/js/config.js"></script>
+
+<script src="../assets/js/supabase.js"></script>
+
+<script src="../assets/js/common.js"></script>
+
+<script src="../assets/js/navigation.js"></script>
+
+<script>
+
+const supabaseClient =
+
+    window.niniceSupabase;
+
+const productId =
+
+    new URLSearchParams(
+
+        window.location.search
+
+    ).get("id");
+
+let product = null;
+
+let selectedSize = null;
+
+let selectedColor = null;
+
+let quantity = 1;
+
+const loading =
+
+    document.getElementById(
+
+        "product-loading"
+
+    );
+
+const errorBox =
+
+    document.getElementById(
+
+        "product-error"
+
+    );
+
+const content =
+
+    document.getElementById(
+
+        "product-content"
+
+    );
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    loadProduct
+
+);
+
+async function loadProduct() {
+
+    if (!productId) {
+
+        showError(
+
+            "Produit introuvable."
+
+        );
+
+        return;
+
+    }
+
+    if (!supabaseClient) {
+
+        showError(
+
+            "La connexion à la boutique est indisponible."
+
+        );
+
+        return;
+
+    }
+
+    try {
+
+        const {
+
+            data,
+
+            error
+
+        } = await supabaseClient
+
+            .from("products")
+
+            .select(`
+
+                *,
+
+                categories (
+
+                    id,
+
+                    name,
+
+                    slug
+
+                ),
+
+                product_images (
+
+                    id,
+
+                    image_url,
+
+                    is_primary,
+
+                    sort_order
+
+                ),
+
+                product_variants (
+
+                    id,
+
+                    size,
+
+                    color,
+
+                    stock
+
+                )
+
+            `)
+
+            .eq(
+
+                "id",
+
+                productId
+
+            )
+
+            .eq(
+
+                "is_available",
+
+                true
+
+            )
+
+            .single();
+
+        if (error) {
+
+            console.error(
+
+                "Erreur produit :",
+
+                error
+
+            );
+
+            showError(
+
+                error.message ||
+
+                "Impossible de charger ce produit."
+
+            );
+
+            return;
+
+        }
+
+        if (!data) {
+
+            showError(
+
+                "Ce produit n'existe pas ou n'est plus disponible."
+
+            );
+
+            return;
+
+        }
+
+        product = data;
+
+        renderProduct();
+
+    } catch (err) {
+
+        console.error(err);
+
+        showError(
+
+            "Une erreur est survenue lors du chargement du produit."
+
+        );
+
+    }
+
+}
+
+function renderProduct() {
+
+    loading.hidden = true;
+
+    errorBox.hidden = true;
+
+    content.hidden = false;
+
+    const category =
+
+        product.categories;
+
+    document.title =
+
+        `${product.name} | NINICE BOUTIQUE`;
+
+    document.getElementById(
+
+        "breadcrumb-product"
+
+    ).textContent =
+
+        product.name;
+
+    document.getElementById(
+
+        "product-category"
+
+    ).textContent =
+
+        category
+
+            ? category.name
+
+            : "NINICE BOUTIQUE";
+
+    document.getElementById(
+
+        "product-name"
+
+    ).textContent =
+
+        product.name;
+
+    document.getElementById(
+
+        "product-reference"
+
+    ).textContent =
+
+        product.reference
+
+            ? `Référence : ${product.reference}`
+
+            : "";
+
+    renderPrice();
+
+    document.getElementById(
+
+        "product-description"
+
+    ).textContent =
+
+        product.description ||
+
+        "Aucune description disponible pour le moment.";
+
+    renderStock();
+
+    renderGallery();
+
+    renderOptions();
+
+    renderAttributes();
+
+    renderAdditionalInformation();
+
+    updateFavoriteButton();
+
+}
+
+function renderPrice() {
+
+    const priceBox =
+
+        document.getElementById(
+
+            "product-price"
+
+        );
+
+    const price =
+
+        getEffectivePrice(
+
+            product
+
+        );
+
+    const oldPrice =
+
+        Number(
+
+            product.old_price || 0
+
+        );
+
+    let discount = 0;
+
+    if (oldPrice > price) {
+
+        discount =
+
+            Math.round(
+
+                (
+
+                    (
+
+                        oldPrice -
+
+                        price
+
+                    ) /
+
+                    oldPrice
+
+                ) *
+
+                100
+
+            );
+
+    }
+
+    priceBox.innerHTML = `
+
+        <span class="current-price">
+
+            ${formatPrice(price)}
+
+        </span>
+
+        ${
+
+            oldPrice > price
+
+            ?
+
+            `
+
+            <span class="old-price">
+
+                ${formatPrice(oldPrice)}
+
+            </span>
+
+            <span class="discount">
+
+                -${discount}%
+
+            </span>
+
+            `
+
+            :
+
+            ""
+
+        }
+
+    `;
+
+}
+
+function getEffectivePrice(product) {
+
+    const now =
+
+        new Date();
+
+    if (
+
+        product.promotional_price &&
+
+        Number(product.promotional_price) > 0
+
+    ) {
+
+        const start =
+
+            product.promotion_start_date
+
+                ? new Date(
+
+                    product.promotion_start_date
+
+                )
+
+                : null;
+
+        const end =
+
+            product.promotion_end_date
+
+                ? new Date(
+
+                    product.promotion_end_date
+
+                )
+
+                : null;
+
+        if (
+
+            (!start || now >= start) &&
+
+            (!end || now <= end)
+
+        ) {
+
+            return Number(
+
+                product.promotional_price
+
+            );
+
+        }
+
+    }
+
+    return Number(
+
+        product.price || 0
+
+    );
+
+}
+
+function renderStock() {
+
+    const element =
+
+        document.getElementById(
+
+            "product-stock"
+
+        );
+
+    const stock =
+
+        Number(
+
+            product.stock || 0
+
+        );
+
+    if (stock <= 0) {
+
+        element.className =
+
+            "product-stock stock-out";
+
+        element.textContent =
+
+            "Rupture de stock";
+
+        disablePurchaseButtons();
+
+    } else {
+
+        element.className =
+
+            "product-stock stock-ok";
+
+        element.textContent =
+
+            `En stock : ${stock} article${stock > 1 ? "s" : ""}`;
+
+    }
+
+}
+
+function renderGallery() {
+
+    const mainImage =
+
+        document.getElementById(
+
+            "main-image"
+
+        );
+
+    const thumbnails =
+
+        document.getElementById(
+
+            "product-thumbnails"
+
+        );
+
+    let images = [];
+
+    if (
+
+        product.main_image_url
+
+    ) {
+
+        images.push(
+
+            product.main_image_url
+
+        );
+
+    }
+
+    if (
+
+        Array.isArray(
+
+            product.images
+
+        )
+
+    ) {
+
+        images =
+
+            images.concat(
+
+                product.images
+
+            );
+
+    }
+
+    if (
+
+        Array.isArray(
+
+            product.product_images
+
+        )
+
+    ) {
+
+        const extra =
+
+            product.product_images
+
+                .sort(
+
+                    (
+
+                        a,
+
+                        b
+
+                    ) =>
+
+                        Number(
+
+                            a.sort_order || 0
+
+                        ) -
+
+                        Number(
+
+                            b.sort_order || 0
+
+                        )
+
+                )
+
+                .map(
+
+                    image =>
+
+                        image.image_url
+
+                );
+
+        images =
+
+            images.concat(
+
+                extra
+
+            );
+
+    }
+
+    images =
+
+        [...new Set(
+
+            images.filter(Boolean)
+
+        )];
+
+    if (!images.length) {
+
+        mainImage.innerHTML = `
+
+            <div class="product-image-placeholder">
+
+                ${escapeHTML(
+
+                    (
+
+                        product.name ||
+
+                        "N"
+
+                    )
+
+                    .trim()
+
+                    .charAt(0)
+
+                    .toUpperCase()
+
+                )}
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    showMainImage(
+
+        images[0]
+
+    );
+
+    thumbnails.innerHTML =
+
+        images
+
+            .map(
+
+                (
+
+                    image,
+
+                    index
+
+                ) => `
+
+                    <button
+
+                        type="button"
+
+                        class="product-thumbnail ${index === 0 ? "active" : ""}"
+
+                        onclick="selectImage(this, '${escapeAttribute(image)}')"
+
+                    >
+
+                        <img
+
+                            src="${escapeAttribute(image)}"
+
+                            alt="${escapeAttribute(product.name)}"
+
+                            loading="lazy"
+
+                        >
+
+                    </button>
+
+                `
+
+            )
+
+            .join("");
+
+}
+
+function showMainImage(url) {
+
+    const mainImage =
+
+        document.getElementById(
+
+            "main-image"
+
+        );
+
+    mainImage.innerHTML = `
+
+        <img
+
+            src="${escapeAttribute(url)}"
+
+            alt="${escapeAttribute(product.name)}"
+
+        >
+
+    `;
+
+}
+
+function selectImage(button, url) {
+
+    document
+
+        .querySelectorAll(
+
+            ".product-thumbnail"
+
+        )
+
+        .forEach(
+
+            element =>
+
+                element.classList.remove(
+
+                    "active"
+
+                )
+
+        );
+
+    button.classList.add(
+
+        "active"
+
+    );
+
+    showMainImage(
+
+        url
+
+    );
+
+}
+
+function renderOptions() {
+
+    const container =
+
+        document.getElementById(
+
+            "options-container"
+
+        );
+
+    const sizes =
+
+        Array.isArray(
+
+            product.sizes
+
+        )
+
+            ? product.sizes.filter(Boolean)
+
+            : [];
+
+    const colors =
+
+        Array.isArray(
+
+            product.colors
+
+        )
+
+            ? product.colors.filter(Boolean)
+
+            : [];
+
+    const variants =
+
+        Array.isArray(
+
+            product.product_variants
+
+        )
+
+            ? product.product_variants
+
+            : [];
+
+    let html = "";
+
+    if (sizes.length) {
+
+        html += `
+
+            <div class="option-group">
+
+                <span class="option-label">
+
+                    Taille
+
+                </span>
+
+                <div class="option-list">
+
+                    ${sizes.map(
+
+                        size => `
+
+                            <button
+
+                                type="button"
+
+                                class="option-button size-option"
+
+                                onclick="selectSize(this, '${escapeAttribute(size)}')"
+
+                            >
+
+                                ${escapeHTML(size)}
+
+                            </button>
+
+                        `
+
+                    ).join("")}
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    if (colors.length) {
+
+        html += `
+
+            <div class="option-group">
+
+                <span class="option-label">
+
+                    Couleur
+
+                </span>
+
+                <div class="option-list">
+
+                    ${colors.map(
+
+                        color => `
+
+                            <button
+
+                                type="button"
+
+                                class="option-button color-option"
+
+                                onclick="selectColor(this, '${escapeAttribute(color)}')"
+
+                            >
+
+                                ${escapeHTML(color)}
+
+                            </button>
+
+                        `
+
+                    ).join("")}
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    if (
+
+        variants.length &&
+
+        !sizes.length &&
+
+        !colors.length
+
+    ) {
+
+        const variantSizes =
+
+            [
+
+                ...new Set(
+
+                    variants
+
+                        .map(
+
+                            item =>
+
+                                item.size
+
+                        )
+
+                        .filter(Boolean)
+
+                )
+
+            ];
+
+        const variantColors =
+
+            [
+
+                ...new Set(
+
+                    variants
+
+                        .map(
+
+                            item =>
+
+                                item.color
+
+                        )
+
+                        .filter(Boolean)
+
+                )
+
+            ];
+
+        if (variantSizes.length) {
+
+            html += `
+
+                <div class="option-group">
+
+                    <span class="option-label">
+
+                        Taille
+
+                    </span>
+
+                    <div class="option-list">
+
+                        ${variantSizes.map(
+
+                            size => `
+
+                                <button
+
+                                    type="button"
+
+                                    class="option-button size-option"
+
+                                    onclick="selectSize(this, '${escapeAttribute(size)}')"
+
+                                >
+
+                                    ${escapeHTML(size)}
+
+                                </button>
+
+                            `
+
+                        ).join("")}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+        if (variantColors.length) {
+
+            html += `
+
+                <div class="option-group">
+
+                    <span class="option-label">
+
+                        Couleur
+
+                    </span>
+
+                    <div class="option-list">
+
+                        ${variantColors.map(
+
+                            color => `
+
+                                <button
+
+                                    type="button"
+
+                                    class="option-button color-option"
+
+                                    onclick="selectColor(this, '${escapeAttribute(color)}')"
+
+                                >
+
+                                    ${escapeHTML(color)}
+
+                                </button>
+
+                            `
+
+                        ).join("")}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+    if (html) {
+
+        container.innerHTML =
+
+            html;
+
+        container.hidden = false;
+
+    }
+
+}
+
+function selectSize(
+
+    button,
+
+    value
+
+) {
+
+    selectedSize =
+
+        value;
+
+    document
+
+        .querySelectorAll(
+
+            ".size-option"
+
+        )
+
+        .forEach(
+
+            element =>
+
+                element.classList.remove(
+
+                    "selected"
+
+                )
+
+        );
+
+    button.classList.add(
+
+        "selected"
+
+    );
+
+}
+
+function selectColor(
+
+    button,
+
+    value
+
+) {
+
+    selectedColor =
+
+        value;
+
+    document
+
+        .querySelectorAll(
+
+            ".color-option"
+
+        )
+
+        .forEach(
+
+            element =>
+
+                element.classList.remove(
+
+                    "selected"
+
+                )
+
+        );
+
+    button.classList.add(
+
+        "selected"
+
+    );
+
+}
+
+function renderAttributes() {
+
+    const section =
+
+        document.getElementById(
+
+            "attributes-section"
+
+        );
+
+    const list =
+
+        document.getElementById(
+
+            "attributes-list"
+
+        );
+
+    const attributes =
+
+        product.attributes;
+
+    if (
+
+        !attributes ||
+
+        typeof attributes !== "object" ||
+
+        Array.isArray(attributes)
+
+    ) {
+
+        section.hidden = true;
+
+        return;
+
+    }
+
+    const entries =
+
+        Object.entries(
+
+            attributes
+
+        ).filter(
+
+            (
+
+                [
+
+                    key,
+
+                    value
+
+                ]
+
+            ) =>
+
+                value !== null &&
+
+                value !== undefined &&
+
+                String(value).trim() !== ""
+
+        );
+
+    if (!entries.length) {
+
+        section.hidden = true;
+
+        return;
+
+    }
+
+    list.innerHTML =
+
+        entries
+
+            .map(
+
+                (
+
+                    [
+
+                        key,
+
+                        value
+
+                    ]
+
+                ) => `
+
+                    <div class="attribute-row">
+
+                        <div class="attribute-name">
+
+                            ${escapeHTML(
+
+                                formatAttributeName(key)
+
+                            )}
+
+                        </div>
+
+                        <div class="attribute-value">
+
+                            ${escapeHTML(
+
+                                formatAttributeValue(value)
+
+                            )}
+
+                        </div>
+
+                    </div>
+
+                `
+
+            )
+
+            .join("");
+
+    section.hidden = false;
+
+}
+
+function renderAdditionalInformation() {
+
+    const section =
+
+        document.getElementById(
+
+            "additional-section"
+
+        );
+
+    const element =
+
+        document.getElementById(
+
+            "additional-information"
+
+        );
+
+    if (
+
+        product.additional_information &&
+
+        String(
+
+            product.additional_information
+
+        ).trim()
+
+    ) {
+
+        element.textContent =
+
+            product.additional_information;
+
+        section.hidden = false;
+
+    }
+
+}
+
+function formatAttributeName(
+
+    key
+
+) {
+
+    return String(key)
+
+        .replace(/_/g, " ")
+
+        .replace(
+
+            /\b\w/g,
+
+            letter =>
+
+                letter.toUpperCase()
+
+        );
+
+}
+
+function formatAttributeValue(
+
+    value
+
+) {
+
+    if (
+
+        Array.isArray(value)
+
+    ) {
+
+        return value.join(
+
+            ", "
+
+        );
+
+    }
+
+    if (
+
+        typeof value === "object"
+
+    ) {
+
+        return JSON.stringify(
+
+            value
+
+        );
+
+    }
+
+    return String(value);
+
+}
+
+function getFavorites() {
+
+    try {
+
+        return JSON.parse(
+
+            localStorage.getItem(
+
+                "ninice_favorites"
+
+            ) || "[]"
+
+        );
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+function isFavorite() {
+
+    return getFavorites()
+
+        .includes(
+
+            product.id
+
+        );
+
+}
+
+function toggleFavorite() {
+
+    let favorites =
+
+        getFavorites();
+
+    if (
+
+        favorites.includes(
+
+            product.id
+
+        )
+
+    ) {
+
+        favorites =
+
+            favorites.filter(
+
+                id =>
+
+                    id !== product.id
+
+            );
+
+    } else {
+
+        favorites.push(
+
+            product.id
+
+        );
+
+    }
+
+    localStorage.setItem(
+
+        "ninice_favorites",
+
+        JSON.stringify(
+
+            favorites
+
+        )
+
+    );
+
+    updateFavoriteButton();
+
+}
+
+function updateFavoriteButton() {
+
+    const button =
+
+        document.getElementById(
+
+            "favorite-button"
+
+        );
+
+    if (
+
+        isFavorite()
+
+    ) {
+
+        button.textContent =
+
+            "Retirer des favoris";
+
+        button.classList.add(
+
+            "active"
+
+        );
+
+    } else {
+
+        button.textContent =
+
+            "Ajouter aux favoris";
+
+        button.classList.remove(
+
+            "active"
+
+        );
+
+    }
+
+}
+
+function getCart() {
+
+    try {
+
+        return JSON.parse(
+
+            localStorage.getItem(
+
+                "ninice_cart"
+
+            ) || "[]"
+
+        );
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+function saveCart(cart) {
+
+    localStorage.setItem(
+
+        "ninice_cart",
+
+        JSON.stringify(
+
+            cart
+
+        )
+
+    );
+
+}
+
+function addProductToCart() {
+
+    const stock =
+
+        Number(
+
+            product.stock || 0
+
+        );
+
+    if (stock <= 0) {
+
+        alert(
+
+            "Ce produit est en rupture de stock."
+
+        );
+
+        return false;
+
+    }
+
+    const cart =
+
+        getCart();
+
+    const existing =
+
+        cart.find(
+
+            item =>
+
+                item.id === product.id &&
+
+                item.size === selectedSize &&
+
+                item.color === selectedColor
+
+        );
+
+    const newQuantity =
+
+        existing
+
+            ? existing.quantity + quantity
+
+            : quantity;
+
+    if (
+
+        newQuantity > stock
+
+    ) {
+
+        alert(
+
+            `Stock disponible : ${stock}.`
+
+        );
+
+        return false;
+
+    }
+
+    if (existing) {
+
+        existing.quantity =
+
+            newQuantity;
+
+    } else {
+
+        cart.push({
+
+            id:
+
+                product.id,
+
+            name:
+
+                product.name,
+
+            price:
+
+                getEffectivePrice(
+
+                    product
+
+                ),
+
+            image:
+
+                product.main_image_url ||
+
+                "",
+
+            quantity:
+
+                quantity,
+
+            size:
+
+                selectedSize,
+
+            color:
+
+                selectedColor
+
+        });
+
+    }
+
+    saveCart(
+
+        cart
+
+    );
+
+    updateCartCount();
+
+    return true;
+
+}
+
+function updateCartCount() {
+
+    const count =
+
+        getCart().reduce(
+
+            (
+
+                total,
+
+                item
+
+            ) =>
+
+                total +
+
+                Number(
+
+                    item.quantity || 0
+
+                ),
+
+            0
+
+        );
+
+    document
+
+        .querySelectorAll(
+
+            ".cart-count"
+
+        )
+
+        .forEach(
+
+            element => {
+
+                element.textContent =
+
+                    count;
+
+            }
+
+        );
+
+}
+
+document
+
+    .getElementById(
+
+        "quantity-minus"
+
+    )
+
+    .addEventListener(
+
+        "click",
+
+        function () {
+
+            if (
+
+                quantity > 1
+
+            ) {
+
+                quantity--;
+
+                document
+
+                    .getElementById(
+
+                        "quantity"
+
+                    )
+
+                    .textContent =
+
+                    quantity;
+
+            }
+
+        }
+
+    );
+
+document
+
+    .getElementById(
+
+        "quantity-plus"
+
+    )
+
+    .addEventListener(
+
+        "click",
+
+        function () {
+
+            const stock =
+
+                Number(
+
+                    product?.stock || 0
+
+                );
+
+            if (
+
+                quantity < stock
+
+            ) {
+
+                quantity++;
+
+                document
+
+                    .getElementById(
+
+                        "quantity"
+
+                    )
+
+                    .textContent =
+
+                    quantity;
+
+            }
+
+        }
+
+    );
+
+document
+
+    .getElementById(
+
+        "add-cart"
+
+    )
+
+    .addEventListener(
+
+        "click",
+
+        function () {
+
+            if (
+
+                addProductToCart()
+
+            ) {
+
+                alert(
+
+                    "Produit ajouté au panier."
+
+                );
+
+            }
+
+        }
+
+    );
+
+document
+
+    .getElementById(
+
+        "order-now"
+
+    )
+
+    .addEventListener(
+
+        "click",
+
+        function () {
+
+            if (
+
+                addProductToCart()
+
+            ) {
+
+                window.location.href =
+
+                    "panier.html";
+
+            }
+
+        }
+
+    );
+
+document
+
+    .getElementById(
+
+        "favorite-button"
+
+    )
+
+    .addEventListener(
+
+        "click",
+
+        toggleFavorite
+
+    );
+
+function disablePurchaseButtons() {
+
+    document
+
+        .getElementById(
+
+            "add-cart"
+
+        )
+
+        .disabled = true;
+
+    document
+
+        .getElementById(
+
+            "order-now"
+
+        )
+
+        .disabled = true;
+
+}
+
+function formatPrice(value) {
+
+    return new Intl.NumberFormat(
+
+        "fr-FR"
+
+    ).format(
+
+        Number(value || 0)
+
+    ) + " FCFA";
+
+}
+
+function showError(message) {
+
+    loading.hidden = true;
+
+    content.hidden = true;
+
+    errorBox.hidden = false;
+
+    errorBox.textContent =
+
+        message;
+
+}
+
+function escapeHTML(value) {
+
+    const div =
+
+        document.createElement(
+
+            "div"
+
+        );
+
+    div.textContent =
+
+        String(value ?? "");
+
+    return div.innerHTML;
+
+}
+
+function escapeAttribute(value) {
+
+    return String(value ?? "")
+
+        .replace(
+
+            /&/g,
+
+            "&amp;"
+
+        )
+
+        .replace(
+
+            /"/g,
+
+            "&quot;"
+
+        )
+
+        .replace(
+
+            /</g,
+
+            "&lt;"
+
+        )
+
+        .replace(
+
+            />/g,
+
+            "&gt;"
+
+        );
+
+}
+
+</script>
+
+</body>
+
+</html>
