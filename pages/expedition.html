@@ -4,63 +4,905 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
 
-<title>Expéditions | NINICE BOUTIQUE</title>
+        name="viewport"
 
-<link rel="stylesheet" href="../assets/css/style.css">
+        content="width=device-width, initial-scale=1.0"
 
-<link rel="stylesheet" href="../assets/css/responsive.css">
+    >
+
+    <title>Expédition | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Découvrez comment NINICE BOUTIQUE prépare et expédie vos commandes."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        .shipping-page {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 45px 20px 70px;
+
+        }
+
+        .shipping-hero {
+
+            text-align: center;
+
+            margin-bottom: 42px;
+
+        }
+
+        .shipping-hero h1 {
+
+            margin: 0 0 12px;
+
+            color: #4c1d95;
+
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: clamp(34px, 6vw, 52px);
+
+        }
+
+        .shipping-hero p {
+
+            max-width: 720px;
+
+            margin: 0 auto;
+
+            color: #666;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+        }
+
+        .shipping-intro {
+
+            background: linear-gradient(
+
+                135deg,
+
+                #faf8ff,
+
+                #f4efff
+
+            );
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            margin-bottom: 42px;
+
+        }
+
+        .shipping-intro h2 {
+
+            margin: 0 0 12px;
+
+            color: #4c1d95;
+
+            font-size: 25px;
+
+        }
+
+        .shipping-intro p {
+
+            margin: 0;
+
+            color: #555;
+
+            line-height: 1.8;
+
+        }
+
+        .shipping-section-title {
+
+            margin: 42px 0 22px;
+
+            color: #4c1d95;
+
+            font-size: 28px;
+
+        }
+
+        .shipping-steps {
+
+            display: grid;
+
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+
+            gap: 15px;
+
+        }
+
+        .shipping-step {
+
+            position: relative;
+
+            background: #fff;
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 18px;
+
+            padding: 22px 18px;
+
+            box-shadow: 0 9px 28px rgba(76, 29, 149, 0.07);
+
+        }
+
+        .shipping-step-number {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 38px;
+
+            height: 38px;
+
+            margin-bottom: 15px;
+
+            border-radius: 50%;
+
+            background: #f0eaff;
+
+            color: #6d28d9;
+
+            font-weight: 800;
+
+        }
+
+        .shipping-step h3 {
+
+            margin: 0 0 9px;
+
+            color: #4c1d95;
+
+            font-size: 18px;
+
+        }
+
+        .shipping-step p {
+
+            margin: 0;
+
+            color: #666;
+
+            line-height: 1.65;
+
+            font-size: 14px;
+
+        }
+
+        .shipping-info-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 20px;
+
+        }
+
+        .shipping-info-card {
+
+            background: #fff;
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow: 0 9px 28px rgba(76, 29, 149, 0.07);
+
+        }
+
+        .shipping-info-card h3 {
+
+            margin: 0 0 12px;
+
+            color: #4c1d95;
+
+            font-size: 20px;
+
+        }
+
+        .shipping-info-card p {
+
+            margin: 0;
+
+            color: #666;
+
+            line-height: 1.75;
+
+            font-size: 15px;
+
+        }
+
+        .shipping-info-card ul {
+
+            margin: 0;
+
+            padding-left: 20px;
+
+            color: #666;
+
+        }
+
+        .shipping-info-card li {
+
+            margin-bottom: 9px;
+
+            line-height: 1.6;
+
+        }
+
+        .shipping-status {
+
+            background: #fff;
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow: 0 9px 28px rgba(76, 29, 149, 0.07);
+
+        }
+
+        .shipping-status-list {
+
+            display: grid;
+
+            gap: 12px;
+
+        }
+
+        .shipping-status-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 15px;
+
+            background: #faf9ff;
+
+            border-radius: 13px;
+
+        }
+
+        .shipping-status-dot {
+
+            flex: 0 0 auto;
+
+            width: 11px;
+
+            height: 11px;
+
+            border-radius: 50%;
+
+            background: #6d28d9;
+
+        }
+
+        .shipping-status-item strong {
+
+            color: #4c1d95;
+
+        }
+
+        .shipping-status-item span {
+
+            color: #666;
+
+            line-height: 1.5;
+
+        }
+
+        .shipping-note {
+
+            margin-top: 30px;
+
+            padding: 22px;
+
+            border-left: 4px solid #6d28d9;
+
+            background: #faf9ff;
+
+            border-radius: 0 14px 14px 0;
+
+        }
+
+        .shipping-note strong {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #4c1d95;
+
+        }
+
+        .shipping-note p {
+
+            margin: 0;
+
+            color: #666;
+
+            line-height: 1.7;
+
+        }
+
+        .shipping-track-box {
+
+            margin-top: 30px;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            background: linear-gradient(
+
+                135deg,
+
+                #4c1d95,
+
+                #6d28d9
+
+            );
+
+            border-radius: 22px;
+
+            color: #fff;
+
+        }
+
+        .shipping-track-box h2 {
+
+            margin: 0 0 10px;
+
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: 29px;
+
+        }
+
+        .shipping-track-box p {
+
+            max-width: 650px;
+
+            margin: 0 auto 20px;
+
+            line-height: 1.7;
+
+            opacity: 0.95;
+
+        }
+
+        .shipping-track-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 13px 22px;
+
+            border-radius: 10px;
+
+            background: #fff;
+
+            color: #4c1d95;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+
+        }
+
+        .shipping-track-button:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+        @media (max-width: 950px) {
+
+            .shipping-steps {
+
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            }
+
+            .shipping-info-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .shipping-page {
+
+                padding: 30px 14px 55px;
+
+            }
+
+            .shipping-intro {
+
+                padding: 22px 18px;
+
+            }
+
+            .shipping-status {
+
+                padding: 20px;
+
+            }
+
+            .shipping-steps {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .shipping-section-title {
+
+                font-size: 24px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div id="site-header"></div>
+    <!-- HEADER -->
 
-<main>
+    <header id="site-header"></header>
 
-<section class="page-section">
+    <main class="shipping-page">
 
-<div class="container">
+        <section class="shipping-hero">
 
-<span class="eyebrow">NINICE BOUTIQUE</span>
+            <h1>Expédition</h1>
 
-<h1>Expéditions</h1>
+            <p>
 
-<div class="page-card">
+                Découvrez les différentes étapes de préparation
 
-<h2>Expédition des commandes</h2>
+                et d'expédition de votre commande NINICE BOUTIQUE.
 
-<p>
+            </p>
 
-Après confirmation de votre commande, celle-ci est préparée
+        </section>
 
-et expédiée selon la zone et le mode de livraison sélectionnés.
+        <section class="shipping-intro">
 
-</p>
+            <h2>Une commande préparée avec attention</h2>
 
-</div>
+            <p>
 
-</div>
+                Après validation de votre commande, celle-ci est
 
-</section>
+                vérifiée puis préparée avant son expédition ou sa
 
-</main>
+                livraison. Les informations communiquées lors de
 
-<div id="site-footer"></div>
+                la commande nous permettent de faciliter son acheminement.
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            </p>
 
-<script src="../assets/js/config.js"></script>
+        </section>
 
-<script src="../assets/js/supabase.js"></script>
+        <h2 class="shipping-section-title">
 
-<script src="../assets/js/common.js"></script>
+            Les étapes de votre commande
 
-<script src="../assets/js/navigation.js"></script>
+        </h2>
+
+        <section class="shipping-steps">
+
+            <article class="shipping-step">
+
+                <div class="shipping-step-number">
+
+                    1
+
+                </div>
+
+                <h3>Nouvelle</h3>
+
+                <p>
+
+                    Votre commande vient d'être reçue
+
+                    par NINICE BOUTIQUE.
+
+                </p>
+
+            </article>
+
+            <article class="shipping-step">
+
+                <div class="shipping-step-number">
+
+                    2
+
+                </div>
+
+                <h3>Confirmée</h3>
+
+                <p>
+
+                    Les informations de votre commande
+
+                    sont vérifiées et confirmées.
+
+                </p>
+
+            </article>
+
+            <article class="shipping-step">
+
+                <div class="shipping-step-number">
+
+                    3
+
+                </div>
+
+                <h3>En préparation</h3>
+
+                <p>
+
+                    Les produits sont préparés avant leur
+
+                    livraison ou leur expédition.
+
+                </p>
+
+            </article>
+
+            <article class="shipping-step">
+
+                <div class="shipping-step-number">
+
+                    4
+
+                </div>
+
+                <h3>Expédiée</h3>
+
+                <p>
+
+                    Votre commande a été remise au service
+
+                    ou au moyen d'acheminement prévu.
+
+                </p>
+
+            </article>
+
+            <article class="shipping-step">
+
+                <div class="shipping-step-number">
+
+                    5
+
+                </div>
+
+                <h3>Livrée</h3>
+
+                <p>
+
+                    Votre commande a été remise au client
+
+                    au lieu de livraison indiqué.
+
+                </p>
+
+            </article>
+
+        </section>
+
+        <h2 class="shipping-section-title">
+
+            Informations utiles
+
+        </h2>
+
+        <section class="shipping-info-grid">
+
+            <article class="shipping-info-card">
+
+                <h3>Avant l'expédition</h3>
+
+                <p>
+
+                    Vérifiez attentivement votre nom, votre numéro
+
+                    de téléphone et votre lieu de livraison avant
+
+                    de confirmer votre commande.
+
+                </p>
+
+            </article>
+
+            <article class="shipping-info-card">
+
+                <h3>Pour faciliter la livraison</h3>
+
+                <ul>
+
+                    <li>
+
+                        Indiquez une commune et un quartier précis.
+
+                    </li>
+
+                    <li>
+
+                        Ajoutez un point de repère lorsque cela est utile.
+
+                    </li>
+
+                    <li>
+
+                        Restez joignable au numéro communiqué.
+
+                    </li>
+
+                </ul>
+
+            </article>
+
+            <article class="shipping-info-card">
+
+                <h3>Délais</h3>
+
+                <p>
+
+                    Les délais peuvent varier selon la destination,
+
+                    la disponibilité du produit et le mode
+
+                    d'acheminement choisi.
+
+                </p>
+
+            </article>
+
+        </section>
+
+        <h2 class="shipping-section-title">
+
+            Suivi de votre commande
+
+        </h2>
+
+        <section class="shipping-status">
+
+            <div class="shipping-status-list">
+
+                <div class="shipping-status-item">
+
+                    <div class="shipping-status-dot"></div>
+
+                    <div>
+
+                        <strong>Nouvelle</strong>
+
+                        <span>
+
+                            — commande reçue.
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="shipping-status-item">
+
+                    <div class="shipping-status-dot"></div>
+
+                    <div>
+
+                        <strong>Confirmée</strong>
+
+                        <span>
+
+                            — commande vérifiée.
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="shipping-status-item">
+
+                    <div class="shipping-status-dot"></div>
+
+                    <div>
+
+                        <strong>En préparation</strong>
+
+                        <span>
+
+                            — commande en cours de préparation.
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="shipping-status-item">
+
+                    <div class="shipping-status-dot"></div>
+
+                    <div>
+
+                        <strong>Expédiée</strong>
+
+                        <span>
+
+                            — commande en cours d'acheminement.
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="shipping-status-item">
+
+                    <div class="shipping-status-dot"></div>
+
+                    <div>
+
+                        <strong>Livrée</strong>
+
+                        <span>
+
+                            — commande remise au client.
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="shipping-status-item">
+
+                    <div class="shipping-status-dot"></div>
+
+                    <div>
+
+                        <strong>Annulée</strong>
+
+                        <span>
+
+                            — commande annulée.
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="shipping-note">
+
+            <strong>Important</strong>
+
+            <p>
+
+                Les informations présentées ici sont générales.
+
+                Les frais, les zones et les délais applicables
+
+                à votre commande sont ceux affichés au moment
+
+                de la validation de celle-ci.
+
+            </p>
+
+        </section>
+
+        <section class="shipping-track-box">
+
+            <h2>Besoin d'aide concernant votre commande ?</h2>
+
+            <p>
+
+                Pour toute question concernant une commande,
+
+                sa préparation ou son acheminement, vous pouvez
+
+                contacter NINICE BOUTIQUE.
+
+            </p>
+
+            <a
+
+                href="contact.html"
+
+                class="shipping-track-button"
+
+            >
+
+                Nous contacter
+
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer id="site-footer"></footer>
+
+    <!-- CONFIGURATION -->
+
+    <script src="../assets/js/config.js"></script>
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <!-- SCRIPTS COMMUNS -->
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
 
 </body>
 
