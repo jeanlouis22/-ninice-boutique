@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+
+        name="viewport"
+
+        content="width=device-width, initial-scale=1.0"
+
+    >
+
+    <title>Nous contacter | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Contactez NINICE BOUTIQUE pour vos questions, commandes et demandes d'informations."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        .contact-page {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 45px 20px 70px;
+
+        }
+
+        .contact-hero {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+        }
+
+        .contact-hero h1 {
+
+            margin: 0 0 12px;
+
+            color: #4c1d95;
+
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: clamp(34px, 6vw, 52px);
+
+        }
+
+        .contact-hero p {
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            color: #666;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+
+        }
+
+        .contact-grid {
+
+            display: grid;
+
+            grid-template-columns: 0.9fr 1.1fr;
+
+            gap: 25px;
+
+            align-items: start;
+
+        }
+
+        .contact-card {
+
+            background: #fff;
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow: 0 12px 35px rgba(76, 29, 149, 0.08);
+
+        }
+
+        .contact-card h2 {
+
+            margin: 0 0 25px;
+
+            color: #4c1d95;
+
+            font-size: 24px;
+
+        }
+
+        .contact-info {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+
+        }
+
+        .contact-item {
+
+            padding: 17px;
+
+            background: #faf9ff;
+
+            border-radius: 14px;
+
+            border: 1px solid rgba(109, 40, 217, 0.06);
+
+        }
+
+        .contact-item-label {
+
+            display: block;
+
+            color: #6d28d9;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.04em;
+
+            margin-bottom: 6px;
+
+        }
+
+        .contact-item-value {
+
+            color: #333;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+
+            word-break: break-word;
+
+        }
+
+        .contact-item-value a {
+
+            color: #4c1d95;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+        }
+
+        .contact-item-value a:hover {
+
+            text-decoration: underline;
+
+        }
+
+        .contact-socials {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 22px;
+
+        }
+
+        .contact-social {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 42px;
+
+            padding: 9px 15px;
+
+            border-radius: 10px;
+
+            background: #f3efff;
+
+            color: #4c1d95;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+
+        }
+
+        .contact-social:hover {
+
+            background: #6d28d9;
+
+            color: #fff;
+
+        }
+
+        .contact-social a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        .contact-form {
+
+            display: grid;
+
+            gap: 18px;
+
+        }
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+        }
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+        .form-group label {
+
+            color: #333;
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+        }
+
+        .form-group input,
+
+        .form-group textarea {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            border: 1px solid #ddd;
+
+            border-radius: 11px;
+
+            padding: 13px 14px;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: #fff;
+
+            transition: 0.2s ease;
+
+        }
+
+        .form-group input:focus,
+
+        .form-group textarea:focus {
+
+            border-color: #6d28d9;
+
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.10);
+
+        }
+
+        .form-group textarea {
+
+            min-height: 150px;
+
+            resize: vertical;
+
+        }
+
+        .contact-submit {
+
+            border: 0;
+
+            border-radius: 11px;
+
+            padding: 14px 20px;
+
+            background: #6d28d9;
+
+            color: #fff;
+
+            font: inherit;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+        .contact-submit:hover {
+
+            background: #4c1d95;
+
+        }
+
+        .contact-submit:disabled {
+
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+        }
+
+        .contact-message {
+
+            display: none;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+        }
+
+        .contact-message.success {
+
+            display: block;
+
+            background: #eefbf3;
+
+            color: #176b3a;
+
+        }
+
+        .contact-message.error {
+
+            display: block;
+
+            background: #fff1f1;
+
+            color: #a11a1a;
+
+        }
+
+        .contact-whatsapp {
+
+            margin-top: 25px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 14px 20px;
+
+            border-radius: 11px;
+
+            background: #f3efff;
+
+            color: #4c1d95;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+
+        }
+
+        .contact-whatsapp:hover {
+
+            background: #6d28d9;
+
+            color: #fff;
+
+        }
+
+        .contact-empty {
+
+            color: #777;
+
+            font-size: 14px;
+
+        }
+
+        .contact-loading {
+
+            color: #777;
+
+            font-size: 14px;
+
+        }
+
+        @media (max-width: 800px) {
+
+            .contact-page {
+
+                padding: 30px 14px 55px;
+
+            }
+
+            .contact-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .contact-card {
+
+                padding: 23px 18px;
+
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .contact-hero {
+
+                margin-bottom: 28px;
+
+            }
+
+            .contact-hero h1 {
+
+                font-size: 34px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header id="site-header"></header>
+
+    <main class="contact-page">
+
+        <section class="contact-hero">
+
+            <h1 id="contact-page-title">
+
+                Nous contacter
+
+            </h1>
+
+            <p id="contact-page-description">
+
+                Une question concernant un produit, une commande,
+
+                une livraison ou NINICE BOUTIQUE ?
+
+                Nous sommes à votre disposition.
+
+            </p>
+
+        </section>
+
+        <section class="contact-grid">
+
+            <!-- INFORMATIONS -->
+
+            <div class="contact-card">
+
+                <h2>Nos coordonnées</h2>
+
+                <div class="contact-info">
+
+                    <!-- TELEPHONE -->
+
+                    <div class="contact-item">
+
+                        <span class="contact-item-label">
+
+                            Téléphone
+
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-phone"
+
+                        >
+
+                            Chargement...
+
+                        </div>
+
+                    </div>
+
+                    <!-- WHATSAPP -->
+
+                    <div class="contact-item">
+
+                        <span class="contact-item-label">
+
+                            WhatsApp
+
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-whatsapp"
+
+                        >
+
+                            Chargement...
+
+                        </div>
+
+                    </div>
+
+                    <!-- EMAIL -->
+
+                    <div class="contact-item">
+
+                        <span class="contact-item-label">
+
+                            Email
+
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-email-display"
+
+                        >
+
+                            Chargement...
+
+                        </div>
+
+                    </div>
+
+                    <!-- ADRESSE -->
+
+                    <div class="contact-item">
+
+                        <span class="contact-item-label">
+
+                            Adresse
+
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-address"
+
+                        >
+
+                            Chargement...
+
+                        </div>
+
+                    </div>
+
+                    <!-- VILLE -->
+
+                    <div class="contact-item">
+
+                        <span class="contact-item-label">
+
+                            Ville
+
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-city"
+
+                        >
+
+                            Chargement...
+
+                        </div>
+
+                    </div>
+
+                    <!-- HORAIRES -->
+
+                    <div class="contact-item">
+
+                        <span class="contact-item-label">
+
+                            Horaires
+
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-hours"
+
+                        >
+
+                            Chargement...
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RESEAUX SOCIAUX -->
+
+                <div
+
+                    class="contact-socials"
+
+                    id="contact-socials"
+
+                ></div>
+
+                <!-- BOUTON WHATSAPP -->
+
+                <div id="whatsapp-container"></div>
+
+            </div>
+
+            <!-- FORMULAIRE -->
+
+            <div class="contact-card">
+
+                <h2>Envoyer un message</h2>
+
+                <form
+
+                    id="contact-form"
+
+                    class="contact-form"
+
+                >
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="contact-name">
+
+                                Nom
+
+                            </label>
+
+                            <input
+
+                                type="text"
+
+                                id="contact-name"
+
+                                name="name"
+
+                                placeholder="Votre nom"
+
+                                required
+
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="contact-phone-form">
+
+                                Téléphone
+
+                            </label>
+
+                            <input
+
+                                type="tel"
+
+                                id="contact-phone-form"
+
+                                name="phone"
+
+                                placeholder="Votre numéro"
+
+                                required
+
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="contact-email">
+
+                            Email
+
+                        </label>
+
+                        <input
+
+                            type="email"
+
+                            id="contact-email"
+
+                            name="email"
+
+                            placeholder="Votre adresse email"
+
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="contact-subject">
+
+                            Sujet
+
+                        </label>
+
+                        <input
+
+                            type="text"
+
+                            id="contact-subject"
+
+                            name="subject"
+
+                            placeholder="Objet de votre message"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="contact-message-text">
+
+                            Message
+
+                        </label>
+
+                        <textarea
+
+                            id="contact-message-text"
+
+                            name="message"
+
+                            placeholder="Écrivez votre message..."
+
+                            required
+
+                        ></textarea>
+
+                    </div>
+
+                    <div
+
+                        id="contact-form-message"
+
+                        class="contact-message"
+
+                    ></div>
+
+                    <button
+
+                        type="submit"
+
+                        class="contact-submit"
+
+                        id="contact-submit"
+
+                    >
+
+                        Envoyer le message
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer id="site-footer"></footer>
+
+    <!-- CONFIGURATION -->
+
+    <script src="../assets/js/config.js"></script>
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <!-- SCRIPTS COMMUNS -->
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        document.addEventListener(
+
+            "DOMContentLoaded",
+
+            async function () {
+
+                /* =========================================
+
+                   ELEMENTS
+
+                ========================================= */
+
+                const phoneElement =
+
+                    document.getElementById(
+
+                        "contact-phone"
+
+                    );
+
+                const whatsappElement =
+
+                    document.getElementById(
+
+                        "contact-whatsapp"
+
+                    );
+
+                const emailDisplayElement =
+
+                    document.getElementById(
+
+                        "contact-email-display"
+
+                    );
+
+                const addressElement =
+
+                    document.getElementById(
+
+                        "contact-address"
+
+                    );
+
+                const cityElement =
+
+                    document.getElementById(
+
+                        "contact-city"
+
+                    );
+
+                const hoursElement =
+
+                    document.getElementById(
+
+                        "contact-hours"
+
+                    );
+
+                const socialsElement =
+
+                    document.getElementById(
+
+                        "contact-socials"
+
+                    );
+
+                const whatsappContainer =
+
+                    document.getElementById(
+
+                        "whatsapp-container"
+
+                    );
+
+                const pageTitle =
+
+                    document.getElementById(
+
+                        "contact-page-title"
+
+                    );
+
+                const pageDescription =
+
+                    document.getElementById(
+
+                        "contact-page-description"
+
+                    );
+
+                /* =========================================
+
+                   ESCAPE HTML
+
+                ========================================= */
+
+                function escapeHtml(value) {
+
+                    return String(value ?? "")
+
+                        .replace(
+
+                            /&/g,
+
+                            "&amp;"
+
+                        )
+
+                        .replace(
+
+                            /</g,
+
+                            "&lt;"
+
+                        )
+
+                        .replace(
+
+                            />/g,
+
+                            "&gt;"
+
+                        )
+
+                        .replace(
+
+                            /"/g,
+
+                            "&quot;"
+
+                        )
+
+                        .replace(
+
+                            /'/g,
+
+                            "&#039;"
+
+                        );
+
+                }
+
+                /* =========================================
+
+                   NETTOYAGE TELEPHONE
+
+                ========================================= */
+
+                function cleanPhone(value) {
+
+                    return String(value || "")
+
+                        .trim()
+
+                        .replace(/[^\d+]/g, "")
+
+                        .replace(/^00/, "+");
+
+                }
+
+                /* =========================================
+
+                   LIEN URL
+
+                ========================================= */
+
+                function normalizeUrl(value) {
+
+                    if (!value) {
+
+                        return "";
+
+                    }
+
+                    let url =
+
+                        String(value).trim();
+
+                    if (
+
+                        !url.startsWith(
+
+                            "http://"
+
+                        ) &&
+
+                        !url.startsWith(
+
+                            "https://"
+
+                        )
+
+                    ) {
+
+                        url =
+
+                            "https://" +
+
+                            url;
+
+                    }
+
+                    return url;
+
+                }
+
+                /* =========================================
+
+                   CREATION RESEAU SOCIAL
+
+                ========================================= */
+
+                function createSocial(
+
+                    label,
+
+                    url
+
+                ) {
+
+                    if (!url) {
+
+                        return "";
+
+                    }
+
+                    const safeUrl =
+
+                        normalizeUrl(url);
+
+                    if (!safeUrl) {
+
+                        return "";
+
+                    }
+
+                    return `
+
+                        <a
+
+                            class="contact-social"
+
+                            href="${escapeHtml(safeUrl)}"
+
+                            target="_blank"
+
+                            rel="noopener noreferrer"
+
+                        >
+
+                            ${escapeHtml(label)}
+
+                        </a>
+
+                    `;
+
+                }
+
+                /* =========================================
+
+                   CHARGEMENT STORE SETTINGS
+
+                ========================================= */
+
+                async function loadStoreSettings() {
+
+                    if (
+
+                        !window.niniceSupabase
+
+                    ) {
+
+                        console.warn(
+
+                            "Supabase n'est pas disponible."
+
+                        );
+
+                        return;
+
+                    }
+
+                    try {
+
+                        /*
+
+                         * IMPORTANT :
+
+                         *
+
+                         * La vraie table est
+
+                         * store_settings
+
+                         *
+
+                         * et non shop_settings.
+
+                         */
+
+                        const {
+
+                            data,
+
+                            error
+
+                        } =
+
+                            await window
+
+                                .niniceSupabase
+
+                                .from(
+
+                                    "store_settings"
+
+                                )
+
+                                .select(
+
+                                    "*"
+
+                                )
+
+                                .limit(
+
+                                    1
+
+                                )
+
+                                .maybeSingle();
+
+                        if (error) {
+
+                            console.error(
+
+                                "Erreur chargement store_settings :",
+
+                                error
+
+                            );
+
+                            phoneElement.textContent =
+
+                                "Non renseigné";
+
+                            whatsappElement.textContent =
+
+                                "Non renseigné";
+
+                            emailDisplayElement.textContent =
+
+                                "Non renseigné";
+
+                            addressElement.textContent =
+
+                                "Non renseignée";
+
+                            cityElement.textContent =
+
+                                "Non renseignée";
+
+                            hoursElement.textContent =
+
+                                "Non renseignés";
+
+                            return;
+
+                        }
+
+                        if (!data) {
+
+                            phoneElement.textContent =
+
+                                "Non renseigné";
+
+                            whatsappElement.textContent =
+
+                                "Non renseigné";
+
+                            emailDisplayElement.textContent =
+
+                                "Non renseigné";
+
+                            addressElement.textContent =
+
+                                "Non renseignée";
+
+                            cityElement.textContent =
+
+                                "Non renseignée";
+
+                            hoursElement.textContent =
+
+                                "Non renseignés";
+
+                            return;
+
+                        }
+
+                        /* =====================================
+
+                           NOM DE LA BOUTIQUE
+
+                        ===================================== */
+
+                        if (
+
+                            data.store_name
+
+                        ) {
+
+                            document.title =
+
+                                "Nous contacter | " +
+
+                                data.store_name;
+
+                        }
+
+                        /* =====================================
+
+                           DESCRIPTION
+
+                        ===================================== */
+
+                        if (
+
+                            data.description
+
+                        ) {
+
+                            pageDescription.textContent =
+
+                                data.description;
+
+                        }
+
+                        /* =====================================
+
+                           TELEPHONE
+
+                        ===================================== */
+
+                        const phone =
+
+                            String(
+
+                                data.phone ||
+
+                                ""
+
+                            ).trim();
+
+                        if (phone) {
+
+                            phoneElement.innerHTML = `
+
+                                <a
+
+                                    href="tel:${escapeHtml(phone)}"
+
+                                >
+
+                                    ${escapeHtml(phone)}
+
+                                </a>
+
+                            `;
+
+                        } else {
+
+                            phoneElement.textContent =
+
+                                "Non renseigné";
+
+                        }
+
+                        /* =====================================
+
+                           WHATSAPP
+
+                        ===================================== */
+
+                        const whatsapp =
+
+                            cleanPhone(
+
+                                data.whatsapp ||
+
+                                ""
+
+                            );
+
+                        if (whatsapp) {
+
+                            const whatsappNumber =
+
+                                whatsapp.replace(
+
+                                    /^\+/,
+
+                                    ""
+
+                                );
+
+                            whatsappElement.innerHTML = `
+
+                                <a
+
+                                    href="https://wa.me/${escapeHtml(
+
+                                        whatsappNumber
+
+                                    )}"
+
+                                    target="_blank"
+
+                                    rel="noopener noreferrer"
+
+                                >
+
+                                    ${escapeHtml(whatsapp)}
+
+                                </a>
+
+                            `;
+
+                            whatsappContainer.innerHTML = `
+
+                                <a
+
+                                    class="contact-whatsapp"
+
+                                    href="https://wa.me/${escapeHtml(
+
+                                        whatsappNumber
+
+                                    )}"
+
+                                    target="_blank"
+
+                                    rel="noopener noreferrer"
+
+                                >
+
+                                    Contacter sur WhatsApp
+
+                                </a>
+
+                            `;
+
+                        } else {
+
+                            whatsappElement.textContent =
+
+                                "Non renseigné";
+
+                            whatsappContainer.innerHTML =
+
+                                "";
+
+                        }
+
+                        /* =====================================
+
+                           EMAIL
+
+                        ===================================== */
+
+                        const email =
+
+                            String(
+
+                                data.email ||
+
+                                ""
+
+                            ).trim();
+
+                        if (email) {
+
+                            emailDisplayElement.innerHTML = `
+
+                                <a
+
+                                    href="mailto:${escapeHtml(email)}"
+
+                                >
+
+                                    ${escapeHtml(email)}
+
+                                </a>
+
+                            `;
+
+                        } else {
+
+                            emailDisplayElement.textContent =
+
+                                "Non renseigné";
+
+                        }
+
+                        /* =====================================
+
+                           ADRESSE
+
+                        ===================================== */
+
+                        const address =
+
+                            String(
+
+                                data.address ||
+
+                                ""
+
+                            ).trim();
+
+                        if (address) {
+
+                            addressElement.textContent =
+
+                                address;
+
+                        } else {
+
+                            addressElement.textContent =
+
+                                "Non renseignée";
+
+                        }
+
+                        /* =====================================
+
+                           VILLE
+
+                        ===================================== */
+
+                        const city =
+
+                            String(
+
+                                data.city ||
+
+                                ""
+
+                            ).trim();
+
+                        if (city) {
+
+                            cityElement.textContent =
+
+                                city;
+
+                        } else {
+
+                            cityElement.textContent =
+
+                                "Non renseignée";
+
+                        }
+
+                        /* =====================================
+
+                           HORAIRES
+
+                        ===================================== */
+
+                        const hours =
+
+                            String(
+
+                                data.opening_hours ||
+
+                                ""
+
+                            ).trim();
+
+                        if (hours) {
+
+                            hoursElement.textContent =
+
+                                hours;
+
+                        } else {
+
+                            hoursElement.textContent =
+
+                                "Non renseignés";
+
+                        }
+
+                        /* =====================================
+
+                           RESEAUX SOCIAUX
+
+                        ===================================== */
+
+                        const socials = [];
+
+                        if (
+
+                            data.facebook_url
+
+                        ) {
+
+                            socials.push(
+
+                                createSocial(
+
+                                    "Facebook",
+
+                                    data.facebook_url
+
+                                )
+
+                            );
+
+                        }
+
+                        if (
+
+                            data.instagram_url
+
+                        ) {
+
+                            socials.push(
+
+                                createSocial(
+
+                                    "Instagram",
+
+                                    data.instagram_url
+
+                                )
+
+                            );
+
+                        }
+
+                        if (
+
+                            data.tiktok_url
+
+                        ) {
+
+                            socials.push(
+
+                                createSocial(
+
+                                    "TikTok",
+
+                                    data.tiktok_url
+
+                                )
+
+                            );
+
+                        }
+
+                        const validSocials =
+
+                            socials.filter(
+
+                                function (item) {
+
+                                    return item;
+
+                                }
+
+                            );
+
+                        if (
+
+                            validSocials.length
+
+                        ) {
+
+                            socialsElement.innerHTML =
+
+                                validSocials.join("");
+
+                        } else {
+
+                            socialsElement.innerHTML =
+
+                                "";
+
+                        }
+
+                    } catch (error) {
+
+                        console.error(
+
+                            "Impossible de charger les informations de la boutique :",
+
+                            error
+
+                        );
+
+                    }
+
+                }
+
+                /* =========================================
+
+                   FORMULAIRE DE CONTACT
+
+                ========================================= */
+
+                const form =
+
+                    document.getElementById(
+
+                        "contact-form"
+
+                    );
+
+                const formMessage =
+
+                    document.getElementById(
+
+                        "contact-form-message"
+
+                    );
+
+                form.addEventListener(
+
+                    "submit",
+
+                    async function (event) {
+
+                        event.preventDefault();
+
+                        const name =
+
+                            document.getElementById(
+
+                                "contact-name"
+
+                            ).value.trim();
+
+                        const phone =
+
+                            document.getElementById(
+
+                                "contact-phone-form"
+
+                            ).value.trim();
+
+                        const email =
+
+                            document.getElementById(
+
+                                "contact-email"
+
+                            ).value.trim();
+
+                        const subject =
+
+                            document.getElementById(
+
+                                "contact-subject"
+
+                            ).value.trim();
+
+                        const message =
+
+                            document.getElementById(
+
+                                "contact-message-text"
+
+                            ).value.trim();
+
+                        if (
+
+                            !name ||
+
+                            !phone ||
+
+                            !subject ||
+
+                            !message
+
+                        ) {
+
+                            formMessage.className =
+
+                                "contact-message error";
+
+                            formMessage.textContent =
+
+                                "Veuillez remplir les champs obligatoires.";
+
+                            return;
+
+                        }
+
+                        /*
+
+                         * On récupère maintenant
+
+                         * le vrai numéro WhatsApp
+
+                         * depuis store_settings.
+
+                         */
+
+                        let configuredWhatsApp =
+
+                            "";
+
+                        try {
+
+                            if (
+
+                                window.niniceSupabase
+
+                            ) {
+
+                                const {
+
+                                    data
+
+                                } =
+
+                                    await window
+
+                                        .niniceSupabase
+
+                                        .from(
+
+                                            "store_settings"
+
+                                        )
+
+                                        .select(
+
+                                            "whatsapp"
+
+                                        )
+
+                                        .limit(
+
+                                            1
+
+                                        )
+
+                                        .maybeSingle();
+
+                                if (
+
+                                    data &&
+
+                                    data.whatsapp
+
+                                ) {
+
+                                    configuredWhatsApp =
+
+                                        cleanPhone(
+
+                                            data.whatsapp
+
+                                        );
+
+                                }
+
+                            }
+
+                        } catch (error) {
+
+                            console.warn(
+
+                                "Impossible de récupérer WhatsApp :",
+
+                                error
+
+                            );
+
+                        }
+
+                        /* =====================================
+
+                           ENVOI WHATSAPP
+
+                        ===================================== */
+
+                        if (
+
+                            configuredWhatsApp
+
+                        ) {
+
+                            const whatsappNumber =
+
+                                configuredWhatsApp.replace(
+
+                                    /^\+/,
+
+                                    ""
+
+                                );
+
+                            const whatsappText =
+
+`Bonjour NINICE BOUTIQUE,
+
+Nom : ${name}
+
+Téléphone : ${phone}
+
+Email : ${email || "Non renseigné"}
+
+Sujet : ${subject}
+
+Message :
+
+${message}`;
+
+                            const url =
+
+                                `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+
+                                    whatsappText
+
+                                )}`;
+
+                            window.open(
+
+                                url,
+
+                                "_blank",
+
+                                "noopener,noreferrer"
+
+                            );
+
+                            formMessage.className =
+
+                                "contact-message success";
+
+                            formMessage.textContent =
+
+                                "Votre message est prêt à être envoyé sur WhatsApp.";
+
+                            return;
+
+                        }
+
+                        /* =====================================
+
+                           WHATSAPP NON CONFIGURE
+
+                        ===================================== */
+
+                        formMessage.className =
+
+                            "contact-message error";
+
+                        formMessage.textContent =
+
+                            "Le contact WhatsApp de la boutique n'est pas encore configuré dans l'administration.";
+
+                    }
+
+                );
+
+                /* =========================================
+
+                   CHARGEMENT INITIAL
+
+                ========================================= */
+
+                await loadStoreSettings();
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>
