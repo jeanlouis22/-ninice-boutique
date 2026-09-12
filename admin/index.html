@@ -1,0 +1,5019 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+
+        name="viewport"
+
+        content="width=device-width, initial-scale=1.0"
+
+    >
+
+    <title>Administration | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Tableau de bord sécurisé de l'administration NINICE BOUTIQUE."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <!-- Configuration NINICE -->
+
+    <script src="../assets/js/config.js"></script>
+
+    <!-- Supabase -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Connexion Supabase -->
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <style>
+
+        :root {
+
+            --violet: #6d28d9;
+
+            --violet-dark: #4c1d95;
+
+            --violet-light: #f3e8ff;
+
+            --violet-soft: #faf5ff;
+
+            --dark: #18181b;
+
+            --text: #3f3f46;
+
+            --muted: #71717a;
+
+            --white: #ffffff;
+
+            --background: #f7f7f8;
+
+            --border: #e4e4e7;
+
+            --green: #16a34a;
+
+            --green-light: #f0fdf4;
+
+            --orange: #ea580c;
+
+            --orange-light: #fff7ed;
+
+            --red: #dc2626;
+
+            --red-light: #fef2f2;
+
+            --blue: #2563eb;
+
+            --blue-light: #eff6ff;
+
+            --sidebar-width: 270px;
+
+            --shadow:
+
+                0 10px 30px rgba(24, 24, 27, 0.05);
+
+            --radius: 18px;
+
+        }
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+
+                "DM Sans",
+
+                sans-serif;
+
+            background:
+
+                var(--background);
+
+            color:
+
+                var(--dark);
+
+        }
+
+        button,
+
+        input,
+
+        select {
+
+            font: inherit;
+
+        }
+
+        button {
+
+            cursor: pointer;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        /* =====================================================
+
+           ÉCRAN DE CHARGEMENT
+
+        ===================================================== */
+
+        .auth-loading {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            background:
+
+                #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 18px;
+
+        }
+
+        .auth-logo {
+
+            width: 72px;
+
+            height: 72px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+
+                var(--violet);
+
+            color:
+
+                #ffffff;
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size: 27px;
+
+            font-weight: 700;
+
+            box-shadow:
+
+                0 14px 35px
+
+                rgba(109, 40, 217, 0.22);
+
+        }
+
+        .auth-loading-text {
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+        }
+
+        .auth-spinner {
+
+            width: 24px;
+
+            height: 24px;
+
+            border-radius: 50%;
+
+            border:
+
+                2px solid
+
+                #e9d5ff;
+
+            border-top-color:
+
+                var(--violet);
+
+            animation:
+
+                spin 0.8s linear infinite;
+
+        }
+
+        @keyframes spin {
+
+            to {
+
+                transform: rotate(360deg);
+
+            }
+
+        }
+
+        /* =====================================================
+
+           STRUCTURE
+
+        ===================================================== */
+
+        .admin-layout {
+
+            min-height: 100vh;
+
+            display: flex;
+
+        }
+
+        /* =====================================================
+
+           SIDEBAR
+
+        ===================================================== */
+
+        .sidebar {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            bottom: 0;
+
+            width:
+
+                var(--sidebar-width);
+
+            background:
+
+                #ffffff;
+
+            border-right:
+
+                1px solid
+
+                var(--border);
+
+            display: flex;
+
+            flex-direction: column;
+
+            z-index: 1000;
+
+            transition:
+
+                transform 0.25s ease;
+
+        }
+
+        .brand {
+
+            height: 86px;
+
+            padding:
+
+                0 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            border-bottom:
+
+                1px solid
+
+                var(--border);
+
+        }
+
+        .brand-logo {
+
+            width: 46px;
+
+            height: 46px;
+
+            min-width: 46px;
+
+            border-radius: 50%;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    var(--violet-dark),
+
+                    var(--violet)
+
+                );
+
+            color:
+
+                #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            box-shadow:
+
+                0 8px 20px
+
+                rgba(109, 40, 217, 0.18);
+
+        }
+
+        .brand-text {
+
+            margin-left: 12px;
+
+            min-width: 0;
+
+        }
+
+        .brand-name {
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color:
+
+                var(--violet-dark);
+
+            white-space: nowrap;
+
+        }
+
+        .brand-role {
+
+            margin-top: 2px;
+
+            color:
+
+                var(--muted);
+
+            font-size: 11px;
+
+            white-space: nowrap;
+
+        }
+
+        .sidebar-content {
+
+            flex: 1;
+
+            padding:
+
+                20px 14px;
+
+            overflow-y: auto;
+
+        }
+
+        .nav-title {
+
+            padding:
+
+                0 11px;
+
+            margin:
+
+                8px 0 9px;
+
+            color:
+
+                #a1a1aa;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing:
+
+                0.08em;
+
+            text-transform:
+
+                uppercase;
+
+        }
+
+        .nav-item {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding:
+
+                11px 12px;
+
+            margin-bottom: 4px;
+
+            border-radius: 11px;
+
+            color:
+
+                var(--text);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition:
+
+                background 0.2s ease,
+
+                color 0.2s ease;
+
+        }
+
+        .nav-item:hover {
+
+            background:
+
+                var(--violet-soft);
+
+            color:
+
+                var(--violet);
+
+        }
+
+        .nav-item.active {
+
+            background:
+
+                var(--violet-light);
+
+            color:
+
+                var(--violet-dark);
+
+        }
+
+        .nav-icon {
+
+            width: 19px;
+
+            height: 19px;
+
+            flex: 0 0 19px;
+
+        }
+
+        .sidebar-footer {
+
+            padding:
+
+                15px;
+
+            border-top:
+
+                1px solid
+
+                var(--border);
+
+        }
+
+        .secure-badge {
+
+            padding:
+
+                12px;
+
+            border-radius:
+
+                12px;
+
+            background:
+
+                var(--green-light);
+
+            border:
+
+                1px solid
+
+                #bbf7d0;
+
+        }
+
+        .secure-badge-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color:
+
+                #166534;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .secure-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background:
+
+                var(--green);
+
+        }
+
+        .secure-badge-text {
+
+            margin-top: 5px;
+
+            color:
+
+                #4d7c5b;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+        }
+
+        /* =====================================================
+
+           MAIN
+
+        ===================================================== */
+
+        .main {
+
+            width: calc(
+
+                100% - var(--sidebar-width)
+
+            );
+
+            margin-left:
+
+                var(--sidebar-width);
+
+            min-height: 100vh;
+
+        }
+
+        /* =====================================================
+
+           TOPBAR
+
+        ===================================================== */
+
+        .topbar {
+
+            height: 86px;
+
+            background:
+
+                #ffffff;
+
+            border-bottom:
+
+                1px solid
+
+                var(--border);
+
+            padding:
+
+                0 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 500;
+
+        }
+
+        .mobile-menu-button {
+
+            display: none;
+
+            width: 42px;
+
+            height: 42px;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            background:
+
+                #ffffff;
+
+            border-radius:
+
+                10px;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .page-heading h1 {
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size: 27px;
+
+            line-height: 1.2;
+
+        }
+
+        .page-heading p {
+
+            margin-top: 5px;
+
+            color:
+
+                var(--muted);
+
+            font-size: 12px;
+
+        }
+
+        .admin-profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+        .admin-avatar {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background:
+
+                var(--violet-light);
+
+            color:
+
+                var(--violet-dark);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 700;
+
+            font-size: 13px;
+
+        }
+
+        .admin-user {
+
+            text-align: right;
+
+        }
+
+        .admin-user-name {
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .admin-user-role {
+
+            color:
+
+                var(--muted);
+
+            font-size: 10px;
+
+            margin-top: 2px;
+
+        }
+
+        .logout-button {
+
+            width: 38px;
+
+            height: 38px;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            background:
+
+                #ffffff;
+
+            color:
+
+                var(--muted);
+
+            border-radius:
+
+                10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .logout-button:hover {
+
+            color:
+
+                var(--red);
+
+            background:
+
+                var(--red-light);
+
+            border-color:
+
+                #fecaca;
+
+        }
+
+        /* =====================================================
+
+           CONTENT
+
+        ===================================================== */
+
+        .content {
+
+            padding:
+
+                30px;
+
+        }
+
+        /* =====================================================
+
+           WELCOME
+
+        ===================================================== */
+
+        .welcome {
+
+            padding:
+
+                26px 28px;
+
+            border-radius:
+
+                var(--radius);
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    var(--violet-dark),
+
+                    var(--violet)
+
+                );
+
+            color:
+
+                #ffffff;
+
+            position: relative;
+
+            overflow: hidden;
+
+            margin-bottom:
+
+                25px;
+
+            box-shadow:
+
+                0 15px 35px
+
+                rgba(109, 40, 217, 0.16);
+
+        }
+
+        .welcome::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+
+            height: 280px;
+
+            border-radius: 50%;
+
+            right: -110px;
+
+            top: -150px;
+
+            background:
+
+                rgba(255, 255, 255, 0.08);
+
+        }
+
+        .welcome-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        .welcome h2 {
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size: 25px;
+
+            margin-bottom:
+
+                7px;
+
+        }
+
+        .welcome p {
+
+            color:
+
+                rgba(255, 255, 255, 0.78);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+        /* =====================================================
+
+           STATS
+
+        ===================================================== */
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(4, minmax(0, 1fr));
+
+            gap: 16px;
+
+            margin-bottom:
+
+                25px;
+
+        }
+
+        .stat-card {
+
+            background:
+
+                #ffffff;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius:
+
+                var(--radius);
+
+            padding:
+
+                20px;
+
+            box-shadow:
+
+                var(--shadow);
+
+        }
+
+        .stat-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+        .stat-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius:
+
+                12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .stat-icon.violet {
+
+            background:
+
+                var(--violet-light);
+
+            color:
+
+                var(--violet);
+
+        }
+
+        .stat-icon.blue {
+
+            background:
+
+                var(--blue-light);
+
+            color:
+
+                var(--blue);
+
+        }
+
+        .stat-icon.orange {
+
+            background:
+
+                var(--orange-light);
+
+            color:
+
+                var(--orange);
+
+        }
+
+        .stat-icon.green {
+
+            background:
+
+                var(--green-light);
+
+            color:
+
+                var(--green);
+
+        }
+
+        .stat-label {
+
+            color:
+
+                var(--muted);
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            margin-top:
+
+                15px;
+
+        }
+
+        .stat-value {
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size: 27px;
+
+            font-weight: 700;
+
+            margin-top:
+
+                4px;
+
+        }
+
+        .stat-note {
+
+            margin-top:
+
+                4px;
+
+            color:
+
+                #a1a1aa;
+
+            font-size: 10px;
+
+        }
+
+        /* =====================================================
+
+           GRID PRINCIPALE
+
+        ===================================================== */
+
+        .dashboard-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                minmax(0, 1.55fr)
+
+                minmax(280px, 0.85fr);
+
+            gap: 20px;
+
+        }
+
+        .card {
+
+            background:
+
+                #ffffff;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius:
+
+                var(--radius);
+
+            box-shadow:
+
+                var(--shadow);
+
+            overflow:
+
+                hidden;
+
+        }
+
+        .card-header {
+
+            padding:
+
+                20px 22px;
+
+            border-bottom:
+
+                1px solid
+
+                var(--border);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+        .card-title {
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        .card-link {
+
+            color:
+
+                var(--violet);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+        .card-link:hover {
+
+            color:
+
+                var(--violet-dark);
+
+        }
+
+        /* =====================================================
+
+           COMMANDES
+
+        ===================================================== */
+
+        .orders-list {
+
+            padding:
+
+                4px 0;
+
+        }
+
+        .order-row {
+
+            padding:
+
+                15px 22px;
+
+            display: grid;
+
+            grid-template-columns:
+
+                1.1fr
+
+                1.2fr
+
+                0.8fr
+
+                0.8fr;
+
+            align-items: center;
+
+            gap: 15px;
+
+            border-bottom:
+
+                1px solid
+
+                #f4f4f5;
+
+        }
+
+        .order-row:last-child {
+
+            border-bottom: 0;
+
+        }
+
+        .order-number {
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .order-customer {
+
+            color:
+
+                var(--text);
+
+            font-size: 11px;
+
+        }
+
+        .order-date {
+
+            color:
+
+                var(--muted);
+
+            font-size: 10px;
+
+        }
+
+        .status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+
+                6px 9px;
+
+            border-radius:
+
+                999px;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+        }
+
+        .status.new {
+
+            color:
+
+                #1d4ed8;
+
+            background:
+
+                #dbeafe;
+
+        }
+
+        .status.confirmed {
+
+            color:
+
+                #7e22ce;
+
+            background:
+
+                #f3e8ff;
+
+        }
+
+        .status.preparing {
+
+            color:
+
+                #c2410c;
+
+            background:
+
+                #ffedd5;
+
+        }
+
+        .status.shipped {
+
+            color:
+
+                #047857;
+
+            background:
+
+                #d1fae5;
+
+        }
+
+        .status.delivered {
+
+            color:
+
+                #166534;
+
+            background:
+
+                #dcfce7;
+
+        }
+
+        .status.cancelled {
+
+            color:
+
+                #991b1b;
+
+            background:
+
+                #fee2e2;
+
+        }
+
+        .empty-state {
+
+            padding:
+
+                40px 20px;
+
+            text-align:
+
+                center;
+
+            color:
+
+                var(--muted);
+
+            font-size:
+
+                12px;
+
+        }
+
+        /* =====================================================
+
+           ACTIONS RAPIDES
+
+        ===================================================== */
+
+        .quick-actions {
+
+            padding:
+
+                16px;
+
+        }
+
+        .quick-action {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            width: 100%;
+
+            padding:
+
+                13px;
+
+            border:
+
+                1px solid
+
+                #f0f0f2;
+
+            border-radius:
+
+                12px;
+
+            background:
+
+                #ffffff;
+
+            margin-bottom:
+
+                9px;
+
+            text-align:
+
+                left;
+
+            transition:
+
+                border-color 0.2s ease,
+
+                background 0.2s ease,
+
+                transform 0.2s ease;
+
+        }
+
+        .quick-action:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+        .quick-action:hover {
+
+            border-color:
+
+                #d8b4fe;
+
+            background:
+
+                var(--violet-soft);
+
+            transform:
+
+                translateY(-1px);
+
+        }
+
+        .quick-action-icon {
+
+            width: 36px;
+
+            height: 36px;
+
+            flex: 0 0 36px;
+
+            border-radius:
+
+                10px;
+
+            background:
+
+                var(--violet-light);
+
+            color:
+
+                var(--violet);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .quick-action-content {
+
+            min-width: 0;
+
+        }
+
+        .quick-action-title {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+        .quick-action-description {
+
+            color:
+
+                var(--muted);
+
+            font-size: 9px;
+
+            margin-top:
+
+                3px;
+
+        }
+
+        /* =====================================================
+
+           ÉTAT SYSTÈME
+
+        ===================================================== */
+
+        .system-list {
+
+            padding:
+
+                5px 20px 18px;
+
+        }
+
+        .system-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+
+                12px 0;
+
+            border-bottom:
+
+                1px solid
+
+                #f4f4f5;
+
+        }
+
+        .system-row:last-child {
+
+            border-bottom: 0;
+
+        }
+
+        .system-label {
+
+            color:
+
+                var(--text);
+
+            font-size: 11px;
+
+        }
+
+        .system-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color:
+
+                var(--green);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+        }
+
+        .system-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius:
+
+                50%;
+
+            background:
+
+                var(--green);
+
+        }
+
+        .system-status.error {
+
+            color:
+
+                var(--red);
+
+        }
+
+        .system-status.error .system-dot {
+
+            background:
+
+                var(--red);
+
+        }
+
+        /* =====================================================
+
+           OVERLAY MOBILE
+
+        ===================================================== */
+
+        .sidebar-overlay {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+
+                rgba(0, 0, 0, 0.35);
+
+            z-index:
+
+                900;
+
+        }
+
+        /* =====================================================
+
+           RESPONSIVE
+
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+            .dashboard-grid {
+
+                grid-template-columns:
+
+                    1fr;
+
+            }
+
+        }
+
+        @media (max-width: 850px) {
+
+            :root {
+
+                --sidebar-width: 270px;
+
+            }
+
+            .sidebar {
+
+                transform:
+
+                    translateX(-100%);
+
+                box-shadow:
+
+                    15px 0 40px
+
+                    rgba(0, 0, 0, 0.12);
+
+            }
+
+            .sidebar.open {
+
+                transform:
+
+                    translateX(0);
+
+            }
+
+            .sidebar-overlay.active {
+
+                display: block;
+
+            }
+
+            .main {
+
+                width: 100%;
+
+                margin-left: 0;
+
+            }
+
+            .topbar {
+
+                padding:
+
+                    0 18px;
+
+                height: 76px;
+
+            }
+
+            .mobile-menu-button {
+
+                display: flex;
+
+                margin-right: 12px;
+
+            }
+
+            .page-heading {
+
+                display: flex;
+
+                align-items: center;
+
+            }
+
+            .page-heading h1 {
+
+                font-size: 22px;
+
+            }
+
+            .page-heading p {
+
+                display: none;
+
+            }
+
+            .admin-user {
+
+                display: none;
+
+            }
+
+            .content {
+
+                padding:
+
+                    20px 16px 30px;
+
+            }
+
+        }
+
+        @media (max-width: 560px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+
+                    1fr 1fr;
+
+                gap: 10px;
+
+            }
+
+            .stat-card {
+
+                padding:
+
+                    15px;
+
+            }
+
+            .stat-value {
+
+                font-size: 22px;
+
+            }
+
+            .welcome {
+
+                padding:
+
+                    21px;
+
+                border-radius:
+
+                    16px;
+
+            }
+
+            .welcome h2 {
+
+                font-size:
+
+                    21px;
+
+            }
+
+            .dashboard-grid {
+
+                gap: 14px;
+
+            }
+
+            .card-header {
+
+                padding:
+
+                    17px;
+
+            }
+
+            .order-row {
+
+                grid-template-columns:
+
+                    1fr
+
+                    auto;
+
+                padding:
+
+                    14px 17px;
+
+                gap: 6px;
+
+            }
+
+            .order-date {
+
+                display: none;
+
+            }
+
+            .order-customer {
+
+                grid-column:
+
+                    1 / 2;
+
+            }
+
+            .order-status {
+
+                grid-column:
+
+                    2 / 3;
+
+                grid-row:
+
+                    1 / 3;
+
+                display: flex;
+
+                align-items: center;
+
+            }
+
+            .brand-name {
+
+                font-size: 17px;
+
+            }
+
+        }
+
+        @media (max-width: 390px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+
+         ÉCRAN DE VÉRIFICATION
+
+    ====================================================== -->
+
+    <div
+
+        id="authLoading"
+
+        class="auth-loading"
+
+    >
+
+        <div class="auth-logo">
+
+            N
+
+        </div>
+
+        <div class="auth-spinner"></div>
+
+        <div class="auth-loading-text">
+
+            Vérification de votre accès...
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+
+         APPLICATION ADMIN
+
+    ====================================================== -->
+
+    <div
+
+        id="adminApp"
+
+        class="admin-layout"
+
+        style="display: none;"
+
+    >
+
+        <!-- =================================================
+
+             OVERLAY MOBILE
+
+        ================================================== -->
+
+        <div
+
+            id="sidebarOverlay"
+
+            class="sidebar-overlay"
+
+        ></div>
+
+        <!-- =================================================
+
+             SIDEBAR
+
+        ================================================== -->
+
+        <aside
+
+            id="sidebar"
+
+            class="sidebar"
+
+        >
+
+            <div class="brand">
+
+                <div class="brand-logo">
+
+                    N
+
+                </div>
+
+                <div class="brand-text">
+
+                    <div class="brand-name">
+
+                        NINICE BOUTIQUE
+
+                    </div>
+
+                    <div class="brand-role">
+
+                        Administration
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="sidebar-content">
+
+                <div class="nav-title">
+
+                    Principal
+
+                </div>
+
+                <a
+
+                    href="index.html"
+
+                    class="nav-item active"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <rect
+
+                            x="3"
+
+                            y="3"
+
+                            width="7"
+
+                            height="7"
+
+                            rx="1"
+
+                        ></rect>
+
+                        <rect
+
+                            x="14"
+
+                            y="3"
+
+                            width="7"
+
+                            height="7"
+
+                            rx="1"
+
+                        ></rect>
+
+                        <rect
+
+                            x="3"
+
+                            y="14"
+
+                            width="7"
+
+                            height="7"
+
+                            rx="1"
+
+                        ></rect>
+
+                        <rect
+
+                            x="14"
+
+                            y="14"
+
+                            width="7"
+
+                            height="7"
+
+                            rx="1"
+
+                        ></rect>
+
+                    </svg>
+
+                    <span>
+
+                        Tableau de bord
+
+                    </span>
+
+                </a>
+
+                <a
+
+                    href="commandes.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="M6 2h12l2 4v15H4V6l2-4Z"
+
+                        ></path>
+
+                        <path
+
+                            d="M4 6h16"
+
+                        ></path>
+
+                        <path
+
+                            d="M8 10h8"
+
+                        ></path>
+
+                        <path
+
+                            d="M8 14h5"
+
+                        ></path>
+
+                    </svg>
+
+                    <span>
+
+                        Commandes
+
+                    </span>
+
+                </a>
+
+                <div class="nav-title">
+
+                    Catalogue
+
+                </div>
+
+                <a
+
+                    href="produits.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="M20 7 12 3 4 7l8 4 8-4Z"
+
+                        ></path>
+
+                        <path
+
+                            d="m4 7 8 4 8-4"
+
+                        ></path>
+
+                        <path
+
+                            d="M4 7v10l8 4 8-4V7"
+
+                        ></path>
+
+                        <path
+
+                            d="M12 11v10"
+
+                        ></path>
+
+                    </svg>
+
+                    <span>
+
+                        Produits
+
+                    </span>
+
+                </a>
+
+                <a
+
+                    href="categories.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="M4 5h16"
+
+                        ></path>
+
+                        <path
+
+                            d="M4 12h16"
+
+                        ></path>
+
+                        <path
+
+                            d="M4 19h16"
+
+                        ></path>
+
+                        <circle
+
+                            cx="8"
+
+                            cy="5"
+
+                            r="2"
+
+                        ></circle>
+
+                        <circle
+
+                            cx="15"
+
+                            cy="12"
+
+                            r="2"
+
+                        ></circle>
+
+                        <circle
+
+                            cx="10"
+
+                            cy="19"
+
+                            r="2"
+
+                        ></circle>
+
+                    </svg>
+
+                    <span>
+
+                        Catégories
+
+                    </span>
+
+                </a>
+
+                <a
+
+                    href="promotions.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="M20 12 12 20 4 12V5a2 2 0 0 1 2-2h7l7 7Z"
+
+                        ></path>
+
+                        <circle
+
+                            cx="8"
+
+                            cy="7"
+
+                            r="1.2"
+
+                        ></circle>
+
+                    </svg>
+
+                    <span>
+
+                        Promotions
+
+                    </span>
+
+                </a>
+
+                <div class="nav-title">
+
+                    Contenu
+
+                </div>
+
+                <a
+
+                    href="avis.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"
+
+                        ></path>
+
+                    </svg>
+
+                    <span>
+
+                        Avis clients
+
+                    </span>
+
+                </a>
+
+                <a
+
+                    href="conseils.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="M8 21h8"
+
+                        ></path>
+
+                        <path
+
+                            d="M9 17h6"
+
+                        ></path>
+
+                        <path
+
+                            d="M8 13.5A6 6 0 1 1 16 13.5c-.9.7-1.4 1.4-1.6 2.5H9.6C9.4 14.9 8.9 14.2 8 13.5Z"
+
+                        ></path>
+
+                    </svg>
+
+                    <span>
+
+                        Conseils
+
+                    </span>
+
+                </a>
+
+                <div class="nav-title">
+
+                    Boutique
+
+                </div>
+
+                <a
+
+                    href="livraison.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="M3 6h11v11H3z"
+
+                        ></path>
+
+                        <path
+
+                            d="M14 10h4l3 3v4h-7z"
+
+                        ></path>
+
+                        <circle
+
+                            cx="7"
+
+                            cy="19"
+
+                            r="2"
+
+                        ></circle>
+
+                        <circle
+
+                            cx="18"
+
+                            cy="19"
+
+                            r="2"
+
+                        ></circle>
+
+                    </svg>
+
+                    <span>
+
+                        Livraison
+
+                    </span>
+
+                </a>
+
+                <a
+
+                    href="boutique.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="M4 9h16"
+
+                        ></path>
+
+                        <path
+
+                            d="M5 9V6l2-3h10l2 3v3"
+
+                        ></path>
+
+                        <path
+
+                            d="M5 9v11h14V9"
+
+                        ></path>
+
+                        <path
+
+                            d="M9 20v-6h6v6"
+
+                        ></path>
+
+                    </svg>
+
+                    <span>
+
+                        Informations boutique
+
+                    </span>
+
+                </a>
+
+                <div class="nav-title">
+
+                    Système
+
+                </div>
+
+                <a
+
+                    href="../index.html"
+
+                    class="nav-item"
+
+                >
+
+                    <svg
+
+                        class="nav-icon"
+
+                        viewBox="0 0 24 24"
+
+                        fill="none"
+
+                        stroke="currentColor"
+
+                        stroke-width="1.8"
+
+                    >
+
+                        <path
+
+                            d="M3 11 12 4l9 7"
+
+                        ></path>
+
+                        <path
+
+                            d="M5 10v10h14V10"
+
+                        ></path>
+
+                        <path
+
+                            d="M9 20v-6h6v6"
+
+                        ></path>
+
+                    </svg>
+
+                    <span>
+
+                        Voir la boutique
+
+                    </span>
+
+                </a>
+
+            </div>
+
+            <div class="sidebar-footer">
+
+                <div class="secure-badge">
+
+                    <div class="secure-badge-title">
+
+                        <span class="secure-dot"></span>
+
+                        Session sécurisée
+
+                    </div>
+
+                    <div
+
+                        id="secureEmail"
+
+                        class="secure-badge-text"
+
+                    >
+
+                        Vérification en cours...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- =================================================
+
+             CONTENU PRINCIPAL
+
+        ================================================== -->
+
+        <main class="main">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="page-heading">
+
+                    <button
+
+                        id="mobileMenuButton"
+
+                        class="mobile-menu-button"
+
+                        type="button"
+
+                        aria-label="Ouvrir le menu"
+
+                    >
+
+                        <svg
+
+                            width="20"
+
+                            height="20"
+
+                            viewBox="0 0 24 24"
+
+                            fill="none"
+
+                            stroke="currentColor"
+
+                            stroke-width="2"
+
+                        >
+
+                            <path
+
+                                d="M4 6h16"
+
+                            ></path>
+
+                            <path
+
+                                d="M4 12h16"
+
+                            ></path>
+
+                            <path
+
+                                d="M4 18h16"
+
+                            ></path>
+
+                        </svg>
+
+                    </button>
+
+                    <div>
+
+                        <h1>
+
+                            Tableau de bord
+
+                        </h1>
+
+                        <p>
+
+                            Administration de NINICE BOUTIQUE
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="admin-profile">
+
+                    <div class="admin-user">
+
+                        <div
+
+                            id="adminEmail"
+
+                            class="admin-user-name"
+
+                        >
+
+                            Administrateur
+
+                        </div>
+
+                        <div class="admin-user-role">
+
+                            Compte administrateur
+
+                        </div>
+
+                    </div>
+
+                    <div
+
+                        id="adminAvatar"
+
+                        class="admin-avatar"
+
+                    >
+
+                        A
+
+                    </div>
+
+                    <button
+
+                        id="logoutButton"
+
+                        class="logout-button"
+
+                        type="button"
+
+                        aria-label="Se déconnecter"
+
+                        title="Se déconnecter"
+
+                    >
+
+                        <svg
+
+                            width="18"
+
+                            height="18"
+
+                            viewBox="0 0 24 24"
+
+                            fill="none"
+
+                            stroke="currentColor"
+
+                            stroke-width="1.8"
+
+                        >
+
+                            <path
+
+                                d="M10 17l5-5-5-5"
+
+                            ></path>
+
+                            <path
+
+                                d="M15 12H3"
+
+                            ></path>
+
+                            <path
+
+                                d="M21 19V5a2 2 0 0 0-2-2h-6"
+
+                            ></path>
+
+                        </svg>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- CONTENU -->
+
+            <div class="content">
+
+                <!-- BIENVENUE -->
+
+                <section class="welcome">
+
+                    <div class="welcome-content">
+
+                        <h2>
+
+                            Bienvenue dans votre administration
+
+                        </h2>
+
+                        <p>
+
+                            Gérez votre catalogue, vos commandes,
+
+                            vos promotions et les informations de
+
+                            NINICE BOUTIQUE depuis cet espace privé.
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+                <!-- STATISTIQUES -->
+
+                <section
+
+                    id="statsGrid"
+
+                    class="stats-grid"
+
+                >
+
+                    <article class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div>
+
+                                <div class="stat-label">
+
+                                    Commandes
+
+                                </div>
+
+                                <div
+
+                                    id="statOrders"
+
+                                    class="stat-value"
+
+                                >
+
+                                    —
+
+                                </div>
+
+                                <div class="stat-note">
+
+                                    Total enregistré
+
+                                </div>
+
+                            </div>
+
+                            <div class="stat-icon violet">
+
+                                <svg
+
+                                    width="21"
+
+                                    height="21"
+
+                                    viewBox="0 0 24 24"
+
+                                    fill="none"
+
+                                    stroke="currentColor"
+
+                                    stroke-width="1.8"
+
+                                >
+
+                                    <path
+
+                                        d="M6 2h12l2 4v15H4V6l2-4Z"
+
+                                    ></path>
+
+                                    <path
+
+                                        d="M4 6h16"
+
+                                    ></path>
+
+                                    <path
+
+                                        d="M8 10h8"
+
+                                    ></path>
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div>
+
+                                <div class="stat-label">
+
+                                    Produits
+
+                                </div>
+
+                                <div
+
+                                    id="statProducts"
+
+                                    class="stat-value"
+
+                                >
+
+                                    —
+
+                                </div>
+
+                                <div class="stat-note">
+
+                                    Catalogue disponible
+
+                                </div>
+
+                            </div>
+
+                            <div class="stat-icon blue">
+
+                                <svg
+
+                                    width="21"
+
+                                    height="21"
+
+                                    viewBox="0 0 24 24"
+
+                                    fill="none"
+
+                                    stroke="currentColor"
+
+                                    stroke-width="1.8"
+
+                                >
+
+                                    <path
+
+                                        d="m12 3 8 4-8 4-8-4 8-4Z"
+
+                                    ></path>
+
+                                    <path
+
+                                        d="m4 12 8 4 8-4"
+
+                                    ></path>
+
+                                    <path
+
+                                        d="m4 17 8 4 8-4"
+
+                                    ></path>
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div>
+
+                                <div class="stat-label">
+
+                                    En attente
+
+                                </div>
+
+                                <div
+
+                                    id="statPending"
+
+                                    class="stat-value"
+
+                                >
+
+                                    —
+
+                                </div>
+
+                                <div class="stat-note">
+
+                                    Commandes à traiter
+
+                                </div>
+
+                            </div>
+
+                            <div class="stat-icon orange">
+
+                                <svg
+
+                                    width="21"
+
+                                    height="21"
+
+                                    viewBox="0 0 24 24"
+
+                                    fill="none"
+
+                                    stroke="currentColor"
+
+                                    stroke-width="1.8"
+
+                                >
+
+                                    <circle
+
+                                        cx="12"
+
+                                        cy="12"
+
+                                        r="9"
+
+                                    ></circle>
+
+                                    <path
+
+                                        d="M12 7v5l3 2"
+
+                                    ></path>
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <article class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div>
+
+                                <div class="stat-label">
+
+                                    Chiffre d'affaires
+
+                                </div>
+
+                                <div
+
+                                    id="statRevenue"
+
+                                    class="stat-value"
+
+                                >
+
+                                    —
+
+                                </div>
+
+                                <div class="stat-note">
+
+                                    Commandes enregistrées
+
+                                </div>
+
+                            </div>
+
+                            <div class="stat-icon green">
+
+                                <svg
+
+                                    width="21"
+
+                                    height="21"
+
+                                    viewBox="0 0 24 24"
+
+                                    fill="none"
+
+                                    stroke="currentColor"
+
+                                    stroke-width="1.8"
+
+                                >
+
+                                    <path
+
+                                        d="M12 2v20"
+
+                                    ></path>
+
+                                    <path
+
+                                        d="M17 5.5c-1.2-1-2.9-1.5-5-1.5
+
+                                           -3 0-5 1.4-5 3.5
+
+                                           0 5 10 2.5 10 7
+
+                                           0 2.1-2 3.5-5 3.5
+
+                                           -2.1 0-3.8-.5-5-1.5"
+
+                                    ></path>
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+                <!-- GRILLE -->
+
+                <section class="dashboard-grid">
+
+                    <!-- COMMANDES RÉCENTES -->
+
+                    <article class="card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                Commandes récentes
+
+                            </div>
+
+                            <a
+
+                                href="commandes.html"
+
+                                class="card-link"
+
+                            >
+
+                                Voir toutes
+
+                            </a>
+
+                        </div>
+
+                        <div
+
+                            id="ordersList"
+
+                            class="orders-list"
+
+                        >
+
+                            <div class="empty-state">
+
+                                Chargement des commandes...
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <!-- ACTIONS RAPIDES -->
+
+                    <article class="card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                Actions rapides
+
+                            </div>
+
+                        </div>
+
+                        <div class="quick-actions">
+
+                            <a
+
+                                href="produits.html"
+
+                                class="quick-action"
+
+                            >
+
+                                <div class="quick-action-icon">
+
+                                    <svg
+
+                                        width="18"
+
+                                        height="18"
+
+                                        viewBox="0 0 24 24"
+
+                                        fill="none"
+
+                                        stroke="currentColor"
+
+                                        stroke-width="1.8"
+
+                                    >
+
+                                        <path
+
+                                            d="m12 3 8 4-8 4-8-4 8-4Z"
+
+                                        ></path>
+
+                                        <path
+
+                                            d="m4 12 8 4 8-4"
+
+                                        ></path>
+
+                                    </svg>
+
+                                </div>
+
+                                <div class="quick-action-content">
+
+                                    <div class="quick-action-title">
+
+                                        Ajouter un produit
+
+                                    </div>
+
+                                    <div class="quick-action-description">
+
+                                        Créer un nouvel article
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                            <a
+
+                                href="categories.html"
+
+                                class="quick-action"
+
+                            >
+
+                                <div class="quick-action-icon">
+
+                                    <svg
+
+                                        width="18"
+
+                                        height="18"
+
+                                        viewBox="0 0 24 24"
+
+                                        fill="none"
+
+                                        stroke="currentColor"
+
+                                        stroke-width="1.8"
+
+                                    >
+
+                                        <path
+
+                                            d="M4 6h16"
+
+                                        ></path>
+
+                                        <path
+
+                                            d="M4 12h16"
+
+                                        ></path>
+
+                                        <path
+
+                                            d="M4 18h16"
+
+                                        ></path>
+
+                                    </svg>
+
+                                </div>
+
+                                <div class="quick-action-content">
+
+                                    <div class="quick-action-title">
+
+                                        Gérer les catégories
+
+                                    </div>
+
+                                    <div class="quick-action-description">
+
+                                        Organiser votre catalogue
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                            <a
+
+                                href="promotions.html"
+
+                                class="quick-action"
+
+                            >
+
+                                <div class="quick-action-icon">
+
+                                    <svg
+
+                                        width="18"
+
+                                        height="18"
+
+                                        viewBox="0 0 24 24"
+
+                                        fill="none"
+
+                                        stroke="currentColor"
+
+                                        stroke-width="1.8"
+
+                                    >
+
+                                        <path
+
+                                            d="M20 12 12 20 4 12V5a2 2 0 0 1 2-2h7l7 7Z"
+
+                                        ></path>
+
+                                        <circle
+
+                                            cx="8"
+
+                                            cy="7"
+
+                                            r="1"
+
+                                        ></circle>
+
+                                    </svg>
+
+                                </div>
+
+                                <div class="quick-action-content">
+
+                                    <div class="quick-action-title">
+
+                                        Créer une promotion
+
+                                    </div>
+
+                                    <div class="quick-action-description">
+
+                                        Mettre des produits en promotion
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                            <a
+
+                                href="commandes.html"
+
+                                class="quick-action"
+
+                            >
+
+                                <div class="quick-action-icon">
+
+                                    <svg
+
+                                        width="18"
+
+                                        height="18"
+
+                                        viewBox="0 0 24 24"
+
+                                        fill="none"
+
+                                        stroke="currentColor"
+
+                                        stroke-width="1.8"
+
+                                    >
+
+                                        <path
+
+                                            d="M6 2h12l2 4v15H4V6l2-4Z"
+
+                                        ></path>
+
+                                        <path
+
+                                            d="M4 6h16"
+
+                                        ></path>
+
+                                        <path
+
+                                            d="M8 10h8"
+
+                                        ></path>
+
+                                    </svg>
+
+                                </div>
+
+                                <div class="quick-action-content">
+
+                                    <div class="quick-action-title">
+
+                                        Gérer les commandes
+
+                                    </div>
+
+                                    <div class="quick-action-description">
+
+                                        Consulter et traiter les commandes
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <!-- ÉTAT SYSTÈME -->
+
+                    <article class="card">
+
+                        <div class="card-header">
+
+                            <div class="card-title">
+
+                                État du système
+
+                            </div>
+
+                        </div>
+
+                        <div class="system-list">
+
+                            <div class="system-row">
+
+                                <span class="system-label">
+
+                                    Supabase
+
+                                </span>
+
+                                <span
+
+                                    id="supabaseStatus"
+
+                                    class="system-status"
+
+                                >
+
+                                    <span class="system-dot"></span>
+
+                                    Vérification
+
+                                </span>
+
+                            </div>
+
+                            <div class="system-row">
+
+                                <span class="system-label">
+
+                                    Authentification
+
+                                </span>
+
+                                <span
+
+                                    id="authStatus"
+
+                                    class="system-status"
+
+                                >
+
+                                    <span class="system-dot"></span>
+
+                                    Vérification
+
+                                </span>
+
+                            </div>
+
+                            <div class="system-row">
+
+                                <span class="system-label">
+
+                                    Compte administrateur
+
+                                </span>
+
+                                <span
+
+                                    id="adminStatus"
+
+                                    class="system-status"
+
+                                >
+
+                                    <span class="system-dot"></span>
+
+                                    Vérification
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+
+        (function () {
+
+            "use strict";
+
+            /* =================================================
+
+               ELEMENTS
+
+            ================================================== */
+
+            const authLoading =
+
+                document.getElementById(
+
+                    "authLoading"
+
+                );
+
+            const adminApp =
+
+                document.getElementById(
+
+                    "adminApp"
+
+                );
+
+            const adminEmail =
+
+                document.getElementById(
+
+                    "adminEmail"
+
+                );
+
+            const secureEmail =
+
+                document.getElementById(
+
+                    "secureEmail"
+
+                );
+
+            const adminAvatar =
+
+                document.getElementById(
+
+                    "adminAvatar"
+
+                );
+
+            const logoutButton =
+
+                document.getElementById(
+
+                    "logoutButton"
+
+                );
+
+            const mobileMenuButton =
+
+                document.getElementById(
+
+                    "mobileMenuButton"
+
+                );
+
+            const sidebar =
+
+                document.getElementById(
+
+                    "sidebar"
+
+                );
+
+            const sidebarOverlay =
+
+                document.getElementById(
+
+                    "sidebarOverlay"
+
+                );
+
+            /* =================================================
+
+               REDIRECTION LOGIN
+
+            ================================================== */
+
+            function goToLogin() {
+
+                window.location.replace(
+
+                    "login.html"
+
+                );
+
+            }
+
+            /* =================================================
+
+               AFFICHAGE APPLICATION
+
+            ================================================== */
+
+            function showApplication() {
+
+                authLoading.style.display =
+
+                    "none";
+
+                adminApp.style.display =
+
+                    "flex";
+
+            }
+
+            /* =================================================
+
+               STATUT SYSTÈME
+
+            ================================================== */
+
+            function setSystemStatus(
+
+                element,
+
+                success,
+
+                successText,
+
+                errorText
+
+            ) {
+
+                if (!element) {
+
+                    return;
+
+                }
+
+                if (success) {
+
+                    element.className =
+
+                        "system-status";
+
+                    element.innerHTML = `
+
+                        <span class="system-dot"></span>
+
+                        ${successText}
+
+                    `;
+
+                } else {
+
+                    element.className =
+
+                        "system-status error";
+
+                    element.innerHTML = `
+
+                        <span class="system-dot"></span>
+
+                        ${errorText}
+
+                    `;
+
+                }
+
+            }
+
+            /* =================================================
+
+               FORMAT FCFA
+
+            ================================================== */
+
+            function formatCurrency(value) {
+
+                const number =
+
+                    Number(value || 0);
+
+                return (
+
+                    new Intl.NumberFormat(
+
+                        "fr-FR"
+
+                    ).format(number)
+
+                    + " FCFA"
+
+                );
+
+            }
+
+            /* =================================================
+
+               FORMAT DATE
+
+            ================================================== */
+
+            function formatDate(value) {
+
+                if (!value) {
+
+                    return "—";
+
+                }
+
+                try {
+
+                    return new Intl.DateTimeFormat(
+
+                        "fr-FR",
+
+                        {
+
+                            day: "2-digit",
+
+                            month: "2-digit",
+
+                            year: "numeric",
+
+                            hour: "2-digit",
+
+                            minute: "2-digit"
+
+                        }
+
+                    ).format(
+
+                        new Date(value)
+
+                    );
+
+                } catch (error) {
+
+                    return "—";
+
+                }
+
+            }
+
+            /* =================================================
+
+               ÉCHAPPEMENT HTML
+
+            ================================================== */
+
+            function escapeHtml(value) {
+
+                return String(
+
+                    value ?? ""
+
+                )
+
+                    .replace(
+
+                        /&/g,
+
+                        "&amp;"
+
+                    )
+
+                    .replace(
+
+                        /</g,
+
+                        "&lt;"
+
+                    )
+
+                    .replace(
+
+                        />/g,
+
+                        "&gt;"
+
+                    )
+
+                    .replace(
+
+                        /"/g,
+
+                        "&quot;"
+
+                    )
+
+                    .replace(
+
+                        /'/g,
+
+                        "&#039;"
+
+                    );
+
+            }
+
+            /* =================================================
+
+               STATUT COMMANDE
+
+            ================================================== */
+
+            function getStatusClass(status) {
+
+                const normalized =
+
+                    String(
+
+                        status || ""
+
+                    )
+
+                        .toLowerCase()
+
+                        .trim();
+
+                if (
+
+                    normalized.includes(
+
+                        "confirm"
+
+                    )
+
+                ) {
+
+                    return "confirmed";
+
+                }
+
+                if (
+
+                    normalized.includes(
+
+                        "prépar"
+
+                    ) ||
+
+                    normalized.includes(
+
+                        "prepar"
+
+                    )
+
+                ) {
+
+                    return "preparing";
+
+                }
+
+                if (
+
+                    normalized.includes(
+
+                        "expédi"
+
+                    ) ||
+
+                    normalized.includes(
+
+                        "expedi"
+
+                    )
+
+                ) {
+
+                    return "shipped";
+
+                }
+
+                if (
+
+                    normalized.includes(
+
+                        "livr"
+
+                    )
+
+                ) {
+
+                    return "delivered";
+
+                }
+
+                if (
+
+                    normalized.includes(
+
+                        "annul"
+
+                    )
+
+                ) {
+
+                    return "cancelled";
+
+                }
+
+                return "new";
+
+            }
+
+            /* =================================================
+
+               CHARGER LES STATISTIQUES
+
+            ================================================== */
+
+            async function loadDashboardStats() {
+
+                const supabaseClient =
+
+                    window.niniceSupabase;
+
+                try {
+
+                    const {
+
+                        data,
+
+                        error
+
+                    } =
+
+                        await supabaseClient
+
+                            .rpc(
+
+                                "admin_get_dashboard_stats"
+
+                            );
+
+                    if (error) {
+
+                        console.error(
+
+                            "Erreur statistiques :",
+
+                            error
+
+                        );
+
+                        return;
+
+                    }
+
+                    let stats = data;
+
+                    /*
+
+                     * Certaines fonctions RPC renvoient
+
+                     * directement un objet.
+
+                     */
+
+                    if (
+
+                        Array.isArray(stats)
+
+                    ) {
+
+                        stats =
+
+                            stats[0] || {};
+
+                    }
+
+                    stats =
+
+                        stats || {};
+
+                    const orders =
+
+                        stats.orders ??
+
+                        stats.total_orders ??
+
+                        stats.order_count ??
+
+                        stats.commandes ??
+
+                        0;
+
+                    const products =
+
+                        stats.products ??
+
+                        stats.total_products ??
+
+                        stats.product_count ??
+
+                        stats.produits ??
+
+                        0;
+
+                    const pending =
+
+                        stats.pending ??
+
+                        stats.pending_orders ??
+
+                        stats.new_orders ??
+
+                        stats.pending_count ??
+
+                        stats.en_attente ??
+
+                        0;
+
+                    const revenue =
+
+                        stats.revenue ??
+
+                        stats.total_revenue ??
+
+                        stats.chiffre_affaires ??
+
+                        stats.sales ??
+
+                        0;
+
+                    document.getElementById(
+
+                        "statOrders"
+
+                    ).textContent =
+
+                        Number(
+
+                            orders
+
+                        ).toLocaleString(
+
+                            "fr-FR"
+
+                        );
+
+                    document.getElementById(
+
+                        "statProducts"
+
+                    ).textContent =
+
+                        Number(
+
+                            products
+
+                        ).toLocaleString(
+
+                            "fr-FR"
+
+                        );
+
+                    document.getElementById(
+
+                        "statPending"
+
+                    ).textContent =
+
+                        Number(
+
+                            pending
+
+                        ).toLocaleString(
+
+                            "fr-FR"
+
+                        );
+
+                    document.getElementById(
+
+                        "statRevenue"
+
+                    ).textContent =
+
+                        formatCurrency(
+
+                            revenue
+
+                        );
+
+                } catch (error) {
+
+                    console.error(
+
+                        "Erreur statistiques :",
+
+                        error
+
+                    );
+
+                }
+
+            }
+
+            /* =================================================
+
+               COMMANDES RÉCENTES
+
+            ================================================== */
+
+            async function loadRecentOrders() {
+
+                const container =
+
+                    document.getElementById(
+
+                        "ordersList"
+
+                    );
+
+                try {
+
+                    const {
+
+                        data,
+
+                        error
+
+                    } =
+
+                        await window
+
+                            .niniceSupabase
+
+                            .rpc(
+
+                                "admin_get_orders"
+
+                            );
+
+                    if (error) {
+
+                        console.error(
+
+                            "Erreur commandes :",
+
+                            error
+
+                        );
+
+                        container.innerHTML = `
+
+                            <div class="empty-state">
+
+                                Impossible de charger les commandes.
+
+                            </div>
+
+                        `;
+
+                        return;
+
+                    }
+
+                    let orders =
+
+                        Array.isArray(data)
+
+                            ? data
+
+                            : [];
+
+                    /*
+
+                     * Les plus récentes en premier.
+
+                     */
+
+                    orders =
+
+                        orders
+
+                            .slice()
+
+                            .sort(
+
+                                function (a, b) {
+
+                                    return (
+
+                                        new Date(
+
+                                            b.created_at ||
+
+                                            b.date ||
+
+                                            0
+
+                                        ) -
+
+                                        new Date(
+
+                                            a.created_at ||
+
+                                            a.date ||
+
+                                            0
+
+                                        )
+
+                                    );
+
+                                }
+
+                            )
+
+                            .slice(
+
+                                0,
+
+                                6
+
+                            );
+
+                    if (!orders.length) {
+
+                        container.innerHTML = `
+
+                            <div class="empty-state">
+
+                                Aucune commande pour le moment.
+
+                            </div>
+
+                        `;
+
+                        return;
+
+                    }
+
+                    container.innerHTML =
+
+                        orders
+
+                            .map(
+
+                                function (order) {
+
+                                    const number =
+
+                                        order.order_number ||
+
+                                        order.orderNumber ||
+
+                                        order.reference ||
+
+                                        order.id ||
+
+                                        "—";
+
+                                    const customer =
+
+                                        [
+
+                                            order.first_name,
+
+                                            order.last_name
+
+                                        ]
+
+                                            .filter(Boolean)
+
+                                            .join(" ") ||
+
+                                        order.customer_name ||
+
+                                        "Client";
+
+                                    const status =
+
+                                        order.status ||
+
+                                        "Nouvelle";
+
+                                    const statusClass =
+
+                                        getStatusClass(
+
+                                            status
+
+                                        );
+
+                                    return `
+
+                                        <div class="order-row">
+
+                                            <div>
+
+                                                <div class="order-number">
+
+                                                    ${escapeHtml(number)}
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="order-customer">
+
+                                                ${escapeHtml(customer)}
+
+                                            </div>
+
+                                            <div class="order-date">
+
+                                                ${escapeHtml(
+
+                                                    formatDate(
+
+                                                        order.created_at ||
+
+                                                        order.date
+
+                                                    )
+
+                                                )}
+
+                                            </div>
+
+                                            <div class="order-status">
+
+                                                <span class="status ${statusClass}">
+
+                                                    ${escapeHtml(status)}
+
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    `;
+
+                                }
+
+                            )
+
+                            .join("");
+
+                } catch (error) {
+
+                    console.error(
+
+                        "Erreur commandes :",
+
+                        error
+
+                    );
+
+                    container.innerHTML = `
+
+                        <div class="empty-state">
+
+                            Impossible de charger les commandes.
+
+                        </div>
+
+                    `;
+
+                }
+
+            }
+
+            /* =================================================
+
+               MENU MOBILE
+
+            ================================================== */
+
+            function openSidebar() {
+
+                sidebar.classList.add(
+
+                    "open"
+
+                );
+
+                sidebarOverlay.classList.add(
+
+                    "active"
+
+                );
+
+            }
+
+            function closeSidebar() {
+
+                sidebar.classList.remove(
+
+                    "open"
+
+                );
+
+                sidebarOverlay.classList.remove(
+
+                    "active"
+
+                );
+
+            }
+
+            mobileMenuButton.addEventListener(
+
+                "click",
+
+                function () {
+
+                    if (
+
+                        sidebar.classList.contains(
+
+                            "open"
+
+                        )
+
+                    ) {
+
+                        closeSidebar();
+
+                    } else {
+
+                        openSidebar();
+
+                    }
+
+                }
+
+            );
+
+            sidebarOverlay.addEventListener(
+
+                "click",
+
+                closeSidebar
+
+            );
+
+            document
+
+                .querySelectorAll(
+
+                    ".nav-item"
+
+                )
+
+                .forEach(
+
+                    function (link) {
+
+                        link.addEventListener(
+
+                            "click",
+
+                            closeSidebar
+
+                        );
+
+                    }
+
+                );
+
+            /* =================================================
+
+               DÉCONNEXION
+
+            ================================================== */
+
+            logoutButton.addEventListener(
+
+                "click",
+
+                async function () {
+
+                    logoutButton.disabled =
+
+                        true;
+
+                    try {
+
+                        await window
+
+                            .niniceSupabase
+
+                            .auth
+
+                            .signOut();
+
+                    } catch (error) {
+
+                        console.error(
+
+                            "Erreur déconnexion :",
+
+                            error
+
+                        );
+
+                    }
+
+                    goToLogin();
+
+                }
+
+            );
+
+            /* =================================================
+
+               VÉRIFICATION ADMINISTRATEUR
+
+            ================================================== */
+
+            async function verifyAdmin() {
+
+                const supabaseClient =
+
+                    window.niniceSupabase;
+
+                /*
+
+                 * Vérification de la bibliothèque.
+
+                 */
+
+                if (
+
+                    !supabaseClient ||
+
+                    !window.NINICE_SUPABASE_READY
+
+                ) {
+
+                    goToLogin();
+
+                    return false;
+
+                }
+
+                try {
+
+                    /*
+
+                     * 1. Vérifier la session Supabase.
+
+                     */
+
+                    const {
+
+                        data: sessionData,
+
+                        error: sessionError
+
+                    } =
+
+                        await supabaseClient
+
+                            .auth
+
+                            .getSession();
+
+                    if (
+
+                        sessionError ||
+
+                        !sessionData ||
+
+                        !sessionData.session
+
+                    ) {
+
+                        goToLogin();
+
+                        return false;
+
+                    }
+
+                    const user =
+
+                        sessionData.session.user;
+
+                    if (!user) {
+
+                        goToLogin();
+
+                        return false;
+
+                    }
+
+                    /*
+
+                     * 2. Vérification réelle du rôle
+
+                     *    administrateur côté Supabase.
+
+                     */
+
+                    const {
+
+                        data: adminResult,
+
+                        error: adminError
+
+                    } =
+
+                        await supabaseClient
+
+                            .rpc(
+
+                                "is_admin"
+
+                            );
+
+                    if (
+
+                        adminError
+
+                    ) {
+
+                        console.error(
+
+                            "Erreur vérification admin :",
+
+                            adminError
+
+                        );
+
+                        setSystemStatus(
+
+                            document.getElementById(
+
+                                "adminStatus"
+
+                            ),
+
+                            false,
+
+                            "Autorisé",
+
+                            "Erreur"
+
+                        );
+
+                        goToLogin();
+
+                        return false;
+
+                    }
+
+                    if (
+
+                        adminResult !== true
+
+                    ) {
+
+                        console.warn(
+
+                            "Utilisateur non administrateur."
+
+                        );
+
+                        goToLogin();
+
+                        return false;
+
+                    }
+
+                    /*
+
+                     * 3. Afficher les informations du compte.
+
+                     */
+
+                    const email =
+
+                        user.email ||
+
+                        "Administrateur";
+
+                    adminEmail.textContent =
+
+                        email;
+
+                    secureEmail.textContent =
+
+                        "Compte autorisé : " +
+
+                        email;
+
+                    const firstLetter =
+
+                        email
+
+                            .charAt(0)
+
+                            .toUpperCase();
+
+                    adminAvatar.textContent =
+
+                        firstLetter;
+
+                    /*
+
+                     * 4. Statuts système.
+
+                     */
+
+                    setSystemStatus(
+
+                        document.getElementById(
+
+                            "supabaseStatus"
+
+                        ),
+
+                        true,
+
+                        "Connecté",
+
+                        "Erreur"
+
+                    );
+
+                    setSystemStatus(
+
+                        document.getElementById(
+
+                            "authStatus"
+
+                        ),
+
+                        true,
+
+                        "Connecté",
+
+                        "Erreur"
+
+                    );
+
+                    setSystemStatus(
+
+                        document.getElementById(
+
+                            "adminStatus"
+
+                        ),
+
+                        true,
+
+                        "Autorisé",
+
+                        "Refusé"
+
+                    );
+
+                    /*
+
+                     * 5. Afficher l'application.
+
+                     */
+
+                    showApplication();
+
+                    /*
+
+                     * 6. Charger le tableau de bord.
+
+                     */
+
+                    await Promise.all([
+
+                        loadDashboardStats(),
+
+                        loadRecentOrders()
+
+                    ]);
+
+                    return true;
+
+                } catch (error) {
+
+                    console.error(
+
+                        "Erreur de sécurité :",
+
+                        error
+
+                    );
+
+                    goToLogin();
+
+                    return false;
+
+                }
+
+            }
+
+            /* =================================================
+
+               SURVEILLANCE DE LA SESSION
+
+            ================================================== */
+
+            window
+
+                .niniceSupabase
+
+                .auth
+
+                .onAuthStateChange(
+
+                    function (
+
+                        event,
+
+                        session
+
+                    ) {
+
+                        /*
+
+                         * Si l'utilisateur est déconnecté
+
+                         * alors que le tableau de bord est ouvert,
+
+                         * on retourne immédiatement à la connexion.
+
+                         */
+
+                        if (
+
+                            event ===
+
+                                "SIGNED_OUT" ||
+
+                            !session
+
+                        ) {
+
+                            goToLogin();
+
+                        }
+
+                    }
+
+                );
+
+            /* =================================================
+
+               DÉMARRAGE
+
+            ================================================== */
+
+            verifyAdmin();
+
+        })();
+
+    </script>
+
+</body>
+
+</html>
