@@ -4,67 +4,1915 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Où nous trouver | NINICE BOUTIQUE</title>
+    <title>Où nous trouver | NINICE BOUTIQUE</title>
 
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta
 
-<link rel="stylesheet" href="../assets/css/responsive.css">
+        name="description"
+
+        content="Retrouvez NINICE BOUTIQUE, ses informations de localisation, ses horaires et les moyens de nous contacter."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        :root {
+
+            --local-purple: #6d28d9;
+
+            --local-purple-dark: #4c1d95;
+
+            --local-purple-light: #f5f3ff;
+
+            --local-border: #e9e5f5;
+
+            --local-text: #1f172a;
+
+            --local-muted: #6b6475;
+
+            --local-white: #ffffff;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family: "DM Sans", sans-serif;
+
+            color: var(--local-text);
+
+            background: #ffffff;
+
+        }
+
+        a {
+
+            text-decoration: none;
+
+        }
+
+        .location-page {
+
+            min-height: 60vh;
+
+        }
+
+        .location-hero {
+
+            padding: 70px 20px 60px;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #faf8ff 0%,
+
+                    #f4efff 50%,
+
+                    #ffffff 100%
+
+                );
+
+            border-bottom: 1px solid var(--local-border);
+
+        }
+
+        .location-hero-inner {
+
+            width: min(1150px, 100%);
+
+            margin: 0 auto;
+
+            text-align: center;
+
+        }
+
+        .location-eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 16px;
+
+            padding: 8px 14px;
+
+            border-radius: 999px;
+
+            background: #ffffff;
+
+            color: var(--local-purple);
+
+            border: 1px solid #e7defc;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.04em;
+
+            text-transform: uppercase;
+
+        }
+
+        .location-hero h1 {
+
+            margin: 0 auto 16px;
+
+            max-width: 800px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(36px, 6vw, 58px);
+
+            line-height: 1.08;
+
+            color: var(--local-purple-dark);
+
+        }
+
+        .location-hero p {
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            color: var(--local-muted);
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+        }
+
+        .location-content {
+
+            width: min(1150px, calc(100% - 40px));
+
+            margin: 0 auto;
+
+            padding: 65px 0 80px;
+
+        }
+
+        .location-grid {
+
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+            gap: 28px;
+
+            align-items: stretch;
+
+        }
+
+        .location-card {
+
+            background: var(--local-white);
+
+            border: 1px solid var(--local-border);
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow: 0 12px 35px rgba(76, 29, 149, 0.06);
+
+        }
+
+        .location-card h2 {
+
+            margin: 0 0 24px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 28px;
+
+            color: var(--local-purple-dark);
+
+        }
+
+        .location-item {
+
+            display: flex;
+
+            gap: 16px;
+
+            padding: 18px 0;
+
+            border-bottom: 1px solid #f0edf7;
+
+        }
+
+        .location-item:first-of-type {
+
+            padding-top: 0;
+
+        }
+
+        .location-item:last-child {
+
+            border-bottom: none;
+
+            padding-bottom: 0;
+
+        }
+
+        .location-icon {
+
+            flex: 0 0 44px;
+
+            width: 44px;
+
+            height: 44px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: var(--local-purple-light);
+
+            color: var(--local-purple);
+
+        }
+
+        .location-icon svg {
+
+            width: 21px;
+
+            height: 21px;
+
+            stroke: currentColor;
+
+        }
+
+        .location-item-content {
+
+            min-width: 0;
+
+        }
+
+        .location-item-label {
+
+            margin-bottom: 5px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.04em;
+
+            color: var(--local-muted);
+
+        }
+
+        .location-item-value {
+
+            color: var(--local-text);
+
+            font-size: 16px;
+
+            line-height: 1.65;
+
+            overflow-wrap: anywhere;
+
+        }
+
+        .location-empty {
+
+            color: var(--local-muted);
+
+            font-style: italic;
+
+        }
+
+        .location-map-card {
+
+            min-height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+        .location-map-placeholder {
+
+            flex: 1;
+
+            min-height: 310px;
+
+            border-radius: 18px;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #faf8ff,
+
+                    #f2ecff
+
+                );
+
+            border: 1px solid #e9e0fc;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 30px;
+
+        }
+
+        .location-map-placeholder svg {
+
+            width: 48px;
+
+            height: 48px;
+
+            margin-bottom: 18px;
+
+            color: var(--local-purple);
+
+            stroke: currentColor;
+
+        }
+
+        .location-map-placeholder h3 {
+
+            margin: 0 0 8px;
+
+            color: var(--local-purple-dark);
+
+            font-size: 20px;
+
+        }
+
+        .location-map-placeholder p {
+
+            max-width: 450px;
+
+            margin: 0;
+
+            color: var(--local-muted);
+
+            line-height: 1.7;
+
+        }
+
+        .location-map-frame {
+
+            width: 100%;
+
+            min-height: 310px;
+
+            border: 0;
+
+            border-radius: 18px;
+
+        }
+
+        .location-actions {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 24px;
+
+        }
+
+        .location-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding: 0 20px;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+
+                transform 0.2s ease,
+
+                box-shadow 0.2s ease,
+
+                background 0.2s ease;
+
+        }
+
+        .location-button:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+        .location-button-primary {
+
+            background: var(--local-purple);
+
+            color: #ffffff;
+
+            box-shadow: 0 8px 20px rgba(109, 40, 217, 0.2);
+
+        }
+
+        .location-button-primary:hover {
+
+            background: var(--local-purple-dark);
+
+        }
+
+        .location-button-secondary {
+
+            background: #ffffff;
+
+            color: var(--local-purple);
+
+            border: 1px solid #ddd2f7;
+
+        }
+
+        .location-button-secondary:hover {
+
+            background: var(--local-purple-light);
+
+        }
+
+        .location-button svg {
+
+            width: 18px;
+
+            height: 18px;
+
+            margin-right: 8px;
+
+            stroke: currentColor;
+
+        }
+
+        .location-info-section {
+
+            margin-top: 55px;
+
+        }
+
+        .location-section-title {
+
+            margin-bottom: 25px;
+
+            text-align: center;
+
+        }
+
+        .location-section-title h2 {
+
+            margin: 0 0 10px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 32px;
+
+            color: var(--local-purple-dark);
+
+        }
+
+        .location-section-title p {
+
+            margin: 0 auto;
+
+            max-width: 650px;
+
+            color: var(--local-muted);
+
+            line-height: 1.7;
+
+        }
+
+        .location-info-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .location-info-card {
+
+            padding: 25px;
+
+            background: #ffffff;
+
+            border: 1px solid var(--local-border);
+
+            border-radius: 18px;
+
+        }
+
+        .location-info-card h3 {
+
+            margin: 0 0 9px;
+
+            color: var(--local-purple-dark);
+
+            font-size: 18px;
+
+        }
+
+        .location-info-card p {
+
+            margin: 0;
+
+            color: var(--local-muted);
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+        }
+
+        .location-bottom-cta {
+
+            margin-top: 45px;
+
+            padding: 35px;
+
+            border-radius: 22px;
+
+            background: var(--local-purple-light);
+
+            border: 1px solid #e5dbfa;
+
+            text-align: center;
+
+        }
+
+        .location-bottom-cta h2 {
+
+            margin: 0 0 10px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 30px;
+
+            color: var(--local-purple-dark);
+
+        }
+
+        .location-bottom-cta p {
+
+            max-width: 650px;
+
+            margin: 0 auto 22px;
+
+            color: var(--local-muted);
+
+            line-height: 1.7;
+
+        }
+
+        .location-loading {
+
+            color: var(--local-muted);
+
+            text-align: center;
+
+            padding: 20px;
+
+        }
+
+        .location-error {
+
+            color: #b42318;
+
+            background: #fff4f2;
+
+            border: 1px solid #f4c7c2;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            line-height: 1.6;
+
+        }
+
+        @media (max-width: 850px) {
+
+            .location-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .location-info-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .location-map-placeholder,
+
+            .location-map-frame {
+
+                min-height: 280px;
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .location-hero {
+
+                padding: 50px 18px 45px;
+
+            }
+
+            .location-hero p {
+
+                font-size: 15px;
+
+            }
+
+            .location-content {
+
+                width: min(100% - 28px, 1150px);
+
+                padding: 45px 0 60px;
+
+            }
+
+            .location-card {
+
+                padding: 22px;
+
+                border-radius: 18px;
+
+            }
+
+            .location-card h2 {
+
+                font-size: 25px;
+
+            }
+
+            .location-item {
+
+                gap: 12px;
+
+            }
+
+            .location-icon {
+
+                flex-basis: 40px;
+
+                width: 40px;
+
+                height: 40px;
+
+            }
+
+            .location-item-value {
+
+                font-size: 15px;
+
+            }
+
+            .location-actions {
+
+                flex-direction: column;
+
+            }
+
+            .location-button {
+
+                width: 100%;
+
+            }
+
+            .location-bottom-cta {
+
+                padding: 28px 20px;
+
+            }
+
+            .location-bottom-cta h2 {
+
+                font-size: 26px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div id="site-header"></div>
+    <!-- HEADER / NAVIGATION -->
 
-<main>
+    <header id="site-header"></header>
 
-<section class="page-section">
+    <main class="location-page">
 
-<div class="container">
+        <!-- HERO -->
 
-<span class="eyebrow">NINICE BOUTIQUE</span>
+        <section class="location-hero">
 
-<h1>Où nous trouver</h1>
+            <div class="location-hero-inner">
 
-<div class="page-card">
+                <div class="location-eyebrow">
 
-<h2>Notre localisation</h2>
+                    Où nous trouver
 
-<p>
+                </div>
 
-Les informations concernant notre adresse,
+                <h1>
 
-notre ville, notre commune et notre localisation
+                    Retrouvez NINICE BOUTIQUE
 
-seront affichées ici.
+                </h1>
 
-</p>
+                <p>
 
-<div id="shop-location"></div>
+                    Consultez nos informations de localisation, nos horaires
 
-</div>
+                    et les moyens disponibles pour nous contacter ou préparer
 
-</div>
+                    votre venue.
 
-</section>
+                </p>
 
-</main>
+            </div>
 
-<div id="site-footer"></div>
+        </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <!-- CONTENU -->
 
-<script src="../assets/js/config.js"></script>
+        <section class="location-content">
 
-<script src="../assets/js/supabase.js"></script>
+            <div class="location-grid">
 
-<script src="../assets/js/common.js"></script>
+                <!-- INFORMATIONS DE LOCALISATION -->
 
-<script src="../assets/js/navigation.js"></script>
+                <article class="location-card">
+
+                    <h2>
+
+                        Nos informations
+
+                    </h2>
+
+                    <div id="location-details">
+
+                        <div class="location-loading">
+
+                            Chargement des informations...
+
+                        </div>
+
+                    </div>
+
+                    <div
+
+                        class="location-actions"
+
+                        id="location-actions"
+
+                        style="display:none;"
+
+                    ></div>
+
+                </article>
+
+                <!-- CARTE -->
+
+                <article class="location-card location-map-card">
+
+                    <h2>
+
+                        Localisation
+
+                    </h2>
+
+                    <div id="location-map">
+
+                        <div class="location-map-placeholder">
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+
+                                <circle cx="12" cy="10" r="2.5"></circle>
+
+                            </svg>
+
+                            <h3>
+
+                                Notre emplacement
+
+                            </h3>
+
+                            <p>
+
+                                La carte sera affichée automatiquement lorsque
+
+                                le lien de localisation sera renseigné dans
+
+                                les paramètres de la boutique.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <!-- INFORMATIONS PRATIQUES -->
+
+            <section class="location-info-section">
+
+                <div class="location-section-title">
+
+                    <h2>
+
+                        Informations pratiques
+
+                    </h2>
+
+                    <p>
+
+                        Quelques informations utiles avant de nous rendre
+
+                        visite ou de passer votre commande.
+
+                    </p>
+
+                </div>
+
+                <div class="location-info-grid">
+
+                    <article class="location-info-card">
+
+                        <h3>
+
+                            Avant de venir
+
+                        </h3>
+
+                        <p>
+
+                            Vérifiez l’adresse, les horaires et les informations
+
+                            de contact de la boutique avant votre déplacement.
+
+                        </p>
+
+                    </article>
+
+                    <article class="location-info-card">
+
+                        <h3>
+
+                            Livraison
+
+                        </h3>
+
+                        <p>
+
+                            Si vous ne pouvez pas vous déplacer, consultez la
+
+                            page Livraison pour connaître les modalités
+
+                            disponibles.
+
+                        </p>
+
+                    </article>
+
+                    <article class="location-info-card">
+
+                        <h3>
+
+                            Besoin d'aide ?
+
+                        </h3>
+
+                        <p>
+
+                            Notre page Contact vous permet de retrouver les
+
+                            différents moyens de communication avec NINICE
+
+                            BOUTIQUE.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- CTA -->
+
+            <section class="location-bottom-cta">
+
+                <h2>
+
+                    Une question avant votre venue ?
+
+                </h2>
+
+                <p>
+
+                    Contactez NINICE BOUTIQUE pour obtenir une information
+
+                    complémentaire sur la localisation, les horaires ou
+
+                    votre commande.
+
+                </p>
+
+                <a
+
+                    href="contact.html"
+
+                    class="location-button location-button-primary"
+
+                >
+
+                    Nous contacter
+
+                </a>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer id="site-footer"></footer>
+
+    <!-- SCRIPTS -->
+
+    <script src="../assets/js/config.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async function () {
+
+            const details =
+
+                document.getElementById("location-details");
+
+            const mapContainer =
+
+                document.getElementById("location-map");
+
+            const actions =
+
+                document.getElementById("location-actions");
+
+            function escapeHtml(value) {
+
+                if (value === null || value === undefined) {
+
+                    return "";
+
+                }
+
+                return String(value)
+
+                    .replace(/&/g, "&amp;")
+
+                    .replace(/</g, "&lt;")
+
+                    .replace(/>/g, "&gt;")
+
+                    .replace(/"/g, "&quot;")
+
+                    .replace(/'/g, "&#039;");
+
+            }
+
+            function firstExisting(object, keys) {
+
+                for (const key of keys) {
+
+                    if (
+
+                        object &&
+
+                        object[key] !== undefined &&
+
+                        object[key] !== null &&
+
+                        String(object[key]).trim() !== ""
+
+                    ) {
+
+                        return object[key];
+
+                    }
+
+                }
+
+                return "";
+
+            }
+
+            function displayValue(value, fallback) {
+
+                if (
+
+                    value === null ||
+
+                    value === undefined ||
+
+                    String(value).trim() === ""
+
+                ) {
+
+                    return `
+
+                        <span class="location-empty">
+
+                            ${escapeHtml(fallback)}
+
+                        </span>
+
+                    `;
+
+                }
+
+                return escapeHtml(value);
+
+            }
+
+            function locationIcon(type) {
+
+                const icons = {
+
+                    pin: `
+
+                        <svg
+
+                            viewBox="0 0 24 24"
+
+                            fill="none"
+
+                            stroke="currentColor"
+
+                            stroke-width="1.8"
+
+                            stroke-linecap="round"
+
+                            stroke-linejoin="round"
+
+                        >
+
+                            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+
+                            <circle cx="12" cy="10" r="2.5"></circle>
+
+                        </svg>
+
+                    `,
+
+                    city: `
+
+                        <svg
+
+                            viewBox="0 0 24 24"
+
+                            fill="none"
+
+                            stroke="currentColor"
+
+                            stroke-width="1.8"
+
+                            stroke-linecap="round"
+
+                            stroke-linejoin="round"
+
+                        >
+
+                            <path d="M3 21h18"></path>
+
+                            <path d="M6 21V7l6-3v17"></path>
+
+                            <path d="M12 21V9l6-2v14"></path>
+
+                            <path d="M8.5 9h1"></path>
+
+                            <path d="M8.5 12h1"></path>
+
+                            <path d="M8.5 15h1"></path>
+
+                            <path d="M14.5 12h1"></path>
+
+                            <path d="M14.5 15h1"></path>
+
+                        </svg>
+
+                    `,
+
+                    clock: `
+
+                        <svg
+
+                            viewBox="0 0 24 24"
+
+                            fill="none"
+
+                            stroke="currentColor"
+
+                            stroke-width="1.8"
+
+                            stroke-linecap="round"
+
+                            stroke-linejoin="round"
+
+                        >
+
+                            <circle cx="12" cy="12" r="9"></circle>
+
+                            <path d="M12 7v5l3 2"></path>
+
+                        </svg>
+
+                    `,
+
+                    info: `
+
+                        <svg
+
+                            viewBox="0 0 24 24"
+
+                            fill="none"
+
+                            stroke="currentColor"
+
+                            stroke-width="1.8"
+
+                            stroke-linecap="round"
+
+                            stroke-linejoin="round"
+
+                        >
+
+                            <circle cx="12" cy="12" r="9"></circle>
+
+                            <path d="M12 11v5"></path>
+
+                            <path d="M12 8h.01"></path>
+
+                        </svg>
+
+                    `
+
+                };
+
+                return icons[type] || icons.info;
+
+            }
+
+            function addDetail(label, value, icon) {
+
+                return `
+
+                    <div class="location-item">
+
+                        <div class="location-icon">
+
+                            ${locationIcon(icon)}
+
+                        </div>
+
+                        <div class="location-item-content">
+
+                            <div class="location-item-label">
+
+                                ${escapeHtml(label)}
+
+                            </div>
+
+                            <div class="location-item-value">
+
+                                ${value}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+            if (!window.niniceSupabase) {
+
+                details.innerHTML = `
+
+                    <div class="location-error">
+
+                        Les informations de localisation ne sont
+
+                        momentanément pas disponibles.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+            try {
+
+                const {
+
+                    data,
+
+                    error
+
+                } = await window.niniceSupabase
+
+                    .from("shop_settings")
+
+                    .select("*")
+
+                    .limit(1)
+
+                    .maybeSingle();
+
+                if (error) {
+
+                    console.warn(
+
+                        "NINICE BOUTIQUE : shop_settings non disponible.",
+
+                        error
+
+                    );
+
+                    details.innerHTML = `
+
+                        ${addDetail(
+
+                            "Ville",
+
+                            displayValue(
+
+                                "Bouaké",
+
+                                "Non renseignée"
+
+                            ),
+
+                            "city"
+
+                        )}
+
+                        ${addDetail(
+
+                            "Adresse",
+
+                            displayValue(
+
+                                "",
+
+                                "Adresse non renseignée"
+
+                            ),
+
+                            "pin"
+
+                        )}
+
+                        ${addDetail(
+
+                            "Horaires",
+
+                            displayValue(
+
+                                "",
+
+                                "Horaires non renseignés"
+
+                            ),
+
+                            "clock"
+
+                        )}
+
+                    `;
+
+                    return;
+
+                }
+
+                const settings = data || {};
+
+                const city =
+
+                    firstExisting(settings, [
+
+                        "city",
+
+                        "ville"
+
+                    ]) || "Bouaké";
+
+                const commune =
+
+                    firstExisting(settings, [
+
+                        "commune"
+
+                    ]);
+
+                const neighborhood =
+
+                    firstExisting(settings, [
+
+                        "neighborhood",
+
+                        "quartier"
+
+                    ]);
+
+                const address =
+
+                    firstExisting(settings, [
+
+                        "address",
+
+                        "delivery_address",
+
+                        "adresse"
+
+                    ]);
+
+                const landmark =
+
+                    firstExisting(settings, [
+
+                        "landmark",
+
+                        "repere",
+
+                        "landmark_address"
+
+                    ]);
+
+                const hours =
+
+                    firstExisting(settings, [
+
+                        "hours",
+
+                        "opening_hours",
+
+                        "horaires"
+
+                    ]);
+
+                const phone =
+
+                    firstExisting(settings, [
+
+                        "phone",
+
+                        "telephone",
+
+                        "contact_phone"
+
+                    ]);
+
+                const whatsapp =
+
+                    firstExisting(settings, [
+
+                        "whatsapp",
+
+                        "whatsapp_number"
+
+                    ]);
+
+                const mapsUrl =
+
+                    firstExisting(settings, [
+
+                        "google_maps_url",
+
+                        "maps_url",
+
+                        "location_url",
+
+                        "map_url"
+
+                    ]);
+
+                let area = "";
+
+                if (commune && neighborhood) {
+
+                    area =
+
+                        escapeHtml(commune) +
+
+                        " — " +
+
+                        escapeHtml(neighborhood);
+
+                } else if (commune) {
+
+                    area =
+
+                        escapeHtml(commune);
+
+                } else if (neighborhood) {
+
+                    area =
+
+                        escapeHtml(neighborhood);
+
+                }
+
+                details.innerHTML = `
+
+                    ${addDetail(
+
+                        "Ville",
+
+                        displayValue(
+
+                            city,
+
+                            "Ville non renseignée"
+
+                        ),
+
+                        "city"
+
+                    )}
+
+                    ${addDetail(
+
+                        "Adresse",
+
+                        displayValue(
+
+                            address,
+
+                            "Adresse non renseignée"
+
+                        ),
+
+                        "pin"
+
+                    )}
+
+                    ${addDetail(
+
+                        "Commune / quartier",
+
+                        area ||
+
+                        `
+
+                            <span class="location-empty">
+
+                                Commune ou quartier non renseigné
+
+                            </span>
+
+                        `,
+
+                        "pin"
+
+                    )}
+
+                    ${addDetail(
+
+                        "Repère",
+
+                        displayValue(
+
+                            landmark,
+
+                            "Repère non renseigné"
+
+                        ),
+
+                        "info"
+
+                    )}
+
+                    ${addDetail(
+
+                        "Horaires",
+
+                        displayValue(
+
+                            hours,
+
+                            "Horaires non renseignés"
+
+                        ),
+
+                        "clock"
+
+                    )}
+
+                `;
+
+                /*
+
+                 * BOUTONS DE CONTACT / ITINÉRAIRE
+
+                 */
+
+                let buttons = "";
+
+                if (mapsUrl) {
+
+                    buttons += `
+
+                        <a
+
+                            href="${escapeHtml(mapsUrl)}"
+
+                            target="_blank"
+
+                            rel="noopener noreferrer"
+
+                            class="location-button location-button-primary"
+
+                        >
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+
+                                <circle cx="12" cy="10" r="2.5"></circle>
+
+                            </svg>
+
+                            Ouvrir l'itinéraire
+
+                        </a>
+
+                    `;
+
+                }
+
+                if (phone) {
+
+                    const phoneClean =
+
+                        String(phone)
+
+                            .replace(/[^\d+]/g, "");
+
+                    buttons += `
+
+                        <a
+
+                            href="tel:${escapeHtml(phoneClean)}"
+
+                            class="location-button location-button-secondary"
+
+                        >
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L9 10.73a16 16 0 0 0 4.27 4.27l1.29-1.29a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"></path>
+
+                            </svg>
+
+                            Appeler
+
+                        </a>
+
+                    `;
+
+                }
+
+                if (whatsapp) {
+
+                    const whatsappClean =
+
+                        String(whatsapp)
+
+                            .replace(/[^\d]/g, "");
+
+                    buttons += `
+
+                        <a
+
+                            href="https://wa.me/${escapeHtml(whatsappClean)}"
+
+                            target="_blank"
+
+                            rel="noopener noreferrer"
+
+                            class="location-button location-button-secondary"
+
+                        >
+
+                            Contacter sur WhatsApp
+
+                        </a>
+
+                    `;
+
+                }
+
+                if (buttons) {
+
+                    actions.innerHTML = buttons;
+
+                    actions.style.display = "flex";
+
+                }
+
+                /*
+
+                 * CARTE
+
+                 *
+
+                 * On affiche uniquement une carte lorsqu'un lien
+
+                 * de localisation a réellement été enregistré.
+
+                 */
+
+                if (mapsUrl) {
+
+                    const safeMapUrl =
+
+                        String(mapsUrl)
+
+                            .replace(/"/g, "&quot;");
+
+                    mapContainer.innerHTML = `
+
+                        <iframe
+
+                            class="location-map-frame"
+
+                            src="${safeMapUrl}"
+
+                            loading="lazy"
+
+                            referrerpolicy="no-referrer-when-downgrade"
+
+                            title="Localisation de NINICE BOUTIQUE"
+
+                        ></iframe>
+
+                    `;
+
+                } else {
+
+                    mapContainer.innerHTML = `
+
+                        <div class="location-map-placeholder">
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+
+                                <circle cx="12" cy="10" r="2.5"></circle>
+
+                            </svg>
+
+                            <h3>
+
+                                Carte bientôt disponible
+
+                            </h3>
+
+                            <p>
+
+                                La localisation précise de la boutique
+
+                                sera affichée ici dès qu'un lien Google Maps
+
+                                sera ajouté dans les paramètres de la boutique.
+
+                            </p>
+
+                        </div>
+
+                    `;
+
+                }
+
+            } catch (error) {
+
+                console.error(
+
+                    "NINICE BOUTIQUE : erreur localisation.",
+
+                    error
+
+                );
+
+                details.innerHTML = `
+
+                    ${addDetail(
+
+                        "Ville",
+
+                        displayValue(
+
+                            "Bouaké",
+
+                            "Ville non renseignée"
+
+                        ),
+
+                        "city"
+
+                    )}
+
+                    ${addDetail(
+
+                        "Adresse",
+
+                        displayValue(
+
+                            "",
+
+                            "Adresse non renseignée"
+
+                        ),
+
+                        "pin"
+
+                    )}
+
+                    ${addDetail(
+
+                        "Horaires",
+
+                        displayValue(
+
+                            "",
+
+                            "Horaires non renseignés"
+
+                        ),
+
+                        "clock"
+
+                    )}
+
+                `;
+
+            }
+
+        });
+
+    </script>
 
 </body>
 
