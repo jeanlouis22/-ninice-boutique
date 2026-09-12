@@ -6,43 +6,23 @@
 
     <meta charset="UTF-8">
 
-    <meta
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        name="viewport"
-
-        content="width=device-width, initial-scale=1.0"
-
-    >
-
-    <title>Administration | NINICE BOUTIQUE</title>
+    <title>Connexion Administration | NINICE BOUTIQUE</title>
 
     <meta
 
         name="description"
 
-        content="Connexion à l'administration de NINICE BOUTIQUE."
+        content="Connexion sécurisée à l'administration de NINICE BOUTIQUE."
 
     >
 
-    <meta
-
-        name="theme-color"
-
-        content="#6d28d9"
-
-    >
+    <meta name="theme-color" content="#6d28d9">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-
-        rel="preconnect"
-
-        href="https://fonts.gstatic.com"
-
-        crossorigin
-
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
 
@@ -52,6 +32,12 @@
 
     >
 
+    <script src="../assets/js/config.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
     <style>
 
         :root {
@@ -60,9 +46,9 @@
 
             --violet-dark: #4c1d95;
 
-            --violet-light: #f5f3ff;
+            --violet-light: #f3e8ff;
 
-            --violet-border: #ddd6fe;
+            --violet-soft: #faf5ff;
 
             --dark: #18181b;
 
@@ -70,21 +56,17 @@
 
             --muted: #71717a;
 
-            --white: #ffffff;
-
-            --background: #fafafa;
-
             --border: #e4e4e7;
+
+            --white: #ffffff;
 
             --danger: #dc2626;
 
-            --danger-bg: #fef2f2;
+            --success: #16a34a;
 
-            --shadow:
+            --shadow: 0 25px 70px rgba(76, 29, 149, 0.14);
 
-                0 20px 60px rgba(24, 24, 27, 0.08);
-
-            --radius: 18px;
+            --radius: 22px;
 
         }
 
@@ -98,19 +80,13 @@
 
         }
 
-        html {
-
-            scroll-behavior: smooth;
-
-        }
-
         body {
 
             min-height: 100vh;
 
             font-family: "DM Sans", sans-serif;
 
-            color: var(--text);
+            color: var(--dark);
 
             background:
 
@@ -118,9 +94,9 @@
 
                     circle at top left,
 
-                    rgba(109, 40, 217, 0.08),
+                    rgba(109, 40, 217, 0.12),
 
-                    transparent 32%
+                    transparent 35%
 
                 ),
 
@@ -128,13 +104,13 @@
 
                     circle at bottom right,
 
-                    rgba(109, 40, 217, 0.06),
+                    rgba(124, 58, 237, 0.08),
 
-                    transparent 30%
+                    transparent 35%
 
                 ),
 
-                var(--background);
+                #fafafa;
 
             display: flex;
 
@@ -146,33 +122,11 @@
 
         }
 
-        button,
-
-        input {
-
-            font: inherit;
-
-        }
-
-        button {
-
-            border: 0;
-
-        }
-
-        a {
-
-            color: inherit;
-
-            text-decoration: none;
-
-        }
-
-        .login-page {
+        .page {
 
             width: 100%;
 
-            max-width: 1120px;
+            max-width: 1100px;
 
             min-height: 650px;
 
@@ -184,7 +138,7 @@
 
             border: 1px solid rgba(228, 228, 231, 0.9);
 
-            border-radius: 28px;
+            border-radius: 30px;
 
             overflow: hidden;
 
@@ -192,15 +146,35 @@
 
         }
 
-        /* =========================================
+        /* =========================
 
-           BRAND PANEL
+           PARTIE GAUCHE
 
-        ========================================= */
+        ========================= */
 
         .brand-panel {
 
             position: relative;
+
+            overflow: hidden;
+
+            padding: 55px;
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    #4c1d95 0%,
+
+                    #6d28d9 55%,
+
+                    #7c3aed 100%
+
+                );
+
+            color: var(--white);
 
             display: flex;
 
@@ -208,61 +182,67 @@
 
             justify-content: space-between;
 
-            padding: 56px;
+        }
 
-            color: var(--white);
+        .brand-panel::before,
 
-            background:
+        .brand-panel::after {
 
-                radial-gradient(
+            content: "";
 
-                    circle at 15% 15%,
+            position: absolute;
 
-                    rgba(255,255,255,0.16),
+            border-radius: 50%;
 
-                    transparent 28%
+            background: rgba(255, 255, 255, 0.07);
 
-                ),
-
-                radial-gradient(
-
-                    circle at 90% 90%,
-
-                    rgba(255,255,255,0.10),
-
-                    transparent 30%
-
-                ),
-
-                linear-gradient(
-
-                    145deg,
-
-                    #6d28d9,
-
-                    #4c1d95
-
-                );
+            pointer-events: none;
 
         }
 
-        .brand-top {
+        .brand-panel::before {
 
-            display: flex;
+            width: 330px;
 
-            align-items: center;
+            height: 330px;
 
-            gap: 14px;
+            top: -150px;
+
+            right: -130px;
+
+        }
+
+        .brand-panel::after {
+
+            width: 430px;
+
+            height: 430px;
+
+            bottom: -250px;
+
+            left: -180px;
+
+        }
+
+        .brand-content {
+
+            position: relative;
+
+            z-index: 2;
 
         }
 
         .brand-logo {
 
-            width: 58px;
+            width: 76px;
 
-            height: 58px;
+            height: 76px;
 
-            flex: 0 0 58px;
+            border-radius: 50%;
+
+            border: 2px solid rgba(255, 255, 255, 0.85);
+
+            background: rgba(255, 255, 255, 0.12);
 
             display: flex;
 
@@ -270,17 +250,9 @@
 
             justify-content: center;
 
-            border-radius: 50%;
+            margin-bottom: 28px;
 
-            background: rgba(255, 255, 255, 0.96);
-
-            color: var(--violet-dark);
-
-            border: 3px solid rgba(255, 255, 255, 0.32);
-
-            box-shadow:
-
-                0 10px 30px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(8px);
 
         }
 
@@ -292,7 +264,7 @@
 
             font-weight: 700;
 
-            line-height: 1;
+            letter-spacing: 1px;
 
         }
 
@@ -300,79 +272,73 @@
 
             font-family: "Playfair Display", serif;
 
-            font-size: 24px;
+            font-size: clamp(30px, 4vw, 46px);
 
-            font-weight: 700;
-
-            letter-spacing: 0.01em;
-
-        }
-
-        .brand-content {
-
-            max-width: 440px;
-
-        }
-
-        .brand-content .eyebrow {
-
-            display: inline-block;
+            line-height: 1.05;
 
             margin-bottom: 18px;
 
-            font-size: 12px;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.16em;
-
-            opacity: 0.78;
-
         }
 
-        .brand-content h1 {
+        .brand-subtitle {
 
-            margin-bottom: 20px;
-
-            font-family: "Playfair Display", serif;
-
-            font-size: clamp(36px, 4vw, 54px);
-
-            line-height: 1.08;
-
-            color: var(--white);
-
-        }
-
-        .brand-content p {
+            max-width: 390px;
 
             font-size: 16px;
 
-            line-height: 1.75;
+            line-height: 1.8;
 
-            color: rgba(255, 255, 255, 0.84);
+            color: rgba(255, 255, 255, 0.82);
 
         }
 
-        .brand-footer {
+        .security-box {
+
+            position: relative;
+
+            z-index: 2;
+
+            padding: 18px 20px;
+
+            border-radius: 16px;
+
+            border: 1px solid rgba(255, 255, 255, 0.16);
+
+            background: rgba(255, 255, 255, 0.09);
+
+            backdrop-filter: blur(10px);
+
+        }
+
+        .security-title {
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+
+        }
+
+        .security-text {
 
             font-size: 13px;
 
             line-height: 1.6;
 
-            color: rgba(255, 255, 255, 0.68);
+            color: rgba(255, 255, 255, 0.76);
 
         }
 
-        /* =========================================
+        /* =========================
 
-           LOGIN PANEL
+           PARTIE DROITE
 
-        ========================================= */
+        ========================= */
 
         .login-panel {
+
+            padding: 55px;
 
             display: flex;
 
@@ -380,15 +346,19 @@
 
             justify-content: center;
 
-            padding: 56px;
-
         }
 
-        .login-box {
+        .login-content {
 
             width: 100%;
 
             max-width: 420px;
+
+        }
+
+        .mobile-logo {
+
+            display: none;
 
         }
 
@@ -398,35 +368,55 @@
 
         }
 
-        .login-header h2 {
+        .eyebrow {
 
-            margin-bottom: 9px;
+            display: inline-flex;
 
-            color: var(--dark);
+            align-items: center;
 
-            font-family: "Playfair Display", serif;
+            padding: 7px 11px;
 
-            font-size: 34px;
+            border-radius: 999px;
 
-            line-height: 1.2;
+            background: var(--violet-light);
+
+            color: var(--violet-dark);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
 
         }
 
-        .login-header p {
+        .login-title {
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 36px;
+
+            line-height: 1.15;
+
+            color: var(--dark);
+
+            margin-bottom: 12px;
+
+        }
+
+        .login-description {
 
             color: var(--muted);
 
-            font-size: 14px;
+            font-size: 15px;
 
             line-height: 1.7;
 
         }
-
-        /* =========================================
-
-           FORM
-
-        ========================================= */
 
         .form-group {
 
@@ -438,13 +428,13 @@
 
             display: block;
 
-            margin-bottom: 8px;
+            font-size: 14px;
+
+            font-weight: 700;
 
             color: var(--dark);
 
-            font-size: 14px;
-
-            font-weight: 600;
+            margin-bottom: 9px;
 
         }
 
@@ -454,37 +444,53 @@
 
         }
 
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 19px;
+
+            height: 19px;
+
+            color: #a1a1aa;
+
+            pointer-events: none;
+
+        }
+
         .form-input {
 
             width: 100%;
 
             height: 52px;
 
-            padding: 0 16px;
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            padding: 0 15px 0 46px;
+
+            outline: none;
+
+            background: #fff;
 
             color: var(--dark);
 
-            background: var(--white);
+            font-family: inherit;
 
-            border: 1px solid var(--border);
-
-            border-radius: 12px;
-
-            outline: none;
+            font-size: 14px;
 
             transition:
 
                 border-color 0.2s ease,
 
-                box-shadow 0.2s ease,
-
-                background 0.2s ease;
-
-        }
-
-        .form-input::placeholder {
-
-            color: #a1a1aa;
+                box-shadow 0.2s ease;
 
         }
 
@@ -492,15 +498,7 @@
 
             border-color: var(--violet);
 
-            box-shadow:
-
-                0 0 0 4px rgba(109, 40, 217, 0.10);
-
-        }
-
-        .password-input {
-
-            padding-right: 58px;
+            box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.10);
 
         }
 
@@ -508,139 +506,63 @@
 
             position: absolute;
 
-            top: 50%;
-
             right: 8px;
 
-            width: 42px;
-
-            height: 42px;
+            top: 50%;
 
             transform: translateY(-50%);
+
+            width: 38px;
+
+            height: 38px;
+
+            border: 0;
+
+            background: transparent;
+
+            color: #71717a;
+
+            border-radius: 9px;
+
+            cursor: pointer;
 
             display: flex;
 
             align-items: center;
 
             justify-content: center;
-
-            color: var(--muted);
-
-            background: transparent;
-
-            border-radius: 10px;
-
-            cursor: pointer;
-
-            transition:
-
-                color 0.2s ease,
-
-                background 0.2s ease;
 
         }
 
         .password-toggle:hover {
 
+            background: #f4f4f5;
+
             color: var(--violet);
 
-            background: var(--violet-light);
-
         }
 
-        .password-toggle svg {
+        .password-input {
 
-            width: 20px;
-
-            height: 20px;
+            padding-right: 52px;
 
         }
-
-        /* =========================================
-
-           ERROR / SUCCESS
-
-        ========================================= */
-
-        .message {
-
-            display: none;
-
-            margin-bottom: 20px;
-
-            padding: 13px 14px;
-
-            border-radius: 11px;
-
-            font-size: 13px;
-
-            line-height: 1.55;
-
-        }
-
-        .message.show {
-
-            display: block;
-
-        }
-
-        .message.error {
-
-            color: #991b1b;
-
-            background: var(--danger-bg);
-
-            border: 1px solid #fecaca;
-
-        }
-
-        .message.success {
-
-            color: #166534;
-
-            background: #f0fdf4;
-
-            border: 1px solid #bbf7d0;
-
-        }
-
-        /* =========================================
-
-           BUTTON
-
-        ========================================= */
 
         .login-button {
 
             width: 100%;
 
-            min-height: 52px;
+            height: 53px;
 
-            display: flex;
+            border: 0;
 
-            align-items: center;
+            border-radius: 13px;
 
-            justify-content: center;
-
-            gap: 10px;
-
-            margin-top: 8px;
+            background: var(--violet);
 
             color: var(--white);
 
-            background:
-
-                linear-gradient(
-
-                    135deg,
-
-                    var(--violet),
-
-                    var(--violet-dark)
-
-                );
-
-            border-radius: 12px;
+            font-family: inherit;
 
             font-size: 15px;
 
@@ -648,59 +570,71 @@
 
             cursor: pointer;
 
-            box-shadow:
-
-                0 10px 24px rgba(109, 40, 217, 0.20);
-
             transition:
 
                 transform 0.2s ease,
 
-                box-shadow 0.2s ease,
+                background 0.2s ease,
 
-                opacity 0.2s ease;
+                box-shadow 0.2s ease;
+
+            box-shadow: 0 12px 25px rgba(109, 40, 217, 0.22);
+
+            margin-top: 7px;
 
         }
 
         .login-button:hover {
 
+            background: var(--violet-dark);
+
             transform: translateY(-1px);
-
-            box-shadow:
-
-                0 14px 30px rgba(109, 40, 217, 0.26);
-
-        }
-
-        .login-button:active {
-
-            transform: translateY(0);
 
         }
 
         .login-button:disabled {
 
-            opacity: 0.65;
-
             cursor: not-allowed;
+
+            opacity: 0.65;
 
             transform: none;
 
         }
 
-        .button-spinner {
+        .login-button.loading {
 
-            width: 18px;
+            position: relative;
 
-            height: 18px;
+            color: transparent;
 
-            border: 2px solid rgba(255,255,255,0.35);
+        }
 
-            border-top-color: #ffffff;
+        .login-button.loading::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 19px;
+
+            height: 19px;
+
+            border: 2px solid rgba(255, 255, 255, 0.4);
+
+            border-top-color: #fff;
 
             border-radius: 50%;
 
             animation: spin 0.8s linear infinite;
+
+            left: 50%;
+
+            top: 50%;
+
+            margin-left: -9.5px;
+
+            margin-top: -9.5px;
 
         }
 
@@ -714,51 +648,67 @@
 
         }
 
-        /* =========================================
+        .message {
 
-           SECURITY NOTE
+            display: none;
 
-        ========================================= */
+            margin-bottom: 20px;
 
-        .security-note {
-
-            display: flex;
-
-            align-items: flex-start;
-
-            gap: 10px;
-
-            margin-top: 22px;
-
-            padding: 14px;
-
-            background: var(--violet-light);
-
-            border: 1px solid var(--violet-border);
+            padding: 13px 15px;
 
             border-radius: 12px;
 
-            color: var(--muted);
+            font-size: 13px;
+
+            line-height: 1.5;
+
+        }
+
+        .message.show {
+
+            display: block;
+
+        }
+
+        .message.error {
+
+            background: #fef2f2;
+
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+
+        }
+
+        .message.success {
+
+            background: #f0fdf4;
+
+            color: #166534;
+
+            border: 1px solid #bbf7d0;
+
+        }
+
+        .bottom-info {
+
+            margin-top: 25px;
+
+            text-align: center;
+
+        }
+
+        .bottom-info p {
+
+            color: #a1a1aa;
 
             font-size: 12px;
 
-            line-height: 1.55;
+            line-height: 1.6;
 
         }
 
-        .security-icon {
-
-            width: 20px;
-
-            height: 20px;
-
-            flex: 0 0 20px;
-
-            color: var(--violet);
-
-        }
-
-        .back-link {
+        .store-link {
 
             display: inline-flex;
 
@@ -766,79 +716,51 @@
 
             gap: 7px;
 
-            margin-top: 25px;
+            margin-top: 13px;
 
             color: var(--violet);
 
+            text-decoration: none;
+
             font-size: 13px;
 
-            font-weight: 600;
-
-            transition: color 0.2s ease;
+            font-weight: 700;
 
         }
 
-        .back-link:hover {
+        .store-link:hover {
 
             color: var(--violet-dark);
 
         }
 
-        .back-link svg {
-
-            width: 16px;
-
-            height: 16px;
-
-        }
-
-        /* =========================================
+        /* =========================
 
            RESPONSIVE
 
-        ========================================= */
+        ========================= */
 
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
 
             body {
 
-                padding: 16px;
+                padding: 15px;
 
             }
 
-            .login-page {
+            .page {
 
-                max-width: 620px;
+                max-width: 520px;
 
                 min-height: auto;
 
                 display: block;
 
-                border-radius: 22px;
+                border-radius: 24px;
 
             }
 
             .brand-panel {
-
-                min-height: 300px;
-
-                padding: 34px;
-
-            }
-
-            .brand-content {
-
-                margin-top: 46px;
-
-            }
-
-            .brand-content h1 {
-
-                font-size: 38px;
-
-            }
-
-            .brand-footer {
 
                 display: none;
 
@@ -846,21 +768,81 @@
 
             .login-panel {
 
-                padding: 38px 34px 42px;
+                min-height: calc(100vh - 30px);
+
+                padding: 35px 25px;
+
+            }
+
+            .mobile-logo {
+
+                display: flex;
+
+                align-items: center;
+
+                justify-content: center;
+
+                flex-direction: column;
+
+                margin-bottom: 35px;
+
+            }
+
+            .mobile-logo-circle {
+
+                width: 68px;
+
+                height: 68px;
+
+                border-radius: 50%;
+
+                background: var(--violet);
+
+                color: white;
+
+                display: flex;
+
+                align-items: center;
+
+                justify-content: center;
+
+                font-family: "Playfair Display", serif;
+
+                font-size: 24px;
+
+                font-weight: 700;
+
+                margin-bottom: 12px;
+
+                box-shadow: 0 12px 30px rgba(109, 40, 217, 0.22);
+
+            }
+
+            .mobile-logo-name {
+
+                font-family: "Playfair Display", serif;
+
+                font-size: 20px;
+
+                color: var(--violet-dark);
 
             }
 
         }
 
-        @media (max-width: 520px) {
+        @media (max-width: 480px) {
 
             body {
 
                 padding: 0;
 
+                background: #fff;
+
             }
 
-            .login-page {
+            .page {
+
+                width: 100%;
 
                 min-height: 100vh;
 
@@ -872,57 +854,17 @@
 
             }
 
-            .brand-panel {
-
-                min-height: 270px;
-
-                padding: 28px 22px;
-
-            }
-
-            .brand-logo {
-
-                width: 50px;
-
-                height: 50px;
-
-                flex-basis: 50px;
-
-            }
-
-            .brand-logo span {
-
-                font-size: 24px;
-
-            }
-
-            .brand-name {
-
-                font-size: 20px;
-
-            }
-
-            .brand-content {
-
-                margin-top: 35px;
-
-            }
-
-            .brand-content h1 {
-
-                font-size: 34px;
-
-            }
-
-            .brand-content p {
-
-                font-size: 14px;
-
-            }
-
             .login-panel {
 
-                padding: 34px 22px 40px;
+                min-height: 100vh;
+
+                padding: 28px 20px;
+
+            }
+
+            .login-title {
+
+                font-size: 31px;
 
             }
 
@@ -932,29 +874,11 @@
 
             }
 
-            .login-header h2 {
+            .form-input,
 
-                font-size: 30px;
+            .login-button {
 
-            }
-
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-
-            *::before,
-
-            *::after {
-
-                scroll-behavior: auto !important;
-
-                animation-duration: 0.01ms !important;
-
-                animation-iteration-count: 1 !important;
-
-                transition-duration: 0.01ms !important;
+                height: 51px;
 
             }
 
@@ -966,115 +890,117 @@
 
 <body>
 
-    <main class="login-page">
+    <main class="page">
 
-        <!-- =====================================
+        <!-- =========================
 
-             BRAND
+             PANNEAU DE MARQUE
 
-        ====================================== -->
+        ========================== -->
 
         <section class="brand-panel">
 
-            <div class="brand-top">
+            <div class="brand-content">
 
-                <a
-
-                    href="../index.html"
-
-                    class="brand-logo"
-
-                    aria-label="Retour à NINICE BOUTIQUE"
-
-                >
+                <div class="brand-logo" aria-label="Logo NINICE BOUTIQUE">
 
                     <span>N</span>
 
-                </a>
+                </div>
 
-                <a
+                <h1 class="brand-name">
 
-                    href="../index.html"
+                    NINICE<br>
 
-                    class="brand-name"
-
-                >
-
-                    NINICE BOUTIQUE
-
-                </a>
-
-            </div>
-
-            <div class="brand-content">
-
-                <span class="eyebrow">
-
-                    Espace privé
-
-                </span>
-
-                <h1>
-
-                    Administration
-
-                    de votre boutique.
+                    BOUTIQUE
 
                 </h1>
 
-                <p>
+                <p class="brand-subtitle">
+
+                    Espace privé de gestion de votre boutique en ligne.
 
                     Gérez vos produits, commandes, catégories,
 
-                    promotions, livraisons et informations de
+                    promotions et informations de la boutique depuis
 
-                    votre boutique depuis un espace sécurisé.
+                    une seule interface.
 
                 </p>
 
             </div>
 
-            <div class="brand-footer">
+            <div class="security-box">
 
-                NINICE BOUTIQUE
+                <div class="security-title">
 
-                <br>
+                    Accès réservé à l'administration
 
-                Gestion privée de la boutique en ligne.
+                </div>
+
+                <div class="security-text">
+
+                    Cette interface est privée. Seul le compte
+
+                    administrateur autorisé peut accéder au tableau
+
+                    de bord et aux données de gestion.
+
+                </div>
 
             </div>
 
         </section>
 
-        <!-- =====================================
+        <!-- =========================
 
-             LOGIN
+             FORMULAIRE DE CONNEXION
 
-        ====================================== -->
+        ========================== -->
 
         <section class="login-panel">
 
-            <div class="login-box">
+            <div class="login-content">
+
+                <div class="mobile-logo">
+
+                    <div class="mobile-logo-circle">
+
+                        N
+
+                    </div>
+
+                    <div class="mobile-logo-name">
+
+                        NINICE BOUTIQUE
+
+                    </div>
+
+                </div>
 
                 <div class="login-header">
 
-                    <h2>
+                    <div class="eyebrow">
+
+                        Administration
+
+                    </div>
+
+                    <h2 class="login-title">
 
                         Connexion
 
                     </h2>
 
-                    <p>
+                    <p class="login-description">
 
-                        Connectez-vous avec votre compte
+                        Connectez-vous avec votre compte administrateur
 
-                        administrateur pour accéder au tableau de bord.
+                        pour accéder à la gestion de NINICE BOUTIQUE.
 
                     </p>
 
                 </div>
-
-                <!-- MESSAGE -->
 
                 <div
 
@@ -1088,15 +1014,7 @@
 
                 ></div>
 
-                <!-- FORM -->
-
-                <form
-
-                    id="login-form"
-
-                    novalidate
-
-                >
+                <form id="loginForm">
 
                     <!-- EMAIL -->
 
@@ -1104,9 +1022,9 @@
 
                         <label
 
-                            for="email"
-
                             class="form-label"
+
+                            for="email"
 
                         >
 
@@ -1116,19 +1034,57 @@
 
                         <div class="input-wrapper">
 
-                            <input
+                            <svg
 
-                                type="email"
+                                class="input-icon"
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                aria-hidden="true"
+
+                            >
+
+                                <rect
+
+                                    x="3"
+
+                                    y="5"
+
+                                    width="18"
+
+                                    height="14"
+
+                                    rx="2"
+
+                                ></rect>
+
+                                <path
+
+                                    d="m3 7 9 6 9-6"
+
+                                ></path>
+
+                            </svg>
+
+                            <input
 
                                 id="email"
 
-                                name="email"
-
                                 class="form-input"
 
-                                placeholder="admin@exemple.com"
+                                type="email"
 
-                                autocomplete="email"
+                                name="email"
+
+                                autocomplete="username"
+
+                                placeholder="Votre adresse e-mail"
 
                                 required
 
@@ -1138,15 +1094,15 @@
 
                     </div>
 
-                    <!-- PASSWORD -->
+                    <!-- MOT DE PASSE -->
 
                     <div class="form-group">
 
                         <label
 
-                            for="password"
-
                             class="form-label"
+
+                            for="password"
 
                         >
 
@@ -1156,19 +1112,57 @@
 
                         <div class="input-wrapper">
 
-                            <input
+                            <svg
 
-                                type="password"
+                                class="input-icon"
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                aria-hidden="true"
+
+                            >
+
+                                <rect
+
+                                    x="4"
+
+                                    y="10"
+
+                                    width="16"
+
+                                    height="10"
+
+                                    rx="2"
+
+                                ></rect>
+
+                                <path
+
+                                    d="M8 10V7a4 4 0 0 1 8 0v3"
+
+                                ></path>
+
+                            </svg>
+
+                            <input
 
                                 id="password"
 
-                                name="password"
-
                                 class="form-input password-input"
 
-                                placeholder="Votre mot de passe"
+                                type="password"
+
+                                name="password"
 
                                 autocomplete="current-password"
+
+                                placeholder="Votre mot de passe"
 
                                 required
 
@@ -1178,41 +1172,39 @@
 
                                 type="button"
 
-                                id="password-toggle"
+                                id="togglePassword"
 
                                 class="password-toggle"
 
                                 aria-label="Afficher le mot de passe"
 
-                                aria-pressed="false"
+                                title="Afficher le mot de passe"
 
                             >
 
                                 <svg
 
-                                    id="eye-open"
+                                    id="eyeIcon"
+
+                                    width="19"
+
+                                    height="19"
 
                                     viewBox="0 0 24 24"
 
                                     fill="none"
 
-                                    aria-hidden="true"
+                                    stroke="currentColor"
+
+                                    stroke-width="1.8"
 
                                 >
 
                                     <path
 
-                                        d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"
+                                        d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"
 
-                                        stroke="currentColor"
-
-                                        stroke-width="1.8"
-
-                                        stroke-linecap="round"
-
-                                        stroke-linejoin="round"
-
-                                    />
+                                    ></path>
 
                                     <circle
 
@@ -1220,55 +1212,9 @@
 
                                         cy="12"
 
-                                        r="2.8"
+                                        r="3"
 
-                                        stroke="currentColor"
-
-                                        stroke-width="1.8"
-
-                                    />
-
-                                </svg>
-
-                                <svg
-
-                                    id="eye-closed"
-
-                                    viewBox="0 0 24 24"
-
-                                    fill="none"
-
-                                    aria-hidden="true"
-
-                                    style="display:none;"
-
-                                >
-
-                                    <path
-
-                                        d="M3 3l18 18"
-
-                                        stroke="currentColor"
-
-                                        stroke-width="1.8"
-
-                                        stroke-linecap="round"
-
-                                    />
-
-                                    <path
-
-                                        d="M10.6 6.2A10.4 10.4 0 0 1 12 6c6 0 9.5 6 9.5 6a17.8 17.8 0 0 1-3.1 3.8M6.2 6.8C3.9 8.4 2.5 12 2.5 12s3.5 6 9.5 6c1.5 0 2.8-.3 4-.8"
-
-                                        stroke="currentColor"
-
-                                        stroke-width="1.8"
-
-                                        stroke-linecap="round"
-
-                                        stroke-linejoin="round"
-
-                                    />
+                                    ></circle>
 
                                 </svg>
 
@@ -1278,137 +1224,45 @@
 
                     </div>
 
-                    <!-- BUTTON -->
+                    <!-- BOUTON -->
 
                     <button
 
-                        type="submit"
-
-                        id="login-button"
+                        id="loginButton"
 
                         class="login-button"
 
+                        type="submit"
+
                     >
 
-                        <span id="login-button-text">
-
-                            Se connecter
-
-                        </span>
+                        Se connecter
 
                     </button>
 
                 </form>
 
-                <!-- SECURITY -->
+                <div class="bottom-info">
 
-                <div class="security-note">
+                    <p>
 
-                    <svg
+                        Accès sécurisé par Supabase Authentication.
 
-                        class="security-icon"
+                    </p>
 
-                        viewBox="0 0 24 24"
+                    <a
 
-                        fill="none"
+                        class="store-link"
 
-                        aria-hidden="true"
+                        href="../index.html"
 
                     >
 
-                        <path
+                        Retour à NINICE BOUTIQUE
 
-                            d="M12 3 19 6v5.5c0 4.4-2.8 7.7-7 9.5-4.2-1.8-7-5.1-7-9.5V6l7-3Z"
-
-                            stroke="currentColor"
-
-                            stroke-width="1.8"
-
-                            stroke-linejoin="round"
-
-                        />
-
-                        <path
-
-                            d="m9 12 2 2 4-4"
-
-                            stroke="currentColor"
-
-                            stroke-width="1.8"
-
-                            stroke-linecap="round"
-
-                            stroke-linejoin="round"
-
-                        />
-
-                    </svg>
-
-                    <span>
-
-                        Cette interface est réservée à la gestion
-
-                        de NINICE BOUTIQUE. Votre session est gérée
-
-                        par le système d'authentification sécurisé
-
-                        de Supabase.
-
-                    </span>
+                    </a>
 
                 </div>
-
-                <!-- BACK -->
-
-                <a
-
-                    href="../index.html"
-
-                    class="back-link"
-
-                >
-
-                    <svg
-
-                        viewBox="0 0 24 24"
-
-                        fill="none"
-
-                        aria-hidden="true"
-
-                    >
-
-                        <path
-
-                            d="M19 12H5"
-
-                            stroke="currentColor"
-
-                            stroke-width="1.8"
-
-                            stroke-linecap="round"
-
-                        />
-
-                        <path
-
-                            d="m11 18-6-6 6-6"
-
-                            stroke="currentColor"
-
-                            stroke-width="1.8"
-
-                            stroke-linecap="round"
-
-                            stroke-linejoin="round"
-
-                        />
-
-                    </svg>
-
-                    Retour à la boutique
-
-                </a>
 
             </div>
 
@@ -1416,231 +1270,91 @@
 
     </main>
 
-    <!-- =====================================
-
-         CONFIGURATION
-
-    ====================================== -->
-
-    <script src="../assets/js/config.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script src="../assets/js/supabase.js"></script>
-
-    <!-- =====================================
-
-         LOGIN LOGIC
-
-    ====================================== -->
-
     <script>
 
         (function () {
 
             "use strict";
 
-            const form =
+            const form = document.getElementById("loginForm");
 
-                document.getElementById("login-form");
+            const emailInput = document.getElementById("email");
 
-            const emailInput =
+            const passwordInput = document.getElementById("password");
 
-                document.getElementById("email");
+            const loginButton = document.getElementById("loginButton");
 
-            const passwordInput =
+            const messageBox = document.getElementById("message");
 
-                document.getElementById("password");
+            const togglePassword =
 
-            const loginButton =
+                document.getElementById("togglePassword");
 
-                document.getElementById("login-button");
+            const eyeIcon =
 
-            const loginButtonText =
+                document.getElementById("eyeIcon");
 
-                document.getElementById("login-button-text");
+            /* =========================
 
-            const message =
+               VERIFICATION SUPABASE
 
-                document.getElementById("message");
+            ========================== */
 
-            const passwordToggle =
+            if (
 
-                document.getElementById("password-toggle");
+                !window.niniceSupabase ||
 
-            const eyeOpen =
+                !window.NINICE_SUPABASE_READY
 
-                document.getElementById("eye-open");
+            ) {
 
-            const eyeClosed =
+                showMessage(
 
-                document.getElementById("eye-closed");
+                    "Impossible de charger le service de connexion. Vérifiez la configuration Supabase.",
 
-            /* =====================================
+                    "error"
+
+                );
+
+                loginButton.disabled = true;
+
+                return;
+
+            }
+
+            const supabaseClient = window.niniceSupabase;
+
+            /* =========================
 
                MESSAGE
 
-            ====================================== */
+            ========================== */
 
             function showMessage(text, type) {
 
-                message.textContent = text;
+                messageBox.textContent = text;
 
-                message.className =
+                messageBox.className =
 
                     "message show " + type;
 
             }
 
-            function hideMessage() {
+            function clearMessage() {
 
-                message.textContent = "";
+                messageBox.textContent = "";
 
-                message.className =
-
-                    "message";
+                messageBox.className = "message";
 
             }
 
-            /* =====================================
+            /* =========================
 
-               LOADING
+               VERIFICATION SESSION
 
-            ====================================== */
-
-            function setLoading(isLoading) {
-
-                loginButton.disabled = isLoading;
-
-                if (isLoading) {
-
-                    loginButtonText.innerHTML = "";
-
-                    const spinner =
-
-                        document.createElement("span");
-
-                    spinner.className =
-
-                        "button-spinner";
-
-                    loginButtonText.appendChild(spinner);
-
-                } else {
-
-                    loginButtonText.textContent =
-
-                        "Se connecter";
-
-                }
-
-            }
-
-            /* =====================================
-
-               PASSWORD VISIBILITY
-
-            ====================================== */
-
-            passwordToggle.addEventListener(
-
-                "click",
-
-                function () {
-
-                    const isPassword =
-
-                        passwordInput.type === "password";
-
-                    passwordInput.type =
-
-                        isPassword
-
-                            ? "text"
-
-                            : "password";
-
-                    passwordToggle.setAttribute(
-
-                        "aria-pressed",
-
-                        String(isPassword)
-
-                    );
-
-                    passwordToggle.setAttribute(
-
-                        "aria-label",
-
-                        isPassword
-
-                            ? "Masquer le mot de passe"
-
-                            : "Afficher le mot de passe"
-
-                    );
-
-                    eyeOpen.style.display =
-
-                        isPassword
-
-                            ? "none"
-
-                            : "block";
-
-                    eyeClosed.style.display =
-
-                        isPassword
-
-                            ? "block"
-
-                            : "none";
-
-                }
-
-            );
-
-            /* =====================================
-
-               SUPABASE READY CHECK
-
-            ====================================== */
-
-            function getSupabaseClient() {
-
-                if (
-
-                    window.NINICE_SUPABASE_READY &&
-
-                    window.niniceSupabase
-
-                ) {
-
-                    return window.niniceSupabase;
-
-                }
-
-                return null;
-
-            }
-
-            /* =====================================
-
-               CHECK EXISTING SESSION
-
-            ====================================== */
+            ========================== */
 
             async function checkExistingSession() {
-
-                const supabase =
-
-                    getSupabaseClient();
-
-                if (!supabase) {
-
-                    return;
-
-                }
 
                 try {
 
@@ -1650,13 +1364,13 @@
 
                         error
 
-                    } = await supabase.auth.getSession();
+                    } = await supabaseClient.auth.getSession();
 
                     if (error) {
 
                         console.error(
 
-                            "Erreur de vérification de session :",
+                            "Erreur session :",
 
                             error
 
@@ -1680,7 +1394,7 @@
 
                     console.error(
 
-                        "Erreur session :",
+                        "Erreur lors de la vérification de session :",
 
                         error
 
@@ -1690,11 +1404,121 @@
 
             }
 
-            /* =====================================
+            checkExistingSession();
 
-               LOGIN
+            /* =========================
 
-            ====================================== */
+               AFFICHER / MASQUER MOT DE PASSE
+
+            ========================== */
+
+            togglePassword.addEventListener(
+
+                "click",
+
+                function () {
+
+                    const isPassword =
+
+                        passwordInput.type === "password";
+
+                    passwordInput.type =
+
+                        isPassword
+
+                            ? "text"
+
+                            : "password";
+
+                    togglePassword.setAttribute(
+
+                        "aria-label",
+
+                        isPassword
+
+                            ? "Masquer le mot de passe"
+
+                            : "Afficher le mot de passe"
+
+                    );
+
+                    if (isPassword) {
+
+                        eyeIcon.innerHTML = `
+
+                            <path
+
+                                d="M3 3l18 18"
+
+                            ></path>
+
+                            <path
+
+                                d="M10.6 10.6a2 2 0 0 0 2.8 2.8"
+
+                            ></path>
+
+                            <path
+
+                                d="M9.9 5.2A9.7 9.7 0 0 1 12 5
+
+                                   c6.5 0 10 7 10 7
+
+                                   a18.8 18.8 0 0 1-3.1 3.9"
+
+                            ></path>
+
+                            <path
+
+                                d="M6.1 6.1C3.5 8 2 12 2 12
+
+                                   s3.5 7 10 7
+
+                                   a9.7 9.7 0 0 0 3.9-.8"
+
+                            ></path>
+
+                        `;
+
+                    } else {
+
+                        eyeIcon.innerHTML = `
+
+                            <path
+
+                                d="M2 12s3.5-7 10-7
+
+                                   10 7 10 7
+
+                                   -3.5 7-10 7
+
+                                   S2 12 2 12Z"
+
+                            ></path>
+
+                            <circle
+
+                                cx="12"
+
+                                cy="12"
+
+                                r="3"
+
+                            ></circle>
+
+                        `;
+
+                    }
+
+                }
+
+            );
+
+            /* =========================
+
+               CONNEXION
+
+            ========================== */
 
             form.addEventListener(
 
@@ -1704,7 +1528,7 @@
 
                     event.preventDefault();
 
-                    hideMessage();
+                    clearMessage();
 
                     const email =
 
@@ -1714,71 +1538,11 @@
 
                         passwordInput.value;
 
-                    /* VALIDATION */
-
-                    if (!email) {
+                    if (!email || !password) {
 
                         showMessage(
 
-                            "Veuillez saisir votre adresse e-mail.",
-
-                            "error"
-
-                        );
-
-                        emailInput.focus();
-
-                        return;
-
-                    }
-
-                    if (
-
-                        !email.includes("@") ||
-
-                        !email.includes(".")
-
-                    ) {
-
-                        showMessage(
-
-                            "Veuillez saisir une adresse e-mail valide.",
-
-                            "error"
-
-                        );
-
-                        emailInput.focus();
-
-                        return;
-
-                    }
-
-                    if (!password) {
-
-                        showMessage(
-
-                            "Veuillez saisir votre mot de passe.",
-
-                            "error"
-
-                        );
-
-                        passwordInput.focus();
-
-                        return;
-
-                    }
-
-                    const supabase =
-
-                        getSupabaseClient();
-
-                    if (!supabase) {
-
-                        showMessage(
-
-                            "La connexion à la boutique n'est pas disponible. Vérifiez la configuration Supabase.",
+                            "Veuillez renseigner votre adresse e-mail et votre mot de passe.",
 
                             "error"
 
@@ -1788,7 +1552,9 @@
 
                     }
 
-                    setLoading(true);
+                    loginButton.disabled = true;
+
+                    loginButton.classList.add("loading");
 
                     try {
 
@@ -1798,9 +1564,9 @@
 
                             error
 
-                        } =
+                        } = await supabaseClient.auth
 
-                            await supabase.auth.signInWithPassword({
+                            .signInWithPassword({
 
                                 email: email,
 
@@ -1820,9 +1586,9 @@
 
                             let errorMessage =
 
-                                "Impossible de vous connecter. Vérifiez vos identifiants.";
+                                "Impossible de vous connecter.";
 
-                            const rawMessage =
+                            const message =
 
                                 String(
 
@@ -1832,21 +1598,7 @@
 
                             if (
 
-                                rawMessage.includes(
-
-                                    "email not confirmed"
-
-                                )
-
-                            ) {
-
-                                errorMessage =
-
-                                    "Cette adresse e-mail n'est pas encore confirmée.";
-
-                            } else if (
-
-                                rawMessage.includes(
+                                message.includes(
 
                                     "invalid login credentials"
 
@@ -1860,9 +1612,9 @@
 
                             } else if (
 
-                                rawMessage.includes(
+                                message.includes(
 
-                                    "user not found"
+                                    "email not confirmed"
 
                                 )
 
@@ -1870,11 +1622,11 @@
 
                                 errorMessage =
 
-                                    "Aucun compte administrateur ne correspond à cette adresse.";
+                                    "Cette adresse e-mail n'est pas encore confirmée.";
 
                             } else if (
 
-                                rawMessage.includes(
+                                message.includes(
 
                                     "too many requests"
 
@@ -1886,6 +1638,16 @@
 
                                     "Trop de tentatives. Veuillez patienter quelques instants.";
 
+                            } else if (
+
+                                error.message
+
+                            ) {
+
+                                errorMessage =
+
+                                    error.message;
+
                             }
 
                             showMessage(
@@ -1896,7 +1658,13 @@
 
                             );
 
-                            setLoading(false);
+                            loginButton.disabled = false;
+
+                            loginButton.classList.remove(
+
+                                "loading"
+
+                            );
 
                             return;
 
@@ -1904,33 +1672,27 @@
 
                         if (
 
-                            data &&
+                            !data ||
 
-                            data.session
+                            !data.session ||
+
+                            !data.user
 
                         ) {
 
                             showMessage(
 
-                                "Connexion réussie. Ouverture de l'administration...",
+                                "Connexion impossible : aucune session administrateur n'a été créée.",
 
-                                "success"
+                                "error"
 
                             );
 
-                            setTimeout(
+                            loginButton.disabled = false;
 
-                                function () {
+                            loginButton.classList.remove(
 
-                                    window.location.replace(
-
-                                        "index.html"
-
-                                    );
-
-                                },
-
-                                500
+                                "loading"
 
                             );
 
@@ -1940,13 +1702,27 @@
 
                         showMessage(
 
-                            "La connexion n'a pas pu être établie.",
+                            "Connexion réussie. Ouverture de l'administration...",
 
-                            "error"
+                            "success"
 
                         );
 
-                        setLoading(false);
+                        setTimeout(
+
+                            function () {
+
+                                window.location.replace(
+
+                                    "index.html"
+
+                                );
+
+                            },
+
+                            500
+
+                        );
 
                     } catch (error) {
 
@@ -1966,7 +1742,13 @@
 
                         );
 
-                        setLoading(false);
+                        loginButton.disabled = false;
+
+                        loginButton.classList.remove(
+
+                            "loading"
+
+                        );
 
                     }
 
@@ -1974,21 +1756,57 @@
 
             );
 
-            /* =====================================
+            /* =========================
 
-               INITIALISATION
+               RACCOURCI ENTREE
 
-            ====================================== */
+            ========================== */
 
-            document.addEventListener(
+            passwordInput.addEventListener(
 
-                "DOMContentLoaded",
+                "keydown",
 
-                function () {
+                function (event) {
 
-                    checkExistingSession();
+                    if (
 
-                    emailInput.focus();
+                        event.key === "Enter"
+
+                    ) {
+
+                        form.requestSubmit();
+
+                    }
+
+                }
+
+            );
+
+            /* =========================
+
+               SURVEILLANCE SESSION
+
+            ========================== */
+
+            supabaseClient.auth.onAuthStateChange(
+
+                function (event, session) {
+
+                    if (
+
+                        event === "SIGNED_IN" &&
+
+                        session
+
+                    ) {
+
+                        window.location.replace(
+
+                            "index.html"
+
+                        );
+
+                    }
 
                 }
 
