@@ -1,0 +1,4461 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+
+        name="viewport"
+
+        content="width=device-width, initial-scale=1.0"
+
+    >
+
+    <title>Informations boutique | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Gestion des informations générales de NINICE BOUTIQUE."
+
+    >
+
+    <meta
+
+        name="theme-color"
+
+        content="#6d28d9"
+
+    >
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.googleapis.com"
+
+    >
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin
+
+    >
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <style>
+
+        :root {
+
+            --primary: #6d28d9;
+
+            --primary-dark: #4c1d95;
+
+            --primary-light: #f3e8ff;
+
+            --white: #fff;
+
+            --bg: #f7f7fb;
+
+            --text: #19151d;
+
+            --muted: #77717f;
+
+            --border: #e8e3ed;
+
+            --success: #16834b;
+
+            --success-bg: #edf9f2;
+
+            --danger: #dc2626;
+
+            --danger-bg: #fff1f1;
+
+            --shadow: 0 12px 35px rgba(39,16,67,.08);
+
+            --radius: 18px;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: "DM Sans", sans-serif;
+
+        }
+
+        button,
+
+        input,
+
+        textarea,
+
+        select {
+
+            font: inherit;
+
+        }
+
+        button {
+
+            cursor: pointer;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        /* =========================================
+
+           LOADING
+
+        ========================================= */
+
+        .loading-screen {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #fff;
+
+        }
+
+        .loading-box {
+
+            text-align: center;
+
+        }
+
+        .loading-logo {
+
+            width: 58px;
+
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin: 0 auto 14px;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+
+            color: #fff;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 26px;
+
+            font-weight: 700;
+
+        }
+
+        .loading-box p {
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+        }
+
+        /* =========================================
+
+           APP
+
+        ========================================= */
+
+        .app {
+
+            display: none;
+
+            min-height: 100vh;
+
+        }
+
+        /* =========================================
+
+           SIDEBAR
+
+        ========================================= */
+
+        .sidebar {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            bottom: 0;
+
+            z-index: 100;
+
+            width: 270px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            background: #fff;
+
+            border-right: 1px solid var(--border);
+
+        }
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 24px 20px;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+        .brand-logo {
+
+            width: 44px;
+
+            height: 44px;
+
+            flex: 0 0 44px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+
+            color: #fff;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+        }
+
+        .brand-logo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .brand-text strong {
+
+            display: block;
+
+            color: var(--primary-dark);
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+        }
+
+        .brand-text span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+        .sidebar-nav {
+
+            padding: 18px 12px;
+
+            overflow-y: auto;
+
+        }
+
+        .nav-title {
+
+            margin: 9px 10px 8px;
+
+            color: #aaa3b0;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .08em;
+
+            text-transform: uppercase;
+
+        }
+
+        .nav-link {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            min-height: 44px;
+
+            margin-bottom: 4px;
+
+            padding: 10px 12px;
+
+            border-radius: 11px;
+
+            color: #5d5664;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: .2s;
+
+        }
+
+        .nav-link:hover {
+
+            background: #f7f1fc;
+
+            color: var(--primary);
+
+        }
+
+        .nav-link.active {
+
+            background: var(--primary-light);
+
+            color: var(--primary-dark);
+
+        }
+
+        .nav-icon {
+
+            width: 20px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+        }
+
+        .sidebar-bottom {
+
+            margin-top: auto;
+
+            padding: 14px 12px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+        /* =========================================
+
+           MAIN
+
+        ========================================= */
+
+        .main {
+
+            min-height: 100vh;
+
+            margin-left: 270px;
+
+        }
+
+        .topbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 50;
+
+            height: 76px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            background: rgba(255,255,255,.94);
+
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(14px);
+
+        }
+
+        .topbar-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+        }
+
+        .mobile-menu {
+
+            display: none;
+
+            width: 40px;
+
+            height: 40px;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            background: #fff;
+
+            color: var(--primary);
+
+            font-size: 18px;
+
+        }
+
+        .page-title h1 {
+
+            margin: 0;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+        }
+
+        .page-title p {
+
+            margin: 3px 0 0;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+        }
+
+        .admin-user {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+        .admin-avatar {
+
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--primary-light);
+
+            color: var(--primary);
+
+            font-weight: 800;
+
+            overflow: hidden;
+
+        }
+
+        .admin-avatar img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .admin-user-info strong {
+
+            display: block;
+
+            font-size: 12px;
+
+        }
+
+        .admin-user-info span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+        }
+
+        .logout-btn {
+
+            height: 38px;
+
+            margin-left: 10px;
+
+            padding: 0 13px;
+
+            border: 1px solid #eadfe9;
+
+            border-radius: 9px;
+
+            background: #fff;
+
+            color: #6a5d70;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .logout-btn:hover {
+
+            color: var(--danger);
+
+            border-color: #f0caca;
+
+        }
+
+        .content {
+
+            padding: 30px;
+
+        }
+
+        /* =========================================
+
+           HEADER
+
+        ========================================= */
+
+        .page-head {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 22px;
+
+        }
+
+        .page-head h2 {
+
+            margin: 0;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 27px;
+
+        }
+
+        .page-head p {
+
+            margin: 6px 0 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+        }
+
+        /* =========================================
+
+           ALERT
+
+        ========================================= */
+
+        .alert {
+
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+        .alert.show {
+
+            display: block;
+
+        }
+
+        .alert-error {
+
+            background: var(--danger-bg);
+
+            color: #a82222;
+
+            border: 1px solid #f4cece;
+
+        }
+
+        .alert-success {
+
+            background: var(--success-bg);
+
+            color: #176c43;
+
+            border: 1px solid #cbe9d7;
+
+        }
+
+        /* =========================================
+
+           GRID
+
+        ========================================= */
+
+        .settings-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                minmax(0, 1.35fr)
+
+                minmax(300px, .65fr);
+
+            gap: 18px;
+
+        }
+
+        .card {
+
+            background: #fff;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            box-shadow: var(--shadow);
+
+        }
+
+        .card-header {
+
+            padding: 19px 21px;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+        .card-header h3 {
+
+            margin: 0;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+        .card-header p {
+
+            margin: 5px 0 0;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+        }
+
+        .card-body {
+
+            padding: 21px;
+
+        }
+
+        /* =========================================
+
+           FORM
+
+        ========================================= */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(2, minmax(0, 1fr));
+
+            gap: 16px;
+
+        }
+
+        .form-group {
+
+            min-width: 0;
+
+        }
+
+        .form-group.full {
+
+            grid-column: 1 / -1;
+
+        }
+
+        .form-label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #554c5b;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+        .required {
+
+            color: var(--danger);
+
+        }
+
+        .input,
+
+        .textarea {
+
+            width: 100%;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: #fff;
+
+            color: var(--text);
+
+            transition: .2s;
+
+        }
+
+        .input {
+
+            height: 43px;
+
+            padding: 0 12px;
+
+        }
+
+        .textarea {
+
+            min-height: 105px;
+
+            padding: 11px 12px;
+
+            resize: vertical;
+
+        }
+
+        .input:focus,
+
+        .textarea:focus {
+
+            border-color: #a78bfa;
+
+            box-shadow:
+
+                0 0 0 3px
+
+                rgba(109,40,217,.08);
+
+        }
+
+        .help {
+
+            margin-top: 5px;
+
+            color: #99919e;
+
+            font-size: 9px;
+
+            line-height: 1.5;
+
+        }
+
+        /* =========================================
+
+           LOGO UPLOAD
+
+        ========================================= */
+
+        .logo-upload {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            padding: 15px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            background: #fcfbfd;
+
+        }
+
+        .logo-large {
+
+            width: 78px;
+
+            height: 78px;
+
+            flex: 0 0 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            border-radius: 50%;
+
+            background: var(--primary-light);
+
+            border: 1px solid #e3d4f2;
+
+            color: var(--primary);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 29px;
+
+            font-weight: 700;
+
+        }
+
+        .logo-large img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .logo-upload-info {
+
+            min-width: 0;
+
+        }
+
+        .logo-upload-info strong {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-size: 12px;
+
+        }
+
+        .logo-upload-info p {
+
+            margin: 0 0 10px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            line-height: 1.5;
+
+        }
+
+        .file-input {
+
+            display: none;
+
+        }
+
+        .file-btn {
+
+            min-height: 36px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 0 12px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            background: #fff;
+
+            color: var(--primary-dark);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+        .file-btn:hover {
+
+            border-color: #c7b0df;
+
+            background: var(--primary-light);
+
+        }
+
+        .remove-logo-btn {
+
+            margin-left: 6px;
+
+            min-height: 36px;
+
+            padding: 0 10px;
+
+            border: 1px solid #f0cccc;
+
+            border-radius: 9px;
+
+            background: #fff;
+
+            color: var(--danger);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+        /* =========================================
+
+           SAVE
+
+        ========================================= */
+
+        .form-footer {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            margin-top: 22px;
+
+            padding-top: 17px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+        .save-info {
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+        }
+
+        .btn {
+
+            min-height: 41px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            padding: 0 15px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            transition: .2s;
+
+        }
+
+        .btn-primary {
+
+            background: var(--primary);
+
+            color: #fff;
+
+        }
+
+        .btn-primary:hover {
+
+            background: var(--primary-dark);
+
+        }
+
+        /* =========================================
+
+           PREVIEW
+
+        ========================================= */
+
+        .preview {
+
+            position: sticky;
+
+            top: 100px;
+
+        }
+
+        .preview-box {
+
+            padding: 22px;
+
+        }
+
+        .preview-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .preview-logo {
+
+            width: 60px;
+
+            height: 60px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            border-radius: 50%;
+
+            background: var(--primary-light);
+
+            border: 1px solid #e5d4f7;
+
+            color: var(--primary);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+        }
+
+        .preview-logo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .preview-name {
+
+            min-width: 0;
+
+        }
+
+        .preview-name strong {
+
+            display: block;
+
+            color: var(--primary-dark);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 20px;
+
+            word-break: break-word;
+
+        }
+
+        .preview-name span {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+        }
+
+        .preview-description {
+
+            padding: 15px;
+
+            background: #faf8fc;
+
+            border: 1px solid #eee8f3;
+
+            border-radius: 12px;
+
+            color: #645c69;
+
+            font-size: 11px;
+
+            line-height: 1.65;
+
+        }
+
+        .preview-list {
+
+            margin-top: 17px;
+
+        }
+
+        .preview-item {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            padding: 11px 0;
+
+            border-bottom: 1px solid #f0edf2;
+
+        }
+
+        .preview-item:last-child {
+
+            border-bottom: 0;
+
+        }
+
+        .preview-item-label {
+
+            width: 80px;
+
+            flex: 0 0 80px;
+
+            color: #aaa2ad;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+        }
+
+        .preview-item-value {
+
+            min-width: 0;
+
+            color: #403742;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            word-break: break-word;
+
+            white-space: pre-line;
+
+        }
+
+        .preview-socials {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-top: 15px;
+
+        }
+
+        .social-pill {
+
+            padding: 7px 9px;
+
+            border-radius: 20px;
+
+            background: var(--primary-light);
+
+            color: var(--primary-dark);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+        }
+
+        /* =========================================
+
+           STATUS
+
+        ========================================= */
+
+        .connection-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 17px;
+
+            padding: 11px 12px;
+
+            border-radius: 10px;
+
+            background: var(--success-bg);
+
+            color: var(--success);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+        }
+
+        .connection-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--success);
+
+        }
+
+        /* =========================================
+
+           OVERLAY
+
+        ========================================= */
+
+        .overlay-loading {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1000;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: rgba(255,255,255,.72);
+
+            backdrop-filter: blur(4px);
+
+        }
+
+        .overlay-loading.show {
+
+            display: flex;
+
+        }
+
+        .loader-box {
+
+            padding: 20px 24px;
+
+            border-radius: 14px;
+
+            background: #fff;
+
+            box-shadow: var(--shadow);
+
+            color: var(--primary-dark);
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+        /* =========================================
+
+           RESPONSIVE
+
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .sidebar {
+
+                transform: translateX(-100%);
+
+                transition: .25s;
+
+            }
+
+            .sidebar.open {
+
+                transform: translateX(0);
+
+            }
+
+            .main {
+
+                margin-left: 0;
+
+            }
+
+            .mobile-menu {
+
+                display: inline-flex;
+
+            }
+
+            .settings-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .preview {
+
+                position: static;
+
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .content {
+
+                padding: 20px 15px 30px;
+
+            }
+
+            .topbar {
+
+                padding: 0 15px;
+
+            }
+
+            .admin-user-info {
+
+                display: none;
+
+            }
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .form-group.full {
+
+                grid-column: auto;
+
+            }
+
+            .form-footer {
+
+                align-items: stretch;
+
+                flex-direction: column;
+
+            }
+
+            .form-footer .btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+        @media (max-width: 560px) {
+
+            .page-title p {
+
+                display: none;
+
+            }
+
+            .logout-btn {
+
+                padding: 0 9px;
+
+            }
+
+            .page-head {
+
+                flex-direction: column;
+
+            }
+
+            .preview-box {
+
+                padding: 17px;
+
+            }
+
+            .logo-upload {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+            .logo-upload-info {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div
+
+    class="loading-screen"
+
+    id="loadingScreen"
+
+>
+
+    <div class="loading-box">
+
+        <div class="loading-logo">N</div>
+
+        <p>Vérification de l'administration...</p>
+
+    </div>
+
+</div>
+
+<div
+
+    class="app"
+
+    id="app"
+
+>
+
+    <aside
+
+        class="sidebar"
+
+        id="sidebar"
+
+    >
+
+        <div class="brand">
+
+            <div
+
+                class="brand-logo"
+
+                id="sidebarLogo"
+
+            >
+
+                N
+
+            </div>
+
+            <div class="brand-text">
+
+                <strong id="sidebarStoreName">
+
+                    NINICE BOUTIQUE
+
+                </strong>
+
+                <span>
+
+                    Administration
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-title">
+
+                Général
+
+            </div>
+
+            <a
+
+                href="index.html"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">D</span>
+
+                <span>Tableau de bord</span>
+
+            </a>
+
+            <a
+
+                href="commandes.html"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">C</span>
+
+                <span>Commandes</span>
+
+            </a>
+
+            <a
+
+                href="produits.html"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">P</span>
+
+                <span>Produits</span>
+
+            </a>
+
+            <a
+
+                href="categories.html"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">K</span>
+
+                <span>Catégories</span>
+
+            </a>
+
+            <a
+
+                href="promotions.html"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">%</span>
+
+                <span>Promotions</span>
+
+            </a>
+
+            <div class="nav-title">
+
+                Contenu
+
+            </div>
+
+            <a
+
+                href="avis.html"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">A</span>
+
+                <span>Avis clients</span>
+
+            </a>
+
+            <a
+
+                href="conseils.html"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">I</span>
+
+                <span>Conseils</span>
+
+            </a>
+
+            <div class="nav-title">
+
+                Boutique
+
+            </div>
+
+            <a
+
+                href="livraison.html"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">L</span>
+
+                <span>Livraison</span>
+
+            </a>
+
+            <a
+
+                href="boutique.html"
+
+                class="nav-link active"
+
+            >
+
+                <span class="nav-icon">B</span>
+
+                <span>Informations boutique</span>
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a
+
+                href="../index.html"
+
+                target="_blank"
+
+                class="nav-link"
+
+            >
+
+                <span class="nav-icon">↗</span>
+
+                <span>Voir la boutique</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+
+                    type="button"
+
+                    class="mobile-menu"
+
+                    id="mobileMenu"
+
+                    aria-label="Ouvrir le menu"
+
+                >
+
+                    ☰
+
+                </button>
+
+                <div class="page-title">
+
+                    <h1>
+
+                        Informations boutique
+
+                    </h1>
+
+                    <p>
+
+                        Gérez les informations générales de NINICE BOUTIQUE.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="admin-user">
+
+                <div
+
+                    class="admin-avatar"
+
+                    id="adminAvatar"
+
+                >
+
+                    N
+
+                </div>
+
+                <div class="admin-user-info">
+
+                    <strong>
+
+                        Administrateur
+
+                    </strong>
+
+                    <span>
+
+                        Accès sécurisé
+
+                    </span>
+
+                </div>
+
+                <button
+
+                    type="button"
+
+                    class="logout-btn"
+
+                    id="logoutBtn"
+
+                >
+
+                    Déconnexion
+
+                </button>
+
+            </div>
+
+        </header>
+
+        <section class="content">
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+
+                        Informations de la boutique
+
+                    </h2>
+
+                    <p>
+
+                        Ces informations sont enregistrées dans Supabase
+
+                        et pourront être utilisées automatiquement sur le site.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+
+                class="alert alert-error"
+
+                id="pageError"
+
+            ></div>
+
+            <div
+
+                class="alert alert-success"
+
+                id="pageSuccess"
+
+            ></div>
+
+            <div class="settings-grid">
+
+                <!-- =================================================
+
+                     FORMULAIRE
+
+                ================================================== -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3>
+
+                            Informations générales
+
+                        </h3>
+
+                        <p>
+
+                            Modifiez les informations utilisées
+
+                            par votre boutique.
+
+                        </p>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <form id="shopForm">
+
+                            <div class="form-grid">
+
+                                <!-- NOM -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopName"
+
+                                    >
+
+                                        Nom de la boutique
+
+                                        <span class="required">*</span>
+
+                                    </label>
+
+                                    <input
+
+                                        type="text"
+
+                                        id="shopName"
+
+                                        class="input"
+
+                                        placeholder="NINICE BOUTIQUE"
+
+                                        required
+
+                                    >
+
+                                </div>
+
+                                <!-- VILLE -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopCity"
+
+                                    >
+
+                                        Ville
+
+                                    </label>
+
+                                    <input
+
+                                        type="text"
+
+                                        id="shopCity"
+
+                                        class="input"
+
+                                        placeholder="Bouaké"
+
+                                    >
+
+                                </div>
+
+                                <!-- DESCRIPTION -->
+
+                                <div class="form-group full">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopDescription"
+
+                                    >
+
+                                        Description de la boutique
+
+                                    </label>
+
+                                    <textarea
+
+                                        id="shopDescription"
+
+                                        class="textarea"
+
+                                        placeholder="Présentez brièvement NINICE BOUTIQUE..."
+
+                                    ></textarea>
+
+                                </div>
+
+                                <!-- LOGO -->
+
+                                <div class="form-group full">
+
+                                    <label class="form-label">
+
+                                        Logo de la boutique
+
+                                    </label>
+
+                                    <div class="logo-upload">
+
+                                        <div
+
+                                            class="logo-large"
+
+                                            id="logoLarge"
+
+                                        >
+
+                                            N
+
+                                        </div>
+
+                                        <div class="logo-upload-info">
+
+                                            <strong>
+
+                                                Choisir le logo
+
+                                            </strong>
+
+                                            <p>
+
+                                                Sélectionnez une image depuis
+
+                                                votre téléphone ou votre ordinateur.
+
+                                                Elle sera envoyée automatiquement
+
+                                                dans Supabase.
+
+                                            </p>
+
+                                            <input
+
+                                                type="file"
+
+                                                id="logoInput"
+
+                                                class="file-input"
+
+                                                accept="image/png,image/jpeg,image/webp,image/jpg"
+
+                                            >
+
+                                            <label
+
+                                                for="logoInput"
+
+                                                class="file-btn"
+
+                                            >
+
+                                                Choisir une image
+
+                                            </label>
+
+                                            <button
+
+                                                type="button"
+
+                                                class="remove-logo-btn"
+
+                                                id="removeLogoBtn"
+
+                                            >
+
+                                                Supprimer
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="help">
+
+                                        Formats recommandés : PNG, JPG ou WebP.
+
+                                        Une image carrée est préférable.
+
+                                    </div>
+
+                                </div>
+
+                                <!-- WHATSAPP -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopWhatsapp"
+
+                                    >
+
+                                        WhatsApp
+
+                                    </label>
+
+                                    <input
+
+                                        type="text"
+
+                                        id="shopWhatsapp"
+
+                                        class="input"
+
+                                        placeholder="225XXXXXXXXXX"
+
+                                    >
+
+                                    <div class="help">
+
+                                        Exemple : 2250700000000
+
+                                    </div>
+
+                                </div>
+
+                                <!-- TELEPHONE -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopPhone"
+
+                                    >
+
+                                        Téléphone
+
+                                    </label>
+
+                                    <input
+
+                                        type="text"
+
+                                        id="shopPhone"
+
+                                        class="input"
+
+                                        placeholder="07 XX XX XX XX"
+
+                                    >
+
+                                </div>
+
+                                <!-- EMAIL -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopEmail"
+
+                                    >
+
+                                        Adresse e-mail
+
+                                    </label>
+
+                                    <input
+
+                                        type="email"
+
+                                        id="shopEmail"
+
+                                        class="input"
+
+                                        placeholder="contact@..."
+
+                                    >
+
+                                </div>
+
+                                <!-- DEVISE -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopCurrency"
+
+                                    >
+
+                                        Devise
+
+                                    </label>
+
+                                    <input
+
+                                        type="text"
+
+                                        id="shopCurrency"
+
+                                        class="input"
+
+                                        placeholder="FCFA"
+
+                                    >
+
+                                </div>
+
+                                <!-- ADRESSE -->
+
+                                <div class="form-group full">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopAddress"
+
+                                    >
+
+                                        Adresse
+
+                                    </label>
+
+                                    <input
+
+                                        type="text"
+
+                                        id="shopAddress"
+
+                                        class="input"
+
+                                        placeholder="Adresse ou point de livraison"
+
+                                    >
+
+                                </div>
+
+                                <!-- HORAIRES -->
+
+                                <div class="form-group full">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopHours"
+
+                                    >
+
+                                        Horaires d'ouverture
+
+                                    </label>
+
+                                    <textarea
+
+                                        id="shopHours"
+
+                                        class="textarea"
+
+                                        placeholder="Lundi - Samedi : 08h00 - 18h00&#10;Dimanche : Fermé"
+
+                                    ></textarea>
+
+                                </div>
+
+                                <!-- FACEBOOK -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopFacebook"
+
+                                    >
+
+                                        Facebook
+
+                                    </label>
+
+                                    <input
+
+                                        type="url"
+
+                                        id="shopFacebook"
+
+                                        class="input"
+
+                                        placeholder="https://facebook.com/..."
+
+                                    >
+
+                                </div>
+
+                                <!-- TIKTOK -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopTiktok"
+
+                                    >
+
+                                        TikTok
+
+                                    </label>
+
+                                    <input
+
+                                        type="url"
+
+                                        id="shopTiktok"
+
+                                        class="input"
+
+                                        placeholder="https://tiktok.com/@..."
+
+                                    >
+
+                                </div>
+
+                                <!-- INSTAGRAM -->
+
+                                <div class="form-group">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopInstagram"
+
+                                    >
+
+                                        Instagram
+
+                                    </label>
+
+                                    <input
+
+                                        type="url"
+
+                                        id="shopInstagram"
+
+                                        class="input"
+
+                                        placeholder="https://instagram.com/..."
+
+                                    >
+
+                                </div>
+
+                                <!-- ANNONCE -->
+
+                                <div class="form-group full">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="shopAnnouncement"
+
+                                    >
+
+                                        Annonce de la boutique
+
+                                    </label>
+
+                                    <textarea
+
+                                        id="shopAnnouncement"
+
+                                        class="textarea"
+
+                                        placeholder="Exemple : Livraison disponible à Bouaké et dans plusieurs villes de Côte d'Ivoire."
+
+                                    ></textarea>
+
+                                </div>
+
+                                <!-- TITRE HERO -->
+
+                                <div class="form-group full">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="heroTitle"
+
+                                    >
+
+                                        Titre principal de l'accueil
+
+                                    </label>
+
+                                    <input
+
+                                        type="text"
+
+                                        id="heroTitle"
+
+                                        class="input"
+
+                                        placeholder="Votre style, votre élégance."
+
+                                    >
+
+                                </div>
+
+                                <!-- TEXTE HERO -->
+
+                                <div class="form-group full">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="heroText"
+
+                                    >
+
+                                        Texte principal de l'accueil
+
+                                    </label>
+
+                                    <textarea
+
+                                        id="heroText"
+
+                                        class="textarea"
+
+                                        placeholder="Découvrez notre sélection..."
+
+                                    ></textarea>
+
+                                </div>
+
+                                <!-- IMAGE HERO -->
+
+                                <div class="form-group full">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="heroImageUrl"
+
+                                    >
+
+                                        URL de l'image principale de l'accueil
+
+                                    </label>
+
+                                    <input
+
+                                        type="url"
+
+                                        id="heroImageUrl"
+
+                                        class="input"
+
+                                        placeholder="https://..."
+
+                                    >
+
+                                    <div class="help">
+
+                                        Cette image sera utilisée par l'accueil
+
+                                        lorsque la page d'accueil sera connectée
+
+                                        à ce paramètre.
+
+                                    </div>
+
+                                </div>
+
+                                <!-- FOOTER -->
+
+                                <div class="form-group full">
+
+                                    <label
+
+                                        class="form-label"
+
+                                        for="footerText"
+
+                                    >
+
+                                        Texte du footer
+
+                                    </label>
+
+                                    <textarea
+
+                                        id="footerText"
+
+                                        class="textarea"
+
+                                        placeholder="NINICE BOUTIQUE — Mode, élégance et style."
+
+                                    ></textarea>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-footer">
+
+                                <div class="save-info">
+
+                                    Les modifications sont enregistrées
+
+                                    directement dans Supabase.
+
+                                </div>
+
+                                <button
+
+                                    type="submit"
+
+                                    class="btn btn-primary"
+
+                                    id="saveBtn"
+
+                                >
+
+                                    Enregistrer les modifications
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <!-- =================================================
+
+                     APERÇU
+
+                ================================================== -->
+
+                <div class="card preview">
+
+                    <div class="card-header">
+
+                        <h3>
+
+                            Aperçu
+
+                        </h3>
+
+                        <p>
+
+                            Aperçu des informations principales
+
+                            de votre boutique.
+
+                        </p>
+
+                    </div>
+
+                    <div class="preview-box">
+
+                        <div class="preview-brand">
+
+                            <div
+
+                                class="preview-logo"
+
+                                id="previewLogo"
+
+                            >
+
+                                N
+
+                            </div>
+
+                            <div class="preview-name">
+
+                                <strong
+
+                                    id="previewName"
+
+                                >
+
+                                    NINICE BOUTIQUE
+
+                                </strong>
+
+                                <span
+
+                                    id="previewCity"
+
+                                >
+
+                                    Bouaké
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div
+
+                            class="preview-description"
+
+                            id="previewDescription"
+
+                        >
+
+                            Découvrez les collections
+
+                            NINICE BOUTIQUE.
+
+                        </div>
+
+                        <div class="preview-list">
+
+                            <div class="preview-item">
+
+                                <div class="preview-item-label">
+
+                                    WhatsApp
+
+                                </div>
+
+                                <div
+
+                                    class="preview-item-value"
+
+                                    id="previewWhatsapp"
+
+                                >
+
+                                    Non renseigné
+
+                                </div>
+
+                            </div>
+
+                            <div class="preview-item">
+
+                                <div class="preview-item-label">
+
+                                    Téléphone
+
+                                </div>
+
+                                <div
+
+                                    class="preview-item-value"
+
+                                    id="previewPhone"
+
+                                >
+
+                                    Non renseigné
+
+                                </div>
+
+                            </div>
+
+                            <div class="preview-item">
+
+                                <div class="preview-item-label">
+
+                                    Email
+
+                                </div>
+
+                                <div
+
+                                    class="preview-item-value"
+
+                                    id="previewEmail"
+
+                                >
+
+                                    Non renseigné
+
+                                </div>
+
+                            </div>
+
+                            <div class="preview-item">
+
+                                <div class="preview-item-label">
+
+                                    Adresse
+
+                                </div>
+
+                                <div
+
+                                    class="preview-item-value"
+
+                                    id="previewAddress"
+
+                                >
+
+                                    Non renseignée
+
+                                </div>
+
+                            </div>
+
+                            <div class="preview-item">
+
+                                <div class="preview-item-label">
+
+                                    Horaires
+
+                                </div>
+
+                                <div
+
+                                    class="preview-item-value"
+
+                                    id="previewHours"
+
+                                >
+
+                                    Non renseignés
+
+                                </div>
+
+                            </div>
+
+                            <div class="preview-item">
+
+                                <div class="preview-item-label">
+
+                                    Annonce
+
+                                </div>
+
+                                <div
+
+                                    class="preview-item-value"
+
+                                    id="previewAnnouncement"
+
+                                >
+
+                                    Non renseignée
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div
+
+                            class="preview-socials"
+
+                            id="previewSocials"
+
+                        ></div>
+
+                        <div class="connection-status">
+
+                            <span class="connection-dot"></span>
+
+                            Informations synchronisées
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div
+
+    class="overlay-loading"
+
+    id="overlayLoading"
+
+>
+
+    <div class="loader-box">
+
+        Chargement...
+
+    </div>
+
+</div>
+
+<script src="../assets/js/config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../assets/js/supabase.js"></script>
+
+<script>
+
+(function () {
+
+    "use strict";
+
+    const supabaseClient =
+
+        window.niniceSupabase;
+
+    const $ =
+
+        id => document.getElementById(id);
+
+    let currentSettings = null;
+
+    let currentLogoUrl = "";
+
+    let logoWasRemoved = false;
+
+    const loadingScreen =
+
+        $("loadingScreen");
+
+    const app =
+
+        $("app");
+
+    const sidebar =
+
+        $("sidebar");
+
+    const mobileMenu =
+
+        $("mobileMenu");
+
+    const logoutBtn =
+
+        $("logoutBtn");
+
+    const shopForm =
+
+        $("shopForm");
+
+    const overlayLoading =
+
+        $("overlayLoading");
+
+    const fields = {
+
+        name:
+
+            $("shopName"),
+
+        description:
+
+            $("shopDescription"),
+
+        whatsapp:
+
+            $("shopWhatsapp"),
+
+        phone:
+
+            $("shopPhone"),
+
+        email:
+
+            $("shopEmail"),
+
+        address:
+
+            $("shopAddress"),
+
+        city:
+
+            $("shopCity"),
+
+        hours:
+
+            $("shopHours"),
+
+        currency:
+
+            $("shopCurrency"),
+
+        facebook:
+
+            $("shopFacebook"),
+
+        tiktok:
+
+            $("shopTiktok"),
+
+        instagram:
+
+            $("shopInstagram"),
+
+        announcement:
+
+            $("shopAnnouncement"),
+
+        heroTitle:
+
+            $("heroTitle"),
+
+        heroText:
+
+            $("heroText"),
+
+        heroImage:
+
+            $("heroImageUrl"),
+
+        footerText:
+
+            $("footerText")
+
+    };
+
+    function showError(message) {
+
+        $("pageSuccess")
+
+            .classList.remove("show");
+
+        $("pageError")
+
+            .textContent = message;
+
+        $("pageError")
+
+            .classList.add("show");
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+    function showSuccess(message) {
+
+        $("pageError")
+
+            .classList.remove("show");
+
+        $("pageSuccess")
+
+            .textContent = message;
+
+        $("pageSuccess")
+
+            .classList.add("show");
+
+        setTimeout(() => {
+
+            $("pageSuccess")
+
+                .classList.remove("show");
+
+        }, 5000);
+
+    }
+
+    function setLoading(
+
+        state,
+
+        message = "Chargement..."
+
+    ) {
+
+        const loader =
+
+            overlayLoading.querySelector(
+
+                ".loader-box"
+
+            );
+
+        if (loader) {
+
+            loader.textContent = message;
+
+        }
+
+        overlayLoading.classList.toggle(
+
+            "show",
+
+            state
+
+        );
+
+    }
+
+    async function checkAdmin() {
+
+        if (!supabaseClient) {
+
+            throw new Error(
+
+                "Supabase n'est pas correctement initialisé."
+
+            );
+
+        }
+
+        const {
+
+            data,
+
+            error
+
+        } =
+
+            await supabaseClient
+
+                .auth
+
+                .getSession();
+
+        if (error) {
+
+            throw error;
+
+        }
+
+        if (!data?.session) {
+
+            window.location.href =
+
+                "login.html";
+
+            return false;
+
+        }
+
+        const {
+
+            data: adminResult,
+
+            error: adminError
+
+        } =
+
+            await supabaseClient
+
+                .rpc("is_admin");
+
+        if (
+
+            adminError ||
+
+            adminResult !== true
+
+        ) {
+
+            await supabaseClient
+
+                .auth
+
+                .signOut();
+
+            window.location.href =
+
+                "login.html";
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+    function setLogoPreview(url) {
+
+        const logoLarge =
+
+            $("logoLarge");
+
+        const previewLogo =
+
+            $("previewLogo");
+
+        const sidebarLogo =
+
+            $("sidebarLogo");
+
+        const adminAvatar =
+
+            $("adminAvatar");
+
+        if (url) {
+
+            logoLarge.innerHTML = `
+
+                <img
+
+                    src="${escapeHtml(url)}"
+
+                    alt="Logo"
+
+                    onerror="this.parentElement.textContent='N';"
+
+                >
+
+            `;
+
+            previewLogo.innerHTML = `
+
+                <img
+
+                    src="${escapeHtml(url)}"
+
+                    alt="Logo"
+
+                    onerror="this.parentElement.textContent='N';"
+
+                >
+
+            `;
+
+            sidebarLogo.innerHTML = `
+
+                <img
+
+                    src="${escapeHtml(url)}"
+
+                    alt="Logo"
+
+                    onerror="this.parentElement.textContent='N';"
+
+                >
+
+            `;
+
+            adminAvatar.innerHTML = `
+
+                <img
+
+                    src="${escapeHtml(url)}"
+
+                    alt="Logo"
+
+                    onerror="this.parentElement.textContent='N';"
+
+                >
+
+            `;
+
+        } else {
+
+            logoLarge.textContent = "N";
+
+            previewLogo.textContent = "N";
+
+            sidebarLogo.textContent = "N";
+
+            adminAvatar.textContent = "N";
+
+        }
+
+    }
+
+    function fillDefaultForm() {
+
+        fields.name.value =
+
+            "NINICE BOUTIQUE";
+
+        fields.description.value =
+
+            "";
+
+        fields.whatsapp.value =
+
+            "";
+
+        fields.phone.value =
+
+            "";
+
+        fields.email.value =
+
+            "";
+
+        fields.address.value =
+
+            "";
+
+        fields.city.value =
+
+            "Bouaké";
+
+        fields.hours.value =
+
+            "";
+
+        fields.currency.value =
+
+            "FCFA";
+
+        fields.facebook.value =
+
+            "";
+
+        fields.tiktok.value =
+
+            "";
+
+        fields.instagram.value =
+
+            "";
+
+        fields.announcement.value =
+
+            "";
+
+        fields.heroTitle.value =
+
+            "";
+
+        fields.heroText.value =
+
+            "";
+
+        fields.heroImage.value =
+
+            "";
+
+        fields.footerText.value =
+
+            "";
+
+        currentLogoUrl = "";
+
+        logoWasRemoved = false;
+
+        setLogoPreview("");
+
+    }
+
+    function fillForm(settings) {
+
+        fields.name.value =
+
+            settings.store_name ||
+
+            "NINICE BOUTIQUE";
+
+        fields.description.value =
+
+            settings.description ||
+
+            "";
+
+        fields.whatsapp.value =
+
+            settings.whatsapp ||
+
+            "";
+
+        fields.phone.value =
+
+            settings.phone ||
+
+            "";
+
+        fields.email.value =
+
+            settings.email ||
+
+            "";
+
+        fields.address.value =
+
+            settings.address ||
+
+            "";
+
+        fields.city.value =
+
+            settings.city ||
+
+            "Bouaké";
+
+        fields.hours.value =
+
+            settings.opening_hours ||
+
+            "";
+
+        fields.currency.value =
+
+            settings.currency ||
+
+            "FCFA";
+
+        fields.facebook.value =
+
+            settings.facebook_url ||
+
+            "";
+
+        fields.instagram.value =
+
+            settings.instagram_url ||
+
+            "";
+
+        fields.tiktok.value =
+
+            settings.tiktok_url ||
+
+            "";
+
+        fields.announcement.value =
+
+            settings.announcement ||
+
+            "";
+
+        fields.heroTitle.value =
+
+            settings.hero_title ||
+
+            "";
+
+        fields.heroText.value =
+
+            settings.hero_text ||
+
+            "";
+
+        fields.heroImage.value =
+
+            settings.hero_image_url ||
+
+            "";
+
+        fields.footerText.value =
+
+            settings.footer_text ||
+
+            "";
+
+        currentLogoUrl =
+
+            settings.logo_url ||
+
+            "";
+
+        logoWasRemoved = false;
+
+        setLogoPreview(
+
+            currentLogoUrl
+
+        );
+
+        updatePreview();
+
+    }
+
+    async function loadSettings() {
+
+        setLoading(
+
+            true,
+
+            "Chargement des informations..."
+
+        );
+
+        try {
+
+            const {
+
+                data,
+
+                error
+
+            } =
+
+                await supabaseClient
+
+                    .from("store_settings")
+
+                    .select("*")
+
+                    .order(
+
+                        "updated_at",
+
+                        {
+
+                            ascending: false
+
+                        }
+
+                    )
+
+                    .limit(1);
+
+            if (error) {
+
+                throw error;
+
+            }
+
+            currentSettings =
+
+                data?.length
+
+                    ? data[0]
+
+                    : null;
+
+            if (currentSettings) {
+
+                fillForm(
+
+                    currentSettings
+
+                );
+
+            } else {
+
+                fillDefaultForm();
+
+            }
+
+            updatePreview();
+
+        } catch (error) {
+
+            console.error(
+
+                "Erreur chargement store_settings:",
+
+                error
+
+            );
+
+            showError(
+
+                error?.message ||
+
+                "Impossible de charger les informations de la boutique."
+
+            );
+
+        } finally {
+
+            setLoading(false);
+
+        }
+
+    }
+
+    async function uploadLogo(file) {
+
+        if (!file) {
+
+            return null;
+
+        }
+
+        const allowedTypes = [
+
+            "image/png",
+
+            "image/jpeg",
+
+            "image/jpg",
+
+            "image/webp"
+
+        ];
+
+        if (!allowedTypes.includes(file.type)) {
+
+            throw new Error(
+
+                "Format de logo non pris en charge. Utilisez PNG, JPG ou WebP."
+
+            );
+
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+
+            throw new Error(
+
+                "Le logo ne doit pas dépasser 5 Mo."
+
+            );
+
+        }
+
+        const extension =
+
+            file.name
+
+                .split(".")
+
+                .pop()
+
+                .toLowerCase();
+
+        const fileName =
+
+            `logo-${Date.now()}-${Math.random()
+
+                .toString(36)
+
+                .substring(2, 10)}.${extension}`;
+
+        const path =
+
+            `branding/${fileName}`;
+
+        const {
+
+            error: uploadError
+
+        } =
+
+            await supabaseClient
+
+                .storage
+
+                .from("store-assets")
+
+                .upload(
+
+                    path,
+
+                    file,
+
+                    {
+
+                        cacheControl: "3600",
+
+                        upsert: false
+
+                    }
+
+                );
+
+        if (uploadError) {
+
+            throw uploadError;
+
+        }
+
+        const {
+
+            data
+
+        } =
+
+            supabaseClient
+
+                .storage
+
+                .from("store-assets")
+
+                .getPublicUrl(path);
+
+        if (!data?.publicUrl) {
+
+            throw new Error(
+
+                "Impossible de récupérer l'URL publique du logo."
+
+            );
+
+        }
+
+        return data.publicUrl;
+
+    }
+
+    async function saveSettings(event) {
+
+        event.preventDefault();
+
+        const name =
+
+            fields.name.value.trim();
+
+        if (!name) {
+
+            showError(
+
+                "Le nom de la boutique est obligatoire."
+
+            );
+
+            return;
+
+        }
+
+        setLoading(
+
+            true,
+
+            "Enregistrement des informations..."
+
+        );
+
+        try {
+
+            const logoInput =
+
+                $("logoInput");
+
+            let logoUrl =
+
+                currentLogoUrl;
+
+            if (
+
+                logoInput.files &&
+
+                logoInput.files.length
+
+            ) {
+
+                setLoading(
+
+                    true,
+
+                    "Envoi du logo..."
+
+                );
+
+                logoUrl =
+
+                    await uploadLogo(
+
+                        logoInput.files[0]
+
+                    );
+
+            }
+
+            if (logoWasRemoved) {
+
+                logoUrl = null;
+
+            }
+
+            setLoading(
+
+                true,
+
+                "Enregistrement..."
+
+            );
+
+            const {
+
+                data,
+
+                error
+
+            } =
+
+                await supabaseClient
+
+                    .rpc(
+
+                        "admin_save_store_settings",
+
+                        {
+
+                            p_store_name:
+
+                                name,
+
+                            p_logo_url:
+
+                                logoUrl,
+
+                            p_favicon_url:
+
+                                null,
+
+                            p_description:
+
+                                fields.description.value.trim(),
+
+                            p_whatsapp:
+
+                                fields.whatsapp.value.trim(),
+
+                            p_phone:
+
+                                fields.phone.value.trim(),
+
+                            p_email:
+
+                                fields.email.value.trim(),
+
+                            p_facebook_url:
+
+                                fields.facebook.value.trim(),
+
+                            p_instagram_url:
+
+                                fields.instagram.value.trim(),
+
+                            p_tiktok_url:
+
+                                fields.tiktok.value.trim(),
+
+                            p_address:
+
+                                fields.address.value.trim(),
+
+                            p_city:
+
+                                fields.city.value.trim(),
+
+                            p_opening_hours:
+
+                                fields.hours.value.trim(),
+
+                            p_currency:
+
+                                fields.currency.value.trim() ||
+
+                                "FCFA",
+
+                            p_announcement:
+
+                                fields.announcement.value.trim(),
+
+                            p_hero_title:
+
+                                fields.heroTitle.value.trim(),
+
+                            p_hero_text:
+
+                                fields.heroText.value.trim(),
+
+                            p_hero_image_url:
+
+                                fields.heroImage.value.trim(),
+
+                            p_footer_text:
+
+                                fields.footerText.value.trim()
+
+                        }
+
+                    );
+
+            if (error) {
+
+                throw error;
+
+            }
+
+            if (!data) {
+
+                throw new Error(
+
+                    "La boutique n'a pas retourné les informations enregistrées."
+
+                );
+
+            }
+
+            currentSettings =
+
+                Array.isArray(data)
+
+                    ? data[0]
+
+                    : data;
+
+            currentLogoUrl =
+
+                currentSettings.logo_url ||
+
+                "";
+
+            logoWasRemoved = false;
+
+            $("logoInput").value = "";
+
+            fillForm(
+
+                currentSettings
+
+            );
+
+            updatePreview();
+
+            showSuccess(
+
+                "Les informations de la boutique ont été enregistrées avec succès."
+
+            );
+
+        } catch (error) {
+
+            console.error(
+
+                "Erreur enregistrement boutique:",
+
+                error
+
+            );
+
+            showError(
+
+                error?.message ||
+
+                "Impossible d'enregistrer les informations de la boutique."
+
+            );
+
+        } finally {
+
+            setLoading(false);
+
+        }
+
+    }
+
+    function updatePreview() {
+
+        const name =
+
+            fields.name.value.trim() ||
+
+            "NINICE BOUTIQUE";
+
+        const city =
+
+            fields.city.value.trim() ||
+
+            "Ville non renseignée";
+
+        const description =
+
+            fields.description.value.trim() ||
+
+            "Découvrez les collections NINICE BOUTIQUE.";
+
+        $("previewName")
+
+            .textContent =
+
+            name;
+
+        $("previewCity")
+
+            .textContent =
+
+            city;
+
+        $("previewDescription")
+
+            .textContent =
+
+            description;
+
+        $("previewWhatsapp")
+
+            .textContent =
+
+            fields.whatsapp.value.trim() ||
+
+            "Non renseigné";
+
+        $("previewPhone")
+
+            .textContent =
+
+            fields.phone.value.trim() ||
+
+            "Non renseigné";
+
+        $("previewEmail")
+
+            .textContent =
+
+            fields.email.value.trim() ||
+
+            "Non renseigné";
+
+        $("previewAddress")
+
+            .textContent =
+
+            fields.address.value.trim() ||
+
+            "Non renseignée";
+
+        $("previewHours")
+
+            .textContent =
+
+            fields.hours.value.trim() ||
+
+            "Non renseignés";
+
+        $("previewAnnouncement")
+
+            .textContent =
+
+            fields.announcement.value.trim() ||
+
+            "Non renseignée";
+
+        updateSocials();
+
+        const logo =
+
+            currentLogoUrl;
+
+        if (
+
+            logo &&
+
+            !logoWasRemoved
+
+        ) {
+
+            setLogoPreview(
+
+                logo
+
+            );
+
+        } else {
+
+            setLogoPreview("");
+
+        }
+
+        $("sidebarStoreName")
+
+            .textContent =
+
+            name;
+
+    }
+
+    function updateSocials() {
+
+        const socials =
+
+            $("previewSocials");
+
+        socials.innerHTML = "";
+
+        if (
+
+            fields.facebook.value.trim()
+
+        ) {
+
+            addSocial(
+
+                socials,
+
+                "Facebook"
+
+            );
+
+        }
+
+        if (
+
+            fields.instagram.value.trim()
+
+        ) {
+
+            addSocial(
+
+                socials,
+
+                "Instagram"
+
+            );
+
+        }
+
+        if (
+
+            fields.tiktok.value.trim()
+
+        ) {
+
+            addSocial(
+
+                socials,
+
+                "TikTok"
+
+            );
+
+        }
+
+    }
+
+    function addSocial(
+
+        container,
+
+        text
+
+    ) {
+
+        const item =
+
+            document.createElement(
+
+                "span"
+
+            );
+
+        item.className =
+
+            "social-pill";
+
+        item.textContent =
+
+            text;
+
+        container.appendChild(
+
+            item
+
+        );
+
+    }
+
+    function escapeHtml(value) {
+
+        return String(
+
+            value ?? ""
+
+        )
+
+        .replace(
+
+            /&/g,
+
+            "&amp;"
+
+        )
+
+        .replace(
+
+            /</g,
+
+            "&lt;"
+
+        )
+
+        .replace(
+
+            />/g,
+
+            "&gt;"
+
+        )
+
+        .replace(
+
+            /"/g,
+
+            "&quot;"
+
+        )
+
+        .replace(
+
+            /'/g,
+
+            "&#039;"
+
+        );
+
+    }
+
+    Object.values(fields)
+
+        .forEach(field => {
+
+            field.addEventListener(
+
+                "input",
+
+                updatePreview
+
+            );
+
+        });
+
+    $("logoInput")
+
+        .addEventListener(
+
+            "change",
+
+            event => {
+
+                const file =
+
+                    event.target.files?.[0];
+
+                if (!file) {
+
+                    return;
+
+                }
+
+                const temporaryUrl =
+
+                    URL.createObjectURL(
+
+                        file
+
+                    );
+
+                currentLogoUrl =
+
+                    temporaryUrl;
+
+                logoWasRemoved =
+
+                    false;
+
+                setLogoPreview(
+
+                    temporaryUrl
+
+                );
+
+            }
+
+        );
+
+    $("removeLogoBtn")
+
+        .addEventListener(
+
+            "click",
+
+            () => {
+
+                $("logoInput").value = "";
+
+                currentLogoUrl = "";
+
+                logoWasRemoved = true;
+
+                setLogoPreview("");
+
+            }
+
+        );
+
+    shopForm.addEventListener(
+
+        "submit",
+
+        saveSettings
+
+    );
+
+    mobileMenu.addEventListener(
+
+        "click",
+
+        () => {
+
+            sidebar.classList.toggle(
+
+                "open"
+
+            );
+
+        }
+
+    );
+
+    document
+
+        .querySelectorAll(
+
+            ".sidebar .nav-link"
+
+        )
+
+        .forEach(link => {
+
+            link.addEventListener(
+
+                "click",
+
+                () => {
+
+                    sidebar.classList.remove(
+
+                        "open"
+
+                    );
+
+                }
+
+            );
+
+        });
+
+    logoutBtn.addEventListener(
+
+        "click",
+
+        async () => {
+
+            if (
+
+                !window.confirm(
+
+                    "Voulez-vous vous déconnecter ?"
+
+                )
+
+            ) {
+
+                return;
+
+            }
+
+            await supabaseClient
+
+                .auth
+
+                .signOut();
+
+            window.location.href =
+
+                "login.html";
+
+        }
+
+    );
+
+    supabaseClient.auth.onAuthStateChange(
+
+        event => {
+
+            if (
+
+                event === "SIGNED_OUT"
+
+            ) {
+
+                window.location.href =
+
+                    "login.html";
+
+            }
+
+        }
+
+    );
+
+    async function init() {
+
+        try {
+
+            const authorized =
+
+                await checkAdmin();
+
+            if (!authorized) {
+
+                return;
+
+            }
+
+            await loadSettings();
+
+            loadingScreen.style.display =
+
+                "none";
+
+            app.style.display =
+
+                "block";
+
+        } catch (error) {
+
+            console.error(
+
+                "Erreur initialisation:",
+
+                error
+
+            );
+
+            loadingScreen.innerHTML = `
+
+                <div class="loading-box">
+
+                    <div
+
+                        class="loading-logo"
+
+                        style="background:#dc2626;"
+
+                    >
+
+                        !
+
+                    </div>
+
+                    <p
+
+                        style="
+
+                            color:#b42323;
+
+                            max-width:340px;
+
+                            line-height:1.6;
+
+                        "
+
+                    >
+
+                        Impossible de charger
+
+                        l'administration de la boutique.
+
+                    </p>
+
+                    <button
+
+                        type="button"
+
+                        class="btn btn-primary"
+
+                        style="margin-top:15px;"
+
+                        onclick="window.location.reload()"
+
+                    >
+
+                        Réessayer
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+    init();
+
+})();
+
+</script>
+
+</body>
+
+</html>
