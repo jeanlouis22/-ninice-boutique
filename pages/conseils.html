@@ -14,7 +14,7 @@
 
         name="description"
 
-        content="Découvrez les conseils NINICE BOUTIQUE."
+        content="Conseils mode et astuces NINICE BOUTIQUE."
 
     >
 
@@ -78,11 +78,11 @@
 
         .article-page {
 
-            max-width: 900px;
+            width: min(900px, calc(100% - 28px));
 
             margin: 0 auto;
 
-            padding: 35px 20px 100px;
+            padding: 35px 0 100px;
 
         }
 
@@ -91,8 +91,6 @@
             display: inline-flex;
 
             align-items: center;
-
-            gap: 8px;
 
             margin-bottom: 25px;
 
@@ -182,11 +180,13 @@
 
         .article-excerpt {
 
-            margin: 0 0 30px;
+            margin-bottom: 30px;
 
             padding: 18px 20px;
 
             border-left: 4px solid var(--violet);
+
+            border-radius: 0 10px 10px 0;
 
             background: var(--violet-light);
 
@@ -195,8 +195,6 @@
             font-size: 16px;
 
             line-height: 1.7;
-
-            border-radius: 0 10px 10px 0;
 
         }
 
@@ -214,35 +212,29 @@
 
         }
 
-        .article-body p {
-
-            margin: 0 0 20px;
-
-        }
-
         .article-status {
 
-            padding: 30px 20px;
+            padding: 35px 20px;
+
+            border: 1px solid var(--border);
 
             border-radius: 16px;
 
             background: var(--white);
 
-            border: 1px solid var(--border);
+            color: var(--muted);
 
             text-align: center;
-
-            color: var(--muted);
 
         }
 
         .article-status.error {
 
-            color: var(--danger);
+            border-color: #fecaca;
 
             background: #fef2f2;
 
-            border-color: #fecaca;
+            color: var(--danger);
 
         }
 
@@ -250,7 +242,7 @@
 
             .article-page {
 
-                padding: 25px 14px 100px;
+                padding-top: 25px;
 
             }
 
@@ -274,9 +266,9 @@
 
             .article-excerpt {
 
-                font-size: 14px;
-
                 padding: 15px;
+
+                font-size: 14px;
 
             }
 
@@ -296,37 +288,31 @@
 
 <body>
 
-    <header id="site-header"></header>
+<header id="site-header"></header>
 
-    <main class="article-page">
+<main class="article-page">
 
-        <a
+    <a href="conseils.html" class="back-link">
 
-            href="conseils.html"
+        Retour aux conseils
 
-            class="back-link"
+    </a>
 
-        >
+    <div id="article-container">
 
-            Retour aux conseils
+        <div class="article-status">
 
-        </a>
-
-        <div id="article-container">
-
-            <div class="article-status">
-
-                Chargement du conseil...
-
-            </div>
+            Chargement du conseil...
 
         </div>
 
-    </main>
+    </div>
 
-    <footer id="site-footer"></footer>
+</main>
 
-    <script src="../assets/js/config.js"></script>
+<footer id="site-footer"></footer>
+
+<script src="../assets/js/config.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -336,283 +322,309 @@
 
 <script src="../assets/js/navigation.js"></script>
 
-    <script>
+<script>
 
-        document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async function () {
 
-            const container =
+    const container =
 
-                document.getElementById("article-container");
+        document.getElementById("article-container");
 
-            function escapeHTML(value) {
+    function escapeHTML(value) {
 
-                return String(value ?? "")
+        return String(value ?? "")
 
-                    .replace(/&/g, "&amp;")
+            .replace(/&/g, "&amp;")
 
-                    .replace(/</g, "&lt;")
+            .replace(/</g, "&lt;")
 
-                    .replace(/>/g, "&gt;")
+            .replace(/>/g, "&gt;")
 
-                    .replace(/"/g, "&quot;")
+            .replace(/"/g, "&quot;")
 
-                    .replace(/'/g, "&#039;");
+            .replace(/'/g, "&#039;");
 
-            }
+    }
 
-            function formatDate(dateString) {
+    function formatDate(value) {
 
-                if (!dateString) {
+        if (!value) {
 
-                    return "";
+            return "";
 
-                }
+        }
 
-                const date = new Date(dateString);
+        const date = new Date(value);
 
-                if (Number.isNaN(date.getTime())) {
+        if (Number.isNaN(date.getTime())) {
 
-                    return "";
+            return "";
 
-                }
+        }
 
-                return new Intl.DateTimeFormat("fr-FR", {
+        return new Intl.DateTimeFormat("fr-FR", {
 
-                    day: "2-digit",
+            day: "2-digit",
 
-                    month: "long",
+            month: "long",
 
-                    year: "numeric"
+            year: "numeric"
 
-                }).format(date);
+        }).format(date);
 
-            }
+    }
 
-            function showError(message) {
+    function showError(message) {
 
-                container.innerHTML = `
+        container.innerHTML = `
 
-                    <div class="article-status error">
+            <div class="article-status error">
 
-                        ${escapeHTML(message)}
+                ${escapeHTML(message)}
+
+            </div>
+
+        `;
+
+    }
+
+    if (!window.niniceSupabase) {
+
+        showError(
+
+            "La connexion à la boutique n'est pas disponible."
+
+        );
+
+        return;
+
+    }
+
+    const params =
+
+        new URLSearchParams(window.location.search);
+
+    const id = params.get("id");
+
+    const slug = params.get("slug");
+
+    console.log(
+
+        "NINICE CONSEIL — ID :",
+
+        id,
+
+        "SLUG :",
+
+        slug
+
+    );
+
+    /*
+
+     * Aucun identifiant :
+
+     * on ne fait pas de requête inutile.
+
+     */
+
+    if (!id && !slug) {
+
+        showError(
+
+            "Ouvre un conseil depuis la page « Conseils » pour consulter son contenu."
+
+        );
+
+        return;
+
+    }
+
+    try {
+
+        let query = window.niniceSupabase
+
+            .from("advice")
+
+            .select(`
+
+                id,
+
+                title,
+
+                slug,
+
+                excerpt,
+
+                content,
+
+                image_url,
+
+                is_published,
+
+                is_featured,
+
+                created_at,
+
+                updated_at
+
+            `)
+
+            .eq("is_published", true);
+
+        /*
+
+         * Si l'URL contient un ID,
+
+         * on utilise prioritairement l'ID.
+
+         */
+
+        if (id) {
+
+            query = query.eq("id", id);
+
+        } else if (slug) {
+
+            query = query.eq("slug", slug);
+
+        }
+
+        const result = await query;
+
+        if (result.error) {
+
+            throw result.error;
+
+        }
+
+        const data = result.data;
+
+        console.log(
+
+            "NINICE CONSEIL — résultat :",
+
+            data
+
+        );
+
+        if (!data || data.length === 0) {
+
+            showError(
+
+                "Ce conseil n'existe pas, n'est pas publié ou son lien est incorrect."
+
+            );
+
+            return;
+
+        }
+
+        const article = data[0];
+
+        document.title =
+
+            `${article.title} | NINICE BOUTIQUE`;
+
+        const imageHTML = article.image_url
+
+            ? `
+
+                <div class="article-image-wrapper">
+
+                    <img
+
+                        class="article-image"
+
+                        src="${escapeHTML(article.image_url)}"
+
+                        alt="${escapeHTML(article.title)}"
+
+                        onerror="this.parentElement.style.display='none';"
+
+                    >
+
+                </div>
+
+            `
+
+            : "";
+
+        const excerptHTML = article.excerpt
+
+            ? `
+
+                <div class="article-excerpt">
+
+                    ${escapeHTML(article.excerpt)}
+
+                </div>
+
+            `
+
+            : "";
+
+        container.innerHTML = `
+
+            <article class="article-card">
+
+                ${imageHTML}
+
+                <div class="article-content">
+
+                    <div class="article-date">
+
+                        Publié le
+
+                        ${escapeHTML(
+
+                            formatDate(article.created_at)
+
+                        )}
 
                     </div>
 
-                `;
+                    <h1 class="article-title">
 
-            }
+                        ${escapeHTML(article.title)}
 
-            async function loadArticle() {
+                    </h1>
 
-                if (!window.niniceSupabase) {
+                    ${excerptHTML}
 
-                    showError(
+                    <div class="article-body">
 
-                        "La connexion à la boutique n'est pas disponible."
+                        ${escapeHTML(article.content)}
 
-                    );
+                    </div>
 
-                    return;
+                </div>
 
-                }
+            </article>
 
-                const params =
+        `;
 
-                    new URLSearchParams(window.location.search);
+    } catch (error) {
 
-                const id = params.get("id");
+        console.error(
 
-                const slug = params.get("slug");
+            "NINICE CONSEIL — erreur :",
 
-                if (!id && !slug) {
+            error
 
-                    showError(
+        );
 
-                        "Le conseil demandé est introuvable."
+        showError(
 
-                    );
+            "Une erreur est survenue lors du chargement du conseil."
 
-                    return;
+        );
 
-                }
+    }
 
-                try {
+});
 
-                    let query =
-
-                        window.niniceSupabase
-
-                            .from("advice")
-
-                            .select(`
-
-                                id,
-
-                                title,
-
-                                slug,
-
-                                excerpt,
-
-                                content,
-
-                                image_url,
-
-                                is_published,
-
-                                is_featured,
-
-                                created_at,
-
-                                updated_at
-
-                            `)
-
-                            .eq("is_published", true);
-
-                    if (id) {
-
-                        query = query.eq("id", id);
-
-                    } else {
-
-                        query = query.eq("slug", slug);
-
-                    }
-
-                    const {
-
-                        data,
-
-                        error
-
-                    } = await query.maybeSingle();
-
-                    if (error) {
-
-                        throw error;
-
-                    }
-
-                    if (!data) {
-
-                        showError(
-
-                            "Ce conseil n'existe pas ou n'est plus disponible."
-
-                        );
-
-                        return;
-
-                    }
-
-                    document.title =
-
-                        `${data.title} | NINICE BOUTIQUE`;
-
-                    const imageHTML = data.image_url
-
-                        ? `
-
-                            <div class="article-image-wrapper">
-
-                                <img
-
-                                    class="article-image"
-
-                                    src="${escapeHTML(data.image_url)}"
-
-                                    alt="${escapeHTML(data.title)}"
-
-                                    onerror="this.parentElement.style.display='none';"
-
-                                >
-
-                            </div>
-
-                        `
-
-                        : "";
-
-                    const excerptHTML = data.excerpt
-
-                        ? `
-
-                            <div class="article-excerpt">
-
-                                ${escapeHTML(data.excerpt)}
-
-                            </div>
-
-                        `
-
-                        : "";
-
-                    container.innerHTML = `
-
-                        <article class="article-card">
-
-                            ${imageHTML}
-
-                            <div class="article-content">
-
-                                <div class="article-date">
-
-                                    Publié le
-
-                                    ${escapeHTML(
-
-                                        formatDate(data.created_at)
-
-                                    )}
-
-                                </div>
-
-                                <h1 class="article-title">
-
-                                    ${escapeHTML(data.title)}
-
-                                </h1>
-
-                                ${excerptHTML}
-
-                                <div class="article-body">
-
-                                    ${escapeHTML(data.content)}
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    `;
-
-                } catch (error) {
-
-                    console.error(
-
-                        "Erreur lors du chargement du conseil :",
-
-                        error
-
-                    );
-
-                    showError(
-
-                        "Impossible de charger ce conseil pour le moment."
-
-                    );
-
-                }
-
-            }
-
-            await loadArticle();
-
-        });
-
-    </script>
+</script>
 
 </body>
 
