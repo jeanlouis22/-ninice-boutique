@@ -4,65 +4,925 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
 
-<title>Livraison | NINICE BOUTIQUE</title>
+        name="viewport"
 
-<link rel="stylesheet" href="../assets/css/style.css">
+        content="width=device-width, initial-scale=1.0"
 
-<link rel="stylesheet" href="../assets/css/responsive.css">
+    >
+
+    <title>Livraison | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Découvrez les informations sur la livraison de vos commandes NINICE BOUTIQUE."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        .delivery-page {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 45px 20px 70px;
+
+        }
+
+        .delivery-hero {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+        }
+
+        .delivery-hero h1 {
+
+            margin: 0 0 12px;
+
+            color: #4c1d95;
+
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: clamp(34px, 6vw, 52px);
+
+        }
+
+        .delivery-hero p {
+
+            max-width: 720px;
+
+            margin: 0 auto;
+
+            color: #666;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+        }
+
+        .delivery-intro {
+
+            background: linear-gradient(
+
+                135deg,
+
+                #faf8ff,
+
+                #f4efff
+
+            );
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            margin-bottom: 30px;
+
+        }
+
+        .delivery-intro h2 {
+
+            margin: 0 0 12px;
+
+            color: #4c1d95;
+
+            font-size: 25px;
+
+        }
+
+        .delivery-intro p {
+
+            margin: 0;
+
+            color: #555;
+
+            line-height: 1.8;
+
+        }
+
+        .delivery-section-title {
+
+            margin: 40px 0 20px;
+
+            color: #4c1d95;
+
+            font-size: 27px;
+
+        }
+
+        .delivery-zones {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+
+        }
+
+        .delivery-zone-card {
+
+            background: #fff;
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow: 0 10px 30px rgba(76, 29, 149, 0.07);
+
+        }
+
+        .delivery-zone-city {
+
+            margin: 0 0 7px;
+
+            color: #4c1d95;
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+        }
+
+        .delivery-zone-name {
+
+            color: #6d28d9;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+
+        }
+
+        .delivery-price-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #eee;
+
+        }
+
+        .delivery-price-row:last-child {
+
+            border-bottom: 0;
+
+        }
+
+        .delivery-price-label {
+
+            color: #666;
+
+        }
+
+        .delivery-price-value {
+
+            color: #333;
+
+            font-weight: 800;
+
+            text-align: right;
+
+        }
+
+        .delivery-time {
+
+            margin-top: 15px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            background: #faf9ff;
+
+            color: #555;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+
+        }
+
+        .delivery-empty {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            background: #faf9ff;
+
+            border: 1px solid rgba(109, 40, 217, 0.08);
+
+            border-radius: 18px;
+
+            padding: 35px 20px;
+
+            color: #666;
+
+            line-height: 1.7;
+
+        }
+
+        .delivery-info-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 18px;
+
+            margin-top: 25px;
+
+        }
+
+        .delivery-info-card {
+
+            background: #fff;
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 18px;
+
+            padding: 23px;
+
+        }
+
+        .delivery-info-card h3 {
+
+            margin: 0 0 10px;
+
+            color: #4c1d95;
+
+            font-size: 19px;
+
+        }
+
+        .delivery-info-card p {
+
+            margin: 0;
+
+            color: #666;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+        }
+
+        .delivery-note {
+
+            margin-top: 30px;
+
+            background: #fff;
+
+            border-left: 4px solid #6d28d9;
+
+            border-radius: 0 14px 14px 0;
+
+            padding: 20px;
+
+            box-shadow: 0 8px 25px rgba(76, 29, 149, 0.06);
+
+        }
+
+        .delivery-note strong {
+
+            display: block;
+
+            color: #4c1d95;
+
+            margin-bottom: 7px;
+
+        }
+
+        .delivery-note p {
+
+            margin: 0;
+
+            color: #666;
+
+            line-height: 1.7;
+
+        }
+
+        .delivery-loading {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+            color: #666;
+
+        }
+
+        .delivery-error {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 35px 20px;
+
+            border-radius: 18px;
+
+            background: #fff7f7;
+
+            color: #8d2020;
+
+            line-height: 1.7;
+
+        }
+
+        @media (max-width: 850px) {
+
+            .delivery-zones {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .delivery-info-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .delivery-page {
+
+                padding: 30px 14px 55px;
+
+            }
+
+            .delivery-intro {
+
+                padding: 22px 18px;
+
+            }
+
+            .delivery-zone-card {
+
+                padding: 20px;
+
+            }
+
+            .delivery-section-title {
+
+                font-size: 24px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div id="site-header"></div>
+    <!-- HEADER -->
 
-<main>
+    <header id="site-header"></header>
 
-<section class="page-section">
+    <main class="delivery-page">
 
-<div class="container">
+        <section class="delivery-hero">
 
-<span class="eyebrow">NINICE BOUTIQUE</span>
+            <h1>Livraison</h1>
 
-<h1>Livraison</h1>
+            <p>
 
-<div class="page-card">
+                Retrouvez ici les informations concernant les zones
 
-<h2>Informations de livraison</h2>
+                desservies, les frais de livraison et les délais
 
-<p>
+                estimatifs de NINICE BOUTIQUE.
 
-Les zones de livraison, les tarifs et les délais seront
+            </p>
 
-présentés ici.
+        </section>
 
-</p>
+        <section class="delivery-intro">
 
-<div id="delivery-zones"></div>
+            <h2>Comment fonctionne la livraison ?</h2>
 
-</div>
+            <p>
 
-</div>
+                Après validation de votre commande, les informations
 
-</section>
+                de livraison sont vérifiées afin de préparer votre
 
-</main>
+                commande et de déterminer les frais correspondant
 
-<div id="site-footer"></div>
+                à votre zone.
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            </p>
 
-<script src="../assets/js/config.js"></script>
+        </section>
 
-<script src="../assets/js/supabase.js"></script>
+        <h2 class="delivery-section-title">
 
-<script src="../assets/js/common.js"></script>
+            Zones et tarifs
 
-<script src="../assets/js/navigation.js"></script>
+        </h2>
+
+        <section
+
+            id="delivery-zones"
+
+            class="delivery-zones"
+
+        >
+
+            <div class="delivery-loading">
+
+                Chargement des zones de livraison...
+
+            </div>
+
+        </section>
+
+        <h2 class="delivery-section-title">
+
+            Informations importantes
+
+        </h2>
+
+        <section class="delivery-info-grid">
+
+            <article class="delivery-info-card">
+
+                <h3>Adresse de livraison</h3>
+
+                <p>
+
+                    Veillez à renseigner une adresse, une commune,
+
+                    un quartier ou un point de livraison suffisamment
+
+                    précis afin de faciliter la remise de votre commande.
+
+                </p>
+
+            </article>
+
+            <article class="delivery-info-card">
+
+                <h3>Frais</h3>
+
+                <p>
+
+                    Les frais de livraison et d'expédition sont calculés
+
+                    selon les informations disponibles pour votre zone
+
+                    au moment de la commande.
+
+                </p>
+
+            </article>
+
+            <article class="delivery-info-card">
+
+                <h3>Délais</h3>
+
+                <p>
+
+                    Le délai peut varier selon la zone, la disponibilité
+
+                    du produit et les conditions de livraison.
+
+                    Le délai affiché est donc indicatif.
+
+                </p>
+
+            </article>
+
+        </section>
+
+        <section class="delivery-note">
+
+            <strong>À retenir</strong>
+
+            <p>
+
+                Avant de confirmer votre commande, vérifiez toujours
+
+                votre numéro de téléphone et les informations relatives
+
+                au lieu de livraison.
+
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer id="site-footer"></footer>
+
+    <!-- CONFIGURATION -->
+
+    <script src="../assets/js/config.js"></script>
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <!-- SCRIPTS COMMUNS -->
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async function () {
+
+            const container =
+
+                document.getElementById("delivery-zones");
+
+            /*
+
+             * Formatage du prix
+
+             */
+
+            function formatPrice(value) {
+
+                const amount =
+
+                    Number(value || 0);
+
+                return new Intl.NumberFormat(
+
+                    "fr-FR"
+
+                ).format(amount) + " FCFA";
+
+            }
+
+            /*
+
+             * Échappement HTML
+
+             */
+
+            function escapeHtml(value) {
+
+                return String(value ?? "")
+
+                    .replace(/&/g, "&amp;")
+
+                    .replace(/</g, "&lt;")
+
+                    .replace(/>/g, "&gt;")
+
+                    .replace(/"/g, "&quot;")
+
+                    .replace(/'/g, "&#039;");
+
+            }
+
+            /*
+
+             * Vérification Supabase
+
+             */
+
+            if (!window.niniceSupabase) {
+
+                container.innerHTML = `
+
+                    <div class="delivery-error">
+
+                        La connexion à la boutique n'est pas
+
+                        disponible pour le moment.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+            try {
+
+                const {
+
+                    data,
+
+                    error
+
+                } = await window.niniceSupabase
+
+                    .from("delivery_zones")
+
+                    .select(`
+
+                        id,
+
+                        city,
+
+                        zone,
+
+                        delivery_fee,
+
+                        shipping_fee,
+
+                        estimated_time,
+
+                        is_active
+
+                    `)
+
+                    .eq("is_active", true)
+
+                    .order("city", {
+
+                        ascending: true
+
+                    })
+
+                    .order("zone", {
+
+                        ascending: true
+
+                    });
+
+                if (error) {
+
+                    console.error(
+
+                        "Erreur livraison :",
+
+                        error
+
+                    );
+
+                    throw error;
+
+                }
+
+                if (!data || data.length === 0) {
+
+                    container.innerHTML = `
+
+                        <div class="delivery-empty">
+
+                            <strong>
+
+                                Les zones de livraison seront bientôt disponibles.
+
+                            </strong>
+
+                            <br>
+
+                            Les tarifs seront affichés ici dès
+
+                            qu'ils seront configurés.
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+                container.innerHTML =
+
+                    data.map(function (item) {
+
+                        const city =
+
+                            item.city ||
+
+                            "Zone non précisée";
+
+                        const zone =
+
+                            item.zone ||
+
+                            "Zone générale";
+
+                        const deliveryFee =
+
+                            Number(
+
+                                item.delivery_fee || 0
+
+                            );
+
+                        const shippingFee =
+
+                            Number(
+
+                                item.shipping_fee || 0
+
+                            );
+
+                        const estimatedTime =
+
+                            item.estimated_time ||
+
+                            "";
+
+                        return `
+
+                            <article
+
+                                class="delivery-zone-card"
+
+                            >
+
+                                <h3
+
+                                    class="delivery-zone-city"
+
+                                >
+
+                                    ${escapeHtml(city)}
+
+                                </h3>
+
+                                <div
+
+                                    class="delivery-zone-name"
+
+                                >
+
+                                    ${escapeHtml(zone)}
+
+                                </div>
+
+                                <div
+
+                                    class="delivery-price-row"
+
+                                >
+
+                                    <span
+
+                                        class="delivery-price-label"
+
+                                    >
+
+                                        Livraison
+
+                                    </span>
+
+                                    <span
+
+                                        class="delivery-price-value"
+
+                                    >
+
+                                        ${formatPrice(
+
+                                            deliveryFee
+
+                                        )}
+
+                                    </span>
+
+                                </div>
+
+                                <div
+
+                                    class="delivery-price-row"
+
+                                >
+
+                                    <span
+
+                                        class="delivery-price-label"
+
+                                    >
+
+                                        Expédition
+
+                                    </span>
+
+                                    <span
+
+                                        class="delivery-price-value"
+
+                                    >
+
+                                        ${formatPrice(
+
+                                            shippingFee
+
+                                        )}
+
+                                    </span>
+
+                                </div>
+
+                                ${
+
+                                    estimatedTime
+
+                                        ? `
+
+                                            <div
+
+                                                class="delivery-time"
+
+                                            >
+
+                                                Délai estimatif :
+
+                                                <strong>
+
+                                                    ${escapeHtml(
+
+                                                        estimatedTime
+
+                                                    )}
+
+                                                </strong>
+
+                                            </div>
+
+                                        `
+
+                                        : ""
+
+                                }
+
+                            </article>
+
+                        `;
+
+                    }).join("");
+
+            } catch (error) {
+
+                console.error(
+
+                    "Impossible de charger les zones :",
+
+                    error
+
+                );
+
+                container.innerHTML = `
+
+                    <div class="delivery-error">
+
+                        Impossible de charger les zones
+
+                        de livraison pour le moment.
+
+                    </div>
+
+                `;
+
+            }
+
+        });
+
+    </script>
 
 </body>
 
