@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+
+        name="viewport"
+
+        content="width=device-width, initial-scale=1.0"
+
+    >
+
+    <title>Conseil | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Découvrez les conseils mode et beauté de NINICE BOUTIQUE."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        .advice-detail-page {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            padding: 40px 20px 70px;
+
+        }
+
+        .advice-detail-back {
+
+            margin-bottom: 25px;
+
+        }
+
+        .advice-detail-back a {
+
+            color: #6d28d9;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+        }
+
+        .advice-detail-back a:hover {
+
+            text-decoration: underline;
+
+        }
+
+        .advice-detail-card {
+
+            background: #ffffff;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow: 0 12px 40px rgba(76, 29, 149, 0.10);
+
+            border: 1px solid rgba(109, 40, 217, 0.08);
+
+        }
+
+        .advice-detail-image {
+
+            width: 100%;
+
+            height: 420px;
+
+            background: #f5f3ff;
+
+            overflow: hidden;
+
+        }
+
+        .advice-detail-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+        .advice-detail-content {
+
+            padding: 40px;
+
+        }
+
+        .advice-detail-date {
+
+            color: #6d28d9;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+
+        }
+
+        .advice-detail-title {
+
+            margin: 0 0 18px;
+
+            color: #4c1d95;
+
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: clamp(30px, 5vw, 48px);
+
+            line-height: 1.15;
+
+        }
+
+        .advice-detail-excerpt {
+
+            color: #555;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            margin-bottom: 30px;
+
+            padding-bottom: 25px;
+
+            border-bottom: 1px solid #eee;
+
+        }
+
+        .advice-detail-text {
+
+            color: #333;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+        }
+
+        .advice-detail-text p {
+
+            margin: 0 0 20px;
+
+        }
+
+        .advice-detail-text h2 {
+
+            color: #4c1d95;
+
+            margin: 35px 0 15px;
+
+            font-size: 25px;
+
+        }
+
+        .advice-detail-text h3 {
+
+            color: #6d28d9;
+
+            margin: 28px 0 12px;
+
+            font-size: 21px;
+
+        }
+
+        .advice-detail-text ul,
+
+        .advice-detail-text ol {
+
+            margin: 0 0 22px;
+
+            padding-left: 25px;
+
+        }
+
+        .advice-detail-text li {
+
+            margin-bottom: 10px;
+
+        }
+
+        .advice-detail-loading,
+
+        .advice-detail-error {
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            color: #555;
+
+        }
+
+        .advice-detail-error h2 {
+
+            color: #4c1d95;
+
+            margin-bottom: 12px;
+
+        }
+
+        .advice-detail-error a {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            background: #6d28d9;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+        }
+
+        @media (max-width: 700px) {
+
+            .advice-detail-page {
+
+                padding: 25px 14px 50px;
+
+            }
+
+            .advice-detail-image {
+
+                height: 260px;
+
+            }
+
+            .advice-detail-content {
+
+                padding: 25px 20px;
+
+            }
+
+            .advice-detail-title {
+
+                font-size: 32px;
+
+            }
+
+            .advice-detail-excerpt {
+
+                font-size: 16px;
+
+            }
+
+            .advice-detail-text {
+
+                font-size: 15px;
+
+                line-height: 1.8;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header id="site-header"></header>
+
+    <main class="advice-detail-page">
+
+        <div class="advice-detail-back">
+
+            <a href="conseils.html">
+
+                ← Retour aux conseils
+
+            </a>
+
+        </div>
+
+        <div id="advice-container">
+
+            <div class="advice-detail-loading">
+
+                Chargement du conseil...
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer id="site-footer"></footer>
+
+    <!-- CONFIGURATION -->
+
+    <script src="../assets/js/config.js"></script>
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <!-- SCRIPTS COMMUNS -->
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async function () {
+
+            const container =
+
+                document.getElementById("advice-container");
+
+            /*
+
+             * Récupération de l'identifiant du conseil
+
+             *
+
+             * Exemple :
+
+             * conseil.html?id=8257609e-5a24-47cc-99b4-420dcf4f784f
+
+             */
+
+            const params =
+
+                new URLSearchParams(window.location.search);
+
+            const adviceId =
+
+                params.get("id");
+
+            const adviceSlug =
+
+                params.get("slug");
+
+            if (!window.niniceSupabase) {
+
+                container.innerHTML = `
+
+                    <div class="advice-detail-error">
+
+                        <h2>Connexion indisponible</h2>
+
+                        <p>
+
+                            La connexion à la boutique n'est pas disponible
+
+                            pour le moment.
+
+                        </p>
+
+                        <a href="conseils.html">
+
+                            Retour aux conseils
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+            if (!adviceId && !adviceSlug) {
+
+                container.innerHTML = `
+
+                    <div class="advice-detail-error">
+
+                        <h2>Conseil introuvable</h2>
+
+                        <p>
+
+                            Ouvre un conseil depuis la page
+
+                            « Conseils » pour consulter son contenu.
+
+                        </p>
+
+                        <a href="conseils.html">
+
+                            Voir tous les conseils
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+            try {
+
+                let query =
+
+                    window.niniceSupabase
+
+                        .from("advice")
+
+                        .select(`
+
+                            id,
+
+                            title,
+
+                            slug,
+
+                            excerpt,
+
+                            content,
+
+                            image_url,
+
+                            is_published,
+
+                            is_featured,
+
+                            created_at,
+
+                            updated_at
+
+                        `)
+
+                        .eq("is_published", true);
+
+                /*
+
+                 * Si l'URL contient un ID,
+
+                 * on recherche directement avec l'ID.
+
+                 *
+
+                 * Sinon, on utilise le slug.
+
+                 */
+
+                if (adviceId) {
+
+                    query =
+
+                        query.eq("id", adviceId);
+
+                } else {
+
+                    query =
+
+                        query.eq("slug", adviceSlug);
+
+                }
+
+                const {
+
+                    data: advice,
+
+                    error
+
+                } = await query.maybeSingle();
+
+                if (error) {
+
+                    console.error(
+
+                        "Erreur Supabase conseil :",
+
+                        error
+
+                    );
+
+                    throw error;
+
+                }
+
+                if (!advice) {
+
+                    container.innerHTML = `
+
+                        <div class="advice-detail-error">
+
+                            <h2>Conseil introuvable</h2>
+
+                            <p>
+
+                                Ce conseil n'existe pas ou n'est plus publié.
+
+                            </p>
+
+                            <a href="conseils.html">
+
+                                Retour aux conseils
+
+                            </a>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+                /*
+
+                 * Date
+
+                 */
+
+                let formattedDate = "";
+
+                if (advice.created_at) {
+
+                    const date =
+
+                        new Date(advice.created_at);
+
+                    formattedDate =
+
+                        date.toLocaleDateString(
+
+                            "fr-FR",
+
+                            {
+
+                                day: "2-digit",
+
+                                month: "long",
+
+                                year: "numeric"
+
+                            }
+
+                        );
+
+                }
+
+                /*
+
+                 * Image
+
+                 */
+
+                const imageHtml =
+
+                    advice.image_url
+
+                        ? `
+
+                            <div class="advice-detail-image">
+
+                                <img
+
+                                    src="${escapeHtml(advice.image_url)}"
+
+                                    alt="${escapeHtml(advice.title)}"
+
+                                    loading="lazy"
+
+                                >
+
+                            </div>
+
+                        `
+
+                        : "";
+
+                /*
+
+                 * Contenu
+
+                 *
+
+                 * Le contenu est affiché tel qu'il est
+
+                 * enregistré dans Supabase.
+
+                 *
+
+                 * Si tu mets du HTML dans "content",
+
+                 * il sera interprété.
+
+                 */
+
+                const content =
+
+                    advice.content || "";
+
+                container.innerHTML = `
+
+                    <article class="advice-detail-card">
+
+                        ${imageHtml}
+
+                        <div class="advice-detail-content">
+
+                            ${
+
+                                formattedDate
+
+                                    ? `
+
+                                        <div class="advice-detail-date">
+
+                                            ${escapeHtml(formattedDate)}
+
+                                        </div>
+
+                                    `
+
+                                    : ""
+
+                            }
+
+                            <h1 class="advice-detail-title">
+
+                                ${escapeHtml(advice.title)}
+
+                            </h1>
+
+                            ${
+
+                                advice.excerpt
+
+                                    ? `
+
+                                        <div class="advice-detail-excerpt">
+
+                                            ${escapeHtml(advice.excerpt)}
+
+                                        </div>
+
+                                    `
+
+                                    : ""
+
+                            }
+
+                            <div class="advice-detail-text">
+
+                                ${content}
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+                /*
+
+                 * Mise à jour du titre de la page
+
+                 */
+
+                document.title =
+
+                    `${advice.title} | NINICE BOUTIQUE`;
+
+            } catch (error) {
+
+                console.error(
+
+                    "Impossible de charger le conseil :",
+
+                    error
+
+                );
+
+                container.innerHTML = `
+
+                    <div class="advice-detail-error">
+
+                        <h2>Une erreur est survenue</h2>
+
+                        <p>
+
+                            Impossible de charger ce conseil
+
+                            pour le moment.
+
+                        </p>
+
+                        <a href="conseils.html">
+
+                            Retour aux conseils
+
+                        </a>
+
+                    </div>
+
+                `;
+
+            }
+
+            /*
+
+             * Petite fonction de sécurité pour le texte.
+
+             */
+
+            function escapeHtml(value) {
+
+                return String(value ?? "")
+
+                    .replace(/&/g, "&amp;")
+
+                    .replace(/</g, "&lt;")
+
+                    .replace(/>/g, "&gt;")
+
+                    .replace(/"/g, "&quot;")
+
+                    .replace(/'/g, "&#039;");
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
