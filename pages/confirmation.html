@@ -1,0 +1,2557 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+
+        name="viewport"
+
+        content="width=device-width, initial-scale=1.0"
+
+    >
+
+    <title>Commande confirmée | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Confirmation de votre commande NINICE BOUTIQUE."
+
+    >
+
+    <meta
+
+        name="theme-color"
+
+        content="#6d28d9"
+
+    >
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.googleapis.com"
+
+    >
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin
+
+    >
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link
+
+        rel="stylesheet"
+
+        href="../assets/css/style.css"
+
+    >
+
+    <link
+
+        rel="stylesheet"
+
+        href="../assets/css/responsive.css"
+
+    >
+
+    <style>
+
+        :root {
+
+            --violet: #6d28d9;
+
+            --violet-dark: #4c1d95;
+
+            --violet-light: #f5f3ff;
+
+            --text: #171717;
+
+            --muted: #737373;
+
+            --border: #e5e7eb;
+
+            --white: #ffffff;
+
+            --success: #15803d;
+
+            --success-light: #f0fdf4;
+
+            --success-border: #bbf7d0;
+
+            --danger: #dc2626;
+
+            --bg: #fafafa;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: "DM Sans", sans-serif;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        button {
+
+            font: inherit;
+
+        }
+
+        .confirmation-page {
+
+            width: min(
+
+                1080px,
+
+                calc(100% - 30px)
+
+            );
+
+            margin: 0 auto;
+
+            padding: 45px 0 100px;
+
+        }
+
+        /* =========================
+
+           HERO
+
+        ========================= */
+
+        .confirmation-hero {
+
+            margin-bottom: 30px;
+
+            padding: 38px 25px;
+
+            border: 1px solid var(--success-border);
+
+            border-radius: 22px;
+
+            background: var(--success-light);
+
+            text-align: center;
+
+        }
+
+        .confirmation-check {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 72px;
+
+            height: 72px;
+
+            margin: 0 auto 20px;
+
+            border: 2px solid var(--success);
+
+            border-radius: 50%;
+
+            color: var(--success);
+
+            font-size: 32px;
+
+            font-weight: 700;
+
+        }
+
+        .confirmation-hero h1 {
+
+            margin: 0 0 10px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(
+
+                30px,
+
+                5vw,
+
+                46px
+
+            );
+
+            line-height: 1.15;
+
+        }
+
+        .confirmation-hero p {
+
+            max-width: 650px;
+
+            margin: 0 auto;
+
+            color: #555;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+        }
+
+        .order-number-box {
+
+            display: inline-flex;
+
+            flex-direction: column;
+
+            gap: 4px;
+
+            margin-top: 22px;
+
+            padding: 14px 22px;
+
+            border: 1px solid #ddd6fe;
+
+            border-radius: 13px;
+
+            background: #fff;
+
+        }
+
+        .order-number-label {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+        }
+
+        .order-number {
+
+            color: var(--violet-dark);
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+        }
+
+        /* =========================
+
+           GRID
+
+        ========================= */
+
+        .confirmation-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                minmax(0, 1fr)
+
+                360px;
+
+            gap: 24px;
+
+            align-items: start;
+
+        }
+
+        .confirmation-card {
+
+            padding: 25px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 19px;
+
+            background: var(--white);
+
+            box-shadow:
+
+                0 8px 30px
+
+                rgba(0, 0, 0, .04);
+
+        }
+
+        .card-title {
+
+            margin: 0 0 20px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 24px;
+
+        }
+
+        /* =========================
+
+           DETAILS
+
+        ========================= */
+
+        .details-list {
+
+            display: grid;
+
+            gap: 0;
+
+        }
+
+        .detail-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+        .detail-row:last-child {
+
+            border-bottom: 0;
+
+        }
+
+        .detail-label {
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+        }
+
+        .detail-value {
+
+            max-width: 60%;
+
+            color: var(--text);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            text-align: right;
+
+            line-height: 1.5;
+
+        }
+
+        /* =========================
+
+           PRODUCTS
+
+        ========================= */
+
+        .products-list {
+
+            display: grid;
+
+            gap: 15px;
+
+        }
+
+        .product-item {
+
+            display: grid;
+
+            grid-template-columns:
+
+                72px
+
+                minmax(0, 1fr)
+
+                auto;
+
+            gap: 13px;
+
+            align-items: center;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+        .product-item:last-child {
+
+            padding-bottom: 0;
+
+            border-bottom: 0;
+
+        }
+
+        .product-image {
+
+            width: 72px;
+
+            height: 82px;
+
+            overflow: hidden;
+
+            border-radius: 11px;
+
+            background: #f3f3f3;
+
+        }
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+        }
+
+        .product-info {
+
+            min-width: 0;
+
+        }
+
+        .product-name {
+
+            margin: 0 0 5px;
+
+            color: var(--text);
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            line-height: 1.35;
+
+        }
+
+        .product-meta {
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+        .product-quantity {
+
+            margin-top: 4px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+        .product-price {
+
+            color: var(--violet-dark);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+        }
+
+        /* =========================
+
+           TOTALS
+
+        ========================= */
+
+        .totals {
+
+            margin-top: 23px;
+
+            padding-top: 16px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+        .total-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 7px 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+        }
+
+        .total-row strong {
+
+            color: var(--text);
+
+        }
+
+        .grand-total {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 9px;
+
+            padding-top: 16px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+        .grand-total span {
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+        }
+
+        .grand-total strong {
+
+            color: var(--violet-dark);
+
+            font-size: 23px;
+
+        }
+
+        /* =========================
+
+           WHATSAPP
+
+        ========================= */
+
+        .whatsapp-card {
+
+            margin-top: 24px;
+
+            padding: 22px;
+
+            border: 1px solid #ddd6fe;
+
+            border-radius: 17px;
+
+            background: var(--violet-light);
+
+        }
+
+        .whatsapp-card h3 {
+
+            margin: 0 0 8px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 21px;
+
+        }
+
+        .whatsapp-card p {
+
+            margin: 0 0 17px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+        }
+
+        .whatsapp-button {
+
+            width: 100%;
+
+            min-height: 51px;
+
+            border: 0;
+
+            border-radius: 12px;
+
+            background: #25D366;
+
+            color: #fff;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: .2s ease;
+
+        }
+
+        .whatsapp-button:hover {
+
+            transform: translateY(-1px);
+
+            filter: brightness(.96);
+
+        }
+
+        .whatsapp-button:disabled {
+
+            opacity: .55;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+        .whatsapp-note {
+
+            margin-top: 9px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            text-align: center;
+
+        }
+
+        /* =========================
+
+           ACTIONS
+
+        ========================= */
+
+        .confirmation-actions {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin-top: 24px;
+
+        }
+
+        .action-button {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 50px;
+
+            padding: 0 18px;
+
+            border-radius: 12px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-align: center;
+
+            transition: .2s ease;
+
+        }
+
+        .action-button.primary {
+
+            background: var(--violet);
+
+            color: #fff;
+
+        }
+
+        .action-button.primary:hover {
+
+            background: var(--violet-dark);
+
+            transform: translateY(-1px);
+
+        }
+
+        .action-button.secondary {
+
+            border: 1px solid var(--border);
+
+            background: #fff;
+
+            color: var(--violet-dark);
+
+        }
+
+        .action-button.secondary:hover {
+
+            border-color: #c4b5fd;
+
+            background: var(--violet-light);
+
+        }
+
+        /* =========================
+
+           MESSAGE
+
+        ========================= */
+
+        .confirmation-message {
+
+            display: none;
+
+            margin-top: 13px;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            background: #fef2f2;
+
+            color: #991b1b;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+        }
+
+        .confirmation-message.show {
+
+            display: block;
+
+        }
+
+        /* =========================
+
+           EMPTY
+
+        ========================= */
+
+        .empty-confirmation {
+
+            width: min(
+
+                650px,
+
+                calc(100% - 30px)
+
+            );
+
+            margin: 70px auto;
+
+            padding: 35px 25px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 19px;
+
+            background: #fff;
+
+            text-align: center;
+
+            box-shadow:
+
+                0 8px 30px
+
+                rgba(0, 0, 0, .04);
+
+        }
+
+        .empty-confirmation h1 {
+
+            margin: 0 0 10px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+        }
+
+        .empty-confirmation p {
+
+            margin: 0 0 20px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+        .empty-confirmation a {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 46px;
+
+            padding: 0 20px;
+
+            border-radius: 11px;
+
+            background: var(--violet);
+
+            color: #fff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+        /* =========================
+
+           MOBILE
+
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .confirmation-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+        @media (max-width: 620px) {
+
+            .confirmation-page {
+
+                width: min(
+
+                    100% - 22px,
+
+                    1080px
+
+                );
+
+                padding-top: 28px;
+
+            }
+
+            .confirmation-hero {
+
+                padding: 30px 17px;
+
+                border-radius: 17px;
+
+            }
+
+            .confirmation-card {
+
+                padding: 19px 16px;
+
+                border-radius: 16px;
+
+            }
+
+            .confirmation-actions {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .product-item {
+
+                grid-template-columns:
+
+                    62px
+
+                    minmax(0, 1fr);
+
+            }
+
+            .product-image {
+
+                width: 62px;
+
+                height: 72px;
+
+            }
+
+            .product-price {
+
+                grid-column: 2;
+
+            }
+
+            .detail-row {
+
+                align-items: flex-start;
+
+            }
+
+            .detail-value {
+
+                max-width: 58%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main class="confirmation-page">
+
+        <div id="confirmation-root">
+
+            <div class="empty-confirmation">
+
+                <h1>
+
+                    Chargement de votre confirmation
+
+                </h1>
+
+                <p>
+
+                    Préparation des informations de votre commande...
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="../assets/js/config.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        (() => {
+
+            "use strict";
+
+            const CONFIRMATION_KEY =
+
+                "ninice_confirmation";
+
+            const root =
+
+                document.getElementById(
+
+                    "confirmation-root"
+
+                );
+
+            function escapeHtml(value) {
+
+                return String(value ?? "")
+
+                    .replace(/&/g, "&amp;")
+
+                    .replace(/</g, "&lt;")
+
+                    .replace(/>/g, "&gt;")
+
+                    .replace(/"/g, "&quot;")
+
+                    .replace(/'/g, "&#039;");
+
+            }
+
+            function formatPrice(value) {
+
+                return new Intl.NumberFormat(
+
+                    "fr-FR"
+
+                ).format(
+
+                    Math.round(
+
+                        Number(value || 0)
+
+                    )
+
+                ) + " FCFA";
+
+            }
+
+            function readConfirmation() {
+
+                try {
+
+                    const raw =
+
+                        sessionStorage.getItem(
+
+                            CONFIRMATION_KEY
+
+                        );
+
+                    if (!raw) {
+
+                        return null;
+
+                    }
+
+                    const data =
+
+                        JSON.parse(raw);
+
+                    if (
+
+                        !data ||
+
+                        !Array.isArray(data.cart) ||
+
+                        !data.cart.length
+
+                    ) {
+
+                        return null;
+
+                    }
+
+                    return data;
+
+                } catch (error) {
+
+                    console.error(
+
+                        "Erreur lecture confirmation :",
+
+                        error
+
+                    );
+
+                    return null;
+
+                }
+
+            }
+
+            function getWhatsAppNumber() {
+
+                const config =
+
+                    window.NINICE_CONFIG || {};
+
+                return String(
+
+                    config.DEFAULT_WHATSAPP || ""
+
+                ).replace(
+
+                    /[^0-9]/g,
+
+                    ""
+
+                );
+
+            }
+
+            function getOrderNumber(data) {
+
+                return String(
+
+                    data.orderNumber ||
+
+                    data.order_number ||
+
+                    data.orderId ||
+
+                    data.order_id ||
+
+                    "Commande enregistrée"
+
+                );
+
+            }
+
+            function getItemTotal(item) {
+
+                const quantity =
+
+                    Number(
+
+                        item.quantity || 1
+
+                    );
+
+                const price =
+
+                    Number(
+
+                        item.price ||
+
+                        item.unit_price ||
+
+                        0
+
+                    );
+
+                return quantity * price;
+
+            }
+
+            function buildWhatsAppMessage(data) {
+
+                const orderNumber =
+
+                    getOrderNumber(data);
+
+                const cart =
+
+                    Array.isArray(data.cart)
+
+                        ? data.cart
+
+                        : [];
+
+                const lines = [];
+
+                lines.push(
+
+                    "NINICE BOUTIQUE"
+
+                );
+
+                lines.push(
+
+                    "Nouvelle commande"
+
+                );
+
+                lines.push("");
+
+                lines.push(
+
+                    "Commande : " +
+
+                    orderNumber
+
+                );
+
+                lines.push("");
+
+                lines.push(
+
+                    "CLIENT"
+
+                );
+
+                lines.push(
+
+                    "Nom : " +
+
+                    (
+
+                        data.firstName || ""
+
+                    ) +
+
+                    " " +
+
+                    (
+
+                        data.lastName || ""
+
+                    )
+
+                );
+
+                if (data.phone) {
+
+                    lines.push(
+
+                        "Téléphone : " +
+
+                        data.phone
+
+                    );
+
+                }
+
+                lines.push("");
+
+                lines.push(
+
+                    "ARTICLES"
+
+                );
+
+                cart.forEach(
+
+                    (item, index) => {
+
+                        const name =
+
+                            item.name ||
+
+                            item.product_name ||
+
+                            "Article";
+
+                        const quantity =
+
+                            Number(
+
+                                item.quantity || 1
+
+                            );
+
+                        const size =
+
+                            item.size ||
+
+                            item.selectedSize ||
+
+                            "";
+
+                        const color =
+
+                            item.color ||
+
+                            item.selectedColor ||
+
+                            "";
+
+                        lines.push(
+
+                            (
+
+                                index + 1
+
+                            ) +
+
+                            ". " +
+
+                            name +
+
+                            " x" +
+
+                            quantity
+
+                        );
+
+                        if (size) {
+
+                            lines.push(
+
+                                "   Taille : " +
+
+                                size
+
+                            );
+
+                        }
+
+                        if (color) {
+
+                            lines.push(
+
+                                "   Couleur : " +
+
+                                color
+
+                            );
+
+                        }
+
+                        lines.push(
+
+                            "   Prix : " +
+
+                            formatPrice(
+
+                                getItemTotal(item)
+
+                            )
+
+                        );
+
+                    }
+
+                );
+
+                lines.push("");
+
+                lines.push(
+
+                    "LIVRAISON"
+
+                );
+
+                if (data.city) {
+
+                    lines.push(
+
+                        "Ville : " +
+
+                        data.city
+
+                    );
+
+                }
+
+                if (data.commune) {
+
+                    lines.push(
+
+                        "Commune : " +
+
+                        data.commune
+
+                    );
+
+                }
+
+                if (data.neighborhood) {
+
+                    lines.push(
+
+                        "Quartier : " +
+
+                        data.neighborhood
+
+                    );
+
+                }
+
+                if (data.address) {
+
+                    lines.push(
+
+                        "Adresse : " +
+
+                        data.address
+
+                    );
+
+                }
+
+                if (data.landmark) {
+
+                    lines.push(
+
+                        "Point de repère : " +
+
+                        data.landmark
+
+                    );
+
+                }
+
+                if (data.extraInformation) {
+
+                    lines.push(
+
+                        "Informations : " +
+
+                        data.extraInformation
+
+                    );
+
+                }
+
+                lines.push("");
+
+                lines.push(
+
+                    "PAIEMENT"
+
+                );
+
+                lines.push(
+
+                    "Mode : " +
+
+                    (
+
+                        data.paymentMethod ||
+
+                        "Non précisé"
+
+                    )
+
+                );
+
+                if (data.comment) {
+
+                    lines.push(
+
+                        "Commentaire : " +
+
+                        data.comment
+
+                    );
+
+                }
+
+                lines.push("");
+
+                lines.push(
+
+                    "TOTAL"
+
+                );
+
+                lines.push(
+
+                    "Sous-total : " +
+
+                    formatPrice(
+
+                        data.subtotal
+
+                    )
+
+                );
+
+                lines.push(
+
+                    "Livraison : " +
+
+                    formatPrice(
+
+                        data.deliveryFee
+
+                    )
+
+                );
+
+                lines.push(
+
+                    "Expédition : " +
+
+                    formatPrice(
+
+                        data.shippingFee
+
+                    )
+
+                );
+
+                lines.push(
+
+                    "Total : " +
+
+                    formatPrice(
+
+                        data.total
+
+                    )
+
+                );
+
+                lines.push("");
+
+                lines.push(
+
+                    "Merci."
+
+                );
+
+                return lines.join("\n");
+
+            }
+
+            function createProductHtml(item) {
+
+                const name =
+
+                    item.name ||
+
+                    item.product_name ||
+
+                    "Article";
+
+                const image =
+
+                    item.image ||
+
+                    item.product_image_url ||
+
+                    "";
+
+                const quantity =
+
+                    Number(
+
+                        item.quantity || 1
+
+                    );
+
+                const size =
+
+                    item.size ||
+
+                    item.selectedSize ||
+
+                    "";
+
+                const color =
+
+                    item.color ||
+
+                    item.selectedColor ||
+
+                    "";
+
+                const meta = [];
+
+                if (size) {
+
+                    meta.push(
+
+                        "Taille : " +
+
+                        escapeHtml(size)
+
+                    );
+
+                }
+
+                if (color) {
+
+                    meta.push(
+
+                        "Couleur : " +
+
+                        escapeHtml(color)
+
+                    );
+
+                }
+
+                const imageHtml = image
+
+                    ? `
+
+                        <img
+
+                            src="${escapeHtml(image)}"
+
+                            alt="${escapeHtml(name)}"
+
+                            loading="lazy"
+
+                            onerror="
+
+                                this.style.display='none';
+
+                            "
+
+                        >
+
+                    `
+
+                    : "";
+
+                return `
+
+                    <div class="product-item">
+
+                        <div class="product-image">
+
+                            ${imageHtml}
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <p class="product-name">
+
+                                ${escapeHtml(name)}
+
+                            </p>
+
+                            ${
+
+                                meta.length
+
+                                    ? `
+
+                                        <p class="product-meta">
+
+                                            ${meta.join("<br>")}
+
+                                        </p>
+
+                                    `
+
+                                    : ""
+
+                            }
+
+                            <p class="product-quantity">
+
+                                Quantité :
+
+                                ${quantity}
+
+                            </p>
+
+                        </div>
+
+                        <div class="product-price">
+
+                            ${formatPrice(
+
+                                getItemTotal(item)
+
+                            )}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+            function render(data) {
+
+                const cart =
+
+                    Array.isArray(data.cart)
+
+                        ? data.cart
+
+                        : [];
+
+                const orderNumber =
+
+                    getOrderNumber(data);
+
+                const fullName = [
+
+                    data.firstName,
+
+                    data.lastName
+
+                ]
+
+                    .filter(Boolean)
+
+                    .join(" ");
+
+                const addressParts = [
+
+                    data.delivery_address ||
+
+                    data.address,
+
+                    data.neighborhood,
+
+                    data.commune,
+
+                    data.city
+
+                ]
+
+                    .filter(Boolean);
+
+                const address =
+
+                    addressParts.join(", ");
+
+                const productsHtml =
+
+                    cart
+
+                        .map(
+
+                            createProductHtml
+
+                        )
+
+                        .join("");
+
+                const whatsappNumber =
+
+                    getWhatsAppNumber();
+
+                const whatsappMessage =
+
+                    buildWhatsAppMessage(data);
+
+                const whatsappUrl =
+
+                    whatsappNumber
+
+                        ? (
+
+                            "https://wa.me/" +
+
+                            whatsappNumber +
+
+                            "?text=" +
+
+                            encodeURIComponent(
+
+                                whatsappMessage
+
+                            )
+
+                        )
+
+                        : (
+
+                            "https://wa.me/?text=" +
+
+                            encodeURIComponent(
+
+                                whatsappMessage
+
+                            )
+
+                        );
+
+                root.innerHTML = `
+
+                    <section class="confirmation-hero">
+
+                        <div class="confirmation-check">
+
+                            ✓
+
+                        </div>
+
+                        <h1>
+
+                            Commande confirmée
+
+                        </h1>
+
+                        <p>
+
+                            Merci pour votre commande
+
+                            chez NINICE BOUTIQUE.
+
+                            Votre demande a bien été
+
+                            enregistrée et sera traitée
+
+                            par notre équipe.
+
+                        </p>
+
+                        <div class="order-number-box">
+
+                            <span class="order-number-label">
+
+                                Numéro de commande
+
+                            </span>
+
+                            <span class="order-number">
+
+                                ${escapeHtml(
+
+                                    orderNumber
+
+                                )}
+
+                            </span>
+
+                        </div>
+
+                    </section>
+
+                    <div class="confirmation-grid">
+
+                        <div>
+
+                            <section class="confirmation-card">
+
+                                <h2 class="card-title">
+
+                                    Récapitulatif de la commande
+
+                                </h2>
+
+                                <div class="products-list">
+
+                                    ${
+
+                                        productsHtml ||
+
+                                        `
+
+                                            <p>
+
+                                                Aucun article trouvé.
+
+                                            </p>
+
+                                        `
+
+                                    }
+
+                                </div>
+
+                                <div class="totals">
+
+                                    <div class="total-row">
+
+                                        <span>
+
+                                            Sous-total
+
+                                        </span>
+
+                                        <strong>
+
+                                            ${formatPrice(
+
+                                                data.subtotal
+
+                                            )}
+
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="total-row">
+
+                                        <span>
+
+                                            Livraison
+
+                                        </span>
+
+                                        <strong>
+
+                                            ${formatPrice(
+
+                                                data.deliveryFee
+
+                                            )}
+
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="total-row">
+
+                                        <span>
+
+                                            Expédition
+
+                                        </span>
+
+                                        <strong>
+
+                                            ${formatPrice(
+
+                                                data.shippingFee
+
+                                            )}
+
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="grand-total">
+
+                                        <span>
+
+                                            Total
+
+                                        </span>
+
+                                        <strong>
+
+                                            ${formatPrice(
+
+                                                data.total
+
+                                            )}
+
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+                            <section class="confirmation-card">
+
+                                <h2 class="card-title">
+
+                                    Informations client
+
+                                </h2>
+
+                                <div class="details-list">
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Nom complet
+
+                                        </span>
+
+                                        <span class="detail-value">
+
+                                            ${escapeHtml(
+
+                                                fullName ||
+
+                                                "Non renseigné"
+
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Téléphone
+
+                                        </span>
+
+                                        <span class="detail-value">
+
+                                            ${escapeHtml(
+
+                                                data.phone ||
+
+                                                "Non renseigné"
+
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Ville
+
+                                        </span>
+
+                                        <span class="detail-value">
+
+                                            ${escapeHtml(
+
+                                                data.city ||
+
+                                                "Non renseignée"
+
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Adresse de livraison
+
+                                        </span>
+
+                                        <span class="detail-value">
+
+                                            ${escapeHtml(
+
+                                                address ||
+
+                                                "Non renseignée"
+
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+                                    ${
+
+                                        data.landmark
+
+                                            ? `
+
+                                                <div class="detail-row">
+
+                                                    <span class="detail-label">
+
+                                                        Point de repère
+
+                                                    </span>
+
+                                                    <span class="detail-value">
+
+                                                        ${escapeHtml(
+
+                                                            data.landmark
+
+                                                        )}
+
+                                                    </span>
+
+                                                </div>
+
+                                            `
+
+                                            : ""
+
+                                    }
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Mode de paiement
+
+                                        </span>
+
+                                        <span class="detail-value">
+
+                                            ${escapeHtml(
+
+                                                data.paymentMethod ||
+
+                                                "Non précisé"
+
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+                                    ${
+
+                                        data.comment
+
+                                            ? `
+
+                                                <div class="detail-row">
+
+                                                    <span class="detail-label">
+
+                                                        Commentaire
+
+                                                    </span>
+
+                                                    <span class="detail-value">
+
+                                                        ${escapeHtml(
+
+                                                            data.comment
+
+                                                        )}
+
+                                                    </span>
+
+                                                </div>
+
+                                            `
+
+                                            : ""
+
+                                    }
+
+                                </div>
+
+                                <div class="whatsapp-card">
+
+                                    <h3>
+
+                                        Envoyer la commande sur WhatsApp
+
+                                    </h3>
+
+                                    <p>
+
+                                        Vous pouvez transmettre
+
+                                        directement le récapitulatif
+
+                                        de cette commande à NINICE BOUTIQUE
+
+                                        afin de faciliter son traitement.
+
+                                    </p>
+
+                                    <button
+
+                                        type="button"
+
+                                        id="whatsapp-button"
+
+                                        class="whatsapp-button"
+
+                                    >
+
+                                        ${
+
+                                            whatsappNumber
+
+                                                ? "Envoyer la commande sur WhatsApp"
+
+                                                : "Partager la commande sur WhatsApp"
+
+                                        }
+
+                                    </button>
+
+                                    <div
+
+                                        id="whatsapp-message"
+
+                                        class="confirmation-message"
+
+                                    ></div>
+
+                                    <div class="whatsapp-note">
+
+                                        ${
+
+                                            whatsappNumber
+
+                                                ? "Le récapitulatif sera ouvert dans WhatsApp avec le numéro de la boutique."
+
+                                                : "Le numéro WhatsApp professionnel de la boutique n'est pas encore configuré dans config.js."
+
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                                <div class="confirmation-actions">
+
+                                    <a
+
+                                        href="../index.html"
+
+                                        class="action-button primary"
+
+                                    >
+
+                                        Retour à l'accueil
+
+                                    </a>
+
+                                    <a
+
+                                        href="categories.html"
+
+                                        class="action-button secondary"
+
+                                    >
+
+                                        Continuer mes achats
+
+                                    </a>
+
+                                </div>
+
+                            </section>
+
+                        </div>
+
+                        <aside>
+
+                            <section class="confirmation-card">
+
+                                <h2 class="card-title">
+
+                                    Votre commande
+
+                                </h2>
+
+                                <div class="details-list">
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Référence
+
+                                        </span>
+
+                                        <span class="detail-value">
+
+                                            ${escapeHtml(
+
+                                                orderNumber
+
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Articles
+
+                                        </span>
+
+                                        <span class="detail-value">
+
+                                            ${cart.length}
+
+                                        </span>
+
+                                    </div>
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Quantité totale
+
+                                        </span>
+
+                                        <span class="detail-value">
+
+                                            ${
+
+                                                cart.reduce(
+
+                                                    (
+
+                                                        total,
+
+                                                        item
+
+                                                    ) =>
+
+                                                        total +
+
+                                                        Number(
+
+                                                            item.quantity ||
+
+                                                            1
+
+                                                        ),
+
+                                                    0
+
+                                                )
+
+                                            }
+
+                                        </span>
+
+                                    </div>
+
+                                    <div class="detail-row">
+
+                                        <span class="detail-label">
+
+                                            Statut
+
+                                        </span>
+
+                                        <span
+
+                                            class="detail-value"
+
+                                            style="color:#15803d;"
+
+                                        >
+
+                                            Nouvelle
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="delivery-info">
+
+                                    <strong>
+
+                                        Prochaine étape
+
+                                    </strong>
+
+                                    <span>
+
+                                        Notre équipe va vérifier
+
+                                        votre commande et vous
+
+                                        contacter si nécessaire
+
+                                        pour confirmer la livraison.
+
+                                    </span>
+
+                                </div>
+
+                                <div class="grand-total">
+
+                                    <span>
+
+                                        Total à payer
+
+                                    </span>
+
+                                    <strong>
+
+                                        ${formatPrice(
+
+                                            data.total
+
+                                        )}
+
+                                    </strong>
+
+                                </div>
+
+                            </section>
+
+                        </aside>
+
+                    </div>
+
+                `;
+
+                const whatsappButton =
+
+                    document.getElementById(
+
+                        "whatsapp-button"
+
+                    );
+
+                const whatsappMessageElement =
+
+                    document.getElementById(
+
+                        "whatsapp-message"
+
+                    );
+
+                if (
+
+                    whatsappButton
+
+                ) {
+
+                    whatsappButton.addEventListener(
+
+                        "click",
+
+                        () => {
+
+                            try {
+
+                                window.open(
+
+                                    whatsappUrl,
+
+                                    "_blank",
+
+                                    "noopener,noreferrer"
+
+                                );
+
+                            } catch (error) {
+
+                                console.error(
+
+                                    "Erreur WhatsApp :",
+
+                                    error
+
+                                );
+
+                                if (
+
+                                    whatsappMessageElement
+
+                                ) {
+
+                                    whatsappMessageElement.textContent =
+
+                                        "Impossible d'ouvrir WhatsApp. Vérifiez que WhatsApp est installé ou réessayez depuis votre téléphone.";
+
+                                    whatsappMessageElement.classList.add(
+
+                                        "show"
+
+                                    );
+
+                                }
+
+                            }
+
+                        }
+
+                    );
+
+                }
+
+            }
+
+            function init() {
+
+                const data =
+
+                    readConfirmation();
+
+                if (!data) {
+
+                    root.innerHTML = `
+
+                        <div class="empty-confirmation">
+
+                            <h1>
+
+                                Confirmation introuvable
+
+                            </h1>
+
+                            <p>
+
+                                Nous ne trouvons pas
+
+                                les informations de votre
+
+                                dernière commande.
+
+                                Vous pouvez retourner
+
+                                à l'accueil pour continuer
+
+                                vos achats.
+
+                            </p>
+
+                            <a href="../index.html">
+
+                                Retour à l'accueil
+
+                            </a>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+                render(data);
+
+            }
+
+            init();
+
+        })();
+
+    </script>
+
+</body>
+
+</html>
