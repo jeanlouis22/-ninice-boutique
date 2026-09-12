@@ -524,25 +524,21 @@
 
                 if (error) {
 
-                    console.error(
+    console.error("ERREUR SUPABASE CATEGORIES :", error);
 
-                        "Erreur catégories :",
+    status.className = "category-error";
 
-                        error
+    status.innerHTML = `
+        <strong>Erreur Supabase</strong><br><br>
+        ${escapeHTML(error.message || "Erreur inconnue")}
+        <br><br>
+        <small>
+            Code : ${escapeHTML(error.code || "inconnu")}
+        </small>
+    `;
 
-                    );
-
-                    status.className =
-
-                        "category-error";
-
-                    status.textContent =
-
-                        "Impossible de charger les catégories pour le moment.";
-
-                    return;
-
-                }
+    return;
+}
 
                 if (!data || data.length === 0) {
 
