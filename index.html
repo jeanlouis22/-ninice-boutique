@@ -1,0 +1,5207 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+
+        name="viewport"
+
+        content="width=device-width, initial-scale=1.0"
+
+    >
+
+    <meta
+
+        name="description"
+
+        content="NINICE BOUTIQUE — Mode, accessoires, beauté et nouveautés."
+
+    >
+
+    <meta
+
+        name="theme-color"
+
+        content="#6d28d9"
+
+    >
+
+    <title>NINICE BOUTIQUE | Boutique en ligne</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+
+        rel="preconnect"
+
+        href="https://fonts.gstatic.com"
+
+        crossorigin
+
+    >
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link
+
+        rel="stylesheet"
+
+        href="assets/css/style.css"
+
+    >
+
+    <link
+
+        rel="stylesheet"
+
+        href="assets/css/responsive.css"
+
+    >
+
+    <style>
+
+        /* =====================================================
+
+           NINICE BOUTIQUE
+
+           ACCUEIL — VERSION PROFESSIONNELLE
+
+           ===================================================== */
+
+        :root {
+
+            --violet: #6d28d9;
+
+            --violet-dark: #4c1d95;
+
+            --violet-soft: #f5f3ff;
+
+            --violet-border: #e8e0f8;
+
+            --black: #171717;
+
+            --dark: #29252f;
+
+            --gray: #737373;
+
+            --gray-light: #f7f7f8;
+
+            --white: #ffffff;
+
+            --border: #e9e7ed;
+
+            --red: #dc2626;
+
+            --shadow-sm:
+
+                0 4px 18px rgba(25, 20, 35, .05);
+
+            --shadow-md:
+
+                0 12px 35px rgba(25, 20, 35, .08);
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            background: #ffffff;
+
+            color: var(--black);
+
+            font-family: "DM Sans", sans-serif;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        button,
+
+        input {
+
+            font: inherit;
+
+        }
+
+        button {
+
+            cursor: pointer;
+
+        }
+
+        img {
+
+            max-width: 100%;
+
+        }
+
+        /* =====================================================
+
+           CONTENEUR
+
+           ===================================================== */
+
+        .home-container {
+
+            width: min(
+
+                1180px,
+
+                calc(100% - 36px)
+
+            );
+
+            margin: 0 auto;
+
+        }
+
+        /* =====================================================
+
+           HERO
+
+           ===================================================== */
+
+        .home-hero {
+
+            position: relative;
+
+            min-height: 440px;
+
+            margin: 24px auto 0;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            border-radius: 28px;
+
+            background:
+
+                linear-gradient(
+
+                    120deg,
+
+                    #35106f 0%,
+
+                    #5420a0 48%,
+
+                    #7c3aed 100%
+
+                );
+
+            color: #ffffff;
+
+            box-shadow:
+
+                0 18px 50px rgba(
+
+                    76,
+
+                    29,
+
+                    149,
+
+                    .18
+
+                );
+
+        }
+
+        .home-hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 520px;
+
+            height: 520px;
+
+            right: -210px;
+
+            top: -250px;
+
+            border-radius: 50%;
+
+            background:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .08
+
+                );
+
+        }
+
+        .home-hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 360px;
+
+            height: 360px;
+
+            right: 70px;
+
+            bottom: -270px;
+
+            border-radius: 50%;
+
+            background:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .05
+
+                );
+
+        }
+
+        .home-hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 700px;
+
+            padding: 58px;
+
+        }
+
+        .home-hero-label {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            min-height: 31px;
+
+            padding: 0 13px;
+
+            border:
+
+                1px solid
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .24
+
+                );
+
+            border-radius: 999px;
+
+            background:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .09
+
+                );
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: .12em;
+
+            text-transform: uppercase;
+
+        }
+
+        .home-hero h1 {
+
+            margin:
+
+                19px
+
+                0
+
+                15px;
+
+            color: #ffffff;
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size:
+
+                clamp(
+
+                    42px,
+
+                    6vw,
+
+                    70px
+
+                );
+
+            font-weight: 600;
+
+            line-height: 1.02;
+
+            letter-spacing: -.035em;
+
+        }
+
+        .home-hero-text {
+
+            max-width: 570px;
+
+            margin: 0;
+
+            color:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .83
+
+                );
+
+            font-size: 15px;
+
+            line-height: 1.75;
+
+        }
+
+        .hero-actions {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 11px;
+
+            margin-top: 29px;
+
+        }
+
+        .hero-button {
+
+            min-height: 47px;
+
+            padding:
+
+                0 20px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition:
+
+                transform .2s ease,
+
+                background .2s ease;
+
+        }
+
+        .hero-button:hover {
+
+            transform:
+
+                translateY(-2px);
+
+        }
+
+        .hero-button-primary {
+
+            background:
+
+                #ffffff;
+
+            color:
+
+                var(--violet-dark);
+
+        }
+
+        .hero-button-secondary {
+
+            border:
+
+                1px solid
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .25
+
+                );
+
+            background:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .08
+
+                );
+
+            color:
+
+                #ffffff;
+
+        }
+
+        .hero-button-secondary:hover {
+
+            background:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .15
+
+                );
+
+        }
+
+        /* =====================================================
+
+           SECTIONS
+
+           ===================================================== */
+
+        .home-section {
+
+            padding-top: 68px;
+
+        }
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 25px;
+
+        }
+
+        .section-title-area {
+
+            min-width: 0;
+
+        }
+
+        .section-label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color:
+
+                var(--violet);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .13em;
+
+            text-transform: uppercase;
+
+        }
+
+        .section-heading h2 {
+
+            margin: 0;
+
+            color:
+
+                var(--violet-dark);
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size:
+
+                clamp(
+
+                    28px,
+
+                    4vw,
+
+                    38px
+
+                );
+
+            line-height: 1.15;
+
+        }
+
+        .section-heading p {
+
+            max-width: 590px;
+
+            margin:
+
+                8px 0 0;
+
+            color:
+
+                var(--gray);
+
+            font-size: 13px;
+
+            line-height: 1.65;
+
+        }
+
+        .section-link {
+
+            flex-shrink: 0;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            min-height: 38px;
+
+            color:
+
+                var(--violet);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition:
+
+                color .2s ease;
+
+        }
+
+        .section-link:hover {
+
+            color:
+
+                var(--violet-dark);
+
+        }
+
+        /* =====================================================
+
+           CATÉGORIES
+
+           Présentation sans grandes images
+
+           ===================================================== */
+
+        .categories-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(
+
+                    5,
+
+                    minmax(
+
+                        0,
+
+                        1fr
+
+                    )
+
+                );
+
+            gap: 12px;
+
+        }
+
+        .category-card {
+
+            min-height: 74px;
+
+            padding:
+
+                0 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius: 13px;
+
+            background:
+
+                #ffffff;
+
+            color:
+
+                var(--dark);
+
+            text-align: center;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            box-shadow:
+
+                var(--shadow-sm);
+
+            transition:
+
+                border-color .2s ease,
+
+                background .2s ease,
+
+                color .2s ease,
+
+                transform .2s ease,
+
+                box-shadow .2s ease;
+
+        }
+
+        .category-card:hover {
+
+            transform:
+
+                translateY(-2px);
+
+            border-color:
+
+                #d8c8f7;
+
+            background:
+
+                var(--violet-soft);
+
+            color:
+
+                var(--violet-dark);
+
+            box-shadow:
+
+                var(--shadow-md);
+
+        }
+
+        .category-card.active {
+
+            border-color:
+
+                var(--violet);
+
+            background:
+
+                var(--violet-soft);
+
+            color:
+
+                var(--violet-dark);
+
+        }
+
+        .category-empty {
+
+            grid-column:
+
+                1 / -1;
+
+            padding:
+
+                25px;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius: 14px;
+
+            background:
+
+                #ffffff;
+
+            color:
+
+                var(--gray);
+
+            text-align:
+
+                center;
+
+            font-size: 13px;
+
+        }
+
+        /* =====================================================
+
+           PROMOTION
+
+           ===================================================== */
+
+        .promotion-section {
+
+            display: none;
+
+        }
+
+        .promotion-section.has-products {
+
+            display: block;
+
+        }
+
+        .promotion-intro {
+
+            position: relative;
+
+            min-height: 190px;
+
+            display: flex;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            margin-bottom: 25px;
+
+            padding:
+
+                34px 38px;
+
+            border-radius: 20px;
+
+            background:
+
+                linear-gradient(
+
+                    120deg,
+
+                    #321066,
+
+                    #6d28d9
+
+                );
+
+            color: #ffffff;
+
+        }
+
+        .promotion-intro::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+
+            height: 280px;
+
+            right: -120px;
+
+            top: -150px;
+
+            border-radius: 50%;
+
+            background:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .08
+
+                );
+
+        }
+
+        .promotion-intro-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 650px;
+
+        }
+
+        .promotion-label {
+
+            display: inline-flex;
+
+            min-height: 27px;
+
+            align-items: center;
+
+            padding:
+
+                0 10px;
+
+            border-radius: 999px;
+
+            background:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .12
+
+                );
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: .1em;
+
+            text-transform: uppercase;
+
+        }
+
+        .promotion-intro h2 {
+
+            margin:
+
+                11px
+
+                0
+
+                7px;
+
+            color:
+
+                #ffffff;
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size:
+
+                clamp(
+
+                    27px,
+
+                    4vw,
+
+                    39px
+
+                );
+
+            line-height: 1.1;
+
+        }
+
+        .promotion-intro p {
+
+            margin: 0;
+
+            color:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .8
+
+                );
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+        /* =====================================================
+
+           PRODUITS
+
+           ===================================================== */
+
+        .products-grid {
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(
+
+                    4,
+
+                    minmax(
+
+                        0,
+
+                        1fr
+
+                    )
+
+                );
+
+            gap: 18px;
+
+        }
+
+        .product-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius: 16px;
+
+            background:
+
+                #ffffff;
+
+            box-shadow:
+
+                var(--shadow-sm);
+
+            transition:
+
+                transform .22s ease,
+
+                box-shadow .22s ease,
+
+                border-color .22s ease;
+
+        }
+
+        .product-card:hover {
+
+            transform:
+
+                translateY(-3px);
+
+            border-color:
+
+                #e0d8ed;
+
+            box-shadow:
+
+                var(--shadow-md);
+
+        }
+
+        .product-image {
+
+            position: relative;
+
+            aspect-ratio:
+
+                4 / 4.8;
+
+            overflow: hidden;
+
+            background:
+
+                #f5f4f7;
+
+        }
+
+        .product-image-link {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: block;
+
+        }
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition:
+
+                transform .4s ease;
+
+        }
+
+        .product-card:hover
+
+        .product-image img {
+
+            transform:
+
+                scale(1.035);
+
+        }
+
+        .product-image-placeholder {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #f7f5fc,
+
+                    #eeeaf8
+
+                );
+
+            color:
+
+                #8a7c9d;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+        }
+
+        .product-badges {
+
+            position: absolute;
+
+            top: 11px;
+
+            left: 11px;
+
+            z-index: 3;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+        .product-badge {
+
+            display: inline-flex;
+
+            width: fit-content;
+
+            min-height: 23px;
+
+            align-items: center;
+
+            padding:
+
+                0 8px;
+
+            border-radius: 6px;
+
+            background:
+
+                var(--violet);
+
+            color:
+
+                #ffffff;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            letter-spacing: .06em;
+
+            text-transform:
+
+                uppercase;
+
+        }
+
+        .product-badge.promotion {
+
+            background:
+
+                var(--red);
+
+        }
+
+        .favorite-button {
+
+            position: absolute;
+
+            top: 10px;
+
+            right: 10px;
+
+            z-index: 4;
+
+            width: 37px;
+
+            height: 37px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+
+                1px solid
+
+                rgba(
+
+                    0,
+
+                    0,
+
+                    0,
+
+                    .08
+
+                );
+
+            border-radius: 50%;
+
+            background:
+
+                rgba(
+
+                    255,
+
+                    255,
+
+                    255,
+
+                    .96
+
+                );
+
+            color:
+
+                #555;
+
+            font-size: 20px;
+
+            line-height: 1;
+
+            transition:
+
+                transform .2s ease,
+
+                color .2s ease,
+
+                background .2s ease;
+
+        }
+
+        .favorite-button:hover {
+
+            transform:
+
+                scale(1.06);
+
+            color:
+
+                var(--violet);
+
+            background:
+
+                #ffffff;
+
+        }
+
+        .favorite-button.is-favorite {
+
+            color:
+
+                var(--violet);
+
+            background:
+
+                var(--violet-soft);
+
+        }
+
+        .product-body {
+
+            padding:
+
+                14px;
+
+        }
+
+        .product-category {
+
+            margin-bottom: 5px;
+
+            color:
+
+                var(--violet);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: .08em;
+
+            text-transform:
+
+                uppercase;
+
+        }
+
+        .product-name {
+
+            display: -webkit-box;
+
+            min-height: 39px;
+
+            margin-bottom: 9px;
+
+            overflow: hidden;
+
+            color:
+
+                var(--black);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            line-height: 1.45;
+
+            -webkit-line-clamp: 2;
+
+            -webkit-box-orient: vertical;
+
+            transition:
+
+                color .2s ease;
+
+        }
+
+        .product-name:hover {
+
+            color:
+
+                var(--violet);
+
+        }
+
+        .product-prices {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 6px;
+
+            min-height: 26px;
+
+            margin-bottom: 12px;
+
+        }
+
+        .current-price {
+
+            color:
+
+                var(--violet-dark);
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+        .old-price {
+
+            color:
+
+                #999;
+
+            font-size: 10px;
+
+            text-decoration:
+
+                line-through;
+
+        }
+
+        .discount {
+
+            min-height: 20px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding:
+
+                0 5px;
+
+            border-radius: 5px;
+
+            background:
+
+                #fef2f2;
+
+            color:
+
+                var(--red);
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+        }
+
+        .product-actions {
+
+            display: grid;
+
+            grid-template-columns:
+
+                1fr 1fr;
+
+            gap: 7px;
+
+        }
+
+        .product-action {
+
+            min-width: 0;
+
+            min-height: 39px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+
+                0 7px;
+
+            border-radius: 8px;
+
+            text-align:
+
+                center;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            white-space:
+
+                nowrap;
+
+            transition:
+
+                background .2s ease,
+
+                border-color .2s ease,
+
+                color .2s ease,
+
+                transform .2s ease;
+
+        }
+
+        .product-action:hover {
+
+            transform:
+
+                translateY(-1px);
+
+        }
+
+        .view-product {
+
+            border:
+
+                1px solid
+
+                #ddd6fe;
+
+            background:
+
+                #fbfaff;
+
+            color:
+
+                var(--violet-dark);
+
+        }
+
+        .view-product:hover {
+
+            border-color:
+
+                #c4b5fd;
+
+            background:
+
+                var(--violet-soft);
+
+        }
+
+        .add-cart {
+
+            border:
+
+                1px solid
+
+                var(--violet);
+
+            background:
+
+                var(--violet);
+
+            color:
+
+                #ffffff;
+
+        }
+
+        .add-cart:hover {
+
+            border-color:
+
+                var(--violet-dark);
+
+            background:
+
+                var(--violet-dark);
+
+        }
+
+        .add-cart.added {
+
+            border-color:
+
+                #16a34a;
+
+            background:
+
+                #16a34a;
+
+            cursor:
+
+                default;
+
+        }
+
+        .add-cart:disabled {
+
+            border-color:
+
+                #d4d4d4;
+
+            background:
+
+                #e5e5e5;
+
+            color:
+
+                #777;
+
+            cursor:
+
+                not-allowed;
+
+            transform:
+
+                none;
+
+        }
+
+        .products-empty {
+
+            grid-column:
+
+                1 / -1;
+
+            padding:
+
+                42px 20px;
+
+            border:
+
+                1px solid
+
+                var(--border);
+
+            border-radius: 15px;
+
+            background:
+
+                #ffffff;
+
+            color:
+
+                var(--gray);
+
+            text-align:
+
+                center;
+
+            font-size: 13px;
+
+        }
+
+        .products-loading {
+
+            grid-column:
+
+                1 / -1;
+
+            padding:
+
+                42px 20px;
+
+            color:
+
+                var(--gray);
+
+            text-align:
+
+                center;
+
+            font-size: 13px;
+
+        }
+
+        /* =====================================================
+
+           BLOC FINAL
+
+           ===================================================== */
+
+        .home-discovery {
+
+            margin:
+
+                72px
+
+                0
+
+                82px;
+
+            padding:
+
+                42px 25px;
+
+            border:
+
+                1px solid
+
+                var(--violet-border);
+
+            border-radius:
+
+                20px;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #faf8ff,
+
+                    #ffffff
+
+                );
+
+            text-align:
+
+                center;
+
+        }
+
+        .home-discovery h2 {
+
+            margin:
+
+                0 0 9px;
+
+            color:
+
+                var(--violet-dark);
+
+            font-family:
+
+                "Playfair Display",
+
+                serif;
+
+            font-size:
+
+                30px;
+
+        }
+
+        .home-discovery p {
+
+            max-width:
+
+                600px;
+
+            margin:
+
+                0 auto 21px;
+
+            color:
+
+                var(--gray);
+
+            font-size:
+
+                13px;
+
+            line-height:
+
+                1.7;
+
+        }
+
+        .discovery-button {
+
+            min-height:
+
+                44px;
+
+            display:
+
+                inline-flex;
+
+            align-items:
+
+                center;
+
+            justify-content:
+
+                center;
+
+            padding:
+
+                0 19px;
+
+            border-radius:
+
+                9px;
+
+            background:
+
+                var(--violet);
+
+            color:
+
+                #ffffff;
+
+            font-size:
+
+                12px;
+
+            font-weight:
+
+                700;
+
+            transition:
+
+                background .2s ease,
+
+                transform .2s ease;
+
+        }
+
+        .discovery-button:hover {
+
+            background:
+
+                var(--violet-dark);
+
+            transform:
+
+                translateY(-1px);
+
+        }
+
+        /* =====================================================
+
+           NOTIFICATION
+
+           ===================================================== */
+
+        .home-notification {
+
+            position:
+
+                fixed;
+
+            left:
+
+                50%;
+
+            bottom:
+
+                28px;
+
+            z-index:
+
+                99999;
+
+            width:
+
+                min(
+
+                    360px,
+
+                    calc(100% - 30px)
+
+                );
+
+            min-height:
+
+                46px;
+
+            padding:
+
+                0 16px;
+
+            display:
+
+                flex;
+
+            align-items:
+
+                center;
+
+            justify-content:
+
+                center;
+
+            border-radius:
+
+                10px;
+
+            background:
+
+                #19151f;
+
+            color:
+
+                #ffffff;
+
+            box-shadow:
+
+                0 12px 35px
+
+                rgba(
+
+                    0,
+
+                    0,
+
+                    0,
+
+                    .18
+
+                );
+
+            text-align:
+
+                center;
+
+            font-size:
+
+                12px;
+
+            font-weight:
+
+                600;
+
+            opacity:
+
+                0;
+
+            transform:
+
+                translate(
+
+                    -50%,
+
+                    18px
+
+                );
+
+            pointer-events:
+
+                none;
+
+            transition:
+
+                opacity .25s ease,
+
+                transform .25s ease;
+
+        }
+
+        .home-notification.show {
+
+            opacity:
+
+                1;
+
+            transform:
+
+                translate(
+
+                    -50%,
+
+                    0
+
+                );
+
+        }
+
+        /* =====================================================
+
+           MOBILE
+
+           ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            .categories-grid {
+
+                grid-template-columns:
+
+                    repeat(
+
+                        3,
+
+                        minmax(
+
+                            0,
+
+                            1fr
+
+                        )
+
+                    );
+
+            }
+
+            .products-grid {
+
+                grid-template-columns:
+
+                    repeat(
+
+                        3,
+
+                        minmax(
+
+                            0,
+
+                            1fr
+
+                        )
+
+                    );
+
+            }
+
+        }
+
+        @media (max-width: 760px) {
+
+            .home-container {
+
+                width:
+
+                    calc(100% - 22px);
+
+            }
+
+            .home-hero {
+
+                min-height:
+
+                    410px;
+
+                margin-top:
+
+                    14px;
+
+                border-radius:
+
+                    21px;
+
+            }
+
+            .home-hero-content {
+
+                padding:
+
+                    35px 23px;
+
+            }
+
+            .home-hero h1 {
+
+                font-size:
+
+                    43px;
+
+            }
+
+            .home-hero-text {
+
+                font-size:
+
+                    13px;
+
+            }
+
+            .hero-actions {
+
+                margin-top:
+
+                    24px;
+
+            }
+
+            .hero-button {
+
+                min-height:
+
+                    44px;
+
+                padding:
+
+                    0 15px;
+
+                font-size:
+
+                    11px;
+
+            }
+
+            .home-section {
+
+                padding-top:
+
+                    53px;
+
+            }
+
+            .section-heading {
+
+                align-items:
+
+                    flex-start;
+
+                flex-direction:
+
+                    column;
+
+                gap:
+
+                    8px;
+
+            }
+
+            .section-heading h2 {
+
+                font-size:
+
+                    29px;
+
+            }
+
+            .section-heading p {
+
+                font-size:
+
+                    12px;
+
+            }
+
+            .categories-grid {
+
+                grid-template-columns:
+
+                    repeat(
+
+                        2,
+
+                        minmax(
+
+                            0,
+
+                            1fr
+
+                        )
+
+                    );
+
+                gap:
+
+                    9px;
+
+            }
+
+            .category-card {
+
+                min-height:
+
+                    63px;
+
+                padding:
+
+                    0 10px;
+
+                border-radius:
+
+                    11px;
+
+                font-size:
+
+                    11px;
+
+            }
+
+            .promotion-intro {
+
+                min-height:
+
+                    170px;
+
+                padding:
+
+                    27px 22px;
+
+                border-radius:
+
+                    18px;
+
+            }
+
+            .promotion-intro h2 {
+
+                font-size:
+
+                    29px;
+
+            }
+
+            .products-grid {
+
+                grid-template-columns:
+
+                    repeat(
+
+                        2,
+
+                        minmax(
+
+                            0,
+
+                            1fr
+
+                        )
+
+                    );
+
+                gap:
+
+                    11px;
+
+            }
+
+            .product-card {
+
+                border-radius:
+
+                    13px;
+
+            }
+
+            .product-body {
+
+                padding:
+
+                    11px;
+
+            }
+
+            .product-name {
+
+                min-height:
+
+                    38px;
+
+                font-size:
+
+                    11px;
+
+            }
+
+            .current-price {
+
+                font-size:
+
+                    13px;
+
+            }
+
+            .old-price {
+
+                font-size:
+
+                    9px;
+
+            }
+
+            .discount {
+
+                font-size:
+
+                    7px;
+
+            }
+
+            .product-actions {
+
+                grid-template-columns:
+
+                    1fr;
+
+                gap:
+
+                    5px;
+
+            }
+
+            .product-action {
+
+                min-height:
+
+                    37px;
+
+                font-size:
+
+                    9px;
+
+            }
+
+            .favorite-button {
+
+                width:
+
+                    34px;
+
+                height:
+
+                    34px;
+
+                font-size:
+
+                    18px;
+
+            }
+
+            .product-badge {
+
+                min-height:
+
+                    21px;
+
+                padding:
+
+                    0 6px;
+
+                font-size:
+
+                    7px;
+
+            }
+
+            .home-discovery {
+
+                margin:
+
+                    60px 0 105px;
+
+                padding:
+
+                    31px 19px;
+
+            }
+
+            .home-discovery h2 {
+
+                font-size:
+
+                    26px;
+
+            }
+
+            .home-discovery p {
+
+                font-size:
+
+                    12px;
+
+            }
+
+        }
+
+        @media (max-width: 390px) {
+
+            .home-container {
+
+                width:
+
+                    calc(100% - 18px);
+
+            }
+
+            .home-hero h1 {
+
+                font-size:
+
+                    38px;
+
+            }
+
+            .products-grid {
+
+                gap:
+
+                    8px;
+
+            }
+
+            .product-body {
+
+                padding:
+
+                    9px;
+
+            }
+
+            .product-action {
+
+                font-size:
+
+                    8px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+
+         NAVIGATION GLOBALE
+
+         ===================================================== -->
+
+    <div id="site-header"></div>
+
+    <main>
+
+        <div class="home-container">
+
+            <!-- =================================================
+
+                 HERO
+
+                 ================================================= -->
+
+            <section class="home-hero">
+
+                <div class="home-hero-content">
+
+                    <span class="home-hero-label">
+
+                        NINICE BOUTIQUE
+
+                    </span>
+
+                    <h1>
+
+                        Votre style,
+
+                        votre identité.
+
+                    </h1>
+
+                    <p class="home-hero-text">
+
+                        Découvrez une sélection de mode,
+
+                        d'accessoires et de beauté pensée
+
+                        pour vous accompagner au quotidien.
+
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a
+
+                            href="pages/categories.html"
+
+                            class="hero-button hero-button-primary"
+
+                        >
+
+                            Découvrir la boutique
+
+                        </a>
+
+                        <a
+
+                            href="pages/promotions.html"
+
+                            class="hero-button hero-button-secondary"
+
+                        >
+
+                            Voir les promotions
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+
+                 CATÉGORIES
+
+                 ================================================= -->
+
+            <section
+
+                class="home-section"
+
+                aria-labelledby="categories-title"
+
+            >
+
+                <div class="section-heading">
+
+                    <div class="section-title-area">
+
+                        <span class="section-label">
+
+                            Collections
+
+                        </span>
+
+                        <h2 id="categories-title">
+
+                            Découvrez nos catégories
+
+                        </h2>
+
+                        <p>
+
+                            Explorez nos différentes collections
+
+                            et trouvez facilement ce qui vous correspond.
+
+                        </p>
+
+                    </div>
+
+                    <a
+
+                        href="pages/categories.html"
+
+                        class="section-link"
+
+                    >
+
+                        Toutes les catégories
+
+                    </a>
+
+                </div>
+
+                <div
+
+                    id="home-categories"
+
+                    class="categories-grid"
+
+                >
+
+                    <div class="category-empty">
+
+                        Chargement...
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+
+                 PROMOTIONS
+
+                 ================================================= -->
+
+            <section
+
+                class="home-section promotion-section"
+
+                id="home-promotions-section"
+
+                aria-labelledby="promotion-title"
+
+            >
+
+                <div class="section-heading">
+
+                    <div class="section-title-area">
+
+                        <span class="section-label">
+
+                            Sélection spéciale
+
+                        </span>
+
+                        <h2 id="promotion-title">
+
+                            Les offres du moment
+
+                        </h2>
+
+                        <p>
+
+                            Découvrez nos articles actuellement
+
+                            proposés à un prix avantageux.
+
+                        </p>
+
+                    </div>
+
+                    <a
+
+                        href="pages/promotions.html"
+
+                        class="section-link"
+
+                    >
+
+                        Voir toutes les offres
+
+                    </a>
+
+                </div>
+
+                <div class="promotion-intro">
+
+                    <div class="promotion-intro-content">
+
+                        <span class="promotion-label">
+
+                            Offre du moment
+
+                        </span>
+
+                        <h2>
+
+                            Faites-vous plaisir.
+
+                        </h2>
+
+                        <p>
+
+                            Profitez de notre sélection
+
+                            d'articles à prix réduit.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div
+
+                    id="home-promotions"
+
+                    class="products-grid"
+
+                ></div>
+
+            </section>
+
+            <!-- =================================================
+
+                 NOUVEAUTÉS
+
+                 ================================================= -->
+
+            <section
+
+                class="home-section"
+
+                aria-labelledby="new-products-title"
+
+            >
+
+                <div class="section-heading">
+
+                    <div class="section-title-area">
+
+                        <span class="section-label">
+
+                            Nouveautés
+
+                        </span>
+
+                        <h2 id="new-products-title">
+
+                            Nos dernières nouveautés
+
+                        </h2>
+
+                        <p>
+
+                            Découvrez les derniers articles
+
+                            disponibles dans notre boutique.
+
+                        </p>
+
+                    </div>
+
+                    <a
+
+                        href="pages/categories.html"
+
+                        class="section-link"
+
+                    >
+
+                        Voir la boutique
+
+                    </a>
+
+                </div>
+
+                <div
+
+                    id="home-new-products"
+
+                    class="products-grid"
+
+                >
+
+                    <div class="products-loading">
+
+                        Chargement...
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+
+                 PRODUITS
+
+                 ================================================= -->
+
+            <section
+
+                class="home-section"
+
+                aria-labelledby="all-products-title"
+
+            >
+
+                <div class="section-heading">
+
+                    <div class="section-title-area">
+
+                        <span class="section-label">
+
+                            Boutique
+
+                        </span>
+
+                        <h2 id="all-products-title">
+
+                            Nos articles
+
+                        </h2>
+
+                        <p>
+
+                            Retrouvez une sélection des produits
+
+                            actuellement disponibles.
+
+                        </p>
+
+                    </div>
+
+                    <a
+
+                        href="pages/categories.html"
+
+                        class="section-link"
+
+                    >
+
+                        Voir tous les articles
+
+                    </a>
+
+                </div>
+
+                <div
+
+                    id="home-all-products"
+
+                    class="products-grid"
+
+                >
+
+                    <div class="products-loading">
+
+                        Chargement...
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+
+                 BLOC FINAL
+
+                 ================================================= -->
+
+            <section class="home-discovery">
+
+                <h2>
+
+                    Trouvez votre prochain coup de cœur
+
+                </h2>
+
+                <p>
+
+                    Parcourez notre boutique et découvrez
+
+                    les collections disponibles chez
+
+                    NINICE BOUTIQUE.
+
+                </p>
+
+                <a
+
+                    href="pages/categories.html"
+
+                    class="discovery-button"
+
+                >
+
+                    Explorer la boutique
+
+                </a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- =====================================================
+
+         FOOTER
+
+         ===================================================== -->
+
+    <div id="site-footer"></div>
+
+    <!-- =====================================================
+
+         NOTIFICATION
+
+         ===================================================== -->
+
+    <div
+
+        id="home-notification"
+
+        class="home-notification"
+
+        aria-live="polite"
+
+    ></div>
+
+    <!-- =====================================================
+
+         CONFIGURATION
+
+         ===================================================== -->
+
+    <script src="assets/js/config.js"></script>
+
+    <!-- =====================================================
+
+         SUPABASE
+
+         ===================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="assets/js/supabase.js"></script>
+
+    <!-- =====================================================
+
+         FONCTIONS COMMUNES
+
+         ===================================================== -->
+
+    <script src="assets/js/common.js"></script>
+
+    <!-- =====================================================
+
+         NAVIGATION
+
+         ===================================================== -->
+
+    <script src="assets/js/navigation.js"></script>
+
+    <!-- =====================================================
+
+         LOGIQUE ACCUEIL
+
+         ===================================================== -->
+
+    <script>
+
+        (() => {
+
+            "use strict";
+
+            const state = {
+
+                products: [],
+
+                categories: []
+
+            };
+
+            const elements = {
+
+                categories:
+
+                    document.getElementById(
+
+                        "home-categories"
+
+                    ),
+
+                promotionsSection:
+
+                    document.getElementById(
+
+                        "home-promotions-section"
+
+                    ),
+
+                promotions:
+
+                    document.getElementById(
+
+                        "home-promotions"
+
+                    ),
+
+                newProducts:
+
+                    document.getElementById(
+
+                        "home-new-products"
+
+                    ),
+
+                allProducts:
+
+                    document.getElementById(
+
+                        "home-all-products"
+
+                    ),
+
+                notification:
+
+                    document.getElementById(
+
+                        "home-notification"
+
+                    )
+
+            };
+
+            /* =================================================
+
+               UTILITAIRES
+
+               ================================================= */
+
+            function escapeHTML(value) {
+
+                if (
+
+                    window.NINICE &&
+
+                    typeof window.NINICE.escapeHTML ===
+
+                        "function"
+
+                ) {
+
+                    return window.NINICE.escapeHTML(
+
+                        value
+
+                    );
+
+                }
+
+                const div =
+
+                    document.createElement(
+
+                        "div"
+
+                    );
+
+                div.textContent =
+
+                    String(
+
+                        value ?? ""
+
+                    );
+
+                return div.innerHTML;
+
+            }
+
+            function formatPrice(value) {
+
+                if (
+
+                    window.NINICE &&
+
+                    typeof window.NINICE.formatPrice ===
+
+                        "function"
+
+                ) {
+
+                    return window.NINICE.formatPrice(
+
+                        value
+
+                    );
+
+                }
+
+                return new Intl.NumberFormat(
+
+                    "fr-FR",
+
+                    {
+
+                        maximumFractionDigits: 0
+
+                    }
+
+                ).format(
+
+                    Number(value || 0)
+
+                ) + " FCFA";
+
+            }
+
+            function getImage(product) {
+
+                if (
+
+                    product &&
+
+                    product.main_image_url
+
+                ) {
+
+                    return product.main_image_url;
+
+                }
+
+                if (
+
+                    product &&
+
+                    Array.isArray(
+
+                        product.images
+
+                    ) &&
+
+                    product.images.length
+
+                ) {
+
+                    return product.images[0];
+
+                }
+
+                return "";
+
+            }
+
+            /* =================================================
+
+               FAVORIS
+
+               ================================================= */
+
+            function getFavorites() {
+
+                if (
+
+                    window.NINICE &&
+
+                    typeof window.NINICE.getFavorites ===
+
+                        "function"
+
+                ) {
+
+                    return window.NINICE.getFavorites()
+
+                        .map(String);
+
+                }
+
+                try {
+
+                    const saved =
+
+                        localStorage.getItem(
+
+                            "ninice_favorites"
+
+                        );
+
+                    if (!saved) {
+
+                        return [];
+
+                    }
+
+                    const parsed =
+
+                        JSON.parse(saved);
+
+                    return Array.isArray(parsed)
+
+                        ? parsed.map(String)
+
+                        : [];
+
+                } catch (error) {
+
+                    return [];
+
+                }
+
+            }
+
+            function isFavorite(productId) {
+
+                return getFavorites()
+
+                    .includes(
+
+                        String(productId)
+
+                    );
+
+            }
+
+            function toggleFavorite(productId) {
+
+                if (
+
+                    window.NINICE &&
+
+                    typeof window.NINICE.toggleFavorite ===
+
+                        "function"
+
+                ) {
+
+                    const active =
+
+                        window.NINICE.toggleFavorite(
+
+                            productId
+
+                        );
+
+                    updateFavoriteButtons(
+
+                        productId,
+
+                        active
+
+                    );
+
+                    showNotification(
+
+                        active
+
+                            ? "Article ajouté aux favoris."
+
+                            : "Article retiré des favoris."
+
+                    );
+
+                    return;
+
+                }
+
+                const id =
+
+                    String(productId);
+
+                const favorites =
+
+                    getFavorites();
+
+                const index =
+
+                    favorites.indexOf(id);
+
+                let active;
+
+                if (index !== -1) {
+
+                    favorites.splice(
+
+                        index,
+
+                        1
+
+                    );
+
+                    active = false;
+
+                } else {
+
+                    favorites.push(
+
+                        id
+
+                    );
+
+                    active = true;
+
+                }
+
+                localStorage.setItem(
+
+                    "ninice_favorites",
+
+                    JSON.stringify(
+
+                        favorites
+
+                    )
+
+                );
+
+                updateFavoriteButtons(
+
+                    productId,
+
+                    active
+
+                );
+
+                showNotification(
+
+                    active
+
+                        ? "Article ajouté aux favoris."
+
+                        : "Article retiré des favoris."
+
+                );
+
+            }
+
+            function updateFavoriteButtons(
+
+                productId,
+
+                active
+
+            ) {
+
+                const id =
+
+                    String(productId);
+
+                document
+
+                    .querySelectorAll(
+
+                        "[data-favorite-id]"
+
+                    )
+
+                    .forEach(button => {
+
+                        if (
+
+                            String(
+
+                                button.dataset.favoriteId
+
+                            ) !== id
+
+                        ) {
+
+                            return;
+
+                        }
+
+                        button.classList.toggle(
+
+                            "is-favorite",
+
+                            active
+
+                        );
+
+                        button.textContent =
+
+                            active
+
+                                ? "♥"
+
+                                : "♡";
+
+                        button.setAttribute(
+
+                            "aria-pressed",
+
+                            String(active)
+
+                        );
+
+                        button.setAttribute(
+
+                            "aria-label",
+
+                            active
+
+                                ? "Retirer des favoris"
+
+                                : "Ajouter aux favoris"
+
+                        );
+
+                    });
+
+            }
+
+            /* =================================================
+
+               NOTIFICATION
+
+               ================================================= */
+
+            function showNotification(message) {
+
+                if (
+
+                    !elements.notification
+
+                ) {
+
+                    return;
+
+                }
+
+                elements.notification.textContent =
+
+                    message;
+
+                elements.notification.classList.add(
+
+                    "show"
+
+                );
+
+                clearTimeout(
+
+                    showNotification.timer
+
+                );
+
+                showNotification.timer =
+
+                    setTimeout(
+
+                        () => {
+
+                            elements.notification.classList.remove(
+
+                                "show"
+
+                            );
+
+                        },
+
+                        2200
+
+                    );
+
+            }
+
+            /* =================================================
+
+               PRIX
+
+               ================================================= */
+
+            function getEffectivePrice(
+
+                product
+
+            ) {
+
+                if (
+
+                    window.NINICE &&
+
+                    typeof window.NINICE.getProductPrice ===
+
+                        "function"
+
+                ) {
+
+                    return window.NINICE.getProductPrice(
+
+                        product
+
+                    );
+
+                }
+
+                if (
+
+                    product.promotional_price !==
+
+                        null &&
+
+                    product.promotional_price !==
+
+                        undefined &&
+
+                    Number(
+
+                        product.promotional_price
+
+                    ) > 0
+
+                ) {
+
+                    return Number(
+
+                        product.promotional_price
+
+                    );
+
+                }
+
+                return Number(
+
+                    product.price || 0
+
+                );
+
+            }
+
+            function isCurrentlyPromotional(
+
+                product
+
+            ) {
+
+                if (!product) {
+
+                    return false;
+
+                }
+
+                const promotionalPrice =
+
+                    Number(
+
+                        product.promotional_price ||
+
+                        0
+
+                    );
+
+                const oldPrice =
+
+                    Number(
+
+                        product.old_price ||
+
+                        0
+
+                    );
+
+                const promoFlag =
+
+                    product.is_promotion === true;
+
+                const hasRealPriceReduction =
+
+                    promotionalPrice > 0 &&
+
+                    (
+
+                        oldPrice > 0
+
+                            ? promotionalPrice <
+
+                              oldPrice
+
+                            : promotionalPrice <
+
+                              Number(
+
+                                  product.price ||
+
+                                  0
+
+                              )
+
+                    );
+
+                if (
+
+                    !promoFlag &&
+
+                    !hasRealPriceReduction
+
+                ) {
+
+                    return false;
+
+                }
+
+                const now =
+
+                    new Date();
+
+                if (
+
+                    product.promotion_start_date
+
+                ) {
+
+                    const start =
+
+                        new Date(
+
+                            product.promotion_start_date
+
+                        );
+
+                    if (
+
+                        !Number.isNaN(
+
+                            start.getTime()
+
+                        ) &&
+
+                        now < start
+
+                    ) {
+
+                        return false;
+
+                    }
+
+                }
+
+                if (
+
+                    product.promotion_end_date
+
+                ) {
+
+                    const end =
+
+                        new Date(
+
+                            product.promotion_end_date
+
+                        );
+
+                    if (
+
+                        !Number.isNaN(
+
+                            end.getTime()
+
+                        ) &&
+
+                        now > end
+
+                    ) {
+
+                        return false;
+
+                    }
+
+                }
+
+                return true;
+
+            }
+
+            function getDiscountPercent(
+
+                product
+
+            ) {
+
+                const oldPrice =
+
+                    Number(
+
+                        product.old_price ||
+
+                        product.price ||
+
+                        0
+
+                    );
+
+                const currentPrice =
+
+                    getEffectivePrice(
+
+                        product
+
+                    );
+
+                if (
+
+                    oldPrice <= 0 ||
+
+                    currentPrice >= oldPrice
+
+                ) {
+
+                    return null;
+
+                }
+
+                return Math.round(
+
+                    (
+
+                        (
+
+                            oldPrice -
+
+                            currentPrice
+
+                        ) /
+
+                        oldPrice
+
+                    ) *
+
+                    100
+
+                );
+
+            }
+
+            /* =================================================
+
+               CATÉGORIES
+
+               ================================================= */
+
+            async function loadCategories() {
+
+                const {
+
+                    data,
+
+                    error
+
+                } =
+
+                    await window
+
+                        .niniceSupabase
+
+                        .from("categories")
+
+                        .select(
+
+                            "id,name,slug,is_active,sort_order"
+
+                        )
+
+                        .eq(
+
+                            "is_active",
+
+                            true
+
+                        )
+
+                        .order(
+
+                            "sort_order",
+
+                            {
+
+                                ascending:
+
+                                    true
+
+                            }
+
+                        );
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+                state.categories =
+
+                    data || [];
+
+                renderCategories();
+
+            }
+
+            function renderCategories() {
+
+                if (
+
+                    !state.categories.length
+
+                ) {
+
+                    elements.categories.innerHTML = `
+
+                        <div class="category-empty">
+
+                            Aucune catégorie disponible.
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+                elements.categories.innerHTML =
+
+                    state.categories
+
+                        .map(
+
+                            category => {
+
+                                const name =
+
+                                    category.name ||
+
+                                    "Catégorie";
+
+                                const slug =
+
+                                    category.slug ||
+
+                                    category.id ||
+
+                                    "";
+
+                                return `
+
+                                    <a
+
+                                        href="pages/categories.html?category=${encodeURIComponent(slug)}"
+
+                                        class="category-card"
+
+                                    >
+
+                                        ${escapeHTML(name)}
+
+                                    </a>
+
+                                `;
+
+                            }
+
+                        )
+
+                        .join("");
+
+            }
+
+            /* =================================================
+
+               PRODUITS
+
+               ================================================= */
+
+            async function loadProducts() {
+
+                const {
+
+                    data,
+
+                    error
+
+                } =
+
+                    await window
+
+                        .niniceSupabase
+
+                        .from("products")
+
+                        .select("*")
+
+                        .eq(
+
+                            "is_available",
+
+                            true
+
+                        )
+
+                        .order(
+
+                            "created_at",
+
+                            {
+
+                                ascending:
+
+                                    false
+
+                            }
+
+                        );
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+                state.products =
+
+                    data || [];
+
+                renderProducts();
+
+            }
+
+            function getCategoryName(
+
+                categoryId
+
+            ) {
+
+                const category =
+
+                    state.categories.find(
+
+                        item =>
+
+                            String(
+
+                                item.id
+
+                            ) ===
+
+                            String(
+
+                                categoryId
+
+                            )
+
+                    );
+
+                return category
+
+                    ? category.name
+
+                    : "";
+
+            }
+
+            function renderProducts() {
+
+                const promotions =
+
+                    state.products.filter(
+
+                        product =>
+
+                            isCurrentlyPromotional(
+
+                                product
+
+                            )
+
+                    );
+
+                /*
+
+                 * On affiche uniquement la section
+
+                 * Promotions lorsqu'il y a réellement
+
+                 * des produits promotionnels.
+
+                 */
+
+                if (
+
+                    promotions.length
+
+                ) {
+
+                    elements.promotionsSection.classList.add(
+
+                        "has-products"
+
+                    );
+
+                    renderProductGrid(
+
+                        elements.promotions,
+
+                        promotions,
+
+                        "Aucune offre disponible."
+
+                    );
+
+                } else {
+
+                    elements.promotionsSection.classList.remove(
+
+                        "has-products"
+
+                    );
+
+                    elements.promotions.innerHTML =
+
+                        "";
+
+                }
+
+                /*
+
+                 * Nouveautés
+
+                 */
+
+                const newest =
+
+                    state.products.slice(
+
+                        0,
+
+                        8
+
+                    );
+
+                renderProductGrid(
+
+                    elements.newProducts,
+
+                    newest,
+
+                    "Aucun article disponible."
+
+                );
+
+                /*
+
+                 * Tous les produits
+
+                 */
+
+                const all =
+
+                    state.products.slice(
+
+                        0,
+
+                        12
+
+                    );
+
+                renderProductGrid(
+
+                    elements.allProducts,
+
+                    all,
+
+                    "Aucun produit disponible."
+
+                );
+
+            }
+
+            function renderProductGrid(
+
+                container,
+
+                products,
+
+                emptyMessage
+
+            ) {
+
+                if (!container) {
+
+                    return;
+
+                }
+
+                if (!products.length) {
+
+                    container.innerHTML = `
+
+                        <div class="products-empty">
+
+                            ${escapeHTML(
+
+                                emptyMessage
+
+                            )}
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+                container.innerHTML =
+
+                    products
+
+                        .map(
+
+                            product =>
+
+                                renderProductCard(
+
+                                    product
+
+                                )
+
+                        )
+
+                        .join("");
+
+            }
+
+            function renderProductCard(
+
+                product
+
+            ) {
+
+                const id =
+
+                    String(
+
+                        product.id || ""
+
+                    );
+
+                const name =
+
+                    product.name ||
+
+                    "Article";
+
+                const image =
+
+                    getImage(
+
+                        product
+
+                    );
+
+                const currentPrice =
+
+                    getEffectivePrice(
+
+                        product
+
+                    );
+
+                const oldPrice =
+
+                    Number(
+
+                        product.old_price ||
+
+                        0
+
+                    );
+
+                const promotional =
+
+                    isCurrentlyPromotional(
+
+                        product
+
+                    );
+
+                const discount =
+
+                    getDiscountPercent(
+
+                        product
+
+                    );
+
+                const favorite =
+
+                    isFavorite(id);
+
+                const categoryName =
+
+                    getCategoryName(
+
+                        product.category_id
+
+                    );
+
+                const stock =
+
+                    Number(
+
+                        product.stock || 0
+
+                    );
+
+                const outOfStock =
+
+                    stock <= 0;
+
+                return `
+
+                    <article
+
+                        class="product-card"
+
+                        data-product-id="${escapeHTML(id)}"
+
+                    >
+
+                        <div class="product-image">
+
+                            <a
+
+                                href="pages/produit.html?id=${encodeURIComponent(id)}"
+
+                                class="product-image-link"
+
+                                aria-label="Voir ${escapeHTML(name)}"
+
+                            >
+
+                                ${
+
+                                    image
+
+                                        ? `
+
+                                            <img
+
+                                                src="${escapeHTML(image)}"
+
+                                                alt="${escapeHTML(name)}"
+
+                                                loading="lazy"
+
+                                            >
+
+                                        `
+
+                                        : `
+
+                                            <span class="product-image-placeholder">
+
+                                                NINICE BOUTIQUE
+
+                                            </span>
+
+                                        `
+
+                                }
+
+                            </a>
+
+                            <div class="product-badges">
+
+                                ${
+
+                                    promotional
+
+                                        ? `
+
+                                            <span class="product-badge promotion">
+
+                                                Promotion
+
+                                            </span>
+
+                                        `
+
+                                        : ""
+
+                                }
+
+                                ${
+
+                                    product.is_new
+
+                                        ? `
+
+                                            <span class="product-badge">
+
+                                                Nouveau
+
+                                            </span>
+
+                                        `
+
+                                        : ""
+
+                                }
+
+                            </div>
+
+                            <button
+
+                                type="button"
+
+                                class="favorite-button ${
+
+                                    favorite
+
+                                        ? "is-favorite"
+
+                                        : ""
+
+                                }"
+
+                                data-favorite-id="${escapeHTML(id)}"
+
+                                aria-label="${
+
+                                    favorite
+
+                                        ? "Retirer des favoris"
+
+                                        : "Ajouter aux favoris"
+
+                                }"
+
+                                aria-pressed="${
+
+                                    favorite
+
+                                        ? "true"
+
+                                        : "false"
+
+                                }"
+
+                            >
+
+                                ${
+
+                                    favorite
+
+                                        ? "♥"
+
+                                        : "♡"
+
+                                }
+
+                            </button>
+
+                        </div>
+
+                        <div class="product-body">
+
+                            ${
+
+                                categoryName
+
+                                    ? `
+
+                                        <div class="product-category">
+
+                                            ${escapeHTML(
+
+                                                categoryName
+
+                                            )}
+
+                                        </div>
+
+                                    `
+
+                                    : ""
+
+                            }
+
+                            <a
+
+                                href="pages/produit.html?id=${encodeURIComponent(id)}"
+
+                                class="product-name"
+
+                            >
+
+                                ${escapeHTML(name)}
+
+                            </a>
+
+                            <div class="product-prices">
+
+                                <span class="current-price">
+
+                                    ${formatPrice(
+
+                                        currentPrice
+
+                                    )}
+
+                                </span>
+
+                                ${
+
+                                    promotional &&
+
+                                    oldPrice >
+
+                                        currentPrice
+
+                                        ? `
+
+                                            <span class="old-price">
+
+                                                ${formatPrice(
+
+                                                    oldPrice
+
+                                                )}
+
+                                            </span>
+
+                                        `
+
+                                        : ""
+
+                                }
+
+                                ${
+
+                                    discount
+
+                                        ? `
+
+                                            <span class="discount">
+
+                                                -${discount}%
+
+                                            </span>
+
+                                        `
+
+                                        : ""
+
+                                }
+
+                            </div>
+
+                            <div class="product-actions">
+
+                                <a
+
+                                    href="pages/produit.html?id=${encodeURIComponent(id)}"
+
+                                    class="product-action view-product"
+
+                                >
+
+                                    Voir le produit
+
+                                </a>
+
+                                <button
+
+                                    type="button"
+
+                                    class="product-action add-cart ${
+
+                                        outOfStock
+
+                                            ? ""
+
+                                            : ""
+
+                                    }"
+
+                                    data-cart-id="${escapeHTML(id)}"
+
+                                    ${
+
+                                        outOfStock
+
+                                            ? "disabled"
+
+                                            : ""
+
+                                    }
+
+                                >
+
+                                    ${
+
+                                        outOfStock
+
+                                            ? "Rupture"
+
+                                            : "Ajouter au panier"
+
+                                    }
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }
+
+            /* =================================================
+
+               PANIER
+
+               ================================================= */
+
+            function getCart() {
+
+                if (
+
+                    window.NINICE &&
+
+                    typeof window.NINICE.getCart ===
+
+                        "function"
+
+                ) {
+
+                    return window.NINICE.getCart();
+
+                }
+
+                try {
+
+                    const saved =
+
+                        localStorage.getItem(
+
+                            "ninice_cart"
+
+                        );
+
+                    if (!saved) {
+
+                        return [];
+
+                    }
+
+                    const parsed =
+
+                        JSON.parse(saved);
+
+                    return Array.isArray(
+
+                        parsed
+
+                    )
+
+                        ? parsed
+
+                        : [];
+
+                } catch (error) {
+
+                    return [];
+
+                }
+
+            }
+
+            function saveCart(cart) {
+
+                if (
+
+                    window.NINICE &&
+
+                    typeof window.NINICE.setCart ===
+
+                        "function"
+
+                ) {
+
+                    window.NINICE.setCart(
+
+                        cart
+
+                    );
+
+                } else {
+
+                    localStorage.setItem(
+
+                        "ninice_cart",
+
+                        JSON.stringify(
+
+                            cart
+
+                        )
+
+                    );
+
+                }
+
+                updateCartCounters();
+
+            }
+
+            function updateCartCounters() {
+
+                if (
+
+                    window.NINICE &&
+
+                    typeof window.NINICE.updateCartCounters ===
+
+                        "function"
+
+                ) {
+
+                    window.NINICE.updateCartCounters();
+
+                    return;
+
+                }
+
+                const cart =
+
+                    getCart();
+
+                const count =
+
+                    cart.reduce(
+
+                        (
+
+                            total,
+
+                            item
+
+                        ) =>
+
+                            total +
+
+                            Number(
+
+                                item.quantity ||
+
+                                0
+
+                            ),
+
+                        0
+
+                    );
+
+                document
+
+                    .querySelectorAll(
+
+                        ".cart-count"
+
+                    )
+
+                    .forEach(
+
+                        counter => {
+
+                            counter.textContent =
+
+                                count;
+
+                            counter.hidden =
+
+                                count <= 0;
+
+                        }
+
+                    );
+
+            }
+
+            function isProductInCart(
+
+                productId
+
+            ) {
+
+                return getCart()
+
+                    .some(
+
+                        item =>
+
+                            String(
+
+                                item.id
+
+                            ) ===
+
+                            String(
+
+                                productId
+
+                            )
+
+                    );
+
+            }
+
+            function markProductAdded(
+
+                productId
+
+            ) {
+
+                document
+
+                    .querySelectorAll(
+
+                        "[data-cart-id]"
+
+                    )
+
+                    .forEach(
+
+                        button => {
+
+                            if (
+
+                                String(
+
+                                    button.dataset.cartId
+
+                                ) !==
+
+                                String(
+
+                                    productId
+
+                                )
+
+                            ) {
+
+                                return;
+
+                            }
+
+                            button.classList.add(
+
+                                "added"
+
+                            );
+
+                            button.textContent =
+
+                                "Ajouté au panier";
+
+                        }
+
+                    );
+
+            }
+
+            function refreshCartButtons() {
+
+                document
+
+                    .querySelectorAll(
+
+                        "[data-cart-id]"
+
+                    )
+
+                    .forEach(
+
+                        button => {
+
+                            const id =
+
+                                button.dataset.cartId;
+
+                            if (
+
+                                isProductInCart(
+
+                                    id
+
+                                )
+
+                            ) {
+
+                                button.classList.add(
+
+                                    "added"
+
+                                );
+
+                                button.textContent =
+
+                                    "Ajouté au panier";
+
+                            } else {
+
+                                button.classList.remove(
+
+                                    "added"
+
+                                );
+
+                                button.textContent =
+
+                                    "Ajouter au panier";
+
+                            }
+
+                        }
+
+                    );
+
+            }
+
+            function addProductToCart(
+
+                productId
+
+            ) {
+
+                const product =
+
+                    state.products.find(
+
+                        item =>
+
+                            String(
+
+                                item.id
+
+                            ) ===
+
+                            String(
+
+                                productId
+
+                            )
+
+                    );
+
+                if (!product) {
+
+                    showNotification(
+
+                        "Produit introuvable."
+
+                    );
+
+                    return;
+
+                }
+
+                /*
+
+                 * Protection contre le double événement.
+
+                 *
+
+                 * Si le produit est déjà dans le panier,
+
+                 * on ne le supprime pas et on ne déclenche
+
+                 * pas une deuxième action.
+
+                 */
+
+                if (
+
+                    isProductInCart(
+
+                        product.id
+
+                    )
+
+                ) {
+
+                    showNotification(
+
+                        "Cet article est déjà dans votre panier."
+
+                    );
+
+                    markProductAdded(
+
+                        product.id
+
+                    );
+
+                    return;
+
+                }
+
+                const price =
+
+                    getEffectivePrice(
+
+                        product
+
+                    );
+
+                const image =
+
+                    getImage(
+
+                        product
+
+                    );
+
+                const cart =
+
+                    getCart();
+
+                cart.push({
+
+                    id:
+
+                        product.id,
+
+                    name:
+
+                        product.name || "",
+
+                    price:
+
+                        price,
+
+                    image:
+
+                        image,
+
+                    main_image_url:
+
+                        image,
+
+                    quantity:
+
+                        1,
+
+                    size:
+
+                        "",
+
+                    color:
+
+                        ""
+
+                });
+
+                saveCart(
+
+                    cart
+
+                );
+
+                markProductAdded(
+
+                    product.id
+
+                );
+
+                showNotification(
+
+                    "Article ajouté au panier."
+
+                );
+
+            }
+
+            /* =================================================
+
+               ÉVÉNEMENTS
+
+               ================================================= */
+
+            document.addEventListener(
+
+                "click",
+
+                event => {
+
+                    /*
+
+                     * Favoris
+
+                     */
+
+                    const favoriteButton =
+
+                        event.target.closest(
+
+                            "[data-favorite-id]"
+
+                        );
+
+                    if (
+
+                        favoriteButton
+
+                    ) {
+
+                        event.preventDefault();
+
+                        event.stopPropagation();
+
+                        toggleFavorite(
+
+                            favoriteButton.dataset.favoriteId
+
+                        );
+
+                        return;
+
+                    }
+
+                    /*
+
+                     * Panier
+
+                     *
+
+                     * UN SEUL gestionnaire.
+
+                     *
+
+                     * Un deuxième clic ne supprime
+
+                     * jamais l'article.
+
+                     */
+
+                    const cartButton =
+
+                        event.target.closest(
+
+                            "[data-cart-id]"
+
+                        );
+
+                    if (
+
+                        cartButton
+
+                    ) {
+
+                        event.preventDefault();
+
+                        event.stopPropagation();
+
+                        if (
+
+                            cartButton.disabled
+
+                        ) {
+
+                            return;
+
+                        }
+
+                        addProductToCart(
+
+                            cartButton.dataset.cartId
+
+                        );
+
+                    }
+
+                },
+
+                false
+
+            );
+
+            /* =================================================
+
+               SYNCHRONISATION PANIER
+
+               ================================================= */
+
+            document.addEventListener(
+
+                "ninice:cart-updated",
+
+                () => {
+
+                    updateCartCounters();
+
+                    refreshCartButtons();
+
+                }
+
+            );
+
+            /* =================================================
+
+               INITIALISATION
+
+               ================================================= */
+
+            async function init() {
+
+                try {
+
+                    if (
+
+                        !window.niniceSupabase
+
+                    ) {
+
+                        throw new Error(
+
+                            "Supabase non disponible."
+
+                        );
+
+                    }
+
+                    await loadCategories();
+
+                    await loadProducts();
+
+                    updateCartCounters();
+
+                    refreshCartButtons();
+
+                } catch (error) {
+
+                    console.error(
+
+                        "Erreur lors du chargement de l'accueil :",
+
+                        error
+
+                    );
+
+                    elements.categories.innerHTML = `
+
+                        <div class="category-empty">
+
+                            Les catégories ne sont pas disponibles actuellement.
+
+                        </div>
+
+                    `;
+
+                    elements.newProducts.innerHTML = `
+
+                        <div class="products-empty">
+
+                            Les articles ne sont pas disponibles actuellement.
+
+                        </div>
+
+                    `;
+
+                    elements.allProducts.innerHTML = `
+
+                        <div class="products-empty">
+
+                            Les produits ne sont pas disponibles actuellement.
+
+                        </div>
+
+                    `;
+
+                    elements.promotionsSection.classList.remove(
+
+                        "has-products"
+
+                    );
+
+                }
+
+            }
+
+            if (
+
+                document.readyState ===
+
+                "loading"
+
+            ) {
+
+                document.addEventListener(
+
+                    "DOMContentLoaded",
+
+                    init,
+
+                    {
+
+                        once:
+
+                            true
+
+                    }
+
+                );
+
+            } else {
+
+                init();
+
+            }
+
+        })();
+
+    </script>
+
+</body>
+
+</html>
