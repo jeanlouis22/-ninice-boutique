@@ -4,85 +4,787 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Catégories | NINICE BOUTIQUE</title>
+    <title>Catégories | NINICE BOUTIQUE</title>
 
-<meta name="description"
+    <meta
 
-content="Découvrez les catégories de NINICE BOUTIQUE.">
+        name="description"
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+        content="Découvrez toutes les catégories de NINICE BOUTIQUE."
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    >
 
-<link
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-rel="stylesheet">
+    <link
 
-<link rel="stylesheet" href="../assets/css/style.css">
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
 
-<link rel="stylesheet" href="../assets/css/responsive.css">
+        rel="stylesheet"
+
+    >
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        .categories-intro {
+
+            max-width: 680px;
+
+            margin-bottom: 34px;
+
+        }
+
+        .categories-intro h1 {
+
+            margin-bottom: 10px;
+
+        }
+
+        .categories-intro p {
+
+            color: var(--text-light);
+
+            margin: 0;
+
+        }
+
+        .categories-status {
+
+            padding: 30px;
+
+            text-align: center;
+
+            color: var(--text-light);
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius-lg);
+
+            background: var(--white);
+
+        }
+
+        .categories-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+
+            gap: 22px;
+
+        }
+
+        .category-card {
+
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            overflow: hidden;
+
+            min-height: 270px;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius-lg);
+
+            background: var(--white);
+
+            box-shadow: var(--shadow-sm);
+
+            transition:
+
+                transform var(--transition),
+
+                box-shadow var(--transition),
+
+                border-color var(--transition);
+
+        }
+
+        .category-card:hover {
+
+            transform: translateY(-4px);
+
+            border-color: #c4b5fd;
+
+            box-shadow: var(--shadow-md);
+
+        }
+
+        .category-image {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 190px;
+
+            overflow: hidden;
+
+            background: var(--primary-soft);
+
+        }
+
+        .category-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 300ms ease;
+
+        }
+
+        .category-card:hover .category-image img {
+
+            transform: scale(1.04);
+
+        }
+
+        .category-placeholder {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    var(--primary-soft),
+
+                    #ffffff
+
+                );
+
+            color: var(--primary);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 34px;
+
+            font-weight: 700;
+
+        }
+
+        .category-content {
+
+            flex: 1;
+
+            padding: 18px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+        }
+
+        .category-content h2 {
+
+            margin: 0;
+
+            color: var(--black);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 21px;
+
+            line-height: 1.25;
+
+        }
+
+        .category-content p {
+
+            margin: 0;
+
+            color: var(--text-light);
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+        }
+
+        .category-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 100%;
+
+            min-height: 42px;
+
+            padding: 9px 14px;
+
+            border-radius: var(--radius-md);
+
+            background: var(--primary);
+
+            color: var(--white);
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+
+                background var(--transition),
+
+                transform var(--transition);
+
+        }
+
+        .category-link:hover {
+
+            background: var(--primary-dark);
+
+        }
+
+        .category-error {
+
+            padding: 20px;
+
+            border: 1px solid #fecaca;
+
+            border-radius: var(--radius-md);
+
+            background: #fef2f2;
+
+            color: var(--danger);
+
+            text-align: center;
+
+        }
+
+        @media (max-width: 1000px) {
+
+            .categories-grid {
+
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            }
+
+        }
+
+        @media (max-width: 720px) {
+
+            .categories-grid {
+
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                gap: 14px;
+
+            }
+
+            .category-image {
+
+                height: 155px;
+
+            }
+
+            .category-content {
+
+                padding: 14px;
+
+            }
+
+            .category-content h2 {
+
+                font-size: 18px;
+
+            }
+
+        }
+
+        @media (max-width: 430px) {
+
+            .categories-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .category-image {
+
+                height: 190px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div id="site-header"></div>
+    <div id="site-header"></div>
 
-<main>
+    <main>
 
-<section class="page-section">
+        <section class="page-section">
 
-<div class="container">
+            <div class="container">
 
-<span class="eyebrow">NINICE BOUTIQUE</span>
+                <div class="categories-intro">
 
-<h1>Catégories</h1>
+                    <span class="eyebrow">
 
-<p>
+                        NINICE BOUTIQUE
 
-Découvrez nos différentes catégories de produits.
+                    </span>
 
-</p>
+                    <h1>
 
-<div class="page-card">
+                        Nos catégories
 
-<h2>Nos catégories</h2>
+                    </h1>
 
-<p>
+                    <p>
 
-Les catégories de produits seront automatiquement
+                        Découvrez nos différentes catégories
 
-chargées depuis la boutique.
+                        et trouvez facilement les articles
 
-</p>
+                        qui vous correspondent.
 
-<div id="categories-list"></div>
+                    </p>
 
-</div>
+                </div>
 
-</div>
+                <div id="categories-status"
 
-</section>
+                     class="categories-status">
 
-</main>
+                    Chargement des catégories...
 
-<div id="site-footer"></div>
+                </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+                <div
 
-<script src="../assets/js/config.js"></script>
+                    id="categories-list"
 
-<script src="../assets/js/supabase.js"></script>
+                    class="categories-grid"
 
-<script src="../assets/js/common.js"></script>
+                    hidden
 
-<script src="../assets/js/navigation.js"></script>
+                ></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/config.js"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        document.addEventListener(
+
+            "DOMContentLoaded",
+
+            loadCategories
+
+        );
+
+        async function loadCategories() {
+
+            const list =
+
+                document.getElementById(
+
+                    "categories-list"
+
+                );
+
+            const status =
+
+                document.getElementById(
+
+                    "categories-status"
+
+                );
+
+            if (!window.niniceSupabase) {
+
+                status.className =
+
+                    "category-error";
+
+                status.textContent =
+
+                    "La connexion à la boutique est momentanément indisponible.";
+
+                return;
+
+            }
+
+            try {
+
+                const {
+
+                    data,
+
+                    error
+
+                } = await window.niniceSupabase
+
+                    .from("categories")
+
+                    .select(`
+
+                        id,
+
+                        name,
+
+                        slug,
+
+                        description,
+
+                        image_url,
+
+                        is_active,
+
+                        sort_order
+
+                    `)
+
+                    .eq(
+
+                        "is_active",
+
+                        true
+
+                    )
+
+                    .order(
+
+                        "sort_order",
+
+                        {
+
+                            ascending: true
+
+                        }
+
+                    )
+
+                    .order(
+
+                        "name",
+
+                        {
+
+                            ascending: true
+
+                        }
+
+                    );
+
+                if (error) {
+
+                    console.error(
+
+                        "Erreur catégories :",
+
+                        error
+
+                    );
+
+                    status.className =
+
+                        "category-error";
+
+                    status.textContent =
+
+                        "Impossible de charger les catégories pour le moment.";
+
+                    return;
+
+                }
+
+                if (!data || data.length === 0) {
+
+                    status.textContent =
+
+                        "Aucune catégorie n'est encore disponible.";
+
+                    return;
+
+                }
+
+                list.innerHTML =
+
+                    data.map(
+
+                        category =>
+
+                            createCategoryCard(
+
+                                category
+
+                            )
+
+                    ).join("");
+
+                status.hidden = true;
+
+                list.hidden = false;
+
+            } catch (error) {
+
+                console.error(
+
+                    "Erreur inattendue :",
+
+                    error
+
+                );
+
+                status.className =
+
+                    "category-error";
+
+                status.textContent =
+
+                    "Une erreur est survenue lors du chargement des catégories.";
+
+            }
+
+        }
+
+        function createCategoryCard(
+
+            category
+
+        ) {
+
+            const name =
+
+                escapeHTML(
+
+                    category.name ||
+
+                    "Catégorie"
+
+                );
+
+            const description =
+
+                escapeHTML(
+
+                    category.description ||
+
+                    "Découvrez les produits de cette catégorie."
+
+                );
+
+            const slug =
+
+                encodeURIComponent(
+
+                    category.slug ||
+
+                    category.id
+
+                );
+
+            const image =
+
+                category.image_url
+
+                    ? `
+
+                        <img
+
+                            src="${escapeAttribute(category.image_url)}"
+
+                            alt="${name}"
+
+                            loading="lazy"
+
+                        >
+
+                    `
+
+                    : `
+
+                        <div
+
+                            class="category-placeholder"
+
+                            aria-hidden="true"
+
+                        >
+
+                            ${escapeHTML(
+
+                                (
+
+                                    category.name ||
+
+                                    "N"
+
+                                )
+
+                                .trim()
+
+                                .charAt(0)
+
+                                .toUpperCase()
+
+                            )}
+
+                        </div>
+
+                    `;
+
+            return `
+
+                <article
+
+                    class="category-card"
+
+                >
+
+                    <div
+
+                        class="category-image"
+
+                    >
+
+                        ${image}
+
+                    </div>
+
+                    <div
+
+                        class="category-content"
+
+                    >
+
+                        <div>
+
+                            <h2>
+
+                                ${name}
+
+                            </h2>
+
+                            <p>
+
+                                ${description}
+
+                            </p>
+
+                        </div>
+
+                        <a
+
+                            class="category-link"
+
+                            href="./recherche.html?category=${slug}"
+
+                        >
+
+                            Voir les produits
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+
+        function escapeHTML(value) {
+
+            if (
+
+                value === null ||
+
+                value === undefined
+
+            ) {
+
+                return "";
+
+            }
+
+            const div =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+            div.textContent =
+
+                String(value);
+
+            return div.innerHTML;
+
+        }
+
+        function escapeAttribute(value) {
+
+            return String(value || "")
+
+                .replace(/&/g, "&amp;")
+
+                .replace(/"/g, "&quot;")
+
+                .replace(/</g, "&lt;")
+
+                .replace(/>/g, "&gt;");
+
+        }
+
+    </script>
 
 </body>
 
