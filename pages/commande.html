@@ -1,0 +1,2821 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Commande | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Finalisez votre commande NINICE BOUTIQUE."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        :root {
+
+            --violet: #6d28d9;
+
+            --violet-dark: #4c1d95;
+
+            --violet-light: #f5f3ff;
+
+            --text: #171717;
+
+            --muted: #737373;
+
+            --border: #e5e7eb;
+
+            --white: #ffffff;
+
+            --danger: #dc2626;
+
+            --success: #15803d;
+
+            --bg: #fafafa;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: "DM Sans", sans-serif;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        button,
+
+        input,
+
+        select,
+
+        textarea {
+
+            font: inherit;
+
+        }
+
+        .checkout-page {
+
+            width: min(1180px, calc(100% - 30px));
+
+            margin: 0 auto;
+
+            padding: 42px 0 100px;
+
+        }
+
+        .checkout-heading {
+
+            margin-bottom: 30px;
+
+        }
+
+        .checkout-heading h1 {
+
+            margin: 0 0 8px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(30px, 5vw, 46px);
+
+        }
+
+        .checkout-heading p {
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 15px;
+
+        }
+
+        .checkout-layout {
+
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) 380px;
+
+            gap: 25px;
+
+            align-items: start;
+
+        }
+
+        .checkout-card,
+
+        .order-summary {
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .04);
+
+        }
+
+        .checkout-card {
+
+            padding: 27px;
+
+        }
+
+        .section-title {
+
+            margin: 0 0 5px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 25px;
+
+        }
+
+        .section-description {
+
+            margin: 0 0 24px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+        .form-section {
+
+            padding-bottom: 26px;
+
+            margin-bottom: 26px;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+        .form-section:last-child {
+
+            padding-bottom: 0;
+
+            margin-bottom: 0;
+
+            border-bottom: 0;
+
+        }
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 17px;
+
+        }
+
+        .form-group {
+
+            display: grid;
+
+            gap: 7px;
+
+        }
+
+        .form-group.full {
+
+            grid-column: 1 / -1;
+
+        }
+
+        .form-group label {
+
+            color: #404040;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+        .required {
+
+            color: var(--violet);
+
+        }
+
+        .form-group input,
+
+        .form-group select,
+
+        .form-group textarea {
+
+            width: 100%;
+
+            border: 1px solid var(--border);
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #fff;
+
+            color: var(--text);
+
+            transition: border-color .2s ease, box-shadow .2s ease;
+
+        }
+
+        .form-group input,
+
+        .form-group select {
+
+            min-height: 46px;
+
+            padding: 0 13px;
+
+        }
+
+        .form-group textarea {
+
+            min-height: 105px;
+
+            padding: 13px;
+
+            resize: vertical;
+
+        }
+
+        .form-group input:focus,
+
+        .form-group select:focus,
+
+        .form-group textarea:focus {
+
+            border-color: var(--violet);
+
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, .08);
+
+        }
+
+        .form-help {
+
+            margin-top: -2px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+        .payment-options {
+
+            display: grid;
+
+            gap: 11px;
+
+        }
+
+        .payment-option {
+
+            position: relative;
+
+        }
+
+        .payment-option input {
+
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+        .payment-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            min-height: 62px;
+
+            padding: 13px 15px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            background: #fff;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+
+        }
+
+        .payment-label:hover {
+
+            border-color: #c4b5fd;
+
+            background: #faf9ff;
+
+        }
+
+        .payment-option input:checked + .payment-label {
+
+            border-color: var(--violet);
+
+            background: var(--violet-light);
+
+            box-shadow: 0 0 0 2px rgba(109, 40, 217, .07);
+
+        }
+
+        .payment-radio {
+
+            width: 19px;
+
+            height: 19px;
+
+            flex: 0 0 19px;
+
+            border: 2px solid #c4c4c4;
+
+            border-radius: 50%;
+
+            position: relative;
+
+        }
+
+        .payment-option input:checked + .payment-label .payment-radio {
+
+            border-color: var(--violet);
+
+        }
+
+        .payment-option input:checked + .payment-label .payment-radio::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 9px;
+
+            height: 9px;
+
+            left: 3px;
+
+            top: 3px;
+
+            border-radius: 50%;
+
+            background: var(--violet);
+
+        }
+
+        .payment-text {
+
+            display: grid;
+
+            gap: 3px;
+
+        }
+
+        .payment-text strong {
+
+            font-size: 14px;
+
+        }
+
+        .payment-text span {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+        .order-summary {
+
+            padding: 23px;
+
+            position: sticky;
+
+            top: 20px;
+
+        }
+
+        .summary-title {
+
+            margin: 0 0 18px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 25px;
+
+        }
+
+        .summary-items {
+
+            display: grid;
+
+            gap: 13px;
+
+            max-height: 430px;
+
+            overflow-y: auto;
+
+            padding-right: 3px;
+
+        }
+
+        .summary-item {
+
+            display: grid;
+
+            grid-template-columns: 62px minmax(0, 1fr);
+
+            gap: 11px;
+
+            padding-bottom: 13px;
+
+            border-bottom: 1px solid var(--border);
+
+        }
+
+        .summary-item:last-child {
+
+            border-bottom: 0;
+
+        }
+
+        .summary-item-image {
+
+            width: 62px;
+
+            height: 72px;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            background: #f3f3f3;
+
+        }
+
+        .summary-item-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+        .summary-item-info {
+
+            min-width: 0;
+
+        }
+
+        .summary-item-name {
+
+            margin: 0 0 5px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            line-height: 1.35;
+
+        }
+
+        .summary-item-meta {
+
+            margin-bottom: 5px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+        }
+
+        .summary-item-price {
+
+            color: var(--violet-dark);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 9px 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+        }
+
+        .summary-row strong {
+
+            color: var(--text);
+
+        }
+
+        .summary-total {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 8px;
+
+            padding-top: 17px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
+        .summary-total span {
+
+            font-weight: 700;
+
+        }
+
+        .summary-total strong {
+
+            color: var(--violet-dark);
+
+            font-size: 21px;
+
+        }
+
+        .delivery-info {
+
+            margin: 16px 0;
+
+            padding: 13px;
+
+            border: 1px solid #ddd6fe;
+
+            border-radius: 12px;
+
+            background: #faf9ff;
+
+        }
+
+        .delivery-info strong {
+
+            display: block;
+
+            margin-bottom: 4px;
+
+            color: var(--violet-dark);
+
+            font-size: 12px;
+
+        }
+
+        .delivery-info span {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+        .confirm-button {
+
+            width: 100%;
+
+            min-height: 53px;
+
+            margin-top: 19px;
+
+            border: 0;
+
+            border-radius: 13px;
+
+            background: var(--violet);
+
+            color: #fff;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            transition: .2s ease;
+
+        }
+
+        .confirm-button:hover {
+
+            background: var(--violet-dark);
+
+            transform: translateY(-1px);
+
+        }
+
+        .confirm-button:disabled {
+
+            opacity: .55;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+        .back-cart {
+
+            display: block;
+
+            margin-top: 13px;
+
+            color: var(--violet);
+
+            text-align: center;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+        .terms {
+
+            margin-top: 15px;
+
+            color: var(--muted);
+
+            text-align: center;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+        }
+
+        .checkout-message {
+
+            display: none;
+
+            margin-bottom: 20px;
+
+            padding: 13px 15px;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+        }
+
+        .checkout-message.show {
+
+            display: block;
+
+        }
+
+        .checkout-message.error {
+
+            border: 1px solid #fecaca;
+
+            background: #fef2f2;
+
+            color: #991b1b;
+
+        }
+
+        .checkout-message.success {
+
+            border: 1px solid #bbf7d0;
+
+            background: #f0fdf4;
+
+            color: #166534;
+
+        }
+
+        .loading {
+
+            padding: 50px 20px;
+
+            color: var(--muted);
+
+            text-align: center;
+
+        }
+
+        .empty-checkout {
+
+            max-width: 550px;
+
+            margin: 60px auto;
+
+            padding: 35px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            background: #fff;
+
+            text-align: center;
+
+        }
+
+        .empty-checkout h2 {
+
+            margin: 0 0 8px;
+
+            color: var(--violet-dark);
+
+            font-family: "Playfair Display", serif;
+
+        }
+
+        .empty-checkout p {
+
+            margin: 0 0 20px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+        .empty-checkout a {
+
+            display: inline-flex;
+
+            min-height: 45px;
+
+            align-items: center;
+
+            padding: 0 20px;
+
+            border-radius: 11px;
+
+            background: var(--violet);
+
+            color: #fff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+        .required-note {
+
+            margin: 0 0 20px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+        @media (max-width: 900px) {
+
+            .checkout-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .order-summary {
+
+                position: static;
+
+                order: -1;
+
+            }
+
+        }
+
+        @media (max-width: 620px) {
+
+            .checkout-page {
+
+                width: min(100% - 22px, 1180px);
+
+                padding-top: 28px;
+
+            }
+
+            .checkout-card {
+
+                padding: 20px 16px;
+
+                border-radius: 16px;
+
+            }
+
+            .order-summary {
+
+                padding: 18px;
+
+                border-radius: 16px;
+
+            }
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 14px;
+
+            }
+
+            .form-group.full {
+
+                grid-column: auto;
+
+            }
+
+            .checkout-heading {
+
+                margin-bottom: 22px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main class="checkout-page">
+
+        <div class="checkout-heading">
+
+            <h1>Finaliser ma commande</h1>
+
+            <p>
+
+                Renseignez vos informations afin que nous puissions
+
+                préparer votre commande.
+
+            </p>
+
+        </div>
+
+        <div id="checkout-message" class="checkout-message"></div>
+
+        <div id="checkout-root">
+
+            <div class="loading">
+
+                Préparation de votre commande...
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="../assets/js/config.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        (() => {
+
+            "use strict";
+
+            const CHECKOUT_KEY = "ninice_checkout";
+
+            const CART_KEY = "ninice_cart";
+
+            const state = {
+
+                checkout: null,
+
+                submitting: false
+
+            };
+
+            const root =
+
+                document.getElementById("checkout-root");
+
+            const message =
+
+                document.getElementById("checkout-message");
+
+            function formatPrice(value) {
+
+                return new Intl.NumberFormat("fr-FR").format(
+
+                    Math.round(Number(value || 0))
+
+                ) + " FCFA";
+
+            }
+
+            function escapeHtml(value) {
+
+                return String(value ?? "")
+
+                    .replace(/&/g, "&amp;")
+
+                    .replace(/</g, "&lt;")
+
+                    .replace(/>/g, "&gt;")
+
+                    .replace(/"/g, "&quot;")
+
+                    .replace(/'/g, "&#039;");
+
+            }
+
+            function getCheckout() {
+
+                try {
+
+                    const raw =
+
+                        sessionStorage.getItem(
+
+                            CHECKOUT_KEY
+
+                        );
+
+                    if (!raw) {
+
+                        return null;
+
+                    }
+
+                    const data = JSON.parse(raw);
+
+                    if (
+
+                        !data ||
+
+                        !Array.isArray(data.cart) ||
+
+                        !data.cart.length
+
+                    ) {
+
+                        return null;
+
+                    }
+
+                    return data;
+
+                } catch (error) {
+
+                    console.error(
+
+                        "Erreur lecture checkout :",
+
+                        error
+
+                    );
+
+                    return null;
+
+                }
+
+            }
+
+            function showMessage(text, type = "error") {
+
+                message.textContent = text;
+
+                message.className =
+
+                    "checkout-message show " + type;
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+
+            function hideMessage() {
+
+                message.className =
+
+                    "checkout-message";
+
+            }
+
+            function render() {
+
+                state.checkout =
+
+                    getCheckout();
+
+                if (!state.checkout) {
+
+                    root.innerHTML = `
+
+                        <div class="empty-checkout">
+
+                            <h2>
+
+                                Votre commande ne peut pas être préparée
+
+                            </h2>
+
+                            <p>
+
+                                Votre panier semble vide ou votre session
+
+                                de commande a expiré. Retournez au panier
+
+                                pour recommencer.
+
+                            </p>
+
+                            <a href="panier.html">
+
+                                Retour au panier
+
+                            </a>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+                const checkout =
+
+                    state.checkout;
+
+                const cart =
+
+                    Array.isArray(checkout.cart)
+
+                        ? checkout.cart
+
+                        : [];
+
+                const subtotal =
+
+                    Number(checkout.subtotal || 0);
+
+                const deliveryFee =
+
+                    Number(checkout.deliveryFee || 0);
+
+                const shippingFee =
+
+                    Number(checkout.shippingFee || 0);
+
+                const total =
+
+                    Number(
+
+                        checkout.total ||
+
+                        subtotal +
+
+                        deliveryFee +
+
+                        shippingFee
+
+                    );
+
+                root.innerHTML = `
+
+                    <div class="checkout-layout">
+
+                        <section class="checkout-card">
+
+                            <div class="form-section">
+
+                                <h2 class="section-title">
+
+                                    Informations personnelles
+
+                                </h2>
+
+                                <p class="section-description">
+
+                                    Ces informations nous permettront
+
+                                    de vous contacter concernant votre commande.
+
+                                </p>
+
+                                <p class="required-note">
+
+                                    Les champs marqués d'un
+
+                                    <span class="required">*</span>
+
+                                    sont obligatoires.
+
+                                </p>
+
+                                <div class="form-grid">
+
+                                    <div class="form-group">
+
+                                        <label for="first-name">
+
+                                            Prénom
+
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+
+                                            id="first-name"
+
+                                            name="first_name"
+
+                                            type="text"
+
+                                            autocomplete="given-name"
+
+                                            placeholder="Votre prénom"
+
+                                            required
+
+                                        >
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="last-name">
+
+                                            Nom
+
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+
+                                            id="last-name"
+
+                                            name="last_name"
+
+                                            type="text"
+
+                                            autocomplete="family-name"
+
+                                            placeholder="Votre nom"
+
+                                            required
+
+                                        >
+
+                                    </div>
+
+                                    <div class="form-group full">
+
+                                        <label for="phone">
+
+                                            Numéro de téléphone
+
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+
+                                            id="phone"
+
+                                            name="phone"
+
+                                            type="tel"
+
+                                            autocomplete="tel"
+
+                                            placeholder="Ex. 07 00 00 00 00"
+
+                                            required
+
+                                        >
+
+                                        <div class="form-help">
+
+                                            Utilisez un numéro sur lequel
+
+                                            nous pouvons vous joindre.
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-section">
+
+                                <h2 class="section-title">
+
+                                    Informations de livraison
+
+                                </h2>
+
+                                <p class="section-description">
+
+                                    Indiquez précisément où votre commande
+
+                                    doit être livrée.
+
+                                </p>
+
+                                <div class="form-grid">
+
+                                    <div class="form-group">
+
+                                        <label for="city">
+
+                                            Ville
+
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+
+                                            id="city"
+
+                                            name="city"
+
+                                            type="text"
+
+                                            autocomplete="address-level2"
+
+                                            value="${escapeHtml(
+
+                                                checkout.city || ""
+
+                                            )}"
+
+                                            placeholder="Ex. Bouaké"
+
+                                            required
+
+                                        >
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="commune">
+
+                                            Commune
+
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+
+                                            id="commune"
+
+                                            name="commune"
+
+                                            type="text"
+
+                                            placeholder="Votre commune"
+
+                                            required
+
+                                        >
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="neighborhood">
+
+                                            Quartier
+
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+
+                                            id="neighborhood"
+
+                                            name="neighborhood"
+
+                                            type="text"
+
+                                            placeholder="Votre quartier"
+
+                                            required
+
+                                        >
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="landmark">
+
+                                            Lieu de livraison / repère
+
+                                        </label>
+
+                                        <input
+
+                                            id="landmark"
+
+                                            name="landmark"
+
+                                            type="text"
+
+                                            placeholder="Ex. près de..."
+
+                                        >
+
+                                    </div>
+
+                                    <div class="form-group full">
+
+                                        <label for="delivery-address">
+
+                                            Adresse / précision
+
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <textarea
+
+                                            id="delivery-address"
+
+                                            name="delivery_address"
+
+                                            placeholder="Indiquez l'adresse ou les indications permettant de vous retrouver."
+
+                                            required
+
+                                        ></textarea>
+
+                                    </div>
+
+                                    <div class="form-group full">
+
+                                        <label for="extra-information">
+
+                                            Informations supplémentaires
+
+                                        </label>
+
+                                        <textarea
+
+                                            id="extra-information"
+
+                                            name="extra_information"
+
+                                            placeholder="Toute précision utile pour la livraison."
+
+                                        ></textarea>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-section">
+
+                                <h2 class="section-title">
+
+                                    Moyen de paiement
+
+                                </h2>
+
+                                <p class="section-description">
+
+                                    Choisissez le mode de paiement souhaité.
+
+                                    Le paiement sera confirmé avec NINICE BOUTIQUE.
+
+                                </p>
+
+                                <div class="payment-options">
+
+                                    <div class="payment-option">
+
+                                        <input
+
+                                            type="radio"
+
+                                            id="payment-cash"
+
+                                            name="payment_method"
+
+                                            value="À la livraison"
+
+                                            checked
+
+                                        >
+
+                                        <label
+
+                                            for="payment-cash"
+
+                                            class="payment-label"
+
+                                        >
+
+                                            <span class="payment-radio"></span>
+
+                                            <span class="payment-text">
+
+                                                <strong>
+
+                                                    Paiement à la livraison
+
+                                                </strong>
+
+                                                <span>
+
+                                                    Le paiement est effectué
+
+                                                    lors de la réception.
+
+                                                </span>
+
+                                            </span>
+
+                                        </label>
+
+                                    </div>
+
+                                    <div class="payment-option">
+
+                                        <input
+
+                                            type="radio"
+
+                                            id="payment-mobile"
+
+                                            name="payment_method"
+
+                                            value="Mobile Money"
+
+                                        >
+
+                                        <label
+
+                                            for="payment-mobile"
+
+                                            class="payment-label"
+
+                                        >
+
+                                            <span class="payment-radio"></span>
+
+                                            <span class="payment-text">
+
+                                                <strong>
+
+                                                    Mobile Money
+
+                                                </strong>
+
+                                                <span>
+
+                                                    Les instructions de paiement
+
+                                                    seront communiquées après
+
+                                                    validation.
+
+                                                </span>
+
+                                            </span>
+
+                                        </label>
+
+                                    </div>
+
+                                    <div class="payment-option">
+
+                                        <input
+
+                                            type="radio"
+
+                                            id="payment-other"
+
+                                            name="payment_method"
+
+                                            value="Autre"
+
+                                        >
+
+                                        <label
+
+                                            for="payment-other"
+
+                                            class="payment-label"
+
+                                        >
+
+                                            <span class="payment-radio"></span>
+
+                                            <span class="payment-text">
+
+                                                <strong>
+
+                                                    Autre moyen
+
+                                                </strong>
+
+                                                <span>
+
+                                                    À préciser avec la boutique.
+
+                                                </span>
+
+                                            </span>
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-section">
+
+                                <h2 class="section-title">
+
+                                    Commentaire
+
+                                </h2>
+
+                                <p class="section-description">
+
+                                    Une demande particulière ?
+
+                                    Vous pouvez nous laisser un message.
+
+                                </p>
+
+                                <div class="form-group">
+
+                                    <label for="comment">
+
+                                        Commentaire ou demande particulière
+
+                                    </label>
+
+                                    <textarea
+
+                                        id="comment"
+
+                                        name="comment"
+
+                                        placeholder="Ex. Merci de me contacter avant la livraison."
+
+                                    ></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <aside class="order-summary">
+
+                            <h2 class="summary-title">
+
+                                Votre commande
+
+                            </h2>
+
+                            <div class="summary-items">
+
+                                ${cart.map(item => {
+
+                                    const quantity =
+
+                                        Math.max(
+
+                                            1,
+
+                                            Number(
+
+                                                item.quantity || 1
+
+                                            )
+
+                                        );
+
+                                    const price =
+
+                                        Number(
+
+                                            item.price || 0
+
+                                        );
+
+                                    const image =
+
+                                        item.image ||
+
+                                        item.main_image_url ||
+
+                                        "";
+
+                                    const itemTotal =
+
+                                        price * quantity;
+
+                                    const meta = [];
+
+                                    if (item.size) {
+
+                                        meta.push(
+
+                                            "Taille : " +
+
+                                            escapeHtml(item.size)
+
+                                        );
+
+                                    }
+
+                                    if (item.color) {
+
+                                        meta.push(
+
+                                            "Couleur : " +
+
+                                            escapeHtml(item.color)
+
+                                        );
+
+                                    }
+
+                                    return `
+
+                                        <div class="summary-item">
+
+                                            <div class="summary-item-image">
+
+                                                ${
+
+                                                    image
+
+                                                        ? `
+
+                                                            <img
+
+                                                                src="${escapeHtml(image)}"
+
+                                                                alt="${escapeHtml(item.name || "Produit")}"
+
+                                                            >
+
+                                                        `
+
+                                                        : `
+
+                                                            <div
+
+                                                                style="
+
+                                                                    width:100%;
+
+                                                                    height:100%;
+
+                                                                    display:flex;
+
+                                                                    align-items:center;
+
+                                                                    justify-content:center;
+
+                                                                    color:#737373;
+
+                                                                    font-size:9px;
+
+                                                                "
+
+                                                            >
+
+                                                                NINICE
+
+                                                            </div>
+
+                                                        `
+
+                                                }
+
+                                            </div>
+
+                                            <div class="summary-item-info">
+
+                                                <p class="summary-item-name">
+
+                                                    ${escapeHtml(
+
+                                                        item.name ||
+
+                                                        "Produit"
+
+                                                    )}
+
+                                                </p>
+
+                                                ${
+
+                                                    meta.length
+
+                                                        ? `
+
+                                                            <div class="summary-item-meta">
+
+                                                                ${meta.join(" · ")}
+
+                                                            </div>
+
+                                                        `
+
+                                                        : ""
+
+                                                }
+
+                                                <div class="summary-item-meta">
+
+                                                    Quantité : ${quantity}
+
+                                                </div>
+
+                                                <div class="summary-item-price">
+
+                                                    ${formatPrice(itemTotal)}
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    `;
+
+                                }).join("")}
+
+                            </div>
+
+                            <div class="delivery-info">
+
+                                <strong>
+
+                                    Zone de livraison
+
+                                </strong>
+
+                                <span>
+
+                                    ${
+
+                                        checkout.city
+
+                                            ? escapeHtml(
+
+                                                checkout.city
+
+                                            )
+
+                                            : "Ville à confirmer"
+
+                                    }
+
+                                    ${
+
+                                        checkout.zoneId
+
+                                            ? " — zone sélectionnée"
+
+                                            : ""
+
+                                    }
+
+                                </span>
+
+                            </div>
+
+                            <div class="summary-row">
+
+                                <span>
+
+                                    Sous-total
+
+                                </span>
+
+                                <strong>
+
+                                    ${formatPrice(subtotal)}
+
+                                </strong>
+
+                            </div>
+
+                            <div class="summary-row">
+
+                                <span>
+
+                                    Livraison
+
+                                </span>
+
+                                <strong>
+
+                                    ${formatPrice(deliveryFee)}
+
+                                </strong>
+
+                            </div>
+
+                            <div class="summary-row">
+
+                                <span>
+
+                                    Expédition
+
+                                </span>
+
+                                <strong>
+
+                                    ${formatPrice(shippingFee)}
+
+                                </strong>
+
+                            </div>
+
+                            <div class="summary-total">
+
+                                <span>
+
+                                    Total
+
+                                </span>
+
+                                <strong>
+
+                                    ${formatPrice(total)}
+
+                                </strong>
+
+                            </div>
+
+                            <button
+
+                                type="button"
+
+                                id="confirm-order"
+
+                                class="confirm-button"
+
+                            >
+
+                                Confirmer la commande
+
+                            </button>
+
+                            <a
+
+                                href="panier.html"
+
+                                class="back-cart"
+
+                            >
+
+                                Retourner au panier
+
+                            </a>
+
+                            <div class="terms">
+
+                                En confirmant votre commande, vous acceptez
+
+                                que les informations fournies soient utilisées
+
+                                pour le traitement et la livraison de votre commande.
+
+                            </div>
+
+                        </aside>
+
+                    </div>
+
+                `;
+
+                const confirmButton =
+
+                    document.getElementById(
+
+                        "confirm-order"
+
+                    );
+
+                confirmButton.addEventListener(
+
+                    "click",
+
+                    submitOrder
+
+                );
+
+            }
+
+            function getValue(id) {
+
+                const element =
+
+                    document.getElementById(id);
+
+                return element
+
+                    ? element.value.trim()
+
+                    : "";
+
+            }
+
+            function getPaymentMethod() {
+
+                const selected =
+
+                    document.querySelector(
+
+                        'input[name="payment_method"]:checked'
+
+                    );
+
+                return selected
+
+                    ? selected.value
+
+                    : "";
+
+            }
+
+            function validateForm() {
+
+                const requiredFields = [
+
+                    {
+
+                        id: "first-name",
+
+                        label: "le prénom"
+
+                    },
+
+                    {
+
+                        id: "last-name",
+
+                        label: "le nom"
+
+                    },
+
+                    {
+
+                        id: "phone",
+
+                        label: "le numéro de téléphone"
+
+                    },
+
+                    {
+
+                        id: "city",
+
+                        label: "la ville"
+
+                    },
+
+                    {
+
+                        id: "commune",
+
+                        label: "la commune"
+
+                    },
+
+                    {
+
+                        id: "neighborhood",
+
+                        label: "le quartier"
+
+                    },
+
+                    {
+
+                        id: "delivery-address",
+
+                        label: "l'adresse de livraison"
+
+                    }
+
+                ];
+
+                for (const field of requiredFields) {
+
+                    const value =
+
+                        getValue(field.id);
+
+                    if (!value) {
+
+                        showMessage(
+
+                            `Veuillez renseigner ${field.label}.`,
+
+                            "error"
+
+                        );
+
+                        const element =
+
+                            document.getElementById(field.id);
+
+                        if (element) {
+
+                            element.focus();
+
+                        }
+
+                        return false;
+
+                    }
+
+                }
+
+                const phone =
+
+                    getValue("phone");
+
+                const digits =
+
+                    phone.replace(/\D/g, "");
+
+                if (digits.length < 8) {
+
+                    showMessage(
+
+                        "Veuillez renseigner un numéro de téléphone valide.",
+
+                        "error"
+
+                    );
+
+                    document
+
+                        .getElementById("phone")
+
+                        .focus();
+
+                    return false;
+
+                }
+
+                if (!getPaymentMethod()) {
+
+                    showMessage(
+
+                        "Veuillez sélectionner un moyen de paiement.",
+
+                        "error"
+
+                    );
+
+                    return false;
+
+                }
+
+                return true;
+
+            }
+
+            async function submitOrder() {
+
+                if (state.submitting) {
+
+                    return;
+
+                }
+
+                hideMessage();
+
+                if (!validateForm()) {
+
+                    return;
+
+                }
+
+                if (!state.checkout) {
+
+                    showMessage(
+
+                        "Votre session de commande est expirée. Retournez au panier.",
+
+                        "error"
+
+                    );
+
+                    return;
+
+                }
+
+                const button =
+
+                    document.getElementById(
+
+                        "confirm-order"
+
+                    );
+
+                state.submitting = true;
+
+                button.disabled = true;
+
+                button.textContent =
+
+                    "Enregistrement de la commande...";
+
+                try {
+
+                    const checkout =
+
+                        state.checkout;
+
+                    const firstName =
+
+                        getValue("first-name");
+
+                    const lastName =
+
+                        getValue("last-name");
+
+                    const phone =
+
+                        getValue("phone");
+
+                    const city =
+
+                        getValue("city");
+
+                    const commune =
+
+                        getValue("commune");
+
+                    const neighborhood =
+
+                        getValue("neighborhood");
+
+                    const address =
+
+                        getValue("delivery-address");
+
+                    const landmark =
+
+                        getValue("landmark");
+
+                    const extraInformation =
+
+                        getValue("extra-information");
+
+                    const comment =
+
+                        getValue("comment");
+
+                    const paymentMethod =
+
+                        getPaymentMethod();
+
+                    const subtotal =
+
+                        Number(
+
+                            checkout.subtotal || 0
+
+                        );
+
+                    const deliveryFee =
+
+                        Number(
+
+                            checkout.deliveryFee || 0
+
+                        );
+
+                    const shippingFee =
+
+                        Number(
+
+                            checkout.shippingFee || 0
+
+                        );
+
+                    const total =
+
+                        Number(
+
+                            checkout.total ||
+
+                            subtotal +
+
+                            deliveryFee +
+
+                            shippingFee
+
+                        );
+
+                    if (
+
+                        !window.niniceSupabase ||
+
+                        !window.niniceSupabase.rpc
+
+                    ) {
+
+                        throw new Error(
+
+                            "La connexion à la boutique est indisponible."
+
+                        );
+
+                    }
+
+                    /*
+
+                     * Première méthode :
+
+                     * utiliser la fonction create_order déjà présente
+
+                     * dans la base NINICE BOUTIQUE.
+
+                     */
+
+                    const orderPayload = {
+
+                        p_first_name:
+
+                            firstName,
+
+                        p_last_name:
+
+                            lastName,
+
+                        p_phone:
+
+                            phone,
+
+                        p_city:
+
+                            city,
+
+                        p_commune:
+
+                            commune,
+
+                        p_neighborhood:
+
+                            neighborhood,
+
+                        p_delivery_address:
+
+                            address,
+
+                        p_landmark:
+
+                            landmark || null,
+
+                        p_extra_information:
+
+                            extraInformation || null,
+
+                        p_payment_method:
+
+                            paymentMethod,
+
+                        p_comment:
+
+                            comment || null,
+
+                        p_delivery_fee:
+
+                            deliveryFee,
+
+                        p_shipping_fee:
+
+                            shippingFee,
+
+                        p_subtotal:
+
+                            subtotal,
+
+                        p_total:
+
+                            total,
+
+                        p_items:
+
+                            checkout.cart
+
+                    };
+
+                    let rpcResult =
+
+                        await window.niniceSupabase
+
+                            .rpc(
+
+                                "create_order",
+
+                                orderPayload
+
+                            );
+
+                    /*
+
+                     * Certaines versions de la fonction
+
+                     * create_order peuvent utiliser un seul objet JSON.
+
+                     *
+
+                     * Si la première signature ne correspond pas,
+
+                     * on essaie une deuxième forme.
+
+                     */
+
+                    if (rpcResult.error) {
+
+                        console.warn(
+
+                            "Première signature create_order refusée :",
+
+                            rpcResult.error
+
+                        );
+
+                        rpcResult =
+
+                            await window.niniceSupabase
+
+                                .rpc(
+
+                                    "create_order",
+
+                                    {
+
+                                        order_data: {
+
+                                            first_name:
+
+                                                firstName,
+
+                                            last_name:
+
+                                                lastName,
+
+                                            phone:
+
+                                                phone,
+
+                                            city:
+
+                                                city,
+
+                                            commune:
+
+                                                commune,
+
+                                            neighborhood:
+
+                                                neighborhood,
+
+                                            delivery_address:
+
+                                                address,
+
+                                            landmark:
+
+                                                landmark || null,
+
+                                            extra_information:
+
+                                                extraInformation || null,
+
+                                            payment_method:
+
+                                                paymentMethod,
+
+                                            comment:
+
+                                                comment || null,
+
+                                            delivery_fee:
+
+                                                deliveryFee,
+
+                                            shipping_fee:
+
+                                                shippingFee,
+
+                                            subtotal:
+
+                                                subtotal,
+
+                                            total:
+
+                                                total,
+
+                                            items:
+
+                                                checkout.cart
+
+                                        }
+
+                                    }
+
+                                );
+
+                    }
+
+                    if (rpcResult.error) {
+
+                        throw rpcResult.error;
+
+                    }
+
+                    const result =
+
+                        rpcResult.data;
+
+                    /*
+
+                     * La fonction peut retourner :
+
+                     * - un objet
+
+                     * - un tableau contenant un objet
+
+                     * - directement un numéro de commande
+
+                     */
+
+                    let order =
+
+                        Array.isArray(result)
+
+                            ? result[0]
+
+                            : result;
+
+                    if (
+
+                        typeof order === "string"
+
+                    ) {
+
+                        order = {
+
+                            order_number:
+
+                                order
+
+                        };
+
+                    }
+
+                    if (!order) {
+
+                        order = {};
+
+                    }
+
+                    const orderNumber =
+
+                        order.order_number ||
+
+                        order.orderNumber ||
+
+                        order.number ||
+
+                        "";
+
+                    const orderId =
+
+                        order.id ||
+
+                        order.order_id ||
+
+                        "";
+
+                    /*
+
+                     * Sauvegarde locale de la dernière commande
+
+                     * pour la page confirmation.
+
+                     */
+
+                    const confirmationData = {
+
+                        orderNumber:
+
+                            orderNumber,
+
+                        orderId:
+
+                            orderId,
+
+                        firstName:
+
+                            firstName,
+
+                        lastName:
+
+                            lastName,
+
+                        phone:
+
+                            phone,
+
+                        city:
+
+                            city,
+
+                        commune:
+
+                            commune,
+
+                        neighborhood:
+
+                            neighborhood,
+
+                        address:
+
+                            address,
+
+                        landmark:
+
+                            landmark,
+
+                        extraInformation:
+
+                            extraInformation,
+
+                        paymentMethod:
+
+                            paymentMethod,
+
+                        comment:
+
+                            comment,
+
+                        cart:
+
+                            checkout.cart,
+
+                        subtotal:
+
+                            subtotal,
+
+                        deliveryFee:
+
+                            deliveryFee,
+
+                        shippingFee:
+
+                            shippingFee,
+
+                        total:
+
+                            total,
+
+                        createdAt:
+
+                            new Date().toISOString()
+
+                    };
+
+                    sessionStorage.setItem(
+
+                        "ninice_confirmation",
+
+                        JSON.stringify(
+
+                            confirmationData
+
+                        )
+
+                    );
+
+                    /*
+
+                     * Le panier est vidé uniquement après
+
+                     * l'enregistrement réussi.
+
+                     */
+
+                    localStorage.removeItem(
+
+                        CART_KEY
+
+                    );
+
+                    sessionStorage.removeItem(
+
+                        CHECKOUT_KEY
+
+                    );
+
+                    /*
+
+                     * Redirection vers la page confirmation.
+
+                     */
+
+                    window.location.href =
+
+                        "confirmation.html";
+
+                } catch (error) {
+
+                    console.error(
+
+                        "Erreur création commande :",
+
+                        error
+
+                    );
+
+                    let errorMessage =
+
+                        "Impossible d'enregistrer la commande pour le moment.";
+
+                    if (
+
+                        error &&
+
+                        error.message
+
+                    ) {
+
+                        errorMessage =
+
+                            error.message;
+
+                    }
+
+                    showMessage(
+
+                        errorMessage,
+
+                        "error"
+
+                    );
+
+                    button.disabled = false;
+
+                    button.textContent =
+
+                        "Confirmer la commande";
+
+                    state.submitting = false;
+
+                }
+
+            }
+
+            /*
+
+             * INITIALISATION
+
+             */
+
+            render();
+
+        })();
+
+    </script>
+
+</body>
+
+</html>
