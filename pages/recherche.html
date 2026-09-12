@@ -4,15 +4,533 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Recherche | NINICE BOUTIQUE</title>
+    <title>Produits | NINICE BOUTIQUE</title>
 
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta
 
-<link rel="stylesheet" href="../assets/css/responsive.css">
+        name="description"
+
+        content="Découvrez les produits disponibles chez NINICE BOUTIQUE."
+
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        .catalogue-header {
+
+            margin-bottom: 32px;
+
+        }
+
+        .catalogue-header h1 {
+
+            margin: 0 0 10px;
+
+            font-family: "Playfair Display", serif;
+
+            color: var(--black);
+
+        }
+
+        .catalogue-header p {
+
+            margin: 0;
+
+            color: var(--text-light);
+
+        }
+
+        .catalogue-tools {
+
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) 220px;
+
+            gap: 12px;
+
+            margin-bottom: 34px;
+
+        }
+
+        .catalogue-search,
+
+        .catalogue-filter {
+
+            width: 100%;
+
+            min-height: 48px;
+
+            padding: 0 16px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 999px;
+
+            background: var(--white);
+
+            color: var(--text);
+
+            outline: none;
+
+        }
+
+        .catalogue-search:focus,
+
+        .catalogue-filter:focus {
+
+            border-color: #a78bfa;
+
+            box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.08);
+
+        }
+
+        .catalogue-info {
+
+            margin-bottom: 18px;
+
+            color: var(--text-light);
+
+            font-size: 14px;
+
+        }
+
+        .products-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+
+            gap: 22px;
+
+        }
+
+        .product-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius-lg);
+
+            box-shadow: var(--shadow-sm);
+
+            transition:
+
+                transform var(--transition),
+
+                box-shadow var(--transition),
+
+                border-color var(--transition);
+
+        }
+
+        .product-card:hover {
+
+            transform: translateY(-4px);
+
+            border-color: #c4b5fd;
+
+            box-shadow: var(--shadow-md);
+
+        }
+
+        .product-image-wrap {
+
+            position: relative;
+
+            height: 300px;
+
+            overflow: hidden;
+
+            background: var(--primary-soft);
+
+        }
+
+        .product-image-wrap img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 300ms ease;
+
+        }
+
+        .product-card:hover .product-image-wrap img {
+
+            transform: scale(1.04);
+
+        }
+
+        .product-placeholder {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: linear-gradient(
+
+                135deg,
+
+                var(--primary-soft),
+
+                #ffffff
+
+            );
+
+            color: var(--primary);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 42px;
+
+            font-weight: 700;
+
+        }
+
+        .product-badge {
+
+            position: absolute;
+
+            top: 12px;
+
+            left: 12px;
+
+            z-index: 2;
+
+            padding: 6px 10px;
+
+            border-radius: 999px;
+
+            background: var(--primary);
+
+            color: var(--white);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+        .product-favorite {
+
+            position: absolute;
+
+            top: 12px;
+
+            right: 12px;
+
+            z-index: 2;
+
+            width: 40px;
+
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid rgba(255,255,255,.8);
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.94);
+
+            color: var(--text);
+
+            font-size: 19px;
+
+            cursor: pointer;
+
+        }
+
+        .product-favorite.is-favorite {
+
+            color: var(--primary);
+
+        }
+
+        .product-content {
+
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            padding: 17px;
+
+        }
+
+        .product-category {
+
+            margin-bottom: 5px;
+
+            color: var(--primary);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+        .product-name {
+
+            margin: 0 0 8px;
+
+            color: var(--black);
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 20px;
+
+            line-height: 1.25;
+
+        }
+
+        .product-description {
+
+            margin: 0 0 12px;
+
+            color: var(--text-light);
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 2;
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+
+        }
+
+        .product-price-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 8px;
+
+        }
+
+        .product-price {
+
+            color: var(--primary-dark);
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+        }
+
+        .product-old-price {
+
+            color: #9ca3af;
+
+            font-size: 13px;
+
+            text-decoration: line-through;
+
+        }
+
+        .product-stock {
+
+            margin-bottom: 15px;
+
+            color: var(--success);
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+        .product-stock.out {
+
+            color: var(--danger);
+
+        }
+
+        .product-actions {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 8px;
+
+            margin-top: auto;
+
+        }
+
+        .product-actions .btn {
+
+            width: 100%;
+
+            min-height: 42px;
+
+            padding: 0 10px;
+
+            font-size: 12px;
+
+        }
+
+        .product-view {
+
+            grid-column: 1 / -1;
+
+        }
+
+        .catalogue-state {
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            border: 1px dashed var(--border);
+
+            border-radius: var(--radius-lg);
+
+            background: var(--white);
+
+            color: var(--text-light);
+
+        }
+
+        .catalogue-error {
+
+            padding: 25px;
+
+            border-radius: var(--radius-lg);
+
+            background: #fef2f2;
+
+            border: 1px solid #fecaca;
+
+            color: var(--danger);
+
+        }
+
+        @media (max-width: 1050px) {
+
+            .products-grid {
+
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            }
+
+        }
+
+        @media (max-width: 760px) {
+
+            .catalogue-tools {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .products-grid {
+
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                gap: 14px;
+
+            }
+
+            .product-image-wrap {
+
+                height: 230px;
+
+            }
+
+            .product-content {
+
+                padding: 13px;
+
+            }
+
+            .product-name {
+
+                font-size: 17px;
+
+            }
+
+            .product-price {
+
+                font-size: 16px;
+
+            }
+
+        }
+
+        @media (max-width: 430px) {
+
+            .products-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .product-image-wrap {
+
+                height: 290px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -26,49 +544,83 @@
 
 <div class="container">
 
-<span class="eyebrow">NINICE BOUTIQUE</span>
+    <div class="catalogue-header">
 
-<h1>Recherche</h1>
+        <span class="eyebrow">
 
-<p>
+            NINICE BOUTIQUE
 
-Recherchez facilement vos articles préférés.
+        </span>
 
-</p>
+        <h1>
 
-<div class="page-card">
+            Nos produits
 
-<form id="search-page-form">
+        </h1>
 
-<input
+        <p>
 
-type="search"
+            Découvrez notre sélection et trouvez facilement
 
-id="search-page-input"
+            les articles qui vous correspondent.
 
-placeholder="Rechercher un article..."
+        </p>
 
-autocomplete="off">
+    </div>
 
-<button type="submit" class="btn btn-primary">
+    <div class="catalogue-tools">
 
-Rechercher
+        <input
 
-</button>
+            type="search"
 
-</form>
+            id="product-search"
 
-<div id="search-results">
+            class="catalogue-search"
 
-<p>
+            placeholder="Rechercher un produit..."
 
-Entrez le nom d'un article pour commencer.
+            autocomplete="off"
 
-</p>
+        >
 
-</div>
+        <select
 
-</div>
+            id="category-filter"
+
+            class="catalogue-filter"
+
+        >
+
+            <option value="">
+
+                Toutes les catégories
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <div
+
+        id="catalogue-info"
+
+        class="catalogue-info"
+
+    >
+
+        Chargement des produits...
+
+    </div>
+
+    <div
+
+        id="products-list"
+
+        class="products-grid"
+
+    ></div>
 
 </div>
 
@@ -90,41 +642,1191 @@ Entrez le nom d'un article pour commencer.
 
 <script>
 
-const params = new URLSearchParams(window.location.search);
+const supabaseClient =
 
-const search = params.get("search");
+    window.niniceSupabase;
 
-const input =
+let allProducts = [];
 
-document.getElementById("search-page-input");
+let allCategories = [];
 
-if (search && input) {
+const productsList =
 
-    input.value = search;
+    document.getElementById("products-list");
+
+const catalogueInfo =
+
+    document.getElementById("catalogue-info");
+
+const searchInput =
+
+    document.getElementById("product-search");
+
+const categoryFilter =
+
+    document.getElementById("category-filter");
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    async function () {
+
+        await loadCategories();
+
+        await loadProducts();
+
+        applyFilters();
+
+    }
+
+);
+
+async function loadCategories() {
+
+    try {
+
+        const {
+
+            data,
+
+            error
+
+        } = await supabaseClient
+
+            .from("categories")
+
+            .select(
+
+                "id,name,slug"
+
+            )
+
+            .eq(
+
+                "is_active",
+
+                true
+
+            )
+
+            .order(
+
+                "sort_order",
+
+                {
+
+                    ascending: true
+
+                }
+
+            );
+
+        if (error) {
+
+            console.error(
+
+                "Erreur catégories :",
+
+                error
+
+            );
+
+            return;
+
+        }
+
+        allCategories =
+
+            data || [];
+
+        categoryFilter.innerHTML =
+
+            `<option value="">
+
+                Toutes les catégories
+
+            </option>`;
+
+        allCategories.forEach(
+
+            category => {
+
+                const option =
+
+                    document.createElement(
+
+                        "option"
+
+                    );
+
+                option.value =
+
+                    category.id;
+
+                option.textContent =
+
+                    category.name;
+
+                categoryFilter.appendChild(
+
+                    option
+
+                );
+
+            }
+
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
 
 }
 
-document
+async function loadProducts() {
 
-.getElementById("search-page-form")
+    if (!supabaseClient) {
 
-.addEventListener("submit", function(event) {
+        showError(
 
-    event.preventDefault();
+            "La connexion à la boutique est indisponible."
 
-    const value =
+        );
 
-    input.value.trim();
+        return;
 
-    if (!value) return;
+    }
+
+    try {
+
+        const {
+
+            data,
+
+            error
+
+        } = await supabaseClient
+
+            .from("products")
+
+            .select(`
+
+                id,
+
+                name,
+
+                slug,
+
+                description,
+
+                price,
+
+                old_price,
+
+                category_id,
+
+                stock,
+
+                is_available,
+
+                is_featured,
+
+                is_new,
+
+                is_promotion,
+
+                promotion_percent,
+
+                main_image_url,
+
+                reference,
+
+                attributes,
+
+                additional_information,
+
+                promotional_price,
+
+                promotion_start_date,
+
+                promotion_end_date
+
+            `)
+
+            .eq(
+
+                "is_available",
+
+                true
+
+            )
+
+            .order(
+
+                "created_at",
+
+                {
+
+                    ascending: false
+
+                }
+
+            );
+
+        if (error) {
+
+            console.error(
+
+                "Erreur produits :",
+
+                error
+
+            );
+
+            showError(
+
+                "Impossible de charger les produits."
+
+            );
+
+            return;
+
+        }
+
+        allProducts =
+
+            data || [];
+
+        updateInfo();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showError(
+
+            "Une erreur est survenue lors du chargement des produits."
+
+        );
+
+    }
+
+}
+
+function applyFilters() {
+
+    const search =
+
+        searchInput.value
+
+            .trim()
+
+            .toLowerCase();
+
+    const categoryId =
+
+        categoryFilter.value;
+
+    const filtered =
+
+        allProducts.filter(
+
+            product => {
+
+                const matchesSearch =
+
+                    !search ||
+
+                    (
+
+                        product.name || ""
+
+                    )
+
+                    .toLowerCase()
+
+                    .includes(search)
+
+                    ||
+
+                    (
+
+                        product.description || ""
+
+                    )
+
+                    .toLowerCase()
+
+                    .includes(search)
+
+                    ||
+
+                    (
+
+                        product.reference || ""
+
+                    )
+
+                    .toLowerCase()
+
+                    .includes(search);
+
+                const matchesCategory =
+
+                    !categoryId ||
+
+                    product.category_id ===
+
+                    categoryId;
+
+                return (
+
+                    matchesSearch &&
+
+                    matchesCategory
+
+                );
+
+            }
+
+        );
+
+    renderProducts(filtered);
+
+}
+
+function renderProducts(products) {
+
+    if (!products.length) {
+
+        productsList.innerHTML = `
+
+            <div
+
+                class="catalogue-state"
+
+                style="grid-column:1/-1;"
+
+            >
+
+                Aucun produit ne correspond à votre recherche.
+
+            </div>
+
+        `;
+
+        updateInfo(0);
+
+        return;
+
+    }
+
+    productsList.innerHTML =
+
+        products
+
+            .map(
+
+                createProductCard
+
+            )
+
+            .join("");
+
+    updateInfo(
+
+        products.length
+
+    );
+
+}
+
+function createProductCard(product) {
+
+    const category =
+
+        allCategories.find(
+
+            category =>
+
+                category.id ===
+
+                product.category_id
+
+        );
+
+    const categoryName =
+
+        category
+
+            ? category.name
+
+            : "Boutique";
+
+    const name =
+
+        escapeHTML(
+
+            product.name ||
+
+            "Produit"
+
+        );
+
+    const description =
+
+        escapeHTML(
+
+            product.description ||
+
+            "Découvrez ce produit chez NINICE BOUTIQUE."
+
+        );
+
+    const price =
+
+        getEffectivePrice(product);
+
+    const oldPrice =
+
+        Number(product.old_price || 0);
+
+    const image =
+
+        product.main_image_url
+
+            ? `
+
+                <img
+
+                    src="${escapeAttribute(product.main_image_url)}"
+
+                    alt="${name}"
+
+                    loading="lazy"
+
+                >
+
+            `
+
+            : `
+
+                <div
+
+                    class="product-placeholder"
+
+                >
+
+                    ${escapeHTML(
+
+                        (
+
+                            product.name ||
+
+                            "N"
+
+                        )
+
+                        .trim()
+
+                        .charAt(0)
+
+                        .toUpperCase()
+
+                    )}
+
+                </div>
+
+            `;
+
+    let badge = "";
+
+    if (
+
+        product.is_promotion ||
+
+        product.promotional_price ||
+
+        product.promotion_percent
+
+    ) {
+
+        badge =
+
+            `<span class="product-badge">
+
+                Promotion
+
+            </span>`;
+
+    } else if (product.is_new) {
+
+        badge =
+
+            `<span class="product-badge">
+
+                Nouveau
+
+            </span>`;
+
+    }
+
+    const outOfStock =
+
+        Number(product.stock || 0) <= 0;
+
+    const stockText =
+
+        outOfStock
+
+            ? "Rupture de stock"
+
+            : `En stock : ${product.stock}`;
+
+    const productUrl =
+
+        "produit.html?id=" +
+
+        encodeURIComponent(
+
+            product.id
+
+        );
+
+    const favorite =
+
+        isFavorite(
+
+            product.id
+
+        );
+
+    return `
+
+        <article
+
+            class="product-card"
+
+            data-product-id="${escapeAttribute(product.id)}"
+
+        >
+
+            <div
+
+                class="product-image-wrap"
+
+            >
+
+                ${badge}
+
+                <button
+
+                    type="button"
+
+                    class="product-favorite ${favorite ? "is-favorite" : ""}"
+
+                    onclick="toggleFavorite('${escapeAttribute(product.id)}')"
+
+                    aria-label="Ajouter aux favoris"
+
+                >
+
+                    ${favorite ? "♥" : "♡"}
+
+                </button>
+
+                ${image}
+
+            </div>
+
+            <div class="product-content">
+
+                <div
+
+                    class="product-category"
+
+                >
+
+                    ${escapeHTML(categoryName)}
+
+                </div>
+
+                <h2
+
+                    class="product-name"
+
+                >
+
+                    ${name}
+
+                </h2>
+
+                <p
+
+                    class="product-description"
+
+                >
+
+                    ${description}
+
+                </p>
+
+                <div
+
+                    class="product-price-row"
+
+                >
+
+                    <span
+
+                        class="product-price"
+
+                    >
+
+                        ${formatPrice(price)}
+
+                    </span>
+
+                    ${
+
+                        oldPrice > price
+
+                        ?
+
+                        `
+
+                        <span
+
+                            class="product-old-price"
+
+                        >
+
+                            ${formatPrice(oldPrice)}
+
+                        </span>
+
+                        `
+
+                        :
+
+                        ""
+
+                    }
+
+                </div>
+
+                <div
+
+                    class="product-stock ${outOfStock ? "out" : ""}"
+
+                >
+
+                    ${stockText}
+
+                </div>
+
+                <div
+
+                    class="product-actions"
+
+                >
+
+                    <a
+
+                        href="${productUrl}"
+
+                        class="btn btn-secondary product-view"
+
+                    >
+
+                        Voir le produit
+
+                    </a>
+
+                    <button
+
+                        type="button"
+
+                        class="btn btn-primary"
+
+                        onclick="addToCart('${escapeAttribute(product.id)}')"
+
+                        ${outOfStock ? "disabled" : ""}
+
+                    >
+
+                        Ajouter au panier
+
+                    </button>
+
+                    <button
+
+                        type="button"
+
+                        class="btn btn-secondary"
+
+                        onclick="orderNow('${escapeAttribute(product.id)}')"
+
+                        ${outOfStock ? "disabled" : ""}
+
+                    >
+
+                        Commander
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+function getEffectivePrice(product) {
+
+    const now =
+
+        new Date();
+
+    if (
+
+        product.promotional_price &&
+
+        Number(product.promotional_price) > 0
+
+    ) {
+
+        const start =
+
+            product.promotion_start_date
+
+                ? new Date(
+
+                    product.promotion_start_date
+
+                )
+
+                : null;
+
+        const end =
+
+            product.promotion_end_date
+
+                ? new Date(
+
+                    product.promotion_end_date
+
+                )
+
+                : null;
+
+        if (
+
+            (!start || now >= start) &&
+
+            (!end || now <= end)
+
+        ) {
+
+            return Number(
+
+                product.promotional_price
+
+            );
+
+        }
+
+    }
+
+    return Number(
+
+        product.price || 0
+
+    );
+
+}
+
+function formatPrice(value) {
+
+    return new Intl.NumberFormat(
+
+        "fr-FR"
+
+    ).format(
+
+        Number(value || 0)
+
+    ) + " FCFA";
+
+}
+
+function getFavorites() {
+
+    try {
+
+        return JSON.parse(
+
+            localStorage.getItem(
+
+                "ninice_favorites"
+
+            ) || "[]"
+
+        );
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+function isFavorite(id) {
+
+    return getFavorites()
+
+        .includes(id);
+
+}
+
+function toggleFavorite(id) {
+
+    let favorites =
+
+        getFavorites();
+
+    if (
+
+        favorites.includes(id)
+
+    ) {
+
+        favorites =
+
+            favorites.filter(
+
+                item => item !== id
+
+            );
+
+    } else {
+
+        favorites.push(id);
+
+    }
+
+    localStorage.setItem(
+
+        "ninice_favorites",
+
+        JSON.stringify(favorites)
+
+    );
+
+    applyFilters();
+
+}
+
+function getCart() {
+
+    try {
+
+        return JSON.parse(
+
+            localStorage.getItem(
+
+                "ninice_cart"
+
+            ) || "[]"
+
+        );
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+function saveCart(cart) {
+
+    localStorage.setItem(
+
+        "ninice_cart",
+
+        JSON.stringify(cart)
+
+    );
+
+}
+
+function addToCart(id) {
+
+    const product =
+
+        allProducts.find(
+
+            item =>
+
+                item.id === id
+
+        );
+
+    if (!product) return;
+
+    if (
+
+        Number(product.stock || 0) <= 0
+
+    ) {
+
+        alert(
+
+            "Ce produit est actuellement en rupture de stock."
+
+        );
+
+        return;
+
+    }
+
+    const cart =
+
+        getCart();
+
+    const existing =
+
+        cart.find(
+
+            item =>
+
+                item.id === id
+
+        );
+
+    if (existing) {
+
+        if (
+
+            existing.quantity <
+
+            Number(product.stock)
+
+        ) {
+
+            existing.quantity += 1;
+
+        } else {
+
+            alert(
+
+                "Vous avez atteint le stock disponible."
+
+            );
+
+            return;
+
+        }
+
+    } else {
+
+        cart.push({
+
+            id: product.id,
+
+            name: product.name,
+
+            price: getEffectivePrice(
+
+                product
+
+            ),
+
+            image:
+
+                product.main_image_url ||
+
+                "",
+
+            quantity: 1
+
+        });
+
+    }
+
+    saveCart(cart);
+
+    updateCartCount();
+
+    alert(
+
+        "Produit ajouté au panier."
+
+    );
+
+}
+
+function orderNow(id) {
+
+    addToCart(id);
 
     window.location.href =
 
-    "recherche.html?search=" +
+        "panier.html";
 
-    encodeURIComponent(value);
+}
 
-});
+function updateCartCount() {
+
+    const count =
+
+        getCart().reduce(
+
+            (
+
+                total,
+
+                item
+
+            ) =>
+
+                total +
+
+                Number(
+
+                    item.quantity || 0
+
+                ),
+
+            0
+
+        );
+
+    document
+
+        .querySelectorAll(
+
+            ".cart-count"
+
+        )
+
+        .forEach(
+
+            element => {
+
+                element.textContent =
+
+                    count;
+
+            }
+
+        );
+
+}
+
+function updateInfo(count) {
+
+    if (
+
+        typeof count === "number"
+
+    ) {
+
+        catalogueInfo.textContent =
+
+            count === 0
+
+                ? "Aucun produit"
+
+                : `${count} produit${count > 1 ? "s" : ""}`;
+
+    } else {
+
+        catalogueInfo.textContent =
+
+            `${allProducts.length} produit${allProducts.length > 1 ? "s" : ""} disponible${allProducts.length > 1 ? "s" : ""}`;
+
+    }
+
+}
+
+function showError(message) {
+
+    productsList.innerHTML = `
+
+        <div
+
+            class="catalogue-error"
+
+            style="grid-column:1/-1;"
+
+        >
+
+            ${escapeHTML(message)}
+
+        </div>
+
+    `;
+
+    catalogueInfo.textContent = "";
+
+}
+
+function escapeHTML(value) {
+
+    const div =
+
+        document.createElement(
+
+            "div"
+
+        );
+
+    div.textContent =
+
+        String(value ?? "");
+
+    return div.innerHTML;
+
+}
+
+function escapeAttribute(value) {
+
+    return String(value ?? "")
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;");
+
+}
+
+searchInput.addEventListener(
+
+    "input",
+
+    applyFilters
+
+);
+
+categoryFilter.addEventListener(
+
+    "change",
+
+    applyFilters
+
+);
 
 </script>
 
