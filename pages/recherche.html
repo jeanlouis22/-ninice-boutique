@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recherche | NINICE BOUTIQUE</title>
+
+<link rel="stylesheet" href="../assets/css/style.css">
+
+<link rel="stylesheet" href="../assets/css/responsive.css">
+
+</head>
+
+<body>
+
+<div id="site-header"></div>
+
+<main>
+
+<section class="page-section">
+
+<div class="container">
+
+<span class="eyebrow">NINICE BOUTIQUE</span>
+
+<h1>Recherche</h1>
+
+<p>
+
+Recherchez facilement vos articles préférés.
+
+</p>
+
+<div class="page-card">
+
+<form id="search-page-form">
+
+<input
+
+type="search"
+
+id="search-page-input"
+
+placeholder="Rechercher un article..."
+
+autocomplete="off">
+
+<button type="submit" class="btn btn-primary">
+
+Rechercher
+
+</button>
+
+</form>
+
+<div id="search-results">
+
+<p>
+
+Entrez le nom d'un article pour commencer.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../assets/js/config.js"></script>
+
+<script src="../assets/js/supabase.js"></script>
+
+<script src="../assets/js/common.js"></script>
+
+<script src="../assets/js/navigation.js"></script>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const search = params.get("search");
+
+const input =
+
+document.getElementById("search-page-input");
+
+if (search && input) {
+
+    input.value = search;
+
+}
+
+document
+
+.getElementById("search-page-form")
+
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const value =
+
+    input.value.trim();
+
+    if (!value) return;
+
+    window.location.href =
+
+    "recherche.html?search=" +
+
+    encodeURIComponent(value);
+
+});
+
+</script>
+
+</body>
+
+</html>
