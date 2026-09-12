@@ -4,81 +4,1421 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
 
-<title>Nous contacter | NINICE BOUTIQUE</title>
+        name="viewport"
 
-<link rel="stylesheet" href="../assets/css/style.css">
+        content="width=device-width, initial-scale=1.0"
 
-<link rel="stylesheet" href="../assets/css/responsive.css">
+    >
+
+    <title>Nous contacter | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Contactez NINICE BOUTIQUE pour vos questions, commandes et demandes d'informations."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        .contact-page {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 45px 20px 70px;
+
+        }
+
+        .contact-hero {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+        }
+
+        .contact-hero h1 {
+
+            margin: 0 0 12px;
+
+            color: #4c1d95;
+
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: clamp(34px, 6vw, 52px);
+
+        }
+
+        .contact-hero p {
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            color: #666;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+
+        }
+
+        .contact-grid {
+
+            display: grid;
+
+            grid-template-columns: 0.9fr 1.1fr;
+
+            gap: 25px;
+
+            align-items: start;
+
+        }
+
+        .contact-card {
+
+            background: #fff;
+
+            border: 1px solid rgba(109, 40, 217, 0.10);
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow: 0 12px 35px rgba(76, 29, 149, 0.08);
+
+        }
+
+        .contact-card h2 {
+
+            margin: 0 0 25px;
+
+            color: #4c1d95;
+
+            font-size: 24px;
+
+        }
+
+        .contact-info {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+
+        }
+
+        .contact-item {
+
+            padding: 17px;
+
+            background: #faf9ff;
+
+            border-radius: 14px;
+
+            border: 1px solid rgba(109, 40, 217, 0.06);
+
+        }
+
+        .contact-item-label {
+
+            display: block;
+
+            color: #6d28d9;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.04em;
+
+            margin-bottom: 6px;
+
+        }
+
+        .contact-item-value {
+
+            color: #333;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+
+            word-break: break-word;
+
+        }
+
+        .contact-item-value a {
+
+            color: #4c1d95;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+        }
+
+        .contact-item-value a:hover {
+
+            text-decoration: underline;
+
+        }
+
+        .contact-socials {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 22px;
+
+        }
+
+        .contact-social {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 42px;
+
+            padding: 9px 15px;
+
+            border-radius: 10px;
+
+            background: #f3efff;
+
+            color: #4c1d95;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
+
+        }
+
+        .contact-social:hover {
+
+            background: #6d28d9;
+
+            color: #fff;
+
+        }
+
+        .contact-form {
+
+            display: grid;
+
+            gap: 18px;
+
+        }
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+        }
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+        .form-group label {
+
+            color: #333;
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+        }
+
+        .form-group input,
+
+        .form-group textarea {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            border: 1px solid #ddd;
+
+            border-radius: 11px;
+
+            padding: 13px 14px;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: #fff;
+
+            transition: 0.2s ease;
+
+        }
+
+        .form-group input:focus,
+
+        .form-group textarea:focus {
+
+            border-color: #6d28d9;
+
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.10);
+
+        }
+
+        .form-group textarea {
+
+            min-height: 150px;
+
+            resize: vertical;
+
+        }
+
+        .contact-submit {
+
+            border: 0;
+
+            border-radius: 11px;
+
+            padding: 14px 20px;
+
+            background: #6d28d9;
+
+            color: #fff;
+
+            font: inherit;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+        .contact-submit:hover {
+
+            background: #4c1d95;
+
+        }
+
+        .contact-submit:disabled {
+
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+        }
+
+        .contact-message {
+
+            display: none;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+        }
+
+        .contact-message.success {
+
+            display: block;
+
+            background: #eefbf3;
+
+            color: #176b3a;
+
+        }
+
+        .contact-message.error {
+
+            display: block;
+
+            background: #fff1f1;
+
+            color: #a11a1a;
+
+        }
+
+        .contact-whatsapp {
+
+            margin-top: 25px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 14px 20px;
+
+            border-radius: 11px;
+
+            background: #f3efff;
+
+            color: #4c1d95;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+
+        }
+
+        .contact-whatsapp:hover {
+
+            background: #6d28d9;
+
+            color: #fff;
+
+        }
+
+        .contact-empty {
+
+            color: #777;
+
+            font-size: 14px;
+
+        }
+
+        @media (max-width: 800px) {
+
+            .contact-page {
+
+                padding: 30px 14px 55px;
+
+            }
+
+            .contact-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .contact-card {
+
+                padding: 23px 18px;
+
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .contact-hero {
+
+                margin-bottom: 28px;
+
+            }
+
+            .contact-hero h1 {
+
+                font-size: 34px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div id="site-header"></div>
+    <!-- HEADER -->
 
-<main>
+    <header id="site-header"></header>
 
-<section class="page-section">
+    <main class="contact-page">
 
-<div class="container">
+        <section class="contact-hero">
 
-<span class="eyebrow">NINICE BOUTIQUE</span>
+            <h1>Nous contacter</h1>
 
-<h1>Nous contacter</h1>
+            <p>
 
-<div class="page-card">
+                Une question concernant un produit, une commande,
 
-<h2>Une question ?</h2>
+                une livraison ou NINICE BOUTIQUE ?
 
-<p>
+                Nous sommes à votre disposition.
 
-Notre équipe est disponible pour répondre à vos questions,
+            </p>
 
-vous accompagner dans votre commande et vous renseigner
+        </section>
 
-sur nos produits.
+        <section class="contact-grid">
 
-</p>
+            <!-- INFORMATIONS -->
 
-<div class="contact-actions">
+            <div class="contact-card">
 
-<a href="#" class="btn btn-primary">
+                <h2>Nos coordonnées</h2>
 
-WhatsApp
+                <div class="contact-info">
 
-</a>
+                    <div class="contact-item">
 
-<a href="tel:" class="btn btn-secondary">
+                        <span class="contact-item-label">
 
-Nous appeler
+                            Téléphone
 
-</a>
+                        </span>
 
-</div>
+                        <div
 
-</div>
+                            class="contact-item-value"
 
-</div>
+                            id="contact-phone"
 
-</section>
+                        >
 
-</main>
+                            Non renseigné
 
-<div id="site-footer"></div>
+                        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+                    </div>
 
-<script src="../assets/js/config.js"></script>
+                    <div class="contact-item">
 
-<script src="../assets/js/supabase.js"></script>
+                        <span class="contact-item-label">
 
-<script src="../assets/js/common.js"></script>
+                            WhatsApp
 
-<script src="../assets/js/navigation.js"></script>
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-whatsapp"
+
+                        >
+
+                            Non renseigné
+
+                        </div>
+
+                    </div>
+
+                    <div class="contact-item">
+
+                        <span class="contact-item-label">
+
+                            Adresse
+
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-address"
+
+                        >
+
+                            Non renseignée
+
+                        </div>
+
+                    </div>
+
+                    <div class="contact-item">
+
+                        <span class="contact-item-label">
+
+                            Horaires
+
+                        </span>
+
+                        <div
+
+                            class="contact-item-value"
+
+                            id="contact-hours"
+
+                        >
+
+                            Non renseignés
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+
+                    class="contact-socials"
+
+                    id="contact-socials"
+
+                ></div>
+
+                <div id="whatsapp-container"></div>
+
+            </div>
+
+            <!-- FORMULAIRE -->
+
+            <div class="contact-card">
+
+                <h2>Envoyer un message</h2>
+
+                <form
+
+                    id="contact-form"
+
+                    class="contact-form"
+
+                >
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="contact-name">
+
+                                Nom
+
+                            </label>
+
+                            <input
+
+                                type="text"
+
+                                id="contact-name"
+
+                                name="name"
+
+                                placeholder="Votre nom"
+
+                                required
+
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="contact-phone-form">
+
+                                Téléphone
+
+                            </label>
+
+                            <input
+
+                                type="tel"
+
+                                id="contact-phone-form"
+
+                                name="phone"
+
+                                placeholder="Votre numéro"
+
+                                required
+
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="contact-email">
+
+                            Email
+
+                        </label>
+
+                        <input
+
+                            type="email"
+
+                            id="contact-email"
+
+                            name="email"
+
+                            placeholder="Votre adresse email"
+
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="contact-subject">
+
+                            Sujet
+
+                        </label>
+
+                        <input
+
+                            type="text"
+
+                            id="contact-subject"
+
+                            name="subject"
+
+                            placeholder="Objet de votre message"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="contact-message-text">
+
+                            Message
+
+                        </label>
+
+                        <textarea
+
+                            id="contact-message-text"
+
+                            name="message"
+
+                            placeholder="Écrivez votre message..."
+
+                            required
+
+                        ></textarea>
+
+                    </div>
+
+                    <div
+
+                        id="contact-form-message"
+
+                        class="contact-message"
+
+                    ></div>
+
+                    <button
+
+                        type="submit"
+
+                        class="contact-submit"
+
+                        id="contact-submit"
+
+                    >
+
+                        Envoyer le message
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer id="site-footer"></footer>
+
+    <!-- CONFIGURATION -->
+
+    <script src="../assets/js/config.js"></script>
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <!-- SCRIPTS COMMUNS -->
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async function () {
+
+            const phoneElement =
+
+                document.getElementById("contact-phone");
+
+            const whatsappElement =
+
+                document.getElementById("contact-whatsapp");
+
+            const addressElement =
+
+                document.getElementById("contact-address");
+
+            const hoursElement =
+
+                document.getElementById("contact-hours");
+
+            const socialsElement =
+
+                document.getElementById("contact-socials");
+
+            const whatsappContainer =
+
+                document.getElementById("whatsapp-container");
+
+            /*
+
+             * Nettoyage d'un numéro WhatsApp
+
+             */
+
+            function cleanPhone(value) {
+
+                return String(value || "")
+
+                    .replace(/[^\d+]/g, "")
+
+                    .replace(/^00/, "+");
+
+            }
+
+            /*
+
+             * Création d'un lien sûr
+
+             */
+
+            function createLink(url, label) {
+
+                if (!url) return "";
+
+                let finalUrl = String(url).trim();
+
+                if (
+
+                    !finalUrl.startsWith("http://") &&
+
+                    !finalUrl.startsWith("https://")
+
+                ) {
+
+                    finalUrl =
+
+                        "https://" + finalUrl;
+
+                }
+
+                return `
+
+                    <a
+
+                        href="${escapeHtml(finalUrl)}"
+
+                        target="_blank"
+
+                        rel="noopener noreferrer"
+
+                    >
+
+                        ${escapeHtml(label)}
+
+                    </a>
+
+                `;
+
+            }
+
+            /*
+
+             * Chargement des paramètres de la boutique
+
+             */
+
+            async function loadStoreSettings() {
+
+                if (!window.niniceSupabase) {
+
+                    return;
+
+                }
+
+                try {
+
+                    const {
+
+                        data,
+
+                        error
+
+                    } = await window.niniceSupabase
+
+                        .from("shop_settings")
+
+                        .select("*")
+
+                        .limit(1)
+
+                        .maybeSingle();
+
+                    if (error) {
+
+                        console.warn(
+
+                            "Paramètres boutique indisponibles :",
+
+                            error.message
+
+                        );
+
+                        return;
+
+                    }
+
+                    if (!data) {
+
+                        return;
+
+                    }
+
+                    /*
+
+                     * Téléphone
+
+                     */
+
+                    if (data.phone) {
+
+                        const phone =
+
+                            String(data.phone).trim();
+
+                        phoneElement.innerHTML =
+
+                            `
+
+                                <a
+
+                                    href="tel:${escapeHtml(phone)}"
+
+                                >
+
+                                    ${escapeHtml(phone)}
+
+                                </a>
+
+                            `;
+
+                    }
+
+                    /*
+
+                     * WhatsApp
+
+                     */
+
+                    const whatsapp =
+
+                        cleanPhone(
+
+                            data.whatsapp ||
+
+                            data.whatsapp_number ||
+
+                            ""
+
+                        );
+
+                    if (whatsapp) {
+
+                        whatsappElement.innerHTML =
+
+                            `
+
+                                <a
+
+                                    href="https://wa.me/${escapeHtml(
+
+                                        whatsapp.replace("+", "")
+
+                                    )}"
+
+                                    target="_blank"
+
+                                    rel="noopener noreferrer"
+
+                                >
+
+                                    ${escapeHtml(whatsapp)}
+
+                                </a>
+
+                            `;
+
+                        whatsappContainer.innerHTML =
+
+                            `
+
+                                <a
+
+                                    class="contact-whatsapp"
+
+                                    href="https://wa.me/${escapeHtml(
+
+                                        whatsapp.replace("+", "")
+
+                                    )}"
+
+                                    target="_blank"
+
+                                    rel="noopener noreferrer"
+
+                                >
+
+                                    Contacter sur WhatsApp
+
+                                </a>
+
+                            `;
+
+                    }
+
+                    /*
+
+                     * Adresse
+
+                     */
+
+                    const address =
+
+                        data.address ||
+
+                        data.delivery_address ||
+
+                        data.location ||
+
+                        "";
+
+                    if (address) {
+
+                        addressElement.textContent =
+
+                            address;
+
+                    }
+
+                    /*
+
+                     * Horaires
+
+                     */
+
+                    const hours =
+
+                        data.hours ||
+
+                        data.opening_hours ||
+
+                        "";
+
+                    if (hours) {
+
+                        hoursElement.textContent =
+
+                            hours;
+
+                    }
+
+                    /*
+
+                     * Réseaux sociaux
+
+                     */
+
+                    const socials = [];
+
+                    if (data.facebook) {
+
+                        socials.push(
+
+                            createLink(
+
+                                data.facebook,
+
+                                "Facebook"
+
+                            )
+
+                        );
+
+                    }
+
+                    if (data.tiktok) {
+
+                        socials.push(
+
+                            createLink(
+
+                                data.tiktok,
+
+                                "TikTok"
+
+                            )
+
+                        );
+
+                    }
+
+                    if (data.instagram) {
+
+                        socials.push(
+
+                            createLink(
+
+                                data.instagram,
+
+                                "Instagram"
+
+                            )
+
+                        );
+
+                    }
+
+                    if (data.other_social) {
+
+                        socials.push(
+
+                            createLink(
+
+                                data.other_social,
+
+                                "Réseau social"
+
+                            )
+
+                        );
+
+                    }
+
+                    if (socials.length) {
+
+                        socialsElement.innerHTML =
+
+                            socials
+
+                                .map(function (item) {
+
+                                    return `
+
+                                        <span class="contact-social">
+
+                                            ${item}
+
+                                        </span>
+
+                                    `;
+
+                                })
+
+                                .join("");
+
+                    }
+
+                } catch (error) {
+
+                    console.warn(
+
+                        "Impossible de charger les paramètres :",
+
+                        error
+
+                    );
+
+                }
+
+            }
+
+            /*
+
+             * Formulaire de contact
+
+             *
+
+             * Pour l'instant le formulaire prépare
+
+             * le message. L'enregistrement en base
+
+             * pourra être ajouté lorsque la table
+
+             * des messages sera mise en place.
+
+             */
+
+            const form =
+
+                document.getElementById("contact-form");
+
+            const formMessage =
+
+                document.getElementById(
+
+                    "contact-form-message"
+
+                );
+
+            const submitButton =
+
+                document.getElementById(
+
+                    "contact-submit"
+
+                );
+
+            form.addEventListener(
+
+                "submit",
+
+                function (event) {
+
+                    event.preventDefault();
+
+                    const name =
+
+                        document.getElementById(
+
+                            "contact-name"
+
+                        ).value.trim();
+
+                    const phone =
+
+                        document.getElementById(
+
+                            "contact-phone-form"
+
+                        ).value.trim();
+
+                    const email =
+
+                        document.getElementById(
+
+                            "contact-email"
+
+                        ).value.trim();
+
+                    const subject =
+
+                        document.getElementById(
+
+                            "contact-subject"
+
+                        ).value.trim();
+
+                    const message =
+
+                        document.getElementById(
+
+                            "contact-message-text"
+
+                        ).value.trim();
+
+                    if (
+
+                        !name ||
+
+                        !phone ||
+
+                        !subject ||
+
+                        !message
+
+                    ) {
+
+                        formMessage.className =
+
+                            "contact-message error";
+
+                        formMessage.textContent =
+
+                            "Veuillez remplir les champs obligatoires.";
+
+                        return;
+
+                    }
+
+                    /*
+
+                     * Si un WhatsApp est configuré,
+
+                     * le message peut être envoyé directement.
+
+                     */
+
+                    const configuredWhatsApp =
+
+                        cleanPhone(
+
+                            window.NINICE_CONFIG &&
+
+                            window.NINICE_CONFIG.DEFAULT_WHATSAPP
+
+                                ? window.NINICE_CONFIG.DEFAULT_WHATSAPP
+
+                                : ""
+
+                        );
+
+                    if (configuredWhatsApp) {
+
+                        const whatsappText =
+
+`Bonjour NINICE BOUTIQUE,
+
+Nom : ${name}
+
+Téléphone : ${phone}
+
+Email : ${email || "Non renseigné"}
+
+Sujet : ${subject}
+
+Message :
+
+${message}`;
+
+                        const url =
+
+                            `https://wa.me/${configuredWhatsApp.replace("+", "")}?text=${encodeURIComponent(whatsappText)}`;
+
+                        window.open(
+
+                            url,
+
+                            "_blank",
+
+                            "noopener,noreferrer"
+
+                        );
+
+                        formMessage.className =
+
+                            "contact-message success";
+
+                        formMessage.textContent =
+
+                            "Votre message est prêt à être envoyé sur WhatsApp.";
+
+                        return;
+
+                    }
+
+                    /*
+
+                     * Aucun numéro WhatsApp n'est encore configuré.
+
+                     * On ne fabrique pas de numéro.
+
+                     */
+
+                    formMessage.className =
+
+                        "contact-message error";
+
+                    formMessage.textContent =
+
+                        "Le contact WhatsApp de la boutique n'est pas encore configuré. Vous pourrez l'ajouter depuis l'administration de la boutique.";
+
+                }
+
+            );
+
+            /*
+
+             * Chargement des informations
+
+             */
+
+            await loadStoreSettings();
+
+            /*
+
+             * Petite fonction d'échappement HTML
+
+             */
+
+            function escapeHtml(value) {
+
+                return String(value ?? "")
+
+                    .replace(/&/g, "&amp;")
+
+                    .replace(/</g, "&lt;")
+
+                    .replace(/>/g, "&gt;")
+
+                    .replace(/"/g, "&quot;")
+
+                    .replace(/'/g, "&#039;");
+
+            }
+
+        });
+
+    </script>
 
 </body>
 
