@@ -1,0 +1,9471 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Produits | Administration | NINICE BOUTIQUE</title>
+
+    <meta
+
+        name="description"
+
+        content="Gestion des produits NINICE BOUTIQUE."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <style>
+
+        :root {
+
+            --violet: #6d28d9;
+
+            --violet-dark: #4c1d95;
+
+            --violet-light: #f3e8ff;
+
+            --violet-border: #ddd6fe;
+
+            --dark: #18181b;
+
+            --gray-900: #27272a;
+
+            --gray-700: #3f3f46;
+
+            --gray-600: #52525b;
+
+            --gray-500: #71717a;
+
+            --gray-400: #a1a1aa;
+
+            --gray-300: #d4d4d8;
+
+            --gray-200: #e4e4e7;
+
+            --gray-100: #f4f4f5;
+
+            --gray-50: #fafafa;
+
+            --white: #ffffff;
+
+            --green: #16a34a;
+
+            --red: #dc2626;
+
+            --orange: #ea580c;
+
+            --blue: #2563eb;
+
+            --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+
+            --shadow-md: 0 10px 30px rgba(0,0,0,.08);
+
+            --shadow-lg: 0 20px 60px rgba(0,0,0,.14);
+
+            --radius-sm: 8px;
+
+            --radius-md: 12px;
+
+            --radius-lg: 18px;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+
+            font-family: "DM Sans", sans-serif;
+
+            background: var(--gray-50);
+
+            color: var(--dark);
+
+            min-height: 100vh;
+
+        }
+
+        button,
+
+        input,
+
+        select,
+
+        textarea {
+
+            font-family: inherit;
+
+        }
+
+        button {
+
+            cursor: pointer;
+
+        }
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+        .hidden {
+
+            display: none !important;
+
+        }
+
+        /* =====================================================
+
+           LOADING
+
+        ===================================================== */
+
+        #loadingScreen {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            background: var(--white);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 18px;
+
+        }
+
+        .loading-logo {
+
+            width: 64px;
+
+            height: 64px;
+
+            border-radius: 50%;
+
+            background: var(--violet);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+        }
+
+        .loader {
+
+            width: 38px;
+
+            height: 38px;
+
+            border: 4px solid var(--violet-light);
+
+            border-top-color: var(--violet);
+
+            border-radius: 50%;
+
+            animation: spin .8s linear infinite;
+
+        }
+
+        @keyframes spin {
+
+            to {
+
+                transform: rotate(360deg);
+
+            }
+
+        }
+
+        .loading-text {
+
+            color: var(--gray-600);
+
+            font-size: 14px;
+
+        }
+
+        /* =====================================================
+
+           LAYOUT
+
+        ===================================================== */
+
+        .app {
+
+            display: none;
+
+            min-height: 100vh;
+
+        }
+
+        .app.show {
+
+            display: flex;
+
+        }
+
+        .sidebar {
+
+            width: 260px;
+
+            background: var(--white);
+
+            border-right: 1px solid var(--gray-200);
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            bottom: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+        .brand {
+
+            padding: 22px 20px;
+
+            border-bottom: 1px solid var(--gray-200);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+        .brand-logo {
+
+            width: 44px;
+
+            height: 44px;
+
+            min-width: 44px;
+
+            border-radius: 50%;
+
+            background: var(--violet);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+        }
+
+        .brand-name {
+
+            font-family: "Playfair Display", serif;
+
+            color: var(--violet-dark);
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+        }
+
+        .brand-role {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--gray-500);
+
+            font-family: "DM Sans", sans-serif;
+
+            font-size: 11px;
+
+            font-weight: 500;
+
+        }
+
+        .sidebar-nav {
+
+            padding: 18px 12px;
+
+            flex: 1;
+
+            overflow-y: auto;
+
+        }
+
+        .nav-section {
+
+            margin-bottom: 24px;
+
+        }
+
+        .nav-title {
+
+            padding: 0 12px 8px;
+
+            color: var(--gray-400);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+            font-weight: 700;
+
+        }
+
+        .nav-link {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 11px 12px;
+
+            margin-bottom: 4px;
+
+            border-radius: 9px;
+
+            color: var(--gray-600);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: .2s ease;
+
+        }
+
+        .nav-link:hover {
+
+            background: var(--gray-100);
+
+            color: var(--violet);
+
+        }
+
+        .nav-link.active {
+
+            background: var(--violet-light);
+
+            color: var(--violet-dark);
+
+        }
+
+        .nav-icon {
+
+            width: 19px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+        }
+
+        .sidebar-bottom {
+
+            padding: 14px 12px;
+
+            border-top: 1px solid var(--gray-200);
+
+        }
+
+        .logout-btn {
+
+            width: 100%;
+
+            border: 0;
+
+            background: transparent;
+
+            color: var(--red);
+
+            padding: 11px 12px;
+
+            border-radius: 9px;
+
+            text-align: left;
+
+            font-weight: 600;
+
+        }
+
+        .logout-btn:hover {
+
+            background: #fef2f2;
+
+        }
+
+        .main {
+
+            margin-left: 260px;
+
+            width: calc(100% - 260px);
+
+            min-height: 100vh;
+
+        }
+
+        .topbar {
+
+            height: 72px;
+
+            background: var(--white);
+
+            border-bottom: 1px solid var(--gray-200);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 28px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 50;
+
+        }
+
+        .mobile-menu {
+
+            display: none;
+
+            border: 0;
+
+            background: var(--gray-100);
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 9px;
+
+            font-size: 20px;
+
+        }
+
+        .page-title {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+        }
+
+        .page-subtitle {
+
+            color: var(--gray-500);
+
+            font-size: 12px;
+
+            margin-top: 2px;
+
+        }
+
+        .admin-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: var(--green);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .status-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+        }
+
+        .content {
+
+            padding: 28px;
+
+        }
+
+        /* =====================================================
+
+           TOOLBAR
+
+        ===================================================== */
+
+        .toolbar {
+
+            background: var(--white);
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: var(--radius-md);
+
+            padding: 16px;
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+
+            box-shadow: var(--shadow-sm);
+
+        }
+
+        .toolbar-left {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex: 1;
+
+        }
+
+        .search-box {
+
+            position: relative;
+
+            flex: 1;
+
+            max-width: 430px;
+
+        }
+
+        .search-box input {
+
+            width: 100%;
+
+            height: 42px;
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: 9px;
+
+            padding: 0 14px 0 40px;
+
+            outline: none;
+
+            font-size: 13px;
+
+        }
+
+        .search-box input:focus {
+
+            border-color: var(--violet);
+
+            box-shadow: 0 0 0 3px var(--violet-light);
+
+        }
+
+        .search-icon {
+
+            position: absolute;
+
+            left: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--gray-400);
+
+        }
+
+        .filter-select {
+
+            height: 42px;
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: 9px;
+
+            padding: 0 35px 0 12px;
+
+            background: white;
+
+            outline: none;
+
+            font-size: 13px;
+
+            color: var(--gray-700);
+
+        }
+
+        .filter-select:focus {
+
+            border-color: var(--violet);
+
+        }
+
+        .btn {
+
+            border: 0;
+
+            min-height: 42px;
+
+            padding: 0 16px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            transition: .2s ease;
+
+        }
+
+        .btn-primary {
+
+            background: var(--violet);
+
+            color: white;
+
+        }
+
+        .btn-primary:hover {
+
+            background: var(--violet-dark);
+
+        }
+
+        .btn-secondary {
+
+            background: var(--gray-100);
+
+            color: var(--gray-700);
+
+        }
+
+        .btn-secondary:hover {
+
+            background: var(--gray-200);
+
+        }
+
+        .btn-danger {
+
+            background: #fef2f2;
+
+            color: var(--red);
+
+        }
+
+        .btn-danger:hover {
+
+            background: #fee2e2;
+
+        }
+
+        .btn-small {
+
+            min-height: 34px;
+
+            padding: 0 10px;
+
+            font-size: 12px;
+
+        }
+
+        /* =====================================================
+
+           TABLE
+
+        ===================================================== */
+
+        .table-card {
+
+            background: var(--white);
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: var(--radius-md);
+
+            overflow: hidden;
+
+            box-shadow: var(--shadow-sm);
+
+        }
+
+        .table-header {
+
+            padding: 16px 18px;
+
+            border-bottom: 1px solid var(--gray-200);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        .table-title {
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        .product-count {
+
+            color: var(--gray-500);
+
+            font-size: 12px;
+
+        }
+
+        .table-wrapper {
+
+            overflow-x: auto;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 950px;
+
+        }
+
+        th {
+
+            text-align: left;
+
+            background: var(--gray-50);
+
+            border-bottom: 1px solid var(--gray-200);
+
+            padding: 12px 14px;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .05em;
+
+            color: var(--gray-500);
+
+            white-space: nowrap;
+
+        }
+
+        td {
+
+            border-bottom: 1px solid var(--gray-100);
+
+            padding: 12px 14px;
+
+            vertical-align: middle;
+
+            font-size: 12px;
+
+        }
+
+        tr:last-child td {
+
+            border-bottom: 0;
+
+        }
+
+        .product-cell {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            min-width: 230px;
+
+        }
+
+        .product-thumb {
+
+            width: 52px;
+
+            height: 62px;
+
+            border-radius: 8px;
+
+            background: var(--gray-100);
+
+            object-fit: cover;
+
+            flex-shrink: 0;
+
+        }
+
+        .product-placeholder {
+
+            width: 52px;
+
+            height: 62px;
+
+            border-radius: 8px;
+
+            background: var(--violet-light);
+
+            color: var(--violet);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            font-weight: 700;
+
+        }
+
+        .product-name {
+
+            font-weight: 700;
+
+            color: var(--gray-900);
+
+        }
+
+        .product-ref {
+
+            color: var(--gray-400);
+
+            font-size: 10px;
+
+            margin-top: 3px;
+
+        }
+
+        .price {
+
+            font-weight: 700;
+
+            color: var(--violet-dark);
+
+            white-space: nowrap;
+
+        }
+
+        .old-price {
+
+            display: block;
+
+            color: var(--gray-400);
+
+            text-decoration: line-through;
+
+            font-size: 10px;
+
+            margin-top: 2px;
+
+        }
+
+        .stock-good {
+
+            color: var(--green);
+
+            font-weight: 700;
+
+        }
+
+        .stock-low {
+
+            color: var(--orange);
+
+            font-weight: 700;
+
+        }
+
+        .stock-zero {
+
+            color: var(--red);
+
+            font-weight: 700;
+
+        }
+
+        .badge {
+
+            display: inline-flex;
+
+            padding: 4px 8px;
+
+            border-radius: 999px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+        }
+
+        .badge-green {
+
+            color: #166534;
+
+            background: #dcfce7;
+
+        }
+
+        .badge-red {
+
+            color: #991b1b;
+
+            background: #fee2e2;
+
+        }
+
+        .badge-purple {
+
+            color: #5b21b6;
+
+            background: #ede9fe;
+
+        }
+
+        .actions {
+
+            display: flex;
+
+            gap: 6px;
+
+        }
+
+        .icon-btn {
+
+            width: 34px;
+
+            height: 34px;
+
+            border: 0;
+
+            border-radius: 8px;
+
+            background: var(--gray-100);
+
+            color: var(--gray-600);
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .icon-btn:hover {
+
+            background: var(--violet-light);
+
+            color: var(--violet);
+
+        }
+
+        .icon-btn.delete:hover {
+
+            background: #fee2e2;
+
+            color: var(--red);
+
+        }
+
+        .empty-state {
+
+            padding: 55px 20px;
+
+            text-align: center;
+
+            color: var(--gray-500);
+
+        }
+
+        .empty-title {
+
+            color: var(--gray-700);
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+        }
+
+        /* =====================================================
+
+           MODAL
+
+        ===================================================== */
+
+        .modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(24,24,27,.58);
+
+            z-index: 1000;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+        .modal.show {
+
+            display: flex;
+
+        }
+
+        .modal-box {
+
+            width: min(980px, 100%);
+
+            max-height: calc(100vh - 40px);
+
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow: var(--shadow-lg);
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+        .modal-header {
+
+            padding: 18px 22px;
+
+            border-bottom: 1px solid var(--gray-200);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        .modal-title {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+        }
+
+        .modal-close {
+
+            width: 36px;
+
+            height: 36px;
+
+            border: 0;
+
+            border-radius: 8px;
+
+            background: var(--gray-100);
+
+            font-size: 20px;
+
+            color: var(--gray-600);
+
+        }
+
+        .modal-body {
+
+            overflow-y: auto;
+
+            padding: 22px;
+
+        }
+
+        .modal-footer {
+
+            padding: 16px 22px;
+
+            border-top: 1px solid var(--gray-200);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            background: var(--gray-50);
+
+        }
+
+        .form-section {
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: 12px;
+
+            margin-bottom: 16px;
+
+            overflow: hidden;
+
+        }
+
+        .form-section-title {
+
+            padding: 13px 15px;
+
+            background: var(--gray-50);
+
+            border-bottom: 1px solid var(--gray-200);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: var(--gray-900);
+
+        }
+
+        .form-section-body {
+
+            padding: 16px;
+
+        }
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 15px;
+
+        }
+
+        .form-grid.three {
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        }
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+        .form-group.full {
+
+            grid-column: 1 / -1;
+
+        }
+
+        .form-label {
+
+            font-size: 11px;
+
+            color: var(--gray-700);
+
+            font-weight: 700;
+
+        }
+
+        .form-label span {
+
+            color: var(--red);
+
+        }
+
+        .form-input,
+
+        .form-select,
+
+        .form-textarea {
+
+            width: 100%;
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: 8px;
+
+            outline: none;
+
+            background: white;
+
+            color: var(--dark);
+
+            font-size: 13px;
+
+            padding: 10px 11px;
+
+        }
+
+        .form-input,
+
+        .form-select {
+
+            height: 42px;
+
+        }
+
+        .form-textarea {
+
+            min-height: 100px;
+
+            resize: vertical;
+
+        }
+
+        .form-input:focus,
+
+        .form-select:focus,
+
+        .form-textarea:focus {
+
+            border-color: var(--violet);
+
+            box-shadow: 0 0 0 3px var(--violet-light);
+
+        }
+
+        .check-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 10px;
+
+        }
+
+        .check-item {
+
+            border: 1px solid var(--gray-200);
+
+            border-radius: 9px;
+
+            padding: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            color: var(--gray-700);
+
+        }
+
+        .check-item input {
+
+            accent-color: var(--violet);
+
+        }
+
+        /* =====================================================
+
+           CHARACTERISTICS
+
+        ===================================================== */
+
+        .dynamic-fields {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+
+        }
+
+        .characteristic {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+
+        }
+
+        .custom-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+
+        }
+
+        .custom-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr auto;
+
+            gap: 8px;
+
+        }
+
+        /* =====================================================
+
+           PHOTOS
+
+        ===================================================== */
+
+        .photo-upload-area {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 16px;
+
+        }
+
+        .upload-card {
+
+            border: 1.5px dashed var(--gray-300);
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            background: var(--gray-50);
+
+        }
+
+        .upload-card:hover {
+
+            border-color: var(--violet);
+
+            background: #faf5ff;
+
+        }
+
+        .upload-title {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+        }
+
+        .upload-description {
+
+            font-size: 11px;
+
+            color: var(--gray-500);
+
+            line-height: 1.5;
+
+            margin-bottom: 13px;
+
+        }
+
+        .file-input {
+
+            display: none;
+
+        }
+
+        .choose-photo {
+
+            width: 100%;
+
+            min-height: 44px;
+
+            border: 1px solid var(--violet-border);
+
+            background: var(--white);
+
+            color: var(--violet-dark);
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .choose-photo:hover {
+
+            background: var(--violet-light);
+
+        }
+
+        .selected-files {
+
+            margin-top: 12px;
+
+            font-size: 11px;
+
+            color: var(--gray-500);
+
+        }
+
+        .preview-main {
+
+            margin-top: 14px;
+
+            width: 130px;
+
+            height: 155px;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            background: var(--gray-100);
+
+            border: 1px solid var(--gray-200);
+
+        }
+
+        .preview-main img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .extra-previews {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 8px;
+
+            margin-top: 14px;
+
+        }
+
+        .extra-preview {
+
+            position: relative;
+
+            aspect-ratio: 1;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            background: var(--gray-100);
+
+            border: 1px solid var(--gray-200);
+
+        }
+
+        .extra-preview img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .remove-preview {
+
+            position: absolute;
+
+            top: 4px;
+
+            right: 4px;
+
+            width: 22px;
+
+            height: 22px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background: rgba(0,0,0,.7);
+
+            color: white;
+
+            font-size: 12px;
+
+        }
+
+        .existing-photos {
+
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 8px;
+
+            margin-top: 14px;
+
+        }
+
+        .existing-photo {
+
+            position: relative;
+
+            aspect-ratio: 1;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            border: 1px solid var(--gray-200);
+
+        }
+
+        .existing-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .existing-label {
+
+            position: absolute;
+
+            left: 4px;
+
+            bottom: 4px;
+
+            background: rgba(0,0,0,.65);
+
+            color: white;
+
+            padding: 3px 6px;
+
+            border-radius: 4px;
+
+            font-size: 8px;
+
+        }
+
+        /* =====================================================
+
+           ALERT
+
+        ===================================================== */
+
+        .form-alert {
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            margin-bottom: 15px;
+
+            display: none;
+
+        }
+
+        .form-alert.show {
+
+            display: block;
+
+        }
+
+        .form-alert.error {
+
+            background: #fef2f2;
+
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+
+        }
+
+        .form-alert.success {
+
+            background: #f0fdf4;
+
+            color: #166534;
+
+            border: 1px solid #bbf7d0;
+
+        }
+
+        .form-alert.info {
+
+            background: #eff6ff;
+
+            color: #1e40af;
+
+            border: 1px solid #bfdbfe;
+
+        }
+
+        .delete-zone {
+
+            border: 1px solid #fecaca;
+
+            background: #fffafa;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+        }
+
+        .delete-zone-title {
+
+            color: var(--red);
+
+            font-weight: 700;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+        }
+
+        .delete-zone-text {
+
+            color: var(--gray-600);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            margin-bottom: 12px;
+
+        }
+
+        /* =====================================================
+
+           MOBILE
+
+        ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            .sidebar {
+
+                transform: translateX(-100%);
+
+                transition: .25s ease;
+
+                box-shadow: var(--shadow-lg);
+
+            }
+
+            .sidebar.open {
+
+                transform: translateX(0);
+
+            }
+
+            .main {
+
+                margin-left: 0;
+
+                width: 100%;
+
+            }
+
+            .mobile-menu {
+
+                display: block;
+
+            }
+
+            .topbar {
+
+                gap: 12px;
+
+                padding: 0 16px;
+
+            }
+
+            .page-title-wrap {
+
+                flex: 1;
+
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .content {
+
+                padding: 16px;
+
+            }
+
+            .toolbar {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+            .toolbar-left {
+
+                flex-direction: column;
+
+            }
+
+            .search-box {
+
+                max-width: none;
+
+            }
+
+            .form-grid,
+
+            .form-grid.three,
+
+            .photo-upload-area,
+
+            .dynamic-fields {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .check-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .modal {
+
+                padding: 8px;
+
+            }
+
+            .modal-box {
+
+                max-height: calc(100vh - 16px);
+
+                border-radius: 14px;
+
+            }
+
+            .modal-body {
+
+                padding: 14px;
+
+            }
+
+            .modal-header,
+
+            .modal-footer {
+
+                padding: 14px;
+
+            }
+
+        }
+
+        @media (max-width: 520px) {
+
+            .admin-status {
+
+                display: none;
+
+            }
+
+            .topbar {
+
+                height: 64px;
+
+            }
+
+            .check-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .custom-row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .extra-previews {
+
+                grid-template-columns: repeat(3, 1fr);
+
+            }
+
+            .existing-photos {
+
+                grid-template-columns: repeat(3, 1fr);
+
+            }
+
+            .modal-footer {
+
+                flex-direction: column-reverse;
+
+            }
+
+            .modal-footer .btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- =========================================================
+
+     LOADING
+
+========================================================= -->
+
+<div id="loadingScreen">
+
+    <div class="loading-logo">N</div>
+
+    <div class="loader"></div>
+
+    <div class="loading-text">
+
+        Vérification de vos accès...
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+
+     APPLICATION
+
+========================================================= -->
+
+<div class="app" id="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">N</div>
+
+            <div>
+
+                <div class="brand-name">
+
+                    NINICE BOUTIQUE
+
+                </div>
+
+                <span class="brand-role">
+
+                    Administration
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-section">
+
+                <div class="nav-title">
+
+                    Général
+
+                </div>
+
+                <a
+
+                    class="nav-link"
+
+                    href="./index.html"
+
+                >
+
+                    <span class="nav-icon">⌂</span>
+
+                    Tableau de bord
+
+                </a>
+
+                <a
+
+                    class="nav-link active"
+
+                    href="./produits.html"
+
+                >
+
+                    <span class="nav-icon">▣</span>
+
+                    Produits
+
+                </a>
+
+                <a
+
+                    class="nav-link"
+
+                    href="./categories.html"
+
+                >
+
+                    <span class="nav-icon">▤</span>
+
+                    Catégories
+
+                </a>
+
+                <a
+
+                    class="nav-link"
+
+                    href="./promotions.html"
+
+                >
+
+                    <span class="nav-icon">%</span>
+
+                    Promotions
+
+                </a>
+
+            </div>
+
+            <div class="nav-section">
+
+                <div class="nav-title">
+
+                    Commandes
+
+                </div>
+
+                <a
+
+                    class="nav-link"
+
+                    href="./commandes.html"
+
+                >
+
+                    <span class="nav-icon">▢</span>
+
+                    Commandes
+
+                </a>
+
+                <a
+
+                    class="nav-link"
+
+                    href="./livraison.html"
+
+                >
+
+                    <span class="nav-icon">⌁</span>
+
+                    Livraison
+
+                </a>
+
+            </div>
+
+            <div class="nav-section">
+
+                <div class="nav-title">
+
+                    Contenu
+
+                </div>
+
+                <a
+
+                    class="nav-link"
+
+                    href="./avis.html"
+
+                >
+
+                    <span class="nav-icon">★</span>
+
+                    Avis
+
+                </a>
+
+                <a
+
+                    class="nav-link"
+
+                    href="./conseils.html"
+
+                >
+
+                    <span class="nav-icon">i</span>
+
+                    Conseils
+
+                </a>
+
+                <a
+
+                    class="nav-link"
+
+                    href="./boutique.html"
+
+                >
+
+                    <span class="nav-icon">⚙</span>
+
+                    Boutique
+
+                </a>
+
+            </div>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button
+
+                type="button"
+
+                class="logout-btn"
+
+                id="logoutBtn"
+
+            >
+
+                Déconnexion
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div style="display:flex;align-items:center;gap:12px;">
+
+                <button
+
+                    type="button"
+
+                    class="mobile-menu"
+
+                    id="mobileMenuBtn"
+
+                    aria-label="Menu"
+
+                >
+
+                    ☰
+
+                </button>
+
+                <div class="page-title-wrap">
+
+                    <div class="page-title">
+
+                        Produits
+
+                    </div>
+
+                    <div class="page-subtitle">
+
+                        Gérez les produits de votre boutique
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="admin-status">
+
+                <span class="status-dot"></span>
+
+                Administrateur autorisé
+
+            </div>
+
+        </header>
+
+        <section class="content">
+
+            <!-- TOOLBAR -->
+
+            <div class="toolbar">
+
+                <div class="toolbar-left">
+
+                    <div class="search-box">
+
+                        <span class="search-icon">
+
+                            ⌕
+
+                        </span>
+
+                        <input
+
+                            type="search"
+
+                            id="searchInput"
+
+                            placeholder="Rechercher un produit..."
+
+                        >
+
+                    </div>
+
+                    <select
+
+                        id="categoryFilter"
+
+                        class="filter-select"
+
+                    >
+
+                        <option value="">
+
+                            Toutes les catégories
+
+                        </option>
+
+                    </select>
+
+                    <select
+
+                        id="availabilityFilter"
+
+                        class="filter-select"
+
+                    >
+
+                        <option value="">
+
+                            Tous les produits
+
+                        </option>
+
+                        <option value="available">
+
+                            Disponibles
+
+                        </option>
+
+                        <option value="unavailable">
+
+                            Indisponibles
+
+                        </option>
+
+                        <option value="stock_zero">
+
+                            Stock épuisé
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button
+
+                    type="button"
+
+                    class="btn btn-primary"
+
+                    id="addProductBtn"
+
+                >
+
+                    + Ajouter un produit
+
+                </button>
+
+            </div>
+
+            <!-- TABLE -->
+
+            <div class="table-card">
+
+                <div class="table-header">
+
+                    <div class="table-title">
+
+                        Catalogue produits
+
+                    </div>
+
+                    <div
+
+                        class="product-count"
+
+                        id="productCount"
+
+                    >
+
+                        0 produit
+
+                    </div>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+
+                                    Produit
+
+                                </th>
+
+                                <th>
+
+                                    Catégorie
+
+                                </th>
+
+                                <th>
+
+                                    Prix
+
+                                </th>
+
+                                <th>
+
+                                    Stock
+
+                                </th>
+
+                                <th>
+
+                                    Statut
+
+                                </th>
+
+                                <th>
+
+                                    Actions
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="productsBody">
+
+                            <tr>
+
+                                <td
+
+                                    colspan="6"
+
+                                    class="empty-state"
+
+                                >
+
+                                    Chargement des produits...
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- =========================================================
+
+     MODAL PRODUIT
+
+========================================================= -->
+
+<div
+
+    class="modal"
+
+    id="productModal"
+
+    aria-hidden="true"
+
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div
+
+                class="modal-title"
+
+                id="modalTitle"
+
+            >
+
+                Ajouter un produit
+
+            </div>
+
+            <button
+
+                type="button"
+
+                class="modal-close"
+
+                id="modalCloseBtn"
+
+                aria-label="Fermer"
+
+            >
+
+                ×
+
+            </button>
+
+        </div>
+
+        <form id="productForm">
+
+            <div class="modal-body">
+
+                <div
+
+                    id="formAlert"
+
+                    class="form-alert"
+
+                ></div>
+
+                <!-- =================================================
+
+                     INFORMATIONS PRINCIPALES
+
+                ================================================== -->
+
+                <section class="form-section">
+
+                    <div class="form-section-title">
+
+                        Informations principales
+
+                    </div>
+
+                    <div class="form-section-body">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Nom du produit
+
+                                    <span>*</span>
+
+                                </label>
+
+                                <input
+
+                                    type="text"
+
+                                    id="productName"
+
+                                    class="form-input"
+
+                                    placeholder="Ex. Robe élégante"
+
+                                    required
+
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Référence
+
+                                </label>
+
+                                <input
+
+                                    type="text"
+
+                                    id="productReference"
+
+                                    class="form-input"
+
+                                    placeholder="Ex. NB-ROB-001"
+
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Catégorie
+
+                                    <span>*</span>
+
+                                </label>
+
+                                <select
+
+                                    id="productCategory"
+
+                                    class="form-select"
+
+                                    required
+
+                                >
+
+                                    <option value="">
+
+                                        Sélectionner une catégorie
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Type de produit
+
+                                    <span>*</span>
+
+                                </label>
+
+                                <select
+
+                                    id="productType"
+
+                                    class="form-select"
+
+                                    required
+
+                                >
+
+                                    <option value="">
+
+                                        Sélectionner
+
+                                    </option>
+
+                                    <option value="vetement_femme">
+
+                                        Vêtement femme
+
+                                    </option>
+
+                                    <option value="vetement_homme">
+
+                                        Vêtement homme
+
+                                    </option>
+
+                                    <option value="vetement_enfant">
+
+                                        Vêtement enfant
+
+                                    </option>
+
+                                    <option value="chaussures">
+
+                                        Chaussures
+
+                                    </option>
+
+                                    <option value="perruque">
+
+                                        Perruque
+
+                                    </option>
+
+                                    <option value="meches">
+
+                                        Mèches / Extensions
+
+                                    </option>
+
+                                    <option value="sac">
+
+                                        Sac / Sac à main
+
+                                    </option>
+
+                                    <option value="gourde">
+
+                                        Gourde / Bouteille
+
+                                    </option>
+
+                                    <option value="cosmetique">
+
+                                        Cosmétique
+
+                                    </option>
+
+                                    <option value="bijoux">
+
+                                        Bijoux
+
+                                    </option>
+
+                                    <option value="accessoire">
+
+                                        Accessoire
+
+                                    </option>
+
+                                    <option value="autre">
+
+                                        Autre produit
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group full">
+
+                                <label class="form-label">
+
+                                    Description
+
+                                </label>
+
+                                <textarea
+
+                                    id="productDescription"
+
+                                    class="form-textarea"
+
+                                    placeholder="Décrivez le produit..."
+
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- =================================================
+
+                     PRIX
+
+                ================================================== -->
+
+                <section class="form-section">
+
+                    <div class="form-section-title">
+
+                        Prix et promotion
+
+                    </div>
+
+                    <div class="form-section-body">
+
+                        <div class="form-grid three">
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Prix normal (FCFA)
+
+                                    <span>*</span>
+
+                                </label>
+
+                                <input
+
+                                    type="number"
+
+                                    id="productPrice"
+
+                                    class="form-input"
+
+                                    min="0"
+
+                                    step="1"
+
+                                    placeholder="5000"
+
+                                    required
+
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Ancien prix (FCFA)
+
+                                </label>
+
+                                <input
+
+                                    type="number"
+
+                                    id="productOldPrice"
+
+                                    class="form-input"
+
+                                    min="0"
+
+                                    step="1"
+
+                                    placeholder="7000"
+
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Prix promotionnel
+
+                                </label>
+
+                                <input
+
+                                    type="number"
+
+                                    id="promotionalPrice"
+
+                                    class="form-input"
+
+                                    min="0"
+
+                                    step="1"
+
+                                    placeholder="4500"
+
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Pourcentage de réduction
+
+                                </label>
+
+                                <input
+
+                                    type="number"
+
+                                    id="promotionPercent"
+
+                                    class="form-input"
+
+                                    min="0"
+
+                                    max="100"
+
+                                    step="1"
+
+                                    placeholder="20"
+
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Début de la promotion
+
+                                </label>
+
+                                <input
+
+                                    type="datetime-local"
+
+                                    id="promotionStartDate"
+
+                                    class="form-input"
+
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Fin de la promotion
+
+                                </label>
+
+                                <input
+
+                                    type="datetime-local"
+
+                                    id="promotionEndDate"
+
+                                    class="form-input"
+
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- =================================================
+
+                     STOCK
+
+                ================================================== -->
+
+                <section class="form-section">
+
+                    <div class="form-section-title">
+
+                        Stock et visibilité
+
+                    </div>
+
+                    <div class="form-section-body">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label class="form-label">
+
+                                    Stock
+
+                                    <span>*</span>
+
+                                </label>
+
+                                <input
+
+                                    type="number"
+
+                                    id="productStock"
+
+                                    class="form-input"
+
+                                    min="0"
+
+                                    step="1"
+
+                                    value="1"
+
+                                    required
+
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <div
+
+                            class="check-grid"
+
+                            style="margin-top:15px;"
+
+                        >
+
+                            <label class="check-item">
+
+                                <input
+
+                                    type="checkbox"
+
+                                    id="productAvailable"
+
+                                    checked
+
+                                >
+
+                                Disponible
+
+                            </label>
+
+                            <label class="check-item">
+
+                                <input
+
+                                    type="checkbox"
+
+                                    id="productFeatured"
+
+                                >
+
+                                Mis en avant
+
+                            </label>
+
+                            <label class="check-item">
+
+                                <input
+
+                                    type="checkbox"
+
+                                    id="productNew"
+
+                                >
+
+                                Nouveau
+
+                            </label>
+
+                            <label class="check-item">
+
+                                <input
+
+                                    type="checkbox"
+
+                                    id="productPromotion"
+
+                                >
+
+                                En promotion
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- =================================================
+
+                     CARACTÉRISTIQUES
+
+                ================================================== -->
+
+                <section class="form-section">
+
+                    <div class="form-section-title">
+
+                        Caractéristiques du produit
+
+                    </div>
+
+                    <div class="form-section-body">
+
+                        <div
+
+                            id="dynamicFields"
+
+                            class="dynamic-fields"
+
+                        ></div>
+
+                        <div style="margin-top:18px;">
+
+                            <div
+
+                                style="
+
+                                    display:flex;
+
+                                    align-items:center;
+
+                                    justify-content:space-between;
+
+                                    gap:10px;
+
+                                    margin-bottom:10px;
+
+                                "
+
+                            >
+
+                                <div
+
+                                    style="
+
+                                        font-size:12px;
+
+                                        font-weight:700;
+
+                                    "
+
+                                >
+
+                                    Caractéristiques personnalisées
+
+                                </div>
+
+                                <button
+
+                                    type="button"
+
+                                    class="btn btn-secondary btn-small"
+
+                                    id="addCharacteristicBtn"
+
+                                >
+
+                                    + Ajouter
+
+                                </button>
+
+                            </div>
+
+                            <div
+
+                                id="customCharacteristics"
+
+                                class="custom-list"
+
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- =================================================
+
+                     PHOTOS
+
+                ================================================== -->
+
+                <section class="form-section">
+
+                    <div class="form-section-title">
+
+                        Photos du produit
+
+                    </div>
+
+                    <div class="form-section-body">
+
+                        <div class="form-alert info show">
+
+                            Sélectionne directement les photos dans ta galerie. Aucun lien URL n'est nécessaire.
+
+                        </div>
+
+                        <div class="photo-upload-area">
+
+                            <!-- PHOTO PRINCIPALE -->
+
+                            <div class="upload-card">
+
+                                <div class="upload-title">
+
+                                    Photo principale
+
+                                </div>
+
+                                <div class="upload-description">
+
+                                    Choisis la photo principale qui sera affichée sur la boutique.
+
+                                </div>
+
+                                <input
+
+                                    type="file"
+
+                                    id="mainImageFile"
+
+                                    class="file-input"
+
+                                    accept="image/*"
+
+                                >
+
+                                <label
+
+                                    for="mainImageFile"
+
+                                    class="choose-photo"
+
+                                    style="
+
+                                        display:flex;
+
+                                        align-items:center;
+
+                                        justify-content:center;
+
+                                        cursor:pointer;
+
+                                    "
+
+                                >
+
+                                    Choisir une photo
+
+                                </label>
+
+                                <div
+
+                                    id="mainFileName"
+
+                                    class="selected-files"
+
+                                >
+
+                                    Aucune photo sélectionnée
+
+                                </div>
+
+                                <div
+
+                                    id="mainImagePreview"
+
+                                    class="preview-main hidden"
+
+                                >
+
+                                    <img
+
+                                        id="mainPreviewImg"
+
+                                        src=""
+
+                                        alt="Aperçu"
+
+                                    >
+
+                                </div>
+
+                            </div>
+
+                            <!-- PHOTOS SUPPLÉMENTAIRES -->
+
+                            <div class="upload-card">
+
+                                <div class="upload-title">
+
+                                    Photos supplémentaires
+
+                                </div>
+
+                                <div class="upload-description">
+
+                                    Tu peux sélectionner plusieurs photos en même temps.
+
+                                </div>
+
+                                <input
+
+                                    type="file"
+
+                                    id="extraImageFiles"
+
+                                    class="file-input"
+
+                                    accept="image/*"
+
+                                    multiple
+
+                                >
+
+                                <label
+
+                                    for="extraImageFiles"
+
+                                    class="choose-photo"
+
+                                    style="
+
+                                        display:flex;
+
+                                        align-items:center;
+
+                                        justify-content:center;
+
+                                        cursor:pointer;
+
+                                    "
+
+                                >
+
+                                    Choisir plusieurs photos
+
+                                </label>
+
+                                <div
+
+                                    id="extraFileName"
+
+                                    class="selected-files"
+
+                                >
+
+                                    Aucune photo sélectionnée
+
+                                </div>
+
+                                <div
+
+                                    id="extraImagePreviews"
+
+                                    class="extra-previews"
+
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- PHOTOS EXISTANTES EN MODIFICATION -->
+
+                        <div
+
+                            id="existingPhotosSection"
+
+                            class="hidden"
+
+                            style="margin-top:20px;"
+
+                        >
+
+                            <div
+
+                                style="
+
+                                    font-size:12px;
+
+                                    font-weight:700;
+
+                                    margin-bottom:8px;
+
+                                "
+
+                            >
+
+                                Photos actuellement enregistrées
+
+                            </div>
+
+                            <div
+
+                                id="existingPhotos"
+
+                                class="existing-photos"
+
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- =================================================
+
+                     INFORMATIONS SUPPLÉMENTAIRES
+
+                ================================================== -->
+
+                <section class="form-section">
+
+                    <div class="form-section-title">
+
+                        Informations supplémentaires
+
+                    </div>
+
+                    <div class="form-section-body">
+
+                        <div class="form-grid">
+
+                            <div class="form-group full">
+
+                                <label class="form-label">
+
+                                    Informations supplémentaires
+
+                                </label>
+
+                                <textarea
+
+                                    id="additionalInformation"
+
+                                    class="form-textarea"
+
+                                    placeholder="Informations utiles sur le produit..."
+
+                                ></textarea>
+
+                            </div>
+
+                            <div class="form-group full">
+
+                                <label class="form-label">
+
+                                    Informations de livraison
+
+                                </label>
+
+                                <textarea
+
+                                    id="deliveryInfo"
+
+                                    class="form-textarea"
+
+                                    placeholder="Ex. Livraison disponible à Bouaké et Abidjan..."
+
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- =================================================
+
+                     SUPPRESSION
+
+                ================================================== -->
+
+                <section
+
+                    id="deleteSection"
+
+                    class="form-section hidden"
+
+                >
+
+                    <div class="form-section-title">
+
+                        Zone dangereuse
+
+                    </div>
+
+                    <div class="form-section-body">
+
+                        <div class="delete-zone">
+
+                            <div class="delete-zone-title">
+
+                                Supprimer ce produit
+
+                            </div>
+
+                            <div class="delete-zone-text">
+
+                                Cette action supprimera le produit de la base de données ainsi que ses variantes et ses photos associées dans le stockage lorsque cela est possible.
+
+                            </div>
+
+                            <button
+
+                                type="button"
+
+                                class="btn btn-danger"
+
+                                id="deleteProductBtn"
+
+                            >
+
+                                Supprimer définitivement
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <!-- FOOTER -->
+
+            <div class="modal-footer">
+
+                <button
+
+                    type="button"
+
+                    class="btn btn-secondary"
+
+                    id="cancelBtn"
+
+                >
+
+                    Annuler
+
+                </button>
+
+                <button
+
+                    type="submit"
+
+                    class="btn btn-primary"
+
+                    id="saveProductBtn"
+
+                >
+
+                    Enregistrer le produit
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+
+     SCRIPTS
+
+========================================================= -->
+
+<script src="../assets/js/config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../assets/js/supabase.js"></script>
+
+<script>
+
+"use strict";
+
+/* ============================================================
+
+   VARIABLES
+
+============================================================ */
+
+const supabaseClient = window.niniceSupabase;
+
+let allProducts = [];
+
+let categories = [];
+
+let editingProductId = null;
+
+let selectedMainFile = null;
+
+let selectedExtraFiles = [];
+
+let existingMainImageUrl = "";
+
+let existingExtraImageUrls = [];
+
+let customCharacteristics = [];
+
+let isSaving = false;
+
+/* ============================================================
+
+   ELEMENTS
+
+============================================================ */
+
+const loadingScreen =
+
+    document.getElementById("loadingScreen");
+
+const app =
+
+    document.getElementById("app");
+
+const productsBody =
+
+    document.getElementById("productsBody");
+
+const productCount =
+
+    document.getElementById("productCount");
+
+const searchInput =
+
+    document.getElementById("searchInput");
+
+const categoryFilter =
+
+    document.getElementById("categoryFilter");
+
+const availabilityFilter =
+
+    document.getElementById("availabilityFilter");
+
+const addProductBtn =
+
+    document.getElementById("addProductBtn");
+
+const productModal =
+
+    document.getElementById("productModal");
+
+const modalTitle =
+
+    document.getElementById("modalTitle");
+
+const modalCloseBtn =
+
+    document.getElementById("modalCloseBtn");
+
+const cancelBtn =
+
+    document.getElementById("cancelBtn");
+
+const productForm =
+
+    document.getElementById("productForm");
+
+const saveProductBtn =
+
+    document.getElementById("saveProductBtn");
+
+const deleteProductBtn =
+
+    document.getElementById("deleteProductBtn");
+
+const deleteSection =
+
+    document.getElementById("deleteSection");
+
+const formAlert =
+
+    document.getElementById("formAlert");
+
+const productName =
+
+    document.getElementById("productName");
+
+const productReference =
+
+    document.getElementById("productReference");
+
+const productCategory =
+
+    document.getElementById("productCategory");
+
+const productType =
+
+    document.getElementById("productType");
+
+const productDescription =
+
+    document.getElementById("productDescription");
+
+const productPrice =
+
+    document.getElementById("productPrice");
+
+const productOldPrice =
+
+    document.getElementById("productOldPrice");
+
+const promotionalPrice =
+
+    document.getElementById("promotionalPrice");
+
+const promotionPercent =
+
+    document.getElementById("promotionPercent");
+
+const promotionStartDate =
+
+    document.getElementById("promotionStartDate");
+
+const promotionEndDate =
+
+    document.getElementById("promotionEndDate");
+
+const productStock =
+
+    document.getElementById("productStock");
+
+const productAvailable =
+
+    document.getElementById("productAvailable");
+
+const productFeatured =
+
+    document.getElementById("productFeatured");
+
+const productNew =
+
+    document.getElementById("productNew");
+
+const productPromotion =
+
+    document.getElementById("productPromotion");
+
+const dynamicFields =
+
+    document.getElementById("dynamicFields");
+
+const customCharacteristicsBox =
+
+    document.getElementById("customCharacteristics");
+
+const addCharacteristicBtn =
+
+    document.getElementById("addCharacteristicBtn");
+
+const mainImageFile =
+
+    document.getElementById("mainImageFile");
+
+const extraImageFiles =
+
+    document.getElementById("extraImageFiles");
+
+const mainFileName =
+
+    document.getElementById("mainFileName");
+
+const extraFileName =
+
+    document.getElementById("extraFileName");
+
+const mainImagePreview =
+
+    document.getElementById("mainImagePreview");
+
+const mainPreviewImg =
+
+    document.getElementById("mainPreviewImg");
+
+const extraImagePreviews =
+
+    document.getElementById("extraImagePreviews");
+
+const existingPhotosSection =
+
+    document.getElementById("existingPhotosSection");
+
+const existingPhotos =
+
+    document.getElementById("existingPhotos");
+
+const additionalInformation =
+
+    document.getElementById("additionalInformation");
+
+const deliveryInfo =
+
+    document.getElementById("deliveryInfo");
+
+const logoutBtn =
+
+    document.getElementById("logoutBtn");
+
+const mobileMenuBtn =
+
+    document.getElementById("mobileMenuBtn");
+
+const sidebar =
+
+    document.getElementById("sidebar");
+
+/* ============================================================
+
+   AUTHENTIFICATION
+
+============================================================ */
+
+async function checkAdmin() {
+
+    if (!supabaseClient) {
+
+        throw new Error(
+
+            "Connexion Supabase introuvable."
+
+        );
+
+    }
+
+    const {
+
+        data: sessionData,
+
+        error: sessionError
+
+    } = await supabaseClient.auth.getSession();
+
+    if (sessionError) {
+
+        throw sessionError;
+
+    }
+
+    const session =
+
+        sessionData?.session;
+
+    if (!session) {
+
+        window.location.href =
+
+            "./login.html";
+
+        return false;
+
+    }
+
+    const {
+
+        data: adminData,
+
+        error: adminError
+
+    } = await supabaseClient.rpc(
+
+        "is_admin"
+
+    );
+
+    if (adminError) {
+
+        throw adminError;
+
+    }
+
+    if (adminData !== true) {
+
+        alert(
+
+            "Accès administrateur refusé."
+
+        );
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href =
+
+            "./login.html";
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+/* ============================================================
+
+   CATEGORIES
+
+============================================================ */
+
+function getCategoryId(category) {
+
+    if (!category) {
+
+        return null;
+
+    }
+
+    return (
+
+        category.id ??
+
+        category.category_id ??
+
+        null
+
+    );
+
+}
+
+function getCategoryName(category) {
+
+    if (!category) {
+
+        return "Sans catégorie";
+
+    }
+
+    return (
+
+        category.name ??
+
+        category.title ??
+
+        "Sans catégorie"
+
+    );
+
+}
+
+function getProductCategoryName(product) {
+
+    const category =
+
+        categories.find(
+
+            item =>
+
+                String(
+
+                    getCategoryId(item)
+
+                ) ===
+
+                String(
+
+                    product.category_id
+
+                )
+
+        );
+
+    return category
+
+        ? getCategoryName(category)
+
+        : "Sans catégorie";
+
+}
+
+async function loadCategories() {
+
+    const {
+
+        data,
+
+        error
+
+    } = await supabaseClient
+
+        .from("categories")
+
+        .select("*")
+
+        .order("name", {
+
+            ascending: true
+
+        });
+
+    if (error) {
+
+        console.error(
+
+            "Erreur catégories :",
+
+            error
+
+        );
+
+        throw error;
+
+    }
+
+    categories =
+
+        data || [];
+
+    productCategory.innerHTML = `
+
+        <option value="">
+
+            Sélectionner une catégorie
+
+        </option>
+
+    `;
+
+    categoryFilter.innerHTML = `
+
+        <option value="">
+
+            Toutes les catégories
+
+        </option>
+
+    `;
+
+    categories.forEach(category => {
+
+        const id =
+
+            getCategoryId(category);
+
+        const name =
+
+            getCategoryName(category);
+
+        if (!id) {
+
+            return;
+
+        }
+
+        const option =
+
+            document.createElement("option");
+
+        option.value = id;
+
+        option.textContent = name;
+
+        productCategory.appendChild(
+
+            option
+
+        );
+
+        const filterOption =
+
+            document.createElement("option");
+
+        filterOption.value = id;
+
+        filterOption.textContent = name;
+
+        categoryFilter.appendChild(
+
+            filterOption
+
+        );
+
+    });
+
+}
+
+/* ============================================================
+
+   PRODUITS
+
+============================================================ */
+
+async function loadProducts() {
+
+    productsBody.innerHTML = `
+
+        <tr>
+
+            <td colspan="6" class="empty-state">
+
+                Chargement des produits...
+
+            </td>
+
+        </tr>
+
+    `;
+
+    /*
+
+     * IMPORTANT :
+
+     * On utilise maintenant la fonction RPC
+
+     * admin_get_products()
+
+     * au lieu d'un SELECT direct sur products.
+
+     */
+
+    const {
+
+        data,
+
+        error
+
+    } = await supabaseClient.rpc(
+
+        "admin_get_products"
+
+    );
+
+    if (error) {
+
+        console.error(
+
+            "Erreur admin_get_products :",
+
+            error
+
+        );
+
+        throw error;
+
+    }
+
+    allProducts =
+
+        data || [];
+
+    renderProducts();
+
+}
+
+/* ============================================================
+
+   FILTRAGE
+
+============================================================ */
+
+function getFilteredProducts() {
+
+    const search =
+
+        searchInput.value
+
+            .trim()
+
+            .toLowerCase();
+
+    const category =
+
+        categoryFilter.value;
+
+    const availability =
+
+        availabilityFilter.value;
+
+    return allProducts.filter(product => {
+
+        const name =
+
+            String(
+
+                product.name || ""
+
+            ).toLowerCase();
+
+        const reference =
+
+            String(
+
+                product.reference || ""
+
+            ).toLowerCase();
+
+        const matchesSearch =
+
+            !search ||
+
+            name.includes(search) ||
+
+            reference.includes(search);
+
+        const matchesCategory =
+
+            !category ||
+
+            String(
+
+                product.category_id || ""
+
+            ) === String(category);
+
+        let matchesAvailability =
+
+            true;
+
+        if (
+
+            availability ===
+
+            "available"
+
+        ) {
+
+            matchesAvailability =
+
+                product.is_available === true &&
+
+                Number(
+
+                    product.stock || 0
+
+                ) > 0;
+
+        }
+
+        if (
+
+            availability ===
+
+            "unavailable"
+
+        ) {
+
+            matchesAvailability =
+
+                product.is_available !== true;
+
+        }
+
+        if (
+
+            availability ===
+
+            "stock_zero"
+
+        ) {
+
+            matchesAvailability =
+
+                Number(
+
+                    product.stock || 0
+
+                ) <= 0;
+
+        }
+
+        return (
+
+            matchesSearch &&
+
+            matchesCategory &&
+
+            matchesAvailability
+
+        );
+
+    });
+
+}
+
+/* ============================================================
+
+   FORMATAGE
+
+============================================================ */
+
+function formatPrice(value) {
+
+    const number =
+
+        Number(value || 0);
+
+    return (
+
+        new Intl.NumberFormat(
+
+            "fr-FR"
+
+        ).format(number)
+
+        + " FCFA"
+
+    );
+
+}
+
+function escapeHtml(value) {
+
+    return String(
+
+        value ?? ""
+
+    )
+
+        .replaceAll("&", "&amp;")
+
+        .replaceAll("<", "&lt;")
+
+        .replaceAll(">", "&gt;")
+
+        .replaceAll('"', "&quot;")
+
+        .replaceAll("'", "&#039;");
+
+}
+
+/* ============================================================
+
+   RENDU PRODUITS
+
+============================================================ */
+
+function renderProducts() {
+
+    const products =
+
+        getFilteredProducts();
+
+    productCount.textContent =
+
+        products.length +
+
+        (
+
+            products.length > 1
+
+                ? " produits"
+
+                : " produit"
+
+        );
+
+    if (!products.length) {
+
+        productsBody.innerHTML = `
+
+            <tr>
+
+                <td
+
+                    colspan="6"
+
+                    class="empty-state"
+
+                >
+
+                    <div class="empty-title">
+
+                        Aucun produit trouvé
+
+                    </div>
+
+                    <div>
+
+                        Ajoutez votre premier produit
+
+                        ou modifiez votre recherche.
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+    productsBody.innerHTML =
+
+        products
+
+            .map(product =>
+
+                renderProductRow(
+
+                    product
+
+                )
+
+            )
+
+            .join("");
+
+}
+
+function renderProductRow(product) {
+
+    const image =
+
+        product.main_image_url ||
+
+        (
+
+            Array.isArray(
+
+                product.images
+
+            )
+
+                ? product.images[0]
+
+                : ""
+
+        );
+
+    const stock =
+
+        Number(
+
+            product.stock || 0
+
+        );
+
+    let stockClass =
+
+        "stock-good";
+
+    if (stock <= 0) {
+
+        stockClass =
+
+            "stock-zero";
+
+    }
+
+    else if (stock <= 3) {
+
+        stockClass =
+
+            "stock-low";
+
+    }
+
+    const statusBadge =
+
+        product.is_available
+
+            ? `
+
+                <span class="badge badge-green">
+
+                    Disponible
+
+                </span>
+
+              `
+
+            : `
+
+                <span class="badge badge-red">
+
+                    Indisponible
+
+                </span>
+
+              `;
+
+    const promotionBadge =
+
+        product.is_promotion
+
+            ? `
+
+                <span
+
+                    class="badge badge-purple"
+
+                    style="margin-left:4px;"
+
+                >
+
+                    Promotion
+
+                </span>
+
+              `
+
+            : "";
+
+    const imageHtml =
+
+        image
+
+            ? `
+
+                <img
+
+                    src="${escapeHtml(image)}"
+
+                    alt="${escapeHtml(product.name)}"
+
+                    class="product-thumb"
+
+                    loading="lazy"
+
+                >
+
+              `
+
+            : `
+
+                <div class="product-placeholder">
+
+                    N
+
+                </div>
+
+              `;
+
+    return `
+
+        <tr>
+
+            <td>
+
+                <div class="product-cell">
+
+                    ${imageHtml}
+
+                    <div>
+
+                        <div class="product-name">
+
+                            ${escapeHtml(product.name)}
+
+                        </div>
+
+                        ${
+
+                            product.reference
+
+                                ? `
+
+                                    <div class="product-ref">
+
+                                        Réf. ${escapeHtml(product.reference)}
+
+                                    </div>
+
+                                  `
+
+                                : ""
+
+                        }
+
+                    </div>
+
+                </div>
+
+            </td>
+
+            <td>
+
+                ${escapeHtml(
+
+                    getProductCategoryName(
+
+                        product
+
+                    )
+
+                )}
+
+            </td>
+
+            <td>
+
+                <div class="price">
+
+                    ${formatPrice(
+
+                        product.promotional_price ??
+
+                        product.price
+
+                    )}
+
+                </div>
+
+                ${
+
+                    product.old_price
+
+                        ? `
+
+                            <span class="old-price">
+
+                                ${formatPrice(
+
+                                    product.old_price
+
+                                )}
+
+                            </span>
+
+                          `
+
+                        : ""
+
+                }
+
+            </td>
+
+            <td>
+
+                <span class="${stockClass}">
+
+                    ${stock}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                ${statusBadge}
+
+                ${promotionBadge}
+
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+
+                        type="button"
+
+                        class="icon-btn"
+
+                        title="Modifier"
+
+                        data-edit-id="${escapeHtml(product.id)}"
+
+                    >
+
+                        ✎
+
+                    </button>
+
+                    <button
+
+                        type="button"
+
+                        class="icon-btn delete"
+
+                        title="Supprimer"
+
+                        data-delete-id="${escapeHtml(product.id)}"
+
+                    >
+
+                        ×
+
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+    `;
+
+}
+
+/* ============================================================
+
+   TYPES DE PRODUITS
+
+============================================================ */
+
+const dynamicDefinitions = {
+
+    vetement_femme: [
+
+        {
+
+            key: "taille",
+
+            label: "Taille",
+
+            placeholder: "XS, S, M, L, XL..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Noir, blanc, violet..."
+
+        },
+
+        {
+
+            key: "matiere",
+
+            label: "Matière",
+
+            placeholder: "Coton, jean..."
+
+        },
+
+        {
+
+            key: "coupe",
+
+            label: "Coupe",
+
+            placeholder: "Droite, ample..."
+
+        }
+
+    ],
+
+    vetement_homme: [
+
+        {
+
+            key: "taille",
+
+            label: "Taille",
+
+            placeholder: "S, M, L, XL..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Noir, blanc..."
+
+        },
+
+        {
+
+            key: "matiere",
+
+            label: "Matière",
+
+            placeholder: "Coton, jean..."
+
+        },
+
+        {
+
+            key: "coupe",
+
+            label: "Coupe",
+
+            placeholder: "Slim, droite..."
+
+        }
+
+    ],
+
+    vetement_enfant: [
+
+        {
+
+            key: "taille",
+
+            label: "Taille / âge",
+
+            placeholder: "4 ans, 6 ans..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Rose, bleu..."
+
+        },
+
+        {
+
+            key: "matiere",
+
+            label: "Matière",
+
+            placeholder: "Coton..."
+
+        },
+
+        {
+
+            key: "sexe",
+
+            label: "Sexe",
+
+            placeholder: "Fille, garçon..."
+
+        }
+
+    ],
+
+    chaussures: [
+
+        {
+
+            key: "pointure",
+
+            label: "Pointure",
+
+            placeholder: "36, 37, 38..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Noir, blanc..."
+
+        },
+
+        {
+
+            key: "matiere",
+
+            label: "Matière",
+
+            placeholder: "Cuir, tissu..."
+
+        },
+
+        {
+
+            key: "type",
+
+            label: "Type",
+
+            placeholder: "Talons, baskets..."
+
+        }
+
+    ],
+
+    perruque: [
+
+        {
+
+            key: "longueur",
+
+            label: "Longueur",
+
+            placeholder: "10, 12, 16 pouces..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Noir, brun..."
+
+        },
+
+        {
+
+            key: "texture",
+
+            label: "Texture",
+
+            placeholder: "Lisse, bouclée..."
+
+        },
+
+        {
+
+            key: "densite",
+
+            label: "Densité",
+
+            placeholder: "150%, 180%..."
+
+        },
+
+        {
+
+            key: "lace",
+
+            label: "Lace",
+
+            placeholder: "4x4, 5x5, 13x4..."
+
+        },
+
+        {
+
+            key: "construction",
+
+            label: "Construction",
+
+            placeholder: "Glueless..."
+
+        }
+
+    ],
+
+    meches: [
+
+        {
+
+            key: "longueur",
+
+            label: "Longueur",
+
+            placeholder: "18, 20, 22 pouces..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "1B, 613..."
+
+        },
+
+        {
+
+            key: "texture",
+
+            label: "Texture",
+
+            placeholder: "Body wave..."
+
+        },
+
+        {
+
+            key: "type",
+
+            label: "Type",
+
+            placeholder: "Brésilienne..."
+
+        },
+
+        {
+
+            key: "poids",
+
+            label: "Poids",
+
+            placeholder: "100 g..."
+
+        },
+
+        {
+
+            key: "origine",
+
+            label: "Origine",
+
+            placeholder: "Brésil..."
+
+        }
+
+    ],
+
+    sac: [
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Noir..."
+
+        },
+
+        {
+
+            key: "matiere",
+
+            label: "Matière",
+
+            placeholder: "Cuir..."
+
+        },
+
+        {
+
+            key: "dimensions",
+
+            label: "Dimensions",
+
+            placeholder: "30 x 20 cm..."
+
+        },
+
+        {
+
+            key: "type",
+
+            label: "Type",
+
+            placeholder: "Sac à main..."
+
+        },
+
+        {
+
+            key: "fermeture",
+
+            label: "Fermeture",
+
+            placeholder: "Zip, bouton..."
+
+        }
+
+    ],
+
+    gourde: [
+
+        {
+
+            key: "contenance",
+
+            label: "Contenance",
+
+            placeholder: "500 ml..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Rose..."
+
+        },
+
+        {
+
+            key: "matiere",
+
+            label: "Matière",
+
+            placeholder: "Acier..."
+
+        },
+
+        {
+
+            key: "dimensions",
+
+            label: "Dimensions",
+
+            placeholder: "..."
+
+        },
+
+        {
+
+            key: "isotherme",
+
+            label: "Isotherme",
+
+            placeholder: "Oui / Non"
+
+        }
+
+    ],
+
+    cosmetique: [
+
+        {
+
+            key: "contenance",
+
+            label: "Contenance",
+
+            placeholder: "250 ml..."
+
+        },
+
+        {
+
+            key: "type",
+
+            label: "Type",
+
+            placeholder: "Crème..."
+
+        },
+
+        {
+
+            key: "type_peau_cheveux",
+
+            label: "Type peau / cheveux",
+
+            placeholder: "Sec, gras..."
+
+        },
+
+        {
+
+            key: "parfum",
+
+            label: "Parfum",
+
+            placeholder: "Vanille..."
+
+        },
+
+        {
+
+            key: "composition",
+
+            label: "Composition",
+
+            placeholder: "..."
+
+        },
+
+        {
+
+            key: "utilisation",
+
+            label: "Utilisation",
+
+            placeholder: "..."
+
+        }
+
+    ],
+
+    bijoux: [
+
+        {
+
+            key: "type",
+
+            label: "Type",
+
+            placeholder: "Collier..."
+
+        },
+
+        {
+
+            key: "matiere",
+
+            label: "Matière",
+
+            placeholder: "Acier..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Doré..."
+
+        },
+
+        {
+
+            key: "taille",
+
+            label: "Taille",
+
+            placeholder: "..."
+
+        }
+
+    ],
+
+    accessoire: [
+
+        {
+
+            key: "type",
+
+            label: "Type",
+
+            placeholder: "Ceinture..."
+
+        },
+
+        {
+
+            key: "couleur",
+
+            label: "Couleur",
+
+            placeholder: "Noir..."
+
+        },
+
+        {
+
+            key: "matiere",
+
+            label: "Matière",
+
+            placeholder: "Cuir..."
+
+        },
+
+        {
+
+            key: "dimensions",
+
+            label: "Dimensions",
+
+            placeholder: "..."
+
+        }
+
+    ],
+
+    autre: [
+
+        {
+
+            key: "caracteristique_1",
+
+            label: "Caractéristique 1",
+
+            placeholder: "..."
+
+        },
+
+        {
+
+            key: "caracteristique_2",
+
+            label: "Caractéristique 2",
+
+            placeholder: "..."
+
+        }
+
+    ]
+
+};
+
+/* ============================================================
+
+   CHAMPS DYNAMIQUES
+
+============================================================ */
+
+function renderDynamicFields(
+
+    existingAttributes = {}
+
+) {
+
+    dynamicFields.innerHTML = "";
+
+    const type =
+
+        productType.value;
+
+    const definitions =
+
+        dynamicDefinitions[type] || [];
+
+    definitions.forEach(definition => {
+
+        const wrapper =
+
+            document.createElement(
+
+                "div"
+
+            );
+
+        wrapper.className =
+
+            "characteristic";
+
+        const label =
+
+            document.createElement(
+
+                "label"
+
+            );
+
+        label.className =
+
+            "form-label";
+
+        label.textContent =
+
+            definition.label;
+
+        const input =
+
+            document.createElement(
+
+                "input"
+
+            );
+
+        input.type =
+
+            "text";
+
+        input.className =
+
+            "form-input dynamic-characteristic";
+
+        input.dataset.key =
+
+            definition.key;
+
+        input.placeholder =
+
+            definition.placeholder || "";
+
+        input.value =
+
+            existingAttributes[
+
+                definition.key
+
+            ] || "";
+
+        wrapper.appendChild(label);
+
+        wrapper.appendChild(input);
+
+        dynamicFields.appendChild(
+
+            wrapper
+
+        );
+
+    });
+
+}
+
+/* ============================================================
+
+   CARACTÉRISTIQUES PERSONNALISÉES
+
+============================================================ */
+
+function renderCustomCharacteristics(
+
+    attributes = {}
+
+) {
+
+    customCharacteristics =
+
+        [];
+
+    const dynamicKeys =
+
+        new Set();
+
+    const type =
+
+        productType.value;
+
+    (
+
+        dynamicDefinitions[type] || []
+
+    ).forEach(def => {
+
+        dynamicKeys.add(
+
+            def.key
+
+        );
+
+    });
+
+    Object.entries(attributes)
+
+        .forEach(([key, value]) => {
+
+            if (
+
+                key === "product_type" ||
+
+                dynamicKeys.has(key)
+
+            ) {
+
+                return;
+
+            }
+
+            if (
+
+                value === null ||
+
+                value === undefined ||
+
+                value === ""
+
+            ) {
+
+                return;
+
+            }
+
+            customCharacteristics.push({
+
+                key,
+
+                value: String(value)
+
+            });
+
+        });
+
+    renderCustomRows();
+
+}
+
+function renderCustomRows() {
+
+    customCharacteristicsBox.innerHTML = "";
+
+    customCharacteristics.forEach(
+
+        (item, index) => {
+
+            const row =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+            row.className =
+
+                "custom-row";
+
+            const keyInput =
+
+                document.createElement(
+
+                    "input"
+
+                );
+
+            keyInput.type =
+
+                "text";
+
+            keyInput.className =
+
+                "form-input";
+
+            keyInput.placeholder =
+
+                "Nom";
+
+            keyInput.value =
+
+                item.key;
+
+            const valueInput =
+
+                document.createElement(
+
+                    "input"
+
+                );
+
+            valueInput.type =
+
+                "text";
+
+            valueInput.className =
+
+                "form-input";
+
+            valueInput.placeholder =
+
+                "Valeur";
+
+            valueInput.value =
+
+                item.value;
+
+            const removeButton =
+
+                document.createElement(
+
+                    "button"
+
+                );
+
+            removeButton.type =
+
+                "button";
+
+            removeButton.className =
+
+                "btn btn-danger";
+
+            removeButton.textContent =
+
+                "×";
+
+            keyInput.addEventListener(
+
+                "input",
+
+                event => {
+
+                    customCharacteristics[
+
+                        index
+
+                    ].key =
+
+                        event.target.value;
+
+                }
+
+            );
+
+            valueInput.addEventListener(
+
+                "input",
+
+                event => {
+
+                    customCharacteristics[
+
+                        index
+
+                    ].value =
+
+                        event.target.value;
+
+                }
+
+            );
+
+            removeButton.addEventListener(
+
+                "click",
+
+                () => {
+
+                    customCharacteristics
+
+                        .splice(
+
+                            index,
+
+                            1
+
+                        );
+
+                    renderCustomRows();
+
+                }
+
+            );
+
+            row.appendChild(
+
+                keyInput
+
+            );
+
+            row.appendChild(
+
+                valueInput
+
+            );
+
+            row.appendChild(
+
+                removeButton
+
+            );
+
+            customCharacteristicsBox
+
+                .appendChild(row);
+
+        }
+
+    );
+
+}
+
+/* ============================================================
+
+   APERÇU PHOTO PRINCIPALE
+
+============================================================ */
+
+function previewMainFile(
+
+    file
+
+) {
+
+    if (!file) {
+
+        return;
+
+    }
+
+    selectedMainFile =
+
+        file;
+
+    mainFileName.textContent =
+
+        file.name;
+
+    const reader =
+
+        new FileReader();
+
+    reader.onload =
+
+        event => {
+
+            mainPreviewImg.src =
+
+                event.target.result;
+
+            mainImagePreview
+
+                .classList
+
+                .remove("hidden");
+
+        };
+
+    reader.readAsDataURL(
+
+        file
+
+    );
+
+}
+
+/* ============================================================
+
+   APERÇU PHOTOS SUPPLÉMENTAIRES
+
+============================================================ */
+
+function previewExtraFiles(
+
+    files
+
+) {
+
+    selectedExtraFiles =
+
+        Array.from(files || []);
+
+    extraFileName.textContent =
+
+        selectedExtraFiles.length
+
+            ? (
+
+                selectedExtraFiles.length +
+
+                (
+
+                    selectedExtraFiles.length > 1
+
+                        ? " photos sélectionnées"
+
+                        : " photo sélectionnée"
+
+                )
+
+              )
+
+            : "Aucune photo sélectionnée";
+
+    extraImagePreviews.innerHTML =
+
+        "";
+
+    selectedExtraFiles.forEach(
+
+        (file, index) => {
+
+            const reader =
+
+                new FileReader();
+
+            reader.onload =
+
+                event => {
+
+                    const wrapper =
+
+                        document.createElement(
+
+                            "div"
+
+                        );
+
+                    wrapper.className =
+
+                        "extra-preview";
+
+                    const img =
+
+                        document.createElement(
+
+                            "img"
+
+                        );
+
+                    img.src =
+
+                        event.target.result;
+
+                    img.alt =
+
+                        file.name;
+
+                    const remove =
+
+                        document.createElement(
+
+                            "button"
+
+                        );
+
+                    remove.type =
+
+                        "button";
+
+                    remove.className =
+
+                        "remove-preview";
+
+                    remove.textContent =
+
+                        "×";
+
+                    remove.addEventListener(
+
+                        "click",
+
+                        () => {
+
+                            selectedExtraFiles =
+
+                                selectedExtraFiles
+
+                                    .filter(
+
+                                        (
+
+                                            _,
+
+                                            i
+
+                                        ) =>
+
+                                            i !==
+
+                                            index
+
+                                    );
+
+                            rebuildExtraPreviews();
+
+                        }
+
+                    );
+
+                    wrapper.appendChild(
+
+                        img
+
+                    );
+
+                    wrapper.appendChild(
+
+                        remove
+
+                    );
+
+                    extraImagePreviews
+
+                        .appendChild(
+
+                            wrapper
+
+                        );
+
+                };
+
+            reader.readAsDataURL(
+
+                file
+
+            );
+
+        }
+
+    );
+
+}
+
+function rebuildExtraPreviews() {
+
+    extraImagePreviews.innerHTML =
+
+        "";
+
+    extraFileName.textContent =
+
+        selectedExtraFiles.length
+
+            ? (
+
+                selectedExtraFiles.length +
+
+                (
+
+                    selectedExtraFiles.length > 1
+
+                        ? " photos sélectionnées"
+
+                        : " photo sélectionnée"
+
+                )
+
+              )
+
+            : "Aucune photo sélectionnée";
+
+    selectedExtraFiles.forEach(
+
+        (file, index) => {
+
+            const reader =
+
+                new FileReader();
+
+            reader.onload =
+
+                event => {
+
+                    const wrapper =
+
+                        document.createElement(
+
+                            "div"
+
+                        );
+
+                    wrapper.className =
+
+                        "extra-preview";
+
+                    const img =
+
+                        document.createElement(
+
+                            "img"
+
+                        );
+
+                    img.src =
+
+                        event.target.result;
+
+                    const remove =
+
+                        document.createElement(
+
+                            "button"
+
+                        );
+
+                    remove.type =
+
+                        "button";
+
+                    remove.className =
+
+                        "remove-preview";
+
+                    remove.textContent =
+
+                        "×";
+
+                    remove.onclick =
+
+                        () => {
+
+                            selectedExtraFiles
+
+                                .splice(
+
+                                    index,
+
+                                    1
+
+                                );
+
+                            rebuildExtraPreviews();
+
+                        };
+
+                    wrapper.appendChild(
+
+                        img
+
+                    );
+
+                    wrapper.appendChild(
+
+                        remove
+
+                    );
+
+                    extraImagePreviews
+
+                        .appendChild(
+
+                            wrapper
+
+                        );
+
+                };
+
+            reader.readAsDataURL(
+
+                file
+
+            );
+
+        }
+
+    );
+
+}
+
+/* ============================================================
+
+   PHOTOS EXISTANTES
+
+============================================================ */
+
+function renderExistingPhotos(
+
+    product
+
+) {
+
+    existingPhotos.innerHTML =
+
+        "";
+
+    const urls = [];
+
+    if (
+
+        product.main_image_url
+
+    ) {
+
+        urls.push({
+
+            url:
+
+                product.main_image_url,
+
+            label:
+
+                "Principale"
+
+        });
+
+    }
+
+    if (
+
+        Array.isArray(
+
+            product.images
+
+        )
+
+    ) {
+
+        product.images.forEach(
+
+            url => {
+
+                if (
+
+                    url &&
+
+                    !urls.some(
+
+                        item =>
+
+                            item.url ===
+
+                            url
+
+                    )
+
+                ) {
+
+                    urls.push({
+
+                        url,
+
+                        label:
+
+                            "Photo"
+
+                    });
+
+                }
+
+            }
+
+        );
+
+    }
+
+    existingExtraImageUrls =
+
+        urls
+
+            .slice(1)
+
+            .map(item => item.url);
+
+    existingMainImageUrl =
+
+        product.main_image_url ||
+
+        "";
+
+    if (!urls.length) {
+
+        existingPhotosSection
+
+            .classList
+
+            .add("hidden");
+
+        return;
+
+    }
+
+    existingPhotosSection
+
+        .classList
+
+        .remove("hidden");
+
+    urls.forEach(item => {
+
+        const wrapper =
+
+            document.createElement(
+
+                "div"
+
+            );
+
+        wrapper.className =
+
+            "existing-photo";
+
+        const img =
+
+            document.createElement(
+
+                "img"
+
+            );
+
+        img.src =
+
+            item.url;
+
+        img.alt =
+
+            "Photo produit";
+
+        const label =
+
+            document.createElement(
+
+                "div"
+
+            );
+
+        label.className =
+
+            "existing-label";
+
+        label.textContent =
+
+            item.label;
+
+        wrapper.appendChild(img);
+
+        wrapper.appendChild(label);
+
+        existingPhotos.appendChild(
+
+            wrapper
+
+        );
+
+    });
+
+}
+
+/* ============================================================
+
+   STORAGE
+
+============================================================ */
+
+function sanitizeFileName(
+
+    name
+
+) {
+
+    return name
+
+        .normalize("NFD")
+
+        .replace(
+
+            /[\u0300-\u036f]/g,
+
+            ""
+
+        )
+
+        .replace(
+
+            /[^a-zA-Z0-9._-]/g,
+
+            "-"
+
+        )
+
+        .replace(
+
+            /-+/g,
+
+            "-"
+
+        )
+
+        .toLowerCase();
+
+}
+
+function createStorageFileName(
+
+    file
+
+) {
+
+    const extension =
+
+        file.name.includes(".")
+
+            ? file.name
+
+                .split(".")
+
+                .pop()
+
+                .toLowerCase()
+
+            : "jpg";
+
+    const baseName =
+
+        sanitizeFileName(
+
+            file.name
+
+                .replace(
+
+                    /\.[^/.]+$/,
+
+                    ""
+
+                )
+
+        ) || "photo";
+
+    const random =
+
+        Math.random()
+
+            .toString(36)
+
+            .slice(2, 10);
+
+    return (
+
+        Date.now() +
+
+        "-" +
+
+        random +
+
+        "-" +
+
+        baseName +
+
+        "." +
+
+        extension
+
+    );
+
+}
+
+async function uploadProductImage(
+
+    file
+
+) {
+
+    if (!file) {
+
+        return null;
+
+    }
+
+    if (
+
+        !file.type.startsWith(
+
+            "image/"
+
+        )
+
+    ) {
+
+        throw new Error(
+
+            "Le fichier sélectionné n'est pas une image."
+
+        );
+
+    }
+
+    /*
+
+     * Limite raisonnable pour éviter
+
+     * les fichiers trop lourds.
+
+     */
+
+    const maxSize =
+
+        10 * 1024 * 1024;
+
+    if (
+
+        file.size > maxSize
+
+    ) {
+
+        throw new Error(
+
+            "Une image ne doit pas dépasser 10 Mo."
+
+        );
+
+    }
+
+    const fileName =
+
+        createStorageFileName(
+
+            file
+
+        );
+
+    const filePath =
+
+        "products/" +
+
+        fileName;
+
+    const {
+
+        error
+
+    } = await supabaseClient
+
+        .storage
+
+        .from(
+
+            "product-images"
+
+        )
+
+        .upload(
+
+            filePath,
+
+            file,
+
+            {
+
+                cacheControl:
+
+                    "3600",
+
+                upsert:
+
+                    false,
+
+                contentType:
+
+                    file.type
+
+            }
+
+        );
+
+    if (error) {
+
+        console.error(
+
+            "Erreur upload image:",
+
+            error
+
+        );
+
+        throw error;
+
+    }
+
+    const {
+
+        data
+
+    } =
+
+        supabaseClient
+
+            .storage
+
+            .from(
+
+                "product-images"
+
+            )
+
+            .getPublicUrl(
+
+                filePath
+
+            );
+
+    if (
+
+        !data ||
+
+        !data.publicUrl
+
+    ) {
+
+        throw new Error(
+
+            "Impossible de récupérer l'URL publique de l'image."
+
+        );
+
+    }
+
+    return data.publicUrl;
+
+}
+
+/* ============================================================
+
+   SUPPRESSION STORAGE
+
+============================================================ */
+
+function getStoragePathFromUrl(
+
+    url
+
+) {
+
+    if (!url) {
+
+        return null;
+
+    }
+
+    const marker =
+
+        "/storage/v1/object/public/product-images/";
+
+    const index =
+
+        url.indexOf(marker);
+
+    if (
+
+        index === -1
+
+    ) {
+
+        return null;
+
+    }
+
+    return decodeURIComponent(
+
+        url.substring(
+
+            index +
+
+            marker.length
+
+        )
+
+    );
+
+}
+
+async function deleteStorageImage(
+
+    url
+
+) {
+
+    const path =
+
+        getStoragePathFromUrl(
+
+            url
+
+        );
+
+    if (!path) {
+
+        return;
+
+    }
+
+    const {
+
+        error
+
+    } = await supabaseClient
+
+        .storage
+
+        .from(
+
+            "product-images"
+
+        )
+
+        .remove([
+
+            path
+
+        ]);
+
+    if (error) {
+
+        console.warn(
+
+            "Impossible de supprimer l'image Storage:",
+
+            error
+
+        );
+
+    }
+
+}
+
+/* ============================================================
+
+   FORMULAIRE
+
+============================================================ */
+
+function resetForm() {
+
+    editingProductId =
+
+        null;
+
+    selectedMainFile =
+
+        null;
+
+    selectedExtraFiles =
+
+        [];
+
+    existingMainImageUrl =
+
+        "";
+
+    existingExtraImageUrls =
+
+        [];
+
+    customCharacteristics =
+
+        [];
+
+    productForm.reset();
+
+    productAvailable.checked =
+
+        true;
+
+    productStock.value =
+
+        "1";
+
+    dynamicFields.innerHTML =
+
+        "";
+
+    customCharacteristicsBox
+
+        .innerHTML =
+
+        "";
+
+    mainFileName.textContent =
+
+        "Aucune photo sélectionnée";
+
+    extraFileName.textContent =
+
+        "Aucune photo sélectionnée";
+
+    mainImagePreview
+
+        .classList
+
+        .add("hidden");
+
+    mainPreviewImg.src =
+
+        "";
+
+    extraImagePreviews.innerHTML =
+
+        "";
+
+    existingPhotos.innerHTML =
+
+        "";
+
+    existingPhotosSection
+
+        .classList
+
+        .add("hidden");
+
+    deleteSection
+
+        .classList
+
+        .add("hidden");
+
+    clearFormAlert();
+
+}
+
+function fillForm(
+
+    product
+
+) {
+
+    editingProductId =
+
+        product.id;
+
+    productName.value =
+
+        product.name || "";
+
+    productReference.value =
+
+        product.reference || "";
+
+    productCategory.value =
+
+        product.category_id || "";
+
+    const attributes =
+
+        {
+
+            ...(product.attributes || {})
+
+        };
+
+    productType.value =
+
+        attributes.product_type ||
+
+        "";
+
+    productDescription.value =
+
+        product.description ||
+
+        "";
+
+    productPrice.value =
+
+        product.price ??
+
+        "";
+
+    productOldPrice.value =
+
+        product.old_price ??
+
+        "";
+
+    promotionalPrice.value =
+
+        product.promotional_price ??
+
+        "";
+
+    promotionPercent.value =
+
+        product.promotion_percent ??
+
+        "";
+
+    promotionStartDate.value =
+
+        formatDateTimeLocal(
+
+            product.promotion_start_date
+
+        );
+
+    promotionEndDate.value =
+
+        formatDateTimeLocal(
+
+            product.promotion_end_date
+
+        );
+
+    productStock.value =
+
+        product.stock ??
+
+        0;
+
+    productAvailable.checked =
+
+        product.is_available === true;
+
+    productFeatured.checked =
+
+        product.is_featured === true;
+
+    productNew.checked =
+
+        product.is_new === true;
+
+    productPromotion.checked =
+
+        product.is_promotion === true;
+
+    additionalInformation.value =
+
+        product.additional_information ||
+
+        "";
+
+    deliveryInfo.value =
+
+        product.delivery_info ||
+
+        "";
+
+    renderDynamicFields(
+
+        attributes
+
+    );
+
+    renderCustomCharacteristics(
+
+        attributes
+
+    );
+
+    renderExistingPhotos(
+
+        product
+
+    );
+
+    selectedMainFile =
+
+        null;
+
+    selectedExtraFiles =
+
+        [];
+
+    mainFileName.textContent =
+
+        "Aucune nouvelle photo sélectionnée";
+
+    extraFileName.textContent =
+
+        "Aucune nouvelle photo sélectionnée";
+
+    mainImagePreview
+
+        .classList
+
+        .add("hidden");
+
+    mainPreviewImg.src =
+
+        "";
+
+    extraImagePreviews.innerHTML =
+
+        "";
+
+    deleteSection
+
+        .classList
+
+        .remove("hidden");
+
+    clearFormAlert();
+
+}
+
+/* ============================================================
+
+   DATE
+
+============================================================ */
+
+function formatDateTimeLocal(
+
+    value
+
+) {
+
+    if (!value) {
+
+        return "";
+
+    }
+
+    const date =
+
+        new Date(value);
+
+    if (
+
+        Number.isNaN(
+
+            date.getTime()
+
+        )
+
+    ) {
+
+        return "";
+
+    }
+
+    const year =
+
+        date.getFullYear();
+
+    const month =
+
+        String(
+
+            date.getMonth() + 1
+
+        ).padStart(
+
+            2,
+
+            "0"
+
+        );
+
+    const day =
+
+        String(
+
+            date.getDate()
+
+        ).padStart(
+
+            2,
+
+            "0"
+
+        );
+
+    const hours =
+
+        String(
+
+            date.getHours()
+
+        ).padStart(
+
+            2,
+
+            "0"
+
+        );
+
+    const minutes =
+
+        String(
+
+            date.getMinutes()
+
+        ).padStart(
+
+            2,
+
+            "0"
+
+        );
+
+    return (
+
+        year +
+
+        "-" +
+
+        month +
+
+        "-" +
+
+        day +
+
+        "T" +
+
+        hours +
+
+        ":" +
+
+        minutes
+
+    );
+
+}
+
+/* ============================================================
+
+   ATTRIBUTES
+
+============================================================ */
+
+function collectAttributes() {
+
+    const attributes = {};
+
+    attributes.product_type =
+
+        productType.value;
+
+    document
+
+        .querySelectorAll(
+
+            ".dynamic-characteristic"
+
+        )
+
+        .forEach(input => {
+
+            const key =
+
+                input.dataset.key;
+
+            const value =
+
+                input.value.trim();
+
+            if (
+
+                key &&
+
+                value
+
+            ) {
+
+                attributes[key] =
+
+                    value;
+
+            }
+
+        });
+
+    customCharacteristics
+
+        .forEach(item => {
+
+            const key =
+
+                String(
+
+                    item.key || ""
+
+                ).trim();
+
+            const value =
+
+                String(
+
+                    item.value || ""
+
+                ).trim();
+
+            if (
+
+                key &&
+
+                value
+
+            ) {
+
+                attributes[key] =
+
+                    value;
+
+            }
+
+        });
+
+    return attributes;
+
+}
+
+/* ============================================================
+
+   SIZES / COLORS
+
+============================================================ */
+
+function getAttributeValue(
+
+    attributes,
+
+    key
+
+) {
+
+    return (
+
+        attributes[key] ??
+
+        ""
+
+    );
+
+}
+
+function splitValues(
+
+    value
+
+) {
+
+    if (!value) {
+
+        return [];
+
+    }
+
+    return String(value)
+
+        .split(",")
+
+        .map(
+
+            item =>
+
+                item.trim()
+
+        )
+
+        .filter(Boolean);
+
+}
+
+/* ============================================================
+
+   COLLECTE DU FORMULAIRE
+
+============================================================ */
+
+function collectFormData() {
+
+    const attributes =
+
+        collectAttributes();
+
+    const sizes =
+
+        splitValues(
+
+            getAttributeValue(
+
+                attributes,
+
+                "taille"
+
+            )
+
+        );
+
+    const colors =
+
+        splitValues(
+
+            getAttributeValue(
+
+                attributes,
+
+                "couleur"
+
+            )
+
+        );
+
+    let promoStart =
+
+        null;
+
+    let promoEnd =
+
+        null;
+
+    if (
+
+        promotionStartDate.value
+
+    ) {
+
+        promoStart =
+
+            new Date(
+
+                promotionStartDate.value
+
+            ).toISOString();
+
+    }
+
+    if (
+
+        promotionEndDate.value
+
+    ) {
+
+        promoEnd =
+
+            new Date(
+
+                promotionEndDate.value
+
+            ).toISOString();
+
+    }
+
+    const data = {
+
+        name:
+
+            productName.value.trim(),
+
+        slug:
+
+            createSlug(
+
+                productName.value
+
+            ),
+
+        description:
+
+            productDescription.value.trim() ||
+
+            null,
+
+        price:
+
+            Number(
+
+                productPrice.value
+
+            ),
+
+        old_price:
+
+            productOldPrice.value
+
+                ? Number(
+
+                    productOldPrice.value
+
+                )
+
+                : null,
+
+        category_id:
+
+            productCategory.value ||
+
+            null,
+
+        stock:
+
+            Number(
+
+                productStock.value || 0
+
+            ),
+
+        is_available:
+
+            productAvailable.checked,
+
+        is_featured:
+
+            productFeatured.checked,
+
+        is_new:
+
+            productNew.checked,
+
+        is_promotion:
+
+            productPromotion.checked,
+
+        promotion_percent:
+
+            promotionPercent.value
+
+                ? Number(
+
+                    promotionPercent.value
+
+                )
+
+                : null,
+
+        sizes:
+
+            sizes.length
+
+                ? sizes
+
+                : null,
+
+        colors:
+
+            colors.length
+
+                ? colors
+
+                : null,
+
+        delivery_info:
+
+            deliveryInfo.value.trim() ||
+
+            null,
+
+        reference:
+
+            productReference.value.trim() ||
+
+            null,
+
+        attributes,
+
+        additional_information:
+
+            additionalInformation.value.trim() ||
+
+            null,
+
+        promotional_price:
+
+            promotionalPrice.value
+
+                ? Number(
+
+                    promotionalPrice.value
+
+                )
+
+                : null,
+
+        promotion_start_date:
+
+            promoStart,
+
+        promotion_end_date:
+
+            promoEnd
+
+    };
+
+    return data;
+
+}
+
+/* ============================================================
+
+   SLUG
+
+============================================================ */
+
+function createSlug(
+
+    value
+
+) {
+
+    return String(
+
+        value || ""
+
+    )
+
+        .normalize("NFD")
+
+        .replace(
+
+            /[\u0300-\u036f]/g,
+
+            ""
+
+        )
+
+        .toLowerCase()
+
+        .trim()
+
+        .replace(
+
+            /[^a-z0-9]+/g,
+
+            "-"
+
+        )
+
+        .replace(
+
+            /^-+|-+$/g,
+
+            ""
+
+        );
+
+}
+
+/* ============================================================
+
+   VALIDATION
+
+============================================================ */
+
+function validateForm(
+
+    data
+
+) {
+
+    if (!data.name) {
+
+        return (
+
+            "Le nom du produit est obligatoire."
+
+        );
+
+    }
+
+    if (!data.category_id) {
+
+        return (
+
+            "Sélectionnez une catégorie."
+
+        );
+
+    }
+
+    if (!data.attributes.product_type) {
+
+        return (
+
+            "Sélectionnez le type de produit."
+
+        );
+
+    }
+
+    if (
+
+        Number.isNaN(
+
+            Number(data.price)
+
+        ) ||
+
+        Number(data.price) < 0
+
+    ) {
+
+        return (
+
+            "Le prix du produit est invalide."
+
+        );
+
+    }
+
+    if (
+
+        Number.isNaN(
+
+            Number(data.stock)
+
+        ) ||
+
+        Number(data.stock) < 0
+
+    ) {
+
+        return (
+
+            "Le stock est invalide."
+
+        );
+
+    }
+
+    if (
+
+        data.promotional_price !== null &&
+
+        Number(data.promotional_price) < 0
+
+    ) {
+
+        return (
+
+            "Le prix promotionnel est invalide."
+
+        );
+
+    }
+
+    if (
+
+        data.promotion_percent !== null &&
+
+        (
+
+            data.promotion_percent < 0 ||
+
+            data.promotion_percent > 100
+
+        )
+
+    ) {
+
+        return (
+
+            "Le pourcentage de promotion doit être compris entre 0 et 100."
+
+        );
+
+    }
+
+    if (
+
+        data.promotion_start_date &&
+
+        data.promotion_end_date &&
+
+        new Date(
+
+            data.promotion_start_date
+
+        ) >=
+
+        new Date(
+
+            data.promotion_end_date
+
+        )
+
+    ) {
+
+        return (
+
+            "La date de fin doit être après la date de début."
+
+        );
+
+    }
+
+    return null;
+
+}
+
+/* ============================================================
+
+   SAUVEGARDE DES PHOTOS
+
+============================================================ */
+
+async function prepareImagesForProduct(
+
+    productId
+
+) {
+
+    let mainUrl =
+
+        existingMainImageUrl ||
+
+        null;
+
+    let extraUrls =
+
+        [
+
+            ...existingExtraImageUrls
+
+        ];
+
+    /*
+
+     * Nouvelle photo principale
+
+     */
+
+    if (
+
+        selectedMainFile
+
+    ) {
+
+        showFormAlert(
+
+            "Upload de la photo principale...",
+
+            "info"
+
+        );
+
+        const uploaded =
+
+            await uploadProductImage(
+
+                selectedMainFile
+
+            );
+
+        if (
+
+            existingMainImageUrl
+
+        ) {
+
+            await deleteStorageImage(
+
+                existingMainImageUrl
+
+            );
+
+        }
+
+        mainUrl =
+
+            uploaded;
+
+    }
+
+    /*
+
+     * Nouvelles photos supplémentaires
+
+     */
+
+    if (
+
+        selectedExtraFiles.length
+
+    ) {
+
+        showFormAlert(
+
+            "Upload des photos supplémentaires...",
+
+            "info"
+
+        );
+
+        for (
+
+            const file
+
+            of selectedExtraFiles
+
+        ) {
+
+            const uploaded =
+
+                await uploadProductImage(
+
+                    file
+
+                );
+
+            if (uploaded) {
+
+                extraUrls.push(
+
+                    uploaded
+
+                );
+
+            }
+
+        }
+
+    }
+
+    /*
+
+     * On met à jour products
+
+     */
+
+    const images =
+
+        [
+
+            ...new Set(
+
+                extraUrls.filter(
+
+                    Boolean
+
+                )
+
+            )
+
+        ];
+
+    const {
+
+        error:
+
+            productImageError
+
+    } =
+
+        await supabaseClient
+
+            .from("products")
+
+            .update({
+
+                main_image_url:
+
+                    mainUrl,
+
+                images:
+
+                    images
+
+            })
+
+            .eq(
+
+                "id",
+
+                productId
+
+            );
+
+    if (
+
+        productImageError
+
+    ) {
+
+        throw productImageError;
+
+    }
+
+    /*
+
+     * Synchronisation product_images
+
+     */
+
+    await syncProductImages(
+
+        productId,
+
+        mainUrl,
+
+        images
+
+    );
+
+    return {
+
+        mainUrl,
+
+        images
+
+    };
+
+}
+
+/* ============================================================
+
+   SYNCHRONISATION PRODUCT_IMAGES
+
+============================================================ */
+
+async function syncProductImages(
+
+    productId,
+
+    mainUrl,
+
+    images
+
+) {
+
+    const {
+
+        error:
+
+            deleteError
+
+    } =
+
+        await supabaseClient
+
+            .from("product_images")
+
+            .delete()
+
+            .eq(
+
+                "product_id",
+
+                productId
+
+            );
+
+    if (
+
+        deleteError
+
+    ) {
+
+        console.warn(
+
+            "Impossible de nettoyer product_images:",
+
+            deleteError
+
+        );
+
+    }
+
+    const rows = [];
+
+    if (mainUrl) {
+
+        rows.push({
+
+            product_id:
+
+                productId,
+
+            image_url:
+
+                mainUrl,
+
+            is_primary:
+
+                true,
+
+            sort_order:
+
+                0
+
+        });
+
+    }
+
+    images.forEach(
+
+        (url, index) => {
+
+            if (
+
+                !url ||
+
+                url === mainUrl
+
+            ) {
+
+                return;
+
+            }
+
+            rows.push({
+
+                product_id:
+
+                    productId,
+
+                image_url:
+
+                    url,
+
+                is_primary:
+
+                    false,
+
+                sort_order:
+
+                    index + 1
+
+            });
+
+        }
+
+    );
+
+    if (!rows.length) {
+
+        return;
+
+    }
+
+    const {
+
+        error
+
+    } =
+
+        await supabaseClient
+
+            .from("product_images")
+
+            .insert(
+
+                rows
+
+            );
+
+    if (error) {
+
+        console.warn(
+
+            "Synchronisation product_images:",
+
+            error
+
+        );
+
+    }
+
+}
+
+/* ============================================================
+
+   SAUVEGARDE PRODUIT
+
+============================================================ */
+
+async function saveProduct() {
+
+    if (isSaving) {
+
+        return;
+
+    }
+
+    isSaving =
+
+        true;
+
+    clearFormAlert();
+
+    const data =
+
+        collectFormData();
+
+    const validationError =
+
+        validateForm(
+
+            data
+
+        );
+
+    if (
+
+        validationError
+
+    ) {
+
+        showFormAlert(
+
+            validationError,
+
+            "error"
+
+        );
+
+        isSaving =
+
+            false;
+
+        return;
+
+    }
+
+    try {
+
+        saveProductBtn.disabled =
+
+            true;
+
+        saveProductBtn.textContent =
+
+            editingProductId
+
+                ? "Modification..."
+
+                : "Création...";
+
+        let productId =
+
+            editingProductId;
+
+        /*
+
+         * CRÉATION
+
+         */
+
+        if (!editingProductId) {
+
+            const {
+
+                data:
+
+                    insertedProduct,
+
+                error
+
+            } =
+
+                await supabaseClient
+
+                    .from("products")
+
+                    .insert({
+
+                        ...data,
+
+                        main_image_url:
+
+                            null,
+
+                        images:
+
+                            []
+
+                    })
+
+                    .select()
+
+                    .single();
+
+            if (error) {
+
+                throw error;
+
+            }
+
+            productId =
+
+                insertedProduct.id;
+
+        }
+
+        /*
+
+         * MODIFICATION
+
+         */
+
+        else {
+
+            const {
+
+                error
+
+            } =
+
+                await supabaseClient
+
+                    .from("products")
+
+                    .update(
+
+                        data
+
+                    )
+
+                    .eq(
+
+                        "id",
+
+                        editingProductId
+
+                    );
+
+            if (error) {
+
+                throw error;
+
+            }
+
+        }
+
+        /*
+
+         * Upload des photos
+
+         */
+
+        if (
+
+            selectedMainFile ||
+
+            selectedExtraFiles.length ||
+
+            existingMainImageUrl ||
+
+            existingExtraImageUrls.length
+
+        ) {
+
+            await prepareImagesForProduct(
+
+                productId
+
+            );
+
+        }
+
+        else {
+
+            /*
+
+             * Même sans nouvelle photo,
+
+             * on garde la synchronisation.
+
+             */
+
+            await syncProductImages(
+
+                productId,
+
+                null,
+
+                []
+
+            );
+
+        }
+
+        showFormAlert(
+
+            "Produit enregistré avec succès.",
+
+            "success"
+
+        );
+
+        await loadProducts();
+
+        setTimeout(
+
+            () => {
+
+                closeModal();
+
+            },
+
+            700
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Erreur sauvegarde produit:",
+
+            error
+
+        );
+
+        showFormAlert(
+
+            getReadableError(
+
+                error
+
+            ),
+
+            "error"
+
+        );
+
+    }
+
+    finally {
+
+        isSaving =
+
+            false;
+
+        saveProductBtn.disabled =
+
+            false;
+
+        saveProductBtn.textContent =
+
+            "Enregistrer le produit";
+
+    }
+
+}
+
+/* ============================================================
+
+   SUPPRESSION PRODUIT
+
+============================================================ */
+
+async function deleteProduct(
+
+    productId
+
+) {
+
+    const product =
+
+        allProducts.find(
+
+            item =>
+
+                String(item.id) ===
+
+                String(productId)
+
+        );
+
+    if (!product) {
+
+        return;
+
+    }
+
+    const confirmed =
+
+        confirm(
+
+            `Voulez-vous vraiment supprimer "${product.name}" ?\n\nCette action est définitive.`
+
+        );
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+    try {
+
+        deleteProductBtn.disabled =
+
+            true;
+
+        deleteProductBtn.textContent =
+
+            "Suppression...";
+
+        /*
+
+         * Récupérer les images
+
+         */
+
+        const urls = [];
+
+        if (
+
+            product.main_image_url
+
+        ) {
+
+            urls.push(
+
+                product.main_image_url
+
+            );
+
+        }
+
+        if (
+
+            Array.isArray(
+
+                product.images
+
+            )
+
+        ) {
+
+            urls.push(
+
+                ...product.images
+
+            );
+
+        }
+
+        /*
+
+         * Supprimer les images
+
+         * Storage
+
+         */
+
+        for (
+
+            const url of
+
+            [
+
+                ...new Set(
+
+                    urls.filter(Boolean)
+
+                )
+
+            ]
+
+        ) {
+
+            await deleteStorageImage(
+
+                url
+
+            );
+
+        }
+
+        /*
+
+         * Supprimer product_images
+
+         */
+
+        const {
+
+            error:
+
+                imagesError
+
+        } =
+
+            await supabaseClient
+
+                .from("product_images")
+
+                .delete()
+
+                .eq(
+
+                    "product_id",
+
+                    productId
+
+                );
+
+        if (
+
+            imagesError
+
+        ) {
+
+            console.warn(
+
+                "Erreur suppression product_images:",
+
+                imagesError
+
+            );
+
+        }
+
+        /*
+
+         * Supprimer les variantes
+
+         */
+
+        const {
+
+            error:
+
+                variantsError
+
+        } =
+
+            await supabaseClient
+
+                .from("product_variants")
+
+                .delete()
+
+                .eq(
+
+                    "product_id",
+
+                    productId
+
+                );
+
+        if (
+
+            variantsError
+
+        ) {
+
+            console.warn(
+
+                "Erreur suppression variantes:",
+
+                variantsError
+
+            );
+
+        }
+
+        /*
+
+         * Supprimer le produit
+
+         */
+
+        const {
+
+            error
+
+        } =
+
+            await supabaseClient
+
+                .from("products")
+
+                .delete()
+
+                .eq(
+
+                    "id",
+
+                    productId
+
+                );
+
+        if (error) {
+
+            throw error;
+
+        }
+
+        showFormAlert(
+
+            "Produit supprimé.",
+
+            "success"
+
+        );
+
+        await loadProducts();
+
+        setTimeout(
+
+            () => {
+
+                closeModal();
+
+            },
+
+            500
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Erreur suppression:",
+
+            error
+
+        );
+
+        showFormAlert(
+
+            getReadableError(
+
+                error
+
+            ),
+
+            "error"
+
+        );
+
+    }
+
+    finally {
+
+        deleteProductBtn.disabled =
+
+            false;
+
+        deleteProductBtn.textContent =
+
+            "Supprimer définitivement";
+
+    }
+
+}
+
+/* ============================================================
+
+   ERREURS
+
+============================================================ */
+
+function getReadableError(
+
+    error
+
+) {
+
+    if (!error) {
+
+        return (
+
+            "Une erreur inconnue est survenue."
+
+        );
+
+    }
+
+    const message =
+
+        error.message ||
+
+        error.details ||
+
+        error.hint ||
+
+        String(error);
+
+    if (
+
+        message.includes(
+
+            "row-level security"
+
+        )
+
+    ) {
+
+        return (
+
+            "Accès refusé par la sécurité Supabase (RLS). Vérifiez les autorisations administrateur."
+
+        );
+
+    }
+
+    if (
+
+        message.includes(
+
+            "Bucket not found"
+
+        )
+
+    ) {
+
+        return (
+
+            "Le stockage des photos est introuvable. Vérifiez que le bucket product-images existe."
+
+        );
+
+    }
+
+    if (
+
+        message.includes(
+
+            "duplicate"
+
+        )
+
+    ) {
+
+        return (
+
+            "Cette donnée existe déjà. Vérifiez le nom ou la référence du produit."
+
+        );
+
+    }
+
+    return message;
+
+}
+
+/* ============================================================
+
+   ALERTES
+
+============================================================ */
+
+function showFormAlert(
+
+    message,
+
+    type = "info"
+
+) {
+
+    formAlert.textContent =
+
+        message;
+
+    formAlert.className =
+
+        "form-alert show " +
+
+        type;
+
+}
+
+function clearFormAlert() {
+
+    formAlert.textContent =
+
+        "";
+
+    formAlert.className =
+
+        "form-alert";
+
+}
+
+/* ============================================================
+
+   MODAL
+
+============================================================ */
+
+function openAddModal() {
+
+    resetForm();
+
+    modalTitle.textContent =
+
+        "Ajouter un produit";
+
+    productModal
+
+        .classList
+
+        .add("show");
+
+    productModal
+
+        .setAttribute(
+
+            "aria-hidden",
+
+            "false"
+
+        );
+
+    document.body.style.overflow =
+
+        "hidden";
+
+}
+
+function openEditModal(
+
+    productId
+
+) {
+
+    const product =
+
+        allProducts.find(
+
+            item =>
+
+                String(item.id) ===
+
+                String(productId)
+
+        );
+
+    if (!product) {
+
+        alert(
+
+            "Produit introuvable."
+
+        );
+
+        return;
+
+    }
+
+    resetForm();
+
+    modalTitle.textContent =
+
+        "Modifier le produit";
+
+    fillForm(
+
+        product
+
+    );
+
+    productModal
+
+        .classList
+
+        .add("show");
+
+    productModal
+
+        .setAttribute(
+
+            "aria-hidden",
+
+            "false"
+
+        );
+
+    document.body.style.overflow =
+
+        "hidden";
+
+}
+
+function closeModal() {
+
+    productModal
+
+        .classList
+
+        .remove("show");
+
+    productModal
+
+        .setAttribute(
+
+            "aria-hidden",
+
+            "true"
+
+        );
+
+    document.body.style.overflow =
+
+        "";
+
+    resetForm();
+
+}
+
+/* ============================================================
+
+   EVENTS
+
+============================================================ */
+
+addProductBtn.addEventListener(
+
+    "click",
+
+    openAddModal
+
+);
+
+modalCloseBtn.addEventListener(
+
+    "click",
+
+    closeModal
+
+);
+
+cancelBtn.addEventListener(
+
+    "click",
+
+    closeModal
+
+);
+
+productModal.addEventListener(
+
+    "click",
+
+    event => {
+
+        if (
+
+            event.target ===
+
+            productModal
+
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+
+);
+
+document.addEventListener(
+
+    "keydown",
+
+    event => {
+
+        if (
+
+            event.key ===
+
+            "Escape" &&
+
+            productModal.classList.contains(
+
+                "show"
+
+            )
+
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+
+);
+
+/* ============================================================
+
+   TYPE PRODUIT
+
+============================================================ */
+
+productType.addEventListener(
+
+    "change",
+
+    () => {
+
+        const current =
+
+            collectAttributes();
+
+        renderDynamicFields(
+
+            current
+
+        );
+
+    }
+
+);
+
+/* ============================================================
+
+   PHOTOS
+
+============================================================ */
+
+mainImageFile.addEventListener(
+
+    "change",
+
+    event => {
+
+        const file =
+
+            event.target.files?.[0];
+
+        if (file) {
+
+            previewMainFile(
+
+                file
+
+            );
+
+        }
+
+    }
+
+);
+
+extraImageFiles.addEventListener(
+
+    "change",
+
+    event => {
+
+        previewExtraFiles(
+
+            event.target.files
+
+        );
+
+    }
+
+);
+
+/* ============================================================
+
+   CARACTÉRISTIQUES
+
+============================================================ */
+
+addCharacteristicBtn.addEventListener(
+
+    "click",
+
+    () => {
+
+        customCharacteristics.push({
+
+            key: "",
+
+            value: ""
+
+        });
+
+        renderCustomRows();
+
+    }
+
+);
+
+/* ============================================================
+
+   RECHERCHE / FILTRES
+
+============================================================ */
+
+searchInput.addEventListener(
+
+    "input",
+
+    renderProducts
+
+);
+
+categoryFilter.addEventListener(
+
+    "change",
+
+    renderProducts
+
+);
+
+availabilityFilter.addEventListener(
+
+    "change",
+
+    renderProducts
+
+);
+
+/* ============================================================
+
+   ACTIONS TABLE
+
+============================================================ */
+
+productsBody.addEventListener(
+
+    "click",
+
+    event => {
+
+        const editButton =
+
+            event.target.closest(
+
+                "[data-edit-id]"
+
+            );
+
+        if (editButton) {
+
+            openEditModal(
+
+                editButton.dataset.editId
+
+            );
+
+            return;
+
+        }
+
+        const deleteButton =
+
+            event.target.closest(
+
+                "[data-delete-id]"
+
+            );
+
+        if (deleteButton) {
+
+            const id =
+
+                deleteButton.dataset.deleteId;
+
+            const product =
+
+                allProducts.find(
+
+                    item =>
+
+                        String(item.id) ===
+
+                        String(id)
+
+                );
+
+            if (!product) {
+
+                return;
+
+            }
+
+            if (
+
+                !confirm(
+
+                    `Voulez-vous supprimer "${product.name}" ?`
+
+                )
+
+            ) {
+
+                return;
+
+            }
+
+            deleteProductFromTable(
+
+                id
+
+            );
+
+        }
+
+    }
+
+);
+
+/* ============================================================
+
+   SUPPRESSION DEPUIS LE TABLEAU
+
+============================================================ */
+
+async function deleteProductFromTable(
+
+    productId
+
+) {
+
+    const product =
+
+        allProducts.find(
+
+            item =>
+
+                String(item.id) ===
+
+                String(productId)
+
+        );
+
+    if (!product) {
+
+        return;
+
+    }
+
+    try {
+
+        const urls = [];
+
+        if (
+
+            product.main_image_url
+
+        ) {
+
+            urls.push(
+
+                product.main_image_url
+
+            );
+
+        }
+
+        if (
+
+            Array.isArray(
+
+                product.images
+
+            )
+
+        ) {
+
+            urls.push(
+
+                ...product.images
+
+            );
+
+        }
+
+        for (
+
+            const url of
+
+            [
+
+                ...new Set(
+
+                    urls.filter(Boolean)
+
+                )
+
+            ]
+
+        ) {
+
+            await deleteStorageImage(
+
+                url
+
+            );
+
+        }
+
+        await supabaseClient
+
+            .from("product_images")
+
+            .delete()
+
+            .eq(
+
+                "product_id",
+
+                productId
+
+            );
+
+        await supabaseClient
+
+            .from("product_variants")
+
+            .delete()
+
+            .eq(
+
+                "product_id",
+
+                productId
+
+            );
+
+        const {
+
+            error
+
+        } =
+
+            await supabaseClient
+
+                .from("products")
+
+                .delete()
+
+                .eq(
+
+                    "id",
+
+                    productId
+
+                );
+
+        if (error) {
+
+            throw error;
+
+        }
+
+        await loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            error
+
+        );
+
+        alert(
+
+            getReadableError(
+
+                error
+
+            )
+
+        );
+
+    }
+
+}
+
+/* ============================================================
+
+   FORM SUBMIT
+
+============================================================ */
+
+productForm.addEventListener(
+
+    "submit",
+
+    async event => {
+
+        event.preventDefault();
+
+        await saveProduct();
+
+    }
+
+);
+
+/* ============================================================
+
+   DELETE MODAL
+
+============================================================ */
+
+deleteProductBtn.addEventListener(
+
+    "click",
+
+    async () => {
+
+        if (!editingProductId) {
+
+            return;
+
+        }
+
+        await deleteProduct(
+
+            editingProductId
+
+        );
+
+    }
+
+);
+
+/* ============================================================
+
+   LOGOUT
+
+============================================================ */
+
+logoutBtn.addEventListener(
+
+    "click",
+
+    async () => {
+
+        const confirmed =
+
+            confirm(
+
+                "Voulez-vous vous déconnecter ?"
+
+            );
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href =
+
+            "./login.html";
+
+    }
+
+);
+
+/* ============================================================
+
+   MOBILE SIDEBAR
+
+============================================================ */
+
+mobileMenuBtn.addEventListener(
+
+    "click",
+
+    () => {
+
+        sidebar.classList.toggle(
+
+            "open"
+
+        );
+
+    }
+
+);
+
+document.addEventListener(
+
+    "click",
+
+    event => {
+
+        if (
+
+            window.innerWidth > 1050
+
+        ) {
+
+            return;
+
+        }
+
+        if (
+
+            sidebar.contains(
+
+                event.target
+
+            ) ||
+
+            mobileMenuBtn.contains(
+
+                event.target
+
+            )
+
+        ) {
+
+            return;
+
+        }
+
+        sidebar.classList.remove(
+
+            "open"
+
+        );
+
+    }
+
+);
+
+/* ============================================================
+
+   AUTH STATE
+
+============================================================ */
+
+supabaseClient.auth.onAuthStateChange(
+
+    (
+
+        event,
+
+        session
+
+    ) => {
+
+        if (
+
+            event ===
+
+            "SIGNED_OUT"
+
+        ) {
+
+            window.location.href =
+
+                "./login.html";
+
+        }
+
+    }
+
+);
+
+/* ============================================================
+
+   INITIALISATION
+
+============================================================ */
+
+async function init() {
+
+    try {
+
+        if (!supabaseClient) {
+
+            throw new Error(
+
+                "Supabase n'est pas initialisé."
+
+            );
+
+        }
+
+        const admin =
+
+            await checkAdmin();
+
+        if (!admin) {
+
+            return;
+
+        }
+
+        await loadCategories();
+
+        await loadProducts();
+
+        loadingScreen.style.display =
+
+            "none";
+
+        app.classList.add(
+
+            "show"
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Erreur initialisation administration produits:",
+
+            error
+
+        );
+
+        loadingScreen.innerHTML = `
+
+            <div
+
+                style="
+
+                    max-width:420px;
+
+                    padding:25px;
+
+                    text-align:center;
+
+                "
+
+            >
+
+                <div
+
+                    class="loading-logo"
+
+                    style="margin:0 auto 18px;"
+
+                >
+
+                    N
+
+                </div>
+
+                <div
+
+                    style="
+
+                        font-weight:700;
+
+                        font-size:18px;
+
+                        margin-bottom:8px;
+
+                    "
+
+                >
+
+                    Impossible de charger l'administration
+
+                </div>
+
+                <div
+
+                    style="
+
+                        color:#71717a;
+
+                        font-size:13px;
+
+                        line-height:1.6;
+
+                        margin-bottom:18px;
+
+                    "
+
+                >
+
+                    Une erreur est survenue lors du chargement des produits.
+
+                </div>
+
+                <button
+
+                    type="button"
+
+                    class="btn btn-primary"
+
+                    onclick="location.reload()"
+
+                >
+
+                    Réessayer
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+/* ============================================================
+
+   LANCEMENT
+
+============================================================ */
+
+init();
+
+</script>
+
+</body>
+
+</html>
