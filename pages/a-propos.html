@@ -4,75 +4,1691 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>À propos | NINICE BOUTIQUE</title>
+    <title>À propos | NINICE BOUTIQUE</title>
 
-<link rel="stylesheet" href="../assets/css/style.css">
+    <meta
 
-<link rel="stylesheet" href="../assets/css/responsive.css">
+        name="description"
+
+        content="Découvrez NINICE BOUTIQUE, notre vision, nos engagements et notre façon de vous accompagner dans vos achats."
+
+    >
+
+    <meta name="theme-color" content="#6d28d9">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+
+        rel="stylesheet"
+
+    >
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+    <style>
+
+        :root {
+
+            --about-purple: #6d28d9;
+
+            --about-purple-dark: #4c1d95;
+
+            --about-purple-light: #f5f3ff;
+
+            --about-border: #e9e5f5;
+
+            --about-text: #1f172a;
+
+            --about-muted: #6b6475;
+
+            --about-white: #ffffff;
+
+        }
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family: "DM Sans", sans-serif;
+
+            color: var(--about-text);
+
+            background: #ffffff;
+
+        }
+
+        a {
+
+            text-decoration: none;
+
+        }
+
+        .about-page {
+
+            min-height: 60vh;
+
+        }
+
+        /* HERO */
+
+        .about-hero {
+
+            padding: 75px 20px 65px;
+
+            background:
+
+                linear-gradient(
+
+                    135deg,
+
+                    #faf8ff 0%,
+
+                    #f4efff 50%,
+
+                    #ffffff 100%
+
+                );
+
+            border-bottom: 1px solid var(--about-border);
+
+        }
+
+        .about-hero-inner {
+
+            width: min(1100px, 100%);
+
+            margin: 0 auto;
+
+            text-align: center;
+
+        }
+
+        .about-eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 17px;
+
+            padding: 8px 15px;
+
+            border-radius: 999px;
+
+            background: #ffffff;
+
+            color: var(--about-purple);
+
+            border: 1px solid #e5dcf8;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.04em;
+
+            text-transform: uppercase;
+
+        }
+
+        .about-hero h1 {
+
+            margin: 0 auto 17px;
+
+            max-width: 850px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(38px, 6vw, 60px);
+
+            line-height: 1.08;
+
+            color: var(--about-purple-dark);
+
+        }
+
+        .about-hero p {
+
+            max-width: 720px;
+
+            margin: 0 auto;
+
+            color: var(--about-muted);
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+        }
+
+        /* CONTENT */
+
+        .about-content {
+
+            width: min(1150px, calc(100% - 40px));
+
+            margin: 0 auto;
+
+            padding: 70px 0 85px;
+
+        }
+
+        /* INTRODUCTION */
+
+        .about-introduction {
+
+            display: grid;
+
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+
+            gap: 45px;
+
+            align-items: center;
+
+            margin-bottom: 80px;
+
+        }
+
+        .about-introduction-text h2 {
+
+            margin: 0 0 20px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 35px;
+
+            line-height: 1.2;
+
+            color: var(--about-purple-dark);
+
+        }
+
+        .about-introduction-text p {
+
+            margin: 0 0 16px;
+
+            color: var(--about-muted);
+
+            font-size: 16px;
+
+            line-height: 1.85;
+
+        }
+
+        .about-introduction-text p:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+        .about-brand-card {
+
+            position: relative;
+
+            min-height: 300px;
+
+            padding: 35px;
+
+            border-radius: 26px;
+
+            background:
+
+                linear-gradient(
+
+                    145deg,
+
+                    #6d28d9,
+
+                    #4c1d95
+
+                );
+
+            color: #ffffff;
+
+            overflow: hidden;
+
+            box-shadow:
+
+                0 20px 45px rgba(76, 29, 149, 0.18);
+
+        }
+
+        .about-brand-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 210px;
+
+            height: 210px;
+
+            right: -75px;
+
+            top: -75px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+        }
+
+        .about-brand-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+
+            height: 160px;
+
+            left: -80px;
+
+            bottom: -80px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+        }
+
+        .about-brand-card-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        .about-brand-card-label {
+
+            margin-bottom: 14px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.12em;
+
+            text-transform: uppercase;
+
+            opacity: 0.8;
+
+        }
+
+        .about-brand-card h3 {
+
+            margin: 0 0 15px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 35px;
+
+        }
+
+        .about-brand-card p {
+
+            margin: 0;
+
+            max-width: 400px;
+
+            color: rgba(255,255,255,0.86);
+
+            line-height: 1.75;
+
+        }
+
+        /* SECTION TITLES */
+
+        .about-section-title {
+
+            margin-bottom: 32px;
+
+            text-align: center;
+
+        }
+
+        .about-section-title h2 {
+
+            margin: 0 0 10px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 34px;
+
+            color: var(--about-purple-dark);
+
+        }
+
+        .about-section-title p {
+
+            max-width: 680px;
+
+            margin: 0 auto;
+
+            color: var(--about-muted);
+
+            line-height: 1.7;
+
+        }
+
+        /* VISION / MISSION */
+
+        .about-values {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 22px;
+
+            margin-bottom: 80px;
+
+        }
+
+        .about-value-card {
+
+            padding: 32px;
+
+            background: #ffffff;
+
+            border: 1px solid var(--about-border);
+
+            border-radius: 22px;
+
+            box-shadow: 0 10px 30px rgba(76, 29, 149, 0.04);
+
+        }
+
+        .about-value-number {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 45px;
+
+            height: 45px;
+
+            margin-bottom: 20px;
+
+            border-radius: 13px;
+
+            background: var(--about-purple-light);
+
+            color: var(--about-purple);
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        .about-value-card h3 {
+
+            margin: 0 0 10px;
+
+            color: var(--about-purple-dark);
+
+            font-size: 21px;
+
+        }
+
+        .about-value-card p {
+
+            margin: 0;
+
+            color: var(--about-muted);
+
+            line-height: 1.75;
+
+            font-size: 15px;
+
+        }
+
+        /* ENGAGEMENTS */
+
+        .about-commitments {
+
+            margin-bottom: 80px;
+
+        }
+
+        .about-commitment-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .about-commitment {
+
+            padding: 28px;
+
+            border: 1px solid var(--about-border);
+
+            border-radius: 20px;
+
+            background: #ffffff;
+
+        }
+
+        .about-commitment-icon {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 48px;
+
+            height: 48px;
+
+            margin-bottom: 18px;
+
+            border-radius: 14px;
+
+            background: var(--about-purple-light);
+
+            color: var(--about-purple);
+
+        }
+
+        .about-commitment-icon svg {
+
+            width: 23px;
+
+            height: 23px;
+
+            stroke: currentColor;
+
+        }
+
+        .about-commitment h3 {
+
+            margin: 0 0 9px;
+
+            color: var(--about-purple-dark);
+
+            font-size: 18px;
+
+        }
+
+        .about-commitment p {
+
+            margin: 0;
+
+            color: var(--about-muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+        }
+
+        /* CATEGORIES */
+
+        .about-categories {
+
+            margin-bottom: 80px;
+
+        }
+
+        .about-category-list {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 10px;
+
+        }
+
+        .about-category {
+
+            padding: 11px 17px;
+
+            border-radius: 999px;
+
+            border: 1px solid #e4daf7;
+
+            background: #faf8ff;
+
+            color: var(--about-purple-dark);
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+        /* DYNAMIC DESCRIPTION */
+
+        .about-dynamic {
+
+            margin-bottom: 80px;
+
+        }
+
+        .about-dynamic-card {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            padding: 35px;
+
+            border-radius: 22px;
+
+            background: #faf9fd;
+
+            border: 1px solid var(--about-border);
+
+        }
+
+        .about-dynamic-card h2 {
+
+            margin: 0 0 18px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 30px;
+
+            color: var(--about-purple-dark);
+
+        }
+
+        .about-dynamic-description {
+
+            color: var(--about-muted);
+
+            font-size: 16px;
+
+            line-height: 1.85;
+
+            white-space: pre-line;
+
+        }
+
+        /* CTA */
+
+        .about-cta {
+
+            padding: 45px 30px;
+
+            border-radius: 25px;
+
+            background: var(--about-purple-light);
+
+            border: 1px solid #e3d9f8;
+
+            text-align: center;
+
+        }
+
+        .about-cta h2 {
+
+            margin: 0 0 12px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 32px;
+
+            color: var(--about-purple-dark);
+
+        }
+
+        .about-cta p {
+
+            max-width: 650px;
+
+            margin: 0 auto 24px;
+
+            color: var(--about-muted);
+
+            line-height: 1.75;
+
+        }
+
+        .about-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 49px;
+
+            padding: 0 23px;
+
+            border-radius: 12px;
+
+            background: var(--about-purple);
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            box-shadow: 0 9px 22px rgba(109, 40, 217, 0.2);
+
+            transition:
+
+                background 0.2s ease,
+
+                transform 0.2s ease;
+
+        }
+
+        .about-button:hover {
+
+            background: var(--about-purple-dark);
+
+            transform: translateY(-2px);
+
+        }
+
+        .about-loading {
+
+            color: var(--about-muted);
+
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .about-introduction {
+
+                grid-template-columns: 1fr;
+
+                gap: 30px;
+
+            }
+
+            .about-commitment-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .about-hero {
+
+                padding: 52px 18px 48px;
+
+            }
+
+            .about-hero p {
+
+                font-size: 15px;
+
+            }
+
+            .about-content {
+
+                width: min(100% - 28px, 1150px);
+
+                padding: 50px 0 65px;
+
+            }
+
+            .about-introduction-text h2 {
+
+                font-size: 30px;
+
+            }
+
+            .about-brand-card {
+
+                min-height: 270px;
+
+                padding: 28px;
+
+            }
+
+            .about-brand-card h3 {
+
+                font-size: 31px;
+
+            }
+
+            .about-values {
+
+                grid-template-columns: 1fr;
+
+                margin-bottom: 60px;
+
+            }
+
+            .about-commitment-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .about-section-title h2 {
+
+                font-size: 29px;
+
+            }
+
+            .about-dynamic-card {
+
+                padding: 26px;
+
+            }
+
+            .about-cta {
+
+                padding: 35px 22px;
+
+            }
+
+            .about-cta h2 {
+
+                font-size: 28px;
+
+            }
+
+            .about-button {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div id="site-header"></div>
+    <!-- HEADER -->
 
-<main>
+    <header id="site-header"></header>
 
-<section class="page-section">
+    <main class="about-page">
 
-<div class="container">
+        <!-- HERO -->
 
-<span class="eyebrow">NINICE BOUTIQUE</span>
+        <section class="about-hero">
 
-<h1>À propos</h1>
+            <div class="about-hero-inner">
 
-<div class="page-card">
+                <div class="about-eyebrow">
 
-<h2>NINICE BOUTIQUE</h2>
+                    À propos
 
-<p>
+                </div>
 
-Bienvenue chez NINICE BOUTIQUE, une boutique en ligne
+                <h1>
 
-pensée pour vous proposer une sélection moderne,
+                    Bienvenue chez NINICE BOUTIQUE
 
-élégante et accessible.
+                </h1>
 
-</p>
+                <p>
 
-<p>
+                    Une boutique pensée pour vous proposer une expérience
 
-Notre objectif est de vous permettre de découvrir facilement
+                    simple, élégante et pratique, de la découverte de vos
 
-nos produits, de les enregistrer dans vos favoris,
+                    articles jusqu'à la réception de votre commande.
 
-de les ajouter au panier et de commander simplement.
+                </p>
 
-</p>
+            </div>
 
-</div>
+        </section>
 
-</div>
+        <!-- CONTENU -->
 
-</section>
+        <section class="about-content">
 
-</main>
+            <!-- INTRODUCTION -->
 
-<div id="site-footer"></div>
+            <section class="about-introduction">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+                <div class="about-introduction-text">
 
-<script src="../assets/js/config.js"></script>
+                    <h2>
 
-<script src="../assets/js/supabase.js"></script>
+                        Une boutique pensée pour votre style
 
-<script src="../assets/js/common.js"></script>
+                    </h2>
 
-<script src="../assets/js/navigation.js"></script>
+                    <p>
+
+                        NINICE BOUTIQUE est une boutique en ligne dédiée à
+
+                        la mode et aux accessoires. Notre objectif est de
+
+                        permettre à chaque cliente et chaque client de
+
+                        découvrir facilement des articles qui correspondent
+
+                        à son style, ses envies et son budget.
+
+                    </p>
+
+                    <p>
+
+                        À travers notre boutique, nous souhaitons rendre
+
+                        l'achat plus simple, plus clair et plus agréable,
+
+                        avec des informations utiles sur les produits,
+
+                        les tailles, les couleurs, les disponibilités,
+
+                        les promotions et les modalités de livraison.
+
+                    </p>
+
+                    <p>
+
+                        NINICE BOUTIQUE évolue progressivement afin de
+
+                        proposer davantage de catégories et de services.
+
+                    </p>
+
+                </div>
+
+                <div class="about-brand-card">
+
+                    <div class="about-brand-card-content">
+
+                        <div class="about-brand-card-label">
+
+                            Notre identité
+
+                        </div>
+
+                        <h3>
+
+                            NINICE BOUTIQUE
+
+                        </h3>
+
+                        <p>
+
+                            Élégance, simplicité et proximité sont au cœur
+
+                            de notre manière de concevoir la boutique et
+
+                            l'expérience client.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- VISION / MISSION -->
+
+            <section>
+
+                <div class="about-section-title">
+
+                    <h2>
+
+                        Notre vision
+
+                    </h2>
+
+                    <p>
+
+                        Construire une boutique accessible et moderne,
+
+                        tout en restant proche de ses clients.
+
+                    </p>
+
+                </div>
+
+                <div class="about-values">
+
+                    <article class="about-value-card">
+
+                        <div class="about-value-number">
+
+                            01
+
+                        </div>
+
+                        <h3>
+
+                            Une expérience simple
+
+                        </h3>
+
+                        <p>
+
+                            Nous voulons que chaque personne puisse parcourir
+
+                            les produits, trouver ce qu'elle recherche et
+
+                            passer une commande sans procédure compliquée.
+
+                        </p>
+
+                    </article>
+
+                    <article class="about-value-card">
+
+                        <div class="about-value-number">
+
+                            02
+
+                        </div>
+
+                        <h3>
+
+                            Une mode accessible
+
+                        </h3>
+
+                        <p>
+
+                            Nous souhaitons proposer différentes catégories
+
+                            d'articles et différentes gammes de prix afin
+
+                            de répondre à des besoins variés.
+
+                        </p>
+
+                    </article>
+
+                    <article class="about-value-card">
+
+                        <div class="about-value-number">
+
+                            03
+
+                        </div>
+
+                        <h3>
+
+                            Une relation de proximité
+
+                        </h3>
+
+                        <p>
+
+                            La communication avec nos clients reste essentielle,
+
+                            notamment pour les questions, les commandes,
+
+                            les livraisons et le suivi.
+
+                        </p>
+
+                    </article>
+
+                    <article class="about-value-card">
+
+                        <div class="about-value-number">
+
+                            04
+
+                        </div>
+
+                        <h3>
+
+                            Une boutique qui évolue
+
+                        </h3>
+
+                        <p>
+
+                            NINICE BOUTIQUE a vocation à intégrer progressivement
+
+                            de nouvelles catégories, de nouveaux produits et
+
+                            de nouveaux services.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- ENGAGEMENTS -->
+
+            <section class="about-commitments">
+
+                <div class="about-section-title">
+
+                    <h2>
+
+                        Nos engagements
+
+                    </h2>
+
+                    <p>
+
+                        Les principes qui guident notre façon de travailler
+
+                        et d'accompagner nos clients.
+
+                    </p>
+
+                </div>
+
+                <div class="about-commitment-grid">
+
+                    <article class="about-commitment">
+
+                        <div class="about-commitment-icon">
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M20 6 9 17l-5-5"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+
+                            Clarté
+
+                        </h3>
+
+                        <p>
+
+                            Présenter les informations essentielles sur les
+
+                            produits et les commandes de manière claire.
+
+                        </p>
+
+                    </article>
+
+                    <article class="about-commitment">
+
+                        <div class="about-commitment-icon">
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M12 21s8-4.5 8-10V5l-8-3-8 3v6c0 5.5 8 10 8 10Z"></path>
+
+                                <path d="m9 12 2 2 4-4"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+
+                            Fiabilité
+
+                        </h3>
+
+                        <p>
+
+                            Faire évoluer nos services pour offrir une
+
+                            expérience d'achat aussi fiable que possible.
+
+                        </p>
+
+                    </article>
+
+                    <article class="about-commitment">
+
+                        <div class="about-commitment-icon">
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+
+                            Écoute
+
+                        </h3>
+
+                        <p>
+
+                            Rester disponible pour répondre aux questions
+
+                            et prendre en compte les besoins de nos clients.
+
+                        </p>
+
+                    </article>
+
+                    <article class="about-commitment">
+
+                        <div class="about-commitment-icon">
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M3 12h18"></path>
+
+                                <path d="M12 3v18"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+
+                            Diversité
+
+                        </h3>
+
+                        <p>
+
+                            Développer progressivement notre catalogue avec
+
+                            des vêtements et accessoires pour différents
+
+                            styles et besoins.
+
+                        </p>
+
+                    </article>
+
+                    <article class="about-commitment">
+
+                        <div class="about-commitment-icon">
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <circle cx="12" cy="12" r="9"></circle>
+
+                                <path d="M12 7v5l3 2"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+
+                            Réactivité
+
+                        </h3>
+
+                        <p>
+
+                            Faciliter le traitement des demandes et le suivi
+
+                            des commandes.
+
+                        </p>
+
+                    </article>
+
+                    <article class="about-commitment">
+
+                        <div class="about-commitment-icon">
+
+                            <svg
+
+                                viewBox="0 0 24 24"
+
+                                fill="none"
+
+                                stroke="currentColor"
+
+                                stroke-width="1.8"
+
+                                stroke-linecap="round"
+
+                                stroke-linejoin="round"
+
+                            >
+
+                                <path d="M20 7h-4V3H8v4H4v14h16V7Z"></path>
+
+                                <path d="M8 11h8"></path>
+
+                                <path d="M8 15h5"></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+
+                            Évolution
+
+                        </h3>
+
+                        <p>
+
+                            Améliorer régulièrement la boutique et ses
+
+                            fonctionnalités en fonction des besoins.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- CATÉGORIES -->
+
+            <section class="about-categories">
+
+                <div class="about-section-title">
+
+                    <h2>
+
+                        Un catalogue qui grandit
+
+                    </h2>
+
+                    <p>
+
+                        NINICE BOUTIQUE peut accueillir différentes catégories
+
+                        de produits et s'adapter progressivement à vos envies.
+
+                    </p>
+
+                </div>
+
+                <div class="about-category-list">
+
+                    <span class="about-category">
+
+                        Vêtements femme
+
+                    </span>
+
+                    <span class="about-category">
+
+                        Vêtements homme
+
+                    </span>
+
+                    <span class="about-category">
+
+                        Sacs à main
+
+                    </span>
+
+                    <span class="about-category">
+
+                        Chaussures
+
+                    </span>
+
+                    <span class="about-category">
+
+                        Perruques
+
+                    </span>
+
+                    <span class="about-category">
+
+                        Accessoires
+
+                    </span>
+
+                    <span class="about-category">
+
+                        Gourdes
+
+                    </span>
+
+                    <span class="about-category">
+
+                        Nouveautés
+
+                    </span>
+
+                    <span class="about-category">
+
+                        Promotions
+
+                    </span>
+
+                </div>
+
+            </section>
+
+            <!-- DESCRIPTION DYNAMIQUE -->
+
+            <section
+
+                class="about-dynamic"
+
+                id="about-dynamic-section"
+
+                style="display:none;"
+
+            >
+
+                <div class="about-dynamic-card">
+
+                    <h2 id="about-dynamic-title">
+
+                        NINICE BOUTIQUE
+
+                    </h2>
+
+                    <div
+
+                        class="about-dynamic-description"
+
+                        id="about-dynamic-description"
+
+                    ></div>
+
+                </div>
+
+            </section>
+
+            <!-- CTA -->
+
+            <section class="about-cta">
+
+                <h2>
+
+                    Une question sur NINICE BOUTIQUE ?
+
+                </h2>
+
+                <p>
+
+                    Pour toute question concernant nos produits, les commandes,
+
+                    la livraison ou nos services, notre page Contact est à
+
+                    votre disposition.
+
+                </p>
+
+                <a
+
+                    href="contact.html"
+
+                    class="about-button"
+
+                >
+
+                    Nous contacter
+
+                </a>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer id="site-footer"></footer>
+
+    <!-- SCRIPTS -->
+
+    <script src="../assets/js/config.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../assets/js/supabase.js"></script>
+
+    <script src="../assets/js/common.js"></script>
+
+    <script src="../assets/js/navigation.js"></script>
+
+    <!-- DONNÉES DYNAMIQUES -->
+
+    <script>
+
+        document.addEventListener(
+
+            "DOMContentLoaded",
+
+            async function () {
+
+                const section =
+
+                    document.getElementById(
+
+                        "about-dynamic-section"
+
+                    );
+
+                const title =
+
+                    document.getElementById(
+
+                        "about-dynamic-title"
+
+                    );
+
+                const description =
+
+                    document.getElementById(
+
+                        "about-dynamic-description"
+
+                    );
+
+                if (!window.niniceSupabase) {
+
+                    return;
+
+                }
+
+                try {
+
+                    const {
+
+                        data,
+
+                        error
+
+                    } = await window.niniceSupabase
+
+                        .from("shop_settings")
+
+                        .select("*")
+
+                        .limit(1)
+
+                        .maybeSingle();
+
+                    if (error) {
+
+                        console.warn(
+
+                            "NINICE BOUTIQUE : informations shop_settings non disponibles.",
+
+                            error
+
+                        );
+
+                        return;
+
+                    }
+
+                    if (!data) {
+
+                        return;
+
+                    }
+
+                    const storeName =
+
+                        data.store_name ||
+
+                        data.name ||
+
+                        data.shop_name ||
+
+                        "NINICE BOUTIQUE";
+
+                    const storeDescription =
+
+                        data.description ||
+
+                        data.shop_description ||
+
+                        data.about ||
+
+                        data.about_description ||
+
+                        "";
+
+                    if (!storeDescription) {
+
+                        return;
+
+                    }
+
+                    title.textContent =
+
+                        storeName;
+
+                    description.textContent =
+
+                        storeDescription;
+
+                    section.style.display =
+
+                        "block";
+
+                } catch (error) {
+
+                    console.warn(
+
+                        "NINICE BOUTIQUE : erreur chargement présentation.",
+
+                        error
+
+                    );
+
+                }
+
+            }
+
+        );
+
+    </script>
 
 </body>
 
